@@ -1,0 +1,446 @@
+{
+  "timestamp": "2026-06-24T06:00:16",
+  "total": 44,
+  "products": [
+    {
+      "source": "DigiTec DZ",
+      "title": "Galaxy Tab S10 Lite",
+      "price": 75000,
+      "url": "https://www.digitecdz.com/product/galaxy-tab-s10-lite-wifi-6-128gb/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2026/06/570fadc0-2448-41a5-a900-e3bd27ba5652.__CR00200225_PT0_SX200_V1___.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN3 4350G PRO M100A",
+      "price": 76500,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen3-4350g-pro-m100a/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2026/06/721466937_1610320727760463_9051727138061949109_n.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN5 8500G",
+      "price": 146000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen5-8500g/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2026/06/724534575_1610297067762829_904715260141791804_n.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "PROCESSEUR AMD RYZEN 9 7900X3D AM5",
+      "price": 125000,
+      "url": "https://www.digitecdz.com/product/processeur-amd-ryzen-9-7900x3d-am5/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2023/07/51M2WBQUSJL._AC_SL1000_-2.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "CARTE APPLE STOR 25EURO",
+      "price": 11500,
+      "url": "https://www.digitecdz.com/product/cart-appel-stor-heuro/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2022/08/415ZOwWYPPL._AC_UL320_-224x300.jpg.webp",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "LAPTOP DELL INSPRION PLUS 14",
+      "price": 195000,
+      "url": "https://www.digitecdz.com/product/laptop-dell-insprion-plus-14/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/06/G-36195-1-hp-pavilion-plus-14-2022-1.jpg",
+      "category": "laptop",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS 15.6″ LED – ZenScreen MB165B",
+      "price": 32500,
+      "url": "https://www.digitecdz.com/product/asus-15-6-led-zenscreen-mb165b/",
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2024/05/LD0005926546_1.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "FAN HUB DEEPCOOL FH-04",
+      "price": 2800,
+      "url": "https://gigastore-dz.com/peripheriques/fan-hub-deepcool-fh-04/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/3-12.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "PATE THERMIQUE DEEPCOOL DM9 1.5G",
+      "price": 3000,
+      "url": "https://gigastore-dz.com/peripheriques/pate-thermique-deepcool-dm9-1-5g/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-15.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "RGB HUB DEEPCOOL SC700",
+      "price": 4000,
+      "url": "https://gigastore-dz.com/peripheriques/rgb-hub-deepcool-sc700/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-13.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "PATE THERMIQUE CORSAIR TM30",
+      "price": 4000,
+      "url": "https://gigastore-dz.com/peripheriques/pate-thermique-corsair-tm30/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-48.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "CPU AIR COOLER DEEPCOOL AG200 BLACK",
+      "price": 4500,
+      "url": "https://gigastore-dz.com/composants/cpu-air-cooler-deepcool-ag200-black/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/05/LD0006013266.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "Clavier Mars Gaming TKL MK023 Noir, Blanc / Membrane technologie H-Mech RED",
+      "price": 4500,
+      "url": "https://gigastore-dz.com/peripheriques/clavier-mars-gaming-tkl-mk023-noir-blanc-membrane-technologie-h-mech-red/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/06/MK023_960x960.png",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "Clavier Mars Gaming MK220 Noir, Blanc , Antighosting H-Mech, FRGB Rainbow et Halo / Membrane",
+      "price": 4500,
+      "url": "https://gigastore-dz.com/peripheriques/clavier-mars-gaming-mk220-noir-blanc-antighosting-h-mech-frgb-rainbow-et-halo-membrane/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/06/mk220_960x960.png",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "RGB HUB DEEPCOOL GH-01-ARGB",
+      "price": 4900,
+      "url": "https://gigastore-dz.com/peripheriques/rgb-hub-deepcool-gh-01-argb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-12.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "RGB HUB DEEPCOOL SC790",
+      "price": 5300,
+      "url": "https://gigastore-dz.com/peripheriques/rgb-hub-deepcool-sc790/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-14.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "COOLER DEEPCOOL AG300 BLACK",
+      "price": 5500,
+      "url": "https://gigastore-dz.com/composants/cooler-deepcool-ag300-black/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/LD0006013292.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "PATE THERMIQUE ARCTIC MX6 8GRM",
+      "price": 5500,
+      "url": "https://gigastore-dz.com/peripheriques/pate-thermique-arctic-mx6-8grm/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1P.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS SPIRIT OF GAMER ELITE M30 RGB",
+      "price": 6500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-spirit-of-gamer-elite-m30-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/terj.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS SPIRIT OF GAMER ELITE M70",
+      "price": 6500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-spirit-of-gamer-elite-m70/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/ertht.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS SPIRIT OF GAMER ELITE-M80 RGB",
+      "price": 6500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-spirit-of-gamer-elite-m80-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/gjrg.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS MARS GAMING MMPRO 3200DPI ULTRA LIGHT 70g Noir, Blanc",
+      "price": 6900,
+      "url": "https://gigastore-dz.com/peripheriques/souris-mars-gaming-mmpro-3200dpi-ultra-light-noir-blanc/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/06/MARS-GAMING-MMPRO-WHITE-3200DPI-ULTRA-LIGHT-3.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "XPG PRIMER M30 BLACK GAMING RGB",
+      "price": 7000,
+      "url": "https://gigastore-dz.com/peripheriques/xpg-primer-m30-black-gaming-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/4-35.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "ATTACK SHARK X11 Ultra-Light WHITE / RED / BLACK / Magnetic Charging Stand",
+      "price": 7200,
+      "url": "https://gigastore-dz.com/peripheriques/attack-shark-x11-ultra-light-white-red-black-magnetic-charging-stand/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2026/04/61WMNBAPkWL._AC_SL1500_-1.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS MARS GAMING MMEX 32000DPI RGB Switches Optiques Noir, Blanc",
+      "price": 7500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-mars-gaming-mmex-32000dpi-rgb-switches-optiques-noir-blanc/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/06/mmex-color-3_480x600.png",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB890L 75% RGB",
+      "price": 7500,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb890l-75-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/EZDGR.webp",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB903L ( BLACK / WHITE )",
+      "price": 7500,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb903l-black/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/aqsdg.webp",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS SPIRIT OF GAMER ELITE M20",
+      "price": 7500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-spirit-of-gamer-elite-m20/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/REH.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "DEEPCOOL AG400 GAMMAXX ARGB",
+      "price": 7500,
+      "url": "https://gigastore-dz.com/composants/deepcool-ag400-gammaxx-ag400-argb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/10/R-AG400-BKANMC-G-1-thumb.webp",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB870L RGB MECANIQUE",
+      "price": 8000,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb870l-rgb-mecanique/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/rtkhporet.png",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB881L RGB",
+      "price": 8000,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb881l-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/wfqdh.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "MSI Clutch GM50 RGB",
+      "price": 8000,
+      "url": "https://gigastore-dz.com/peripheriques/msi-clutch-gm50-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-59.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT H2002D 3.5MM AUX",
+      "price": 8500,
+      "url": "https://gigastore-dz.com/peripheriques/havit-h2002d-3-5mm-aux/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/3-1.webp",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB903L WHITE BLUE",
+      "price": 8500,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb903l/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/pAiSJqNBbTc6PwSjceiXhcjdIcxO8Gfqg3A34rqS-1.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "LIAN LI UNI FAN SL120 V2 REVERSE BLADE",
+      "price": 9000,
+      "url": "https://gigastore-dz.com/composants/lian-li-uni-fan-sl120-v2-reverse-blade/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/05/sl2_rev_013.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB885L RGB",
+      "price": 9000,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb885l-rgb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/Sans-titre-1.png",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "HAVIT KB893L RGB BLACK/GREEN",
+      "price": 9000,
+      "url": "https://gigastore-dz.com/peripheriques/havit-kb893l-rgb-black-green/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/KKK.png",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "DEEPCOOL AG400 BLACK ARGB",
+      "price": 9000,
+      "url": "https://gigastore-dz.com/composants/deepcool-ag400-black-argb/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/LD0006078425.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS MSI CLUTCH GM41 LIGHTWEIGHT GAMING RGB",
+      "price": 9000,
+      "url": "https://gigastore-dz.com/peripheriques/souris-msi-clutch-gm41-lightweight-gaming-rgb-2/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/1-54.jpg",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "SOURIS LOGITECH G203 LIGHTSYNC",
+      "price": 9500,
+      "url": "https://gigastore-dz.com/peripheriques/souris-logitech-g203-lightsync/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/2.avif",
+      "category": "accessory",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "Mars Gaming MF-LINKFINITYKIT BLACK / WHITE",
+      "price": 9900,
+      "url": "https://gigastore-dz.com/composants/mars-gaming-mf-linkfinitykit-black-white/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/06/MARS-GAMING-MF-LINKFINITYKIT.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "ASUS ROG HONE ACE AIM LAB EDITION",
+      "price": 9900,
+      "url": "https://gigastore-dz.com/peripheriques/asus-rog-hone-ace-aim-lab-edition/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/07/22615f3b-0868-4d37-af79-8ca8079e8284.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "MPG ARGB GRAPHICS CARD STAND BLACK / WHITE",
+      "price": 10000,
+      "url": "https://gigastore-dz.com/peripheriques/accessoires/mpg-argb-graphics-card-stand-black-white/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/04/22.png",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    },
+    {
+      "source": "GigaStore DZ",
+      "title": "Cooler Master Hyper 212 Halo Black",
+      "price": 10500,
+      "url": "https://gigastore-dz.com/composants/refroidissement/cooler-master-hyper-212-halo-black/",
+      "imageUrl": "https://gigastore-dz.com/wp-content/uploads/2025/01/LD0006036950.jpg",
+      "category": "pc_part",
+      "location": "Algeria",
+      "condition": "new"
+    }
+  ]
+}

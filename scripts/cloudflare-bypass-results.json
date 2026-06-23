@@ -1,0 +1,842 @@
+{
+  "timestamp": "2026-06-24T04:23:04Z",
+  "total": 104,
+  "by_source": {
+    "Gaming DZ": 4,
+    "DigiTec DZ": 100
+  },
+  "products": [
+    {
+      "source": "Gaming DZ",
+      "title": "FAN RAIDMAX OF I811 RGB",
+      "price": 1500,
+      "url": "https://gamingdz.com/store/composants/refroidisseur-cpu/FAN-RAIDMAX-OF-I811-RGB",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "Gaming DZ",
+      "title": "FAN RAIDMAX OF I811 RGB",
+      "price": 1500,
+      "url": "https://gamingdz.com/store/composants/refroidisseur-cpu/FAN-RAIDMAX-OF-I811-RGB",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "Gaming DZ",
+      "title": "FAN RAIDMAX OF I811 RGB",
+      "price": 1500,
+      "url": "https://gamingdz.com/store/composants/refroidisseur-cpu/FAN-RAIDMAX-OF-I811-RGB",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "Gaming DZ",
+      "title": "FAN RAIDMAX OF I811 RGB",
+      "price": 1500,
+      "url": "https://gamingdz.com/store/composants",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Galaxy Tab S10 Lite",
+      "price": 75000,
+      "url": "https://www.digitecdz.com/product/galaxy-tab-s10-lite-wifi-6-128gb/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN3 4350G PRO M100A",
+      "price": 76500,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen3-4350g-pro-m100a/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN5 8500G",
+      "price": 146000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen5-8500g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN3 4350G PRO AVEC ECRAN VULPES 120HZ",
+      "price": 98400,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen3-4350g-pro-avec-ecran-vulpes-120hz/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN3 4350G PRO",
+      "price": 79900,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen3-4350g-pro/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN5 7600",
+      "price": 268000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen5-7600/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN5 7500F",
+      "price": 236000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen5-7500f/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN5 8600G",
+      "price": 154000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen5-8600g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING I5 12600KF",
+      "price": 276000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-i5-12600kf/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP N4500",
+      "price": 70000,
+      "url": "https://www.digitecdz.com/product/hp-n4500/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE GAMING RYZEN7 8700G",
+      "price": 190000,
+      "url": "https://www.digitecdz.com/product/unite-gaming-ryzen7-8700g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "UNITE CENTRAL GAMING RYZEN5 3400G",
+      "price": 97000,
+      "url": "https://www.digitecdz.com/product/unite-central-gaming-ryzen5-3400g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP Envy X360",
+      "price": 190000,
+      "url": "https://www.digitecdz.com/product/hp-envy-x360/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP 15",
+      "price": 150000,
+      "url": "https://www.digitecdz.com/product/hp-15/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "DELL DC16250",
+      "price": 126000,
+      "url": "https://www.digitecdz.com/product/13648/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "BOITIER MSI MAG FORGE 321R AIRFLOW",
+      "price": 18000,
+      "url": "https://www.digitecdz.com/product/boitier-msi-mag-forge-321r-airflow/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Intel Core Ultra 7 265F (2.4 GHz / 5.3 GHz)",
+      "price": 78200,
+      "url": "https://www.digitecdz.com/product/intel-core-ultra-7-265f-2-4-ghz-5-3-ghz/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Intel Core Ultra 5 245K (4.2 GHz / 5.2 GHz) BOX",
+      "price": 57900,
+      "url": "https://www.digitecdz.com/product/ntel-core-ultra-5-245k-4-2-ghz-5-2-ghz-box/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS Dual GeForce RTX 5060 Ti OC Edition 8GB",
+      "price": 125000,
+      "url": "https://www.digitecdz.com/product/asus-dual-geforce-rtx-5060-ti-oc-edition-8gb-2/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte GeForce RTX 5050 GAMING OC 8G",
+      "price": 87000,
+      "url": "https://www.digitecdz.com/product/gigabyte-geforce-rtx-5050-gaming-oc-8g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "LENOVO AMD",
+      "price": 112500,
+      "url": "https://www.digitecdz.com/product/lenovo-amd/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5060 Ti 8G VENTUS 2X OC PLUS",
+      "price": 122000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5060-ti-8g-ventus-2x-oc-plus/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS PRIME GeForce RTX 5060 OC Edition 8GB",
+      "price": 103000,
+      "url": "https://www.digitecdz.com/product/asus-prime-geforce-rtx-5060-oc-edition-8gb/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5060 8G VENTUS 2X OC",
+      "price": 95000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5060-8g-ventus-2x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS Dual GeForce RTX 5060 OC Edition 8GB",
+      "price": 95900,
+      "url": "https://www.digitecdz.com/product/asus-dual-geforce-rtx-5060-oc-edition-8gb/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5060 Ti 8G GAMING TRIO OC",
+      "price": 142000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5060-ti-8g-gaming-trio-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS PRIME GeForce RTX 5050 OC Edition 8GB",
+      "price": 85000,
+      "url": "https://www.digitecdz.com/product/asus-prime-geforce-rtx-5050-oc-edition-8gb/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5060 8G SHADOW 2X OC",
+      "price": 93000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5060-8g-shadow-2x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5050 8G SHADOW 2X OC",
+      "price": 76000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5050-8g-shadow-2x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP PROBOOK 450 G10 I7-1355U/16GB/SSD512GO IRIS XE",
+      "price": 265000,
+      "url": "https://www.digitecdz.com/product/hp-probook-450-g10-i7-1355u-16gb-ssd512go-iris-xe/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Lenovo Ideapad Slim 5 16&#8243;",
+      "price": 192000,
+      "url": "https://www.digitecdz.com/product/lenovo-ideapad-slim-5-16/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "LAPTOP LENOVO ThinkPad x280 intel i7-8850U/8GB/SSD 256GB/FHD 12.5&#8243;",
+      "price": 185000,
+      "url": "https://www.digitecdz.com/product/laptop-lenovo-thinkpad-x280-intel-i7-8850u-8gb-ssd-256gb-fhd-15-6/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP 250 G9 CELERON N4500",
+      "price": 70000,
+      "url": "https://www.digitecdz.com/product/hp-250-g9-celeron-n4500/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP 250 G10 I5-1334U / 08GO/ 512GO SSD/ 15.6″ FHD",
+      "price": 130000,
+      "url": "https://www.digitecdz.com/product/hp-250-g10-i5-1334u-08go-512go-ssd-15-6%e2%80%b3-fhd/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP I3-N305",
+      "price": 102000,
+      "url": "https://www.digitecdz.com/product/hp-i3-n305/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP 250 G10",
+      "price": 106000,
+      "url": "https://www.digitecdz.com/product/hp-250-g10/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Dell Vostro 3530",
+      "price": 100000,
+      "url": "https://www.digitecdz.com/product/dell-vostro-3530/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP Victus Gaming 15-FB2063DX",
+      "price": 255000,
+      "url": "https://www.digitecdz.com/product/hp-victus-gaming-15-fb2063dx/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP Victus Gaming 15-FA1097NE (Copie)",
+      "price": 310000,
+      "url": "https://www.digitecdz.com/product/hp-victus-gaming-15-fa1097ne-copie/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HP Victus Gaming 16-R1048NE",
+      "price": 380000,
+      "url": "https://www.digitecdz.com/product/hp-victus-gaming-16-r1048ne/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "LENOVO THINKPAD X1 CARBON GEN 9 /14&#8243; / I5 11TH/ 512 SSD /16RAM",
+      "price": 228000,
+      "url": "https://www.digitecdz.com/product/lenovo-thinkpad-x1-carbon-gen-9-14-i7-11th-512-ssd-16ram/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Lenovo Slim 3 15IAN8",
+      "price": 89000,
+      "url": "https://www.digitecdz.com/product/lenovo-slim-3-15ian8/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "PC LAPTOP ASUS ZENBOOK UM425U / RYZEN 5 5500U/8GB RAM /512SSD NVME /FHD 14&#8243;",
+      "price": 198000,
+      "url": "https://www.digitecdz.com/product/pc-laptop-asus-zenbook-um425u-ryzen-5-5500u-8gb-ram-512ssd-nvme-14/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5060 Ti 16G SHADOW 2X OC",
+      "price": 155000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5060-ti-16g-shadow-2x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MPG A850GS PCIE5",
+      "price": 24900,
+      "url": "https://www.digitecdz.com/product/msi-mpg-a850gs-pcie5/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN MSI MPG 491CQP QD-OLED",
+      "price": 238600,
+      "url": "https://www.digitecdz.com/product/ecran-msi-mpg-491cqp-qd-oled/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "VULPES VOLCANO 27″ – 180Hz QHD IPS",
+      "price": 42000,
+      "url": "https://www.digitecdz.com/product/vulpes-volcano-27%e2%80%b3-180hz-qhd-ips/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "VULPES RUSH 27″ – 180Hz Full HD IPS",
+      "price": 33000,
+      "url": "https://www.digitecdz.com/product/vulpes-rush-27%e2%80%b3-180hz-full-hd-ips/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "VULPES AURA 24″ 165Hz Full HD IPS",
+      "price": 24000,
+      "url": "https://www.digitecdz.com/product/vulpes-aura-24%e2%80%b3-165hz-full-hd-ips/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "VULPES SAKURA 24″ – IPS Full HD Pink Edition",
+      "price": 24000,
+      "url": "https://www.digitecdz.com/product/vulpes-sakura-24%e2%80%b3-ips-full-hd-pink-edition/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "VULPES LYNX 24″ – 120Hz Full HD IPS",
+      "price": 18500,
+      "url": "https://www.digitecdz.com/product/vulpes-lynx-24%e2%80%b3-120hz-full-hd-ips/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG CORELIQUID I360 &#8211; Blanc",
+      "price": 35900,
+      "url": "https://www.digitecdz.com/product/msi-mag-coreliquid-i360-blanc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG CORELIQUID A15 360 Black",
+      "price": 29000,
+      "url": "https://www.digitecdz.com/product/msi-mag-coreliquid-a15-360-black/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG CORELIQUID E240 White",
+      "price": 23900,
+      "url": "https://www.digitecdz.com/product/msi-mag-coreliquid-e240-white/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG CORELIQUID A15 240 Black",
+      "price": 21900,
+      "url": "https://www.digitecdz.com/product/msi-mag-coreliquid-a15-240-black/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG COREFROZR AA13 (Blanc)",
+      "price": 9500,
+      "url": "https://www.digitecdz.com/product/msi-mag-corefrozr-aa13-blanc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG COREFROZR AA13 (Noir)",
+      "price": 9000,
+      "url": "https://www.digitecdz.com/product/msi-mag-corefrozr-aa13-noir/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN MSI MAG 255 XF",
+      "price": 45900,
+      "url": "https://www.digitecdz.com/product/ecran-msi-mag-255-xf/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ASUS TUF Gaming AX3000 V2",
+      "price": 31900,
+      "url": "https://www.digitecdz.com/product/asus-tuf-gaming-ax3000-v2/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Routeur ASUS RT-AX53U  Wi-Fi 6 AX1800",
+      "price": 17900,
+      "url": "https://www.digitecdz.com/product/routeur-asus-rt-ax53u-wi-fi-6-ax1800/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG A1250GL PCIE5",
+      "price": 45500,
+      "url": "https://www.digitecdz.com/product/msi-mag-a1250gl-pcie5/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MAG A1000GLS PCIE5",
+      "price": 36000,
+      "url": "https://www.digitecdz.com/product/mag-a1000gls-pcie5/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN MSI  G275L E14",
+      "price": 36500,
+      "url": "https://www.digitecdz.com/product/ecran-msi-g275l-e14/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN MSI MPG 341CQPX QD-OLED",
+      "price": 239000,
+      "url": "https://www.digitecdz.com/product/ecran-msi-mpg-341cqpx-qd-oled/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MAG 321UPX QD-OLED",
+      "price": 212000,
+      "url": "https://www.digitecdz.com/product/mag-321upx-qd-oled/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN MSI MAG 273QP QD-OLED X24",
+      "price": 178500,
+      "url": "https://www.digitecdz.com/product/ecran-msi-mag-273qp-qd-oled-x24/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI 27&#8243; LED &#8211; MPG 274URDFW E16M",
+      "price": 130000,
+      "url": "https://www.digitecdz.com/product/msi-27-led-mpg-274urdfw-e16m/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "ECRAN ASUS  TUF Gaming VG249QM5A",
+      "price": 46000,
+      "url": "https://www.digitecdz.com/product/ecran-asus-tuf-gaming-vg249qm5a/",
+      "category": "monitor",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "SOURIS MSI VERSA 300  WIRLESS WHITE",
+      "price": 7000,
+      "url": "https://www.digitecdz.com/product/souris-msi-versa-300-wirless-white/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "SOURIS MSI VERSA 300 WIRLESS BLACK",
+      "price": 6500,
+      "url": "https://www.digitecdz.com/product/souris-msi-versa-300-wirless-black/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "SOURIS MSI  FORGE GM300",
+      "price": 3500,
+      "url": "https://www.digitecdz.com/product/souris-msi-forge-gm300/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5090 32G GAMING TRIO OC",
+      "price": 1240000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5090-32g-gaming-trio-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "e clavier MSI FORGE GK600 TKL WIRELES",
+      "price": 18900,
+      "url": "https://www.digitecdz.com/product/e-clavier-msi-forge-gk600-tkl-wireles/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "CLAVIER MSI FORGE GK320",
+      "price": 12000,
+      "url": "https://www.digitecdz.com/product/clavier-msi-forge-gk320/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "CLAVIER MSI FORGE GK110",
+      "price": 6500,
+      "url": "https://www.digitecdz.com/product/clavier-msi-forge-gk110/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Chaise Gaming Odesk G01– Ergonomique – Noir",
+      "price": 19000,
+      "url": "https://www.digitecdz.com/product/chaise-gaming-odesk-g01-ergonomique-noir/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte AORUS Radeon RX 9070 XT ELITE 16G",
+      "price": 279000,
+      "url": "https://www.digitecdz.com/product/gigabyte-aorus-radeon-rx-9070-xt-elite-16g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte Radeon RX 9070 XT GAMING OC ICE 16G",
+      "price": 259000,
+      "url": "https://www.digitecdz.com/product/gigabyte-radeon-rx-9070-xt-gaming-oc-ice-16g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte Radeon RX 9070 XT GAMING OC 16G",
+      "price": 259000,
+      "url": "https://www.digitecdz.com/product/gigabyte-radeon-rx-9070-xt-gaming-oc-16g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte Radeon RX 9060 XT GAMING OC ICE 16G",
+      "price": 168000,
+      "url": "https://www.digitecdz.com/product/gigabyte-radeon-rx-9060-xt-gaming-oc-ice-16g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte GeForce RTX 5070 Ti AERO OC 16G",
+      "price": 377000,
+      "url": "https://www.digitecdz.com/product/gigabyte-geforce-rtx-5070-ti-aero-oc-16g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte AORUS GeForce RTX 5070 MASTER 12G",
+      "price": 252000,
+      "url": "https://www.digitecdz.com/product/gigabyte-aorus-geforce-rtx-5070-master-12g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte GeForce RTX 5060 Ti AERO OC 8G",
+      "price": 156500,
+      "url": "https://www.digitecdz.com/product/gigabyte-geforce-rtx-5060-ti-aero-oc-8g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5060 Ti GAMING OC 8G",
+      "price": 136000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5060-ti-gaming-oc-8g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GIGABYTE GAMING 240 ICE",
+      "price": 32500,
+      "url": "https://www.digitecdz.com/product/gigabyte-gaming-240-ice/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "GeForce RTX™ 5060 Ti EAGLE OC ICE 8G",
+      "price": 149000,
+      "url": "https://www.digitecdz.com/product/geforce-rtx-5060-ti-eagle-oc-ice-8g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Gigabyte GeForce RTX 5070 GAMING OC 12G.",
+      "price": 205000,
+      "url": "https://www.digitecdz.com/product/gigabyte-geforce-rtx-5070-gaming-oc-12g/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "Arctic Liquid Freezer III Pro 360 A-RGB (Noir)",
+      "price": 43900,
+      "url": "https://www.digitecdz.com/product/arctic-liquid-freezer-iii-pro-360-a-rgb-noir/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5070 12G VENTUS 2X OC",
+      "price": 207000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5070-12g-ventus-2x-oc-2/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5080 16G VENTUS 3X OC",
+      "price": 412500,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5080-16g-ventus-3x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5070 12G VENTUS 2X OC",
+      "price": 207000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5070-12g-ventus-2x-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI GeForce RTX 5070 12G GAMING TRIO OC",
+      "price": 215000,
+      "url": "https://www.digitecdz.com/product/msi-geforce-rtx-5070-12g-gaming-trio-oc/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MEG PROSPECT 700R",
+      "price": 70500,
+      "url": "https://www.digitecdz.com/product/msi-meg-prospect-700r/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG FORGE 320R AIRFLOW",
+      "price": 16500,
+      "url": "https://www.digitecdz.com/product/msi-mag-forge-320r-airflow/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "MSI MAG FORGE 120A AIRFLOW",
+      "price": 13900,
+      "url": "https://www.digitecdz.com/product/msi-mag-forge-120a-airflow/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "BOITIER MSI MAG FORGE M100R",
+      "price": 13500,
+      "url": "https://www.digitecdz.com/product/boitier-msi-mag-forge-m100r/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "BOITIER MSI MAG FORGE M100A",
+      "price": 9800,
+      "url": "https://www.digitecdz.com/product/boitier-msi-mag-forge-m100a/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "HyperX Alloy Core RGB",
+      "price": 18500,
+      "url": "https://www.digitecdz.com/product/hyperx-alloy-core-rgb/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "CARTE APPLE STOR 25EURO",
+      "price": 11500,
+      "url": "https://www.digitecdz.com/product/cart-appel-stor-heuro/",
+      "category": "pc_part",
+      "location": "Algeria"
+    },
+    {
+      "source": "DigiTec DZ",
+      "title": "CARTE STEAM 30 EURO",
+      "price": 12500,
+      "url": "https://www.digitecdz.com/product/carte-steam-30-euro/",
+      "category": "pc_part",
+      "location": "Algeria"
+    }
+  ]
+}
