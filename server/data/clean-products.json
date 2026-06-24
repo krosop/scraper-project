@@ -1,227 +1,15 @@
 {
-  "timestamp": "2026-06-24T19:19:15.082560",
-  "total": 343,
+  "timestamp": "2026-06-24T19:30:25.623287",
+  "total": 334,
   "stats": {
-    "originalCount": 555,
-    "cleanCount": 555,
-    "uniqueCount": 343,
-    "reductionRate": "38.2%"
+    "originalCount": 528,
+    "cleanCount": 528,
+    "uniqueCount": 334,
+    "reductionRate": "36.7%"
   },
   "products": [
     {
-      "id": "prd-psu-ajouter-à-la-comparaison-1919",
-      "canonicalName": "Ajouter à la comparaison",
-      "brand": null,
-      "category": "psu",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 6900.0,
-      "worstPrice": 18900.0,
-      "averagePrice": 12350,
-      "listingCount": 6,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "AMI-DZ",
-          "price": 6900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-magma-650w-82-plus-bronze-black/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 8000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-hybrok-650w-80-bronze-atx-black/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 9500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-acer-650w-80bronze-full-modulair-black/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 11900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-acer-750w-80bronze-full-modulair-white/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 18900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-acer-1000w-80plus-gold-full-modulair-ac1000-black/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 18900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/alimentation-thermaltake-850w-smart-pro-rgb-full-modular-80-bronze/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-unknown-compare-1919",
-      "canonicalName": "Compare",
-      "brand": null,
-      "category": "pc_part",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 1100.0,
-      "worstPrice": 90000.0,
-      "averagePrice": 28280,
-      "listingCount": 5,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "CapMicro Dz",
-          "price": 1100.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/air-duster-giga630-450ml/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 2500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/haut-parleur-havit-sk202bt-bluetooth-portable/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 5400.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/modem-routeur-wi-fi-4g-portable-tcl-mw42v/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 42400.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/canon-i-sensys-lbp-6030b-imprimante-laser-monochrome-usb-2-0/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 90000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/sacoche-laptop-14-t35-2-pochettes/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-mouse-compare-1919",
-      "canonicalName": "Compare",
-      "brand": null,
-      "category": "mouse",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 1100.0,
-      "worstPrice": 3900.0,
-      "averagePrice": 2540,
-      "listingCount": 4,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "CapMicro Dz",
-          "price": 1100.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/souris-sans-fil-dual-mode-w10-bluetooth/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 2200.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/souris-gaming-havit-ms1033/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 3300.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/souris-gaming-havit-ms961/",
-          "imageUrl": null
-        },
-        {
-          "source": "CapMicro Dz",
-          "price": 3900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/souris-gaming-havit-ms965/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-cooling-ajouter-à-la-comparaison-1919",
-      "canonicalName": "Ajouter à la comparaison",
-      "brand": null,
-      "category": "cooling",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 12500.0,
-      "worstPrice": 14000.0,
-      "averagePrice": 13225,
-      "listingCount": 4,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "AMI-DZ",
-          "price": 12500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/air-cooling-thermaltake-toughair-510/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 12900.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/air-cooling-deepcool-ag500-digital-argb-black/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 13500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/air-cooling-deepcool-ag500-digital-white/",
-          "imageUrl": null
-        },
-        {
-          "source": "AMI-DZ",
-          "price": 14000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/air-cooling-deepcool-ak500s-digital-black-am4-am5-intel/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-gpu-gpu-carte-graphique-zotac-geforce-rt-1919",
+      "id": "prd-gpu-gpu-carte-graphique-zotac-geforce-rt-1930",
       "canonicalName": "GPU CARTE GRAPHIQUE ZOTAC GEFORCE RTX 5060 Ti 16GB TWIN EDGE",
       "brand": "Geforce",
       "category": "gpu",
@@ -263,7 +51,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-cooler-master-maste-1919",
+      "id": "prd-cooling-watercooling-cooler-master-maste-1930",
       "canonicalName": "WATERCOOLING COOLER MASTER MASTERLIQUID 240L CORE ARGB BLACK / WHITE",
       "brand": "Core",
       "category": "cooling",
@@ -302,46 +90,7 @@
       ]
     },
     {
-      "id": "prd-unknown-tablettes-1919",
-      "canonicalName": "Tablettes",
-      "brand": null,
-      "category": "pc_part",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 56500.0,
-      "worstPrice": 375000.0,
-      "averagePrice": 174800,
-      "listingCount": 3,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "Admin-Info",
-          "price": 84500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://admin-info.dz/produit-categorie/telephonie-tablettes/tablettes/tablettes2/",
-          "imageUrl": null
-        },
-        {
-          "source": "Admin-Info",
-          "price": 289000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://admin-info.dz/produit-categorie/telephonie-tablettes/tablettes/apple-tablettes/",
-          "imageUrl": null
-        },
-        {
-          "source": "Admin-Info",
-          "price": 375000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://admin-info.dz/produit-categorie/telephonie-tablettes/tablettes/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-gpu-gpu-carte-graphique-asus-dual-geforc-1919",
+      "id": "prd-gpu-gpu-carte-graphique-asus-dual-geforc-1930",
       "canonicalName": "GPU CARTE GRAPHIQUE ASUS DUAL GEFORCE RTX 5060 OC EDITION 8GB",
       "brand": "Geforce",
       "category": "gpu",
@@ -376,7 +125,7 @@
       ]
     },
     {
-      "id": "prd-gpu-gpu-carte-graphique-msi-geforce-rtx--1919",
+      "id": "prd-gpu-gpu-carte-graphique-msi-geforce-rtx--1930",
       "canonicalName": "GPU CARTE GRAPHIQUE MSI GEFORCE RTX 5060 VENTUS 2X 8GB OC BLACK / WHITE",
       "brand": "Geforce",
       "category": "gpu",
@@ -411,7 +160,7 @@
       ]
     },
     {
-      "id": "prd-gpu-gpu-carte-graphique-msi-geforce-rtx--1919",
+      "id": "prd-gpu-gpu-carte-graphique-msi-geforce-rtx--1930",
       "canonicalName": "GPU CARTE GRAPHIQUE MSI GEFORCE RTX 5070 Ti 16GB GAMING TRIO OC BLACK",
       "brand": "Geforce",
       "category": "gpu",
@@ -446,7 +195,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-cooler-master-masterbox--1919",
+      "id": "prd-case-boitier-pc-cooler-master-masterbox--1930",
       "canonicalName": "BOITIER PC COOLER MASTER MASTERBOX MB520 ARGB",
       "brand": "Cooler Master",
       "category": "case",
@@ -477,7 +226,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g--1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g--1930",
       "canonicalName": "SOURIS GAMING SANS FIL LOGITECH G PRO X SUPERLIGHT 25000 DPI (RED / PINK)",
       "brand": null,
       "category": "mouse",
@@ -508,7 +257,7 @@
       ]
     },
     {
-      "id": "prd-unknown-smartphones-1919",
+      "id": "prd-unknown-smartphones-1930",
       "canonicalName": "Smartphones",
       "brand": null,
       "category": "pc_part",
@@ -539,38 +288,38 @@
       ]
     },
     {
-      "id": "prd-headset-compare-1919",
-      "canonicalName": "Compare",
+      "id": "prd-unknown-tablettes-1930",
+      "canonicalName": "Tablettes",
       "brand": null,
-      "category": "headset",
+      "category": "pc_part",
       "specs": {},
       "imageUrl": null,
-      "bestPrice": 4100.0,
-      "worstPrice": 10500.0,
-      "averagePrice": 6233,
+      "bestPrice": 56500.0,
+      "worstPrice": 375000.0,
+      "averagePrice": 174800,
       "listingCount": 2,
       "storeCount": 1,
       "listings": [
         {
-          "source": "CapMicro Dz",
-          "price": 4100.0,
+          "source": "Admin-Info",
+          "price": 289000.0,
           "condition": "New",
           "location": "Algeria",
-          "url": "https://capmicrodz.com/casque-gaming-havit-h2043u/",
+          "url": "https://admin-info.dz/produit-categorie/telephonie-tablettes/tablettes/apple-tablettes/",
           "imageUrl": null
         },
         {
-          "source": "CapMicro Dz",
-          "price": 10500.0,
+          "source": "Admin-Info",
+          "price": 375000.0,
           "condition": "New",
           "location": "Algeria",
-          "url": "https://capmicrodz.com/casque-gamer-havit-fuxi-h7/",
+          "url": "https://admin-info.dz/produit-categorie/telephonie-tablettes/tablettes/",
           "imageUrl": null
         }
       ]
     },
     {
-      "id": "prd-unknown-imprimante-multifonction-monochr-1919",
+      "id": "prd-unknown-imprimante-multifonction-monochr-1930",
       "canonicalName": "Imprimante Multifonction Monochrome Canon i-SENSYS MF463dw",
       "brand": null,
       "category": "pc_part",
@@ -601,7 +350,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-benq-gw2790-27\"---full--1919",
+      "id": "prd-monitor-ecran-pc-benq-gw2790-27\"---full--1930",
       "canonicalName": "ECRAN PC BENQ GW2790 27\" - Full HD, 100Hz, IPS",
       "brand": "Benq",
       "category": "monitor",
@@ -629,7 +378,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-tuf-gaming-5-vg279-1919",
+      "id": "prd-monitor-ecran-pc-asus-tuf-gaming-5-vg279-1930",
       "canonicalName": "ECRAN PC ASUS TUF GAMING 5 VG279Q5R 27\" - FULL HD 1080P, 200HZ",
       "brand": "Asus",
       "category": "monitor",
@@ -656,7 +405,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-game-revolution-apocaly-1919",
+      "id": "prd-monitor-ecran-pc-game-revolution-apocaly-1930",
       "canonicalName": "ECRAN PC GAME REVOLUTION APOCALYPS 27\" - 2K, 240HZ",
       "brand": "Game Revolution",
       "category": "monitor",
@@ -683,7 +432,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-game-revolution-armague-1919",
+      "id": "prd-monitor-ecran-pc-game-revolution-armague-1930",
       "canonicalName": "ECRAN PC GAME REVOLUTION ARMAGUEDON 27\" - FULL HD 1080P, 240HZ",
       "brand": "Game Revolution",
       "category": "monitor",
@@ -710,7 +459,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-game-revolution-ragnaro-1919",
+      "id": "prd-monitor-ecran-pc-game-revolution-ragnaro-1930",
       "canonicalName": "ECRAN PC GAME REVOLUTION RAGNAROK 24\" - FULL HD 1080P, 180HZ",
       "brand": "Game Revolution",
       "category": "monitor",
@@ -737,7 +486,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-maxipower-mp24hv-24\"----1919",
+      "id": "prd-monitor-ecran-pc-maxipower-mp24hv-24\"----1930",
       "canonicalName": "ECRAN PC MAXIPOWER MP24HV 24\" - HD, 75HZ",
       "brand": "Maxipower",
       "category": "monitor",
@@ -764,7 +513,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-maxipower-mp22hv-22\"----1919",
+      "id": "prd-monitor-ecran-pc-maxipower-mp22hv-22\"----1930",
       "canonicalName": "ECRAN PC MAXIPOWER MP22HV 22\" - HD, 75HZ",
       "brand": "Maxipower",
       "category": "monitor",
@@ -791,7 +540,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-proart-pa279crv-27-1919",
+      "id": "prd-monitor-ecran-pc-asus-proart-pa279crv-27-1930",
       "canonicalName": "ECRAN PC ASUS PROART PA279CRV 27\" - 4K, IPS",
       "brand": "Asus",
       "category": "monitor",
@@ -818,7 +567,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-proart-pa278cv-27\"-1919",
+      "id": "prd-monitor-ecran-pc-asus-proart-pa278cv-27\"-1930",
       "canonicalName": "ECRAN PC ASUS PROART PA278CV 27\" - 2.5K, IPS",
       "brand": "Asus",
       "category": "monitor",
@@ -844,7 +593,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-pro-mp225v-21.45\"---1919",
+      "id": "prd-monitor-ecran-pc-msi-pro-mp225v-21.45\"---1930",
       "canonicalName": "ECRAN PC MSI PRO MP225V 21.45\" - FULL HD 1080P, 100HZ",
       "brand": "Msi",
       "category": "monitor",
@@ -871,7 +620,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-pro-mp223-21.5\"---f-1919",
+      "id": "prd-monitor-ecran-pc-msi-pro-mp223-21.5\"---f-1930",
       "canonicalName": "ECRAN PC MSI PRO MP223 21.5\" - FULL HD 1080P, 100HZ",
       "brand": "Msi",
       "category": "monitor",
@@ -898,7 +647,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-mag-g275f-27\"---ful-1919",
+      "id": "prd-monitor-ecran-pc-msi-mag-g275f-27\"---ful-1930",
       "canonicalName": "ECRAN PC MSI MAG G275F 27\" - FULL HD 1080P, 180Hz",
       "brand": "Msi",
       "category": "monitor",
@@ -925,7 +674,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-pro-mp273u-27\"---4k-1919",
+      "id": "prd-monitor-ecran-pc-msi-pro-mp273u-27\"---4k-1930",
       "canonicalName": "ECRAN PC MSI PRO MP273U 27\" - 4K, IPS",
       "brand": "Msi",
       "category": "monitor",
@@ -952,7 +701,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-pro-mp273a-27\"---fu-1919",
+      "id": "prd-monitor-ecran-pc-msi-pro-mp273a-27\"---fu-1930",
       "canonicalName": "ECRAN PC MSI PRO MP273A 27\" - FULL HD 1080P, 100HZ, IPS",
       "brand": "Msi",
       "category": "monitor",
@@ -980,7 +729,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-mag-274f-27\"---full-1919",
+      "id": "prd-monitor-ecran-pc-msi-mag-274f-27\"---full-1930",
       "canonicalName": "ECRAN PC MSI MAG 274F 27\" - FULL HD, 200HZ",
       "brand": "Msi",
       "category": "monitor",
@@ -1007,7 +756,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-magma-mg25gmg-25\"---ful-1919",
+      "id": "prd-monitor-ecran-pc-magma-mg25gmg-25\"---ful-1930",
       "canonicalName": "ECRAN PC MAGMA MG25GMG 25\" - FULL HD, 300HZ",
       "brand": "Magma",
       "category": "monitor",
@@ -1034,7 +783,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-magma-mg27gmg-27\"---ful-1919",
+      "id": "prd-monitor-ecran-pc-magma-mg27gmg-27\"---ful-1930",
       "canonicalName": "ECRAN PC MAGMA MG27GMG 27\" - FULL HD, 200HZ",
       "brand": "Magma",
       "category": "monitor",
@@ -1061,7 +810,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-magma-mg24gmg-24\"---ful-1919",
+      "id": "prd-monitor-ecran-pc-magma-mg24gmg-24\"---ful-1930",
       "canonicalName": "ECRAN PC MAGMA MG24GMG 24\" - FULL HD, 200HZ",
       "brand": "Magma",
       "category": "monitor",
@@ -1088,7 +837,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-magma-msg24ofc-24\"---fu-1919",
+      "id": "prd-monitor-ecran-pc-magma-msg24ofc-24\"---fu-1930",
       "canonicalName": "ECRAN PC MAGMA MSG24OFC 24\" - FULL HD, 100HZ",
       "brand": "Magma",
       "category": "monitor",
@@ -1115,7 +864,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-va249hg-24\"---full-1919",
+      "id": "prd-monitor-ecran-pc-asus-va249hg-24\"---full-1930",
       "canonicalName": "ECRAN PC ASUS VA249HG 24\" - Full HD, 120Hz",
       "brand": "Asus",
       "category": "monitor",
@@ -1143,7 +892,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-tuf-vg27uq1a-27\"---1919",
+      "id": "prd-monitor-ecran-pc-asus-tuf-vg27uq1a-27\"---1930",
       "canonicalName": "ECRAN PC ASUS TUF VG27UQ1A 27\" - 4K, 160HZ",
       "brand": "Asus",
       "category": "monitor",
@@ -1170,7 +919,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-msi-mag-255f-e20-24.5\"--1919",
+      "id": "prd-monitor-ecran-pc-msi-mag-255f-e20-24.5\"--1930",
       "canonicalName": "ECRAN PC MSI MAG 255F E20 24.5\" - Full HD, 200Hz",
       "brand": "Msi",
       "category": "monitor",
@@ -1197,7 +946,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-hp-327pe-27\"---full-hd--1919",
+      "id": "prd-monitor-ecran-pc-hp-327pe-27\"---full-hd--1930",
       "canonicalName": "ECRAN PC HP 327PE 27\" - Full HD 1080p, IPS, PIVOT",
       "brand": "Hp",
       "category": "monitor",
@@ -1224,7 +973,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-iiyama-g-master-gb2770h-1919",
+      "id": "prd-monitor-ecran-pc-iiyama-g-master-gb2770h-1930",
       "canonicalName": "ECRAN PC IIYAMA G-MASTER GB2770HSU-B6 27\" - Full HD 1080p, 180Hz, 0.2MS",
       "brand": null,
       "category": "monitor",
@@ -1252,7 +1001,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-hybrok-hg27cuf200-27\"-c-1919",
+      "id": "prd-monitor-ecran-pc-hybrok-hg27cuf200-27\"-c-1930",
       "canonicalName": "ECRAN PC HYBROK HG27CUF200 27\" Curved - Full HD 1080p, 200Hz",
       "brand": null,
       "category": "monitor",
@@ -1279,7 +1028,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-hybrok-hg32qhd-32\"---2k-1919",
+      "id": "prd-monitor-ecran-pc-hybrok-hg32qhd-32\"---2k-1930",
       "canonicalName": "ECRAN PC HYBROK HG32QHD 32\" - 2K, 180Hz",
       "brand": null,
       "category": "monitor",
@@ -1306,7 +1055,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-asus-tuf-gaming-vg27vq3-1919",
+      "id": "prd-monitor-ecran-pc-asus-tuf-gaming-vg27vq3-1930",
       "canonicalName": "ECRAN PC ASUS TUF GAMING VG27VQ3B 27\" CURVED - FULL HD, 180Hz",
       "brand": "Asus",
       "category": "monitor",
@@ -1333,7 +1082,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-aoc-27g4hre-27\"---full--1919",
+      "id": "prd-monitor-ecran-pc-aoc-27g4hre-27\"---full--1930",
       "canonicalName": "ECRAN PC AOC 27G4HRE 27\" - FULL HD, 200HZ",
       "brand": "Aoc",
       "category": "monitor",
@@ -1360,7 +1109,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-aoc-q27g42ze-27\"---qhd--1919",
+      "id": "prd-monitor-ecran-pc-aoc-q27g42ze-27\"---qhd--1930",
       "canonicalName": "ECRAN PC AOC Q27G42ZE 27\" - QHD 2.5K, 260HZ",
       "brand": "Aoc",
       "category": "monitor",
@@ -1387,7 +1136,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-acer-kg241qsbiip-23.8\"--1919",
+      "id": "prd-monitor-ecran-pc-acer-kg241qsbiip-23.8\"--1930",
       "canonicalName": "ECRAN PC ACER KG241QSBIIP 23.8\" - FULL HD 1080P, OVERCLOCK TO 165HZ",
       "brand": "Acer",
       "category": "monitor",
@@ -1414,7 +1163,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-aoc-c27g4zxe-27\"-curved-1919",
+      "id": "prd-monitor-ecran-pc-aoc-c27g4zxe-27\"-curved-1930",
       "canonicalName": "ECRAN PC AOC C27G4ZXE 27\" CURVED - FULL HD 1080P, 280HZ",
       "brand": "Aoc",
       "category": "monitor",
@@ -1441,7 +1190,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-aoc-cu34g4-ultrawide-34-1919",
+      "id": "prd-monitor-ecran-pc-aoc-cu34g4-ultrawide-34-1930",
       "canonicalName": "ECRAN PC AOC CU34G4 ULTRAWIDE 34\" CURVED - WQHD, 180HZ",
       "brand": "Aoc",
       "category": "monitor",
@@ -1468,7 +1217,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-aoc-25g4sre-24.5\"---ful-1919",
+      "id": "prd-monitor-ecran-pc-aoc-25g4sre-24.5\"---ful-1930",
       "canonicalName": "ECRAN PC AOC 25G4SRE 24.5\" - FULL HD 1080P, 310HZ",
       "brand": "Aoc",
       "category": "monitor",
@@ -1495,7 +1244,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-benq-mobiuz-ex240n-23.8-1919",
+      "id": "prd-monitor-ecran-pc-benq-mobiuz-ex240n-23.8-1930",
       "canonicalName": "ECRAN PC BENQ MOBIUZ EX240N 23.8\" - FULL HD 1080P, 165HZ",
       "brand": "Benq",
       "category": "monitor",
@@ -1522,7 +1271,7 @@
       ]
     },
     {
-      "id": "prd-monitor-ecran-pc-enigma-nt-d19-19\"---hd,-1919",
+      "id": "prd-monitor-ecran-pc-enigma-nt-d19-19\"---hd,-1930",
       "canonicalName": "ECRAN PC ENIGMA NT-D19 19\" - HD, 60Hz",
       "brand": null,
       "category": "monitor",
@@ -1549,7 +1298,7 @@
       ]
     },
     {
-      "id": "prd-cpu-processeur-intel-core-i9-14900k-24-c-1919",
+      "id": "prd-cpu-processeur-intel-core-i9-14900k-24-c-1930",
       "canonicalName": "PROCESSEUR INTEL CORE I9-14900K 24-COEURS / 32-THREADS 3.2 GHZ / 5.8 GHZ",
       "brand": "Intel",
       "category": "cpu",
@@ -1574,7 +1323,7 @@
       ]
     },
     {
-      "id": "prd-cpu-processeur-intel-core-i9-14900kf-24--1919",
+      "id": "prd-cpu-processeur-intel-core-i9-14900kf-24--1930",
       "canonicalName": "PROCESSEUR INTEL CORE I9-14900KF 24-COEURS / 32-THREADS 3.2 GHZ / 5.8 GHZ",
       "brand": "Intel",
       "category": "cpu",
@@ -1599,7 +1348,7 @@
       ]
     },
     {
-      "id": "prd-cpu-processeur-amd-ryzen-5-8600g,-6-coeu-1919",
+      "id": "prd-cpu-processeur-amd-ryzen-5-8600g,-6-coeu-1930",
       "canonicalName": "PROCESSEUR AMD RYZEN 5 8600G, 6-COEURS / 12-THREADS, 4.3 GHZ /5.0 GHZ- Mpk version",
       "brand": "Amd",
       "category": "cpu",
@@ -1625,7 +1374,7 @@
       ]
     },
     {
-      "id": "prd-cpu-processeur-amd-ryzen-5-3400g,-4-coeu-1919",
+      "id": "prd-cpu-processeur-amd-ryzen-5-3400g,-4-coeu-1930",
       "canonicalName": "PROCESSEUR AMD RYZEN 5 3400G, 4-COEURS / 8-THREADS, 3.7 GHZ / 4.2 GHZ",
       "brand": "Amd",
       "category": "cpu",
@@ -1650,7 +1399,7 @@
       ]
     },
     {
-      "id": "prd-cpu-processeur-amd-ryzen-5-5600gt-6-coeu-1919",
+      "id": "prd-cpu-processeur-amd-ryzen-5-5600gt-6-coeu-1930",
       "canonicalName": "PROCESSEUR AMD RYZEN 5 5600GT 6-COEURS / 12-THREADS 3.6 GHZ / 4.6 GHZ",
       "brand": "Amd",
       "category": "cpu",
@@ -1675,7 +1424,7 @@
       ]
     },
     {
-      "id": "prd-cpu-amd-ryzen-5-pro-5650g-(3.9-ghz---4.4-1919",
+      "id": "prd-cpu-amd-ryzen-5-pro-5650g-(3.9-ghz---4.4-1930",
       "canonicalName": "AMD Ryzen 5 PRO 5650G (3.9 GHz / 4.4 GHz) Processor - Mpk version.",
       "brand": "Amd",
       "category": "cpu",
@@ -1700,7 +1449,7 @@
       ]
     },
     {
-      "id": "prd-cpu-intel-core-i5-14400-(up-to-4.7-ghz)--1919",
+      "id": "prd-cpu-intel-core-i5-14400-(up-to-4.7-ghz)--1930",
       "canonicalName": "Intel Core i5-14400 (up to 4.7 GHz) Processor",
       "brand": "Intel",
       "category": "cpu",
@@ -1726,7 +1475,7 @@
       ]
     },
     {
-      "id": "prd-cpu-cpu-intel-core-i5-12400f-(2.5-ghz----1919",
+      "id": "prd-cpu-cpu-intel-core-i5-12400f-(2.5-ghz----1930",
       "canonicalName": "CPU Intel Core i5-12400F (2.5 GHz / 4.4 GHz) - Tray version.",
       "brand": "Intel",
       "category": "cpu",
@@ -1751,7 +1500,7 @@
       ]
     },
     {
-      "id": "prd-cpu-amd-ryzen-5-5600-(3.5-ghz---4.4-ghz)-1919",
+      "id": "prd-cpu-amd-ryzen-5-5600-(3.5-ghz---4.4-ghz)-1930",
       "canonicalName": "AMD Ryzen 5 5600 (3.5 GHz / 4.4 GHz) Processor - Tray version",
       "brand": "Amd",
       "category": "cpu",
@@ -1776,7 +1525,7 @@
       ]
     },
     {
-      "id": "prd-cpu-amd-ryzen-5-5500-(3.6-ghz---4.2-ghz)-1919",
+      "id": "prd-cpu-amd-ryzen-5-5500-(3.6-ghz---4.2-ghz)-1930",
       "canonicalName": "AMD Ryzen 5 5500 (3.6 GHz / 4.2 GHz) Processor - Tray version",
       "brand": "Amd",
       "category": "cpu",
@@ -1801,7 +1550,7 @@
       ]
     },
     {
-      "id": "prd-cpu-cpu-amd-ryzen-7-5700g-(3.8-ghz---4.6-1919",
+      "id": "prd-cpu-cpu-amd-ryzen-7-5700g-(3.8-ghz---4.6-1930",
       "canonicalName": "CPU AMD Ryzen 7 5700G (3.8 GHz / 4.6 GHz) - Tray version.",
       "brand": "Amd",
       "category": "cpu",
@@ -1827,7 +1576,7 @@
       ]
     },
     {
-      "id": "prd-gpu-gpu-carte-graphique-zotac-gaming-gef-1919",
+      "id": "prd-gpu-gpu-carte-graphique-zotac-gaming-gef-1930",
       "canonicalName": "GPU CARTE GRAPHIQUE ZOTAC GAMING GEFORCE RTX 5050 8GB TWIN EDGE",
       "brand": "Geforce",
       "category": "gpu",
@@ -1854,7 +1603,7 @@
       ]
     },
     {
-      "id": "prd-gpu-gpu-carte-graphique-zotac-geforce-rt-1919",
+      "id": "prd-gpu-gpu-carte-graphique-zotac-geforce-rt-1930",
       "canonicalName": "GPU CARTE GRAPHIQUE ZOTAC GEFORCE RTX 3050 TWIN EDGE 6GB OC",
       "brand": "Geforce",
       "category": "gpu",
@@ -1880,7 +1629,7 @@
       ]
     },
     {
-      "id": "prd-gpu-gpu-carte-graphique-sapphire-pulse-a-1919",
+      "id": "prd-gpu-gpu-carte-graphique-sapphire-pulse-a-1930",
       "canonicalName": "GPU CARTE GRAPHIQUE SAPPHIRE PULSE AMD RADEON RX 9060 XT OC 16GB",
       "brand": "Amd",
       "category": "gpu",
@@ -1906,7 +1655,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-crucial-pro-ddr5-overclocking-1919",
+      "id": "prd-ram-ram-pc-crucial-pro-ddr5-overclocking-1930",
       "canonicalName": "RAM PC CRUCIAL PRO DDR5 OVERCLOCKING 32GB (2 x 16GB) 6400MHZ CL38 WHITE",
       "brand": "Crucial",
       "category": "ram",
@@ -1934,7 +1683,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-crucial-pro-ddr5-overclocking-1919",
+      "id": "prd-ram-ram-pc-crucial-pro-ddr5-overclocking-1930",
       "canonicalName": "RAM PC CRUCIAL PRO DDR5 OVERCLOCKING 16GB 6400MHZ CL38 WHITE",
       "brand": "Crucial",
       "category": "ram",
@@ -1962,7 +1711,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-corsair-vengeance-rgb-pro-8gb-1919",
+      "id": "prd-ram-ram-pc-corsair-vengeance-rgb-pro-8gb-1930",
       "canonicalName": "RAM PC CORSAIR VENGEANCE RGB PRO 8GB 3200MHZ CL16",
       "brand": "Corsair",
       "category": "ram",
@@ -1990,7 +1739,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-corsair-vengeance-pro-sl-8gb--1919",
+      "id": "prd-ram-ram-pc-corsair-vengeance-pro-sl-8gb--1930",
       "canonicalName": "RAM PC CORSAIR VENGEANCE PRO SL 8GB 3200MHZ CL16",
       "brand": "Corsair",
       "category": "ram",
@@ -2017,7 +1766,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-acer-ud200-ddr5-32gb-(2-x-16g-1919",
+      "id": "prd-ram-ram-pc-acer-ud200-ddr5-32gb-(2-x-16g-1930",
       "canonicalName": "RAM PC ACER UD200 DDR5 32GB (2 x 16GB) 5600MHZ CL46",
       "brand": "Acer",
       "category": "ram",
@@ -2045,7 +1794,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-hiksemi-hiker-ddr4-8gb-|-16gb-32-1919",
+      "id": "prd-ram-ram-hiksemi-hiker-ddr4-8gb-|-16gb-32-1930",
       "canonicalName": "RAM HIKSEMI HIKER DDR4 8GB | 16GB 3200MHZ CL22",
       "brand": null,
       "category": "ram",
@@ -2073,7 +1822,7 @@
       ]
     },
     {
-      "id": "prd-ram-ram-pc-corsair-vengeance-lpx-series--1919",
+      "id": "prd-ram-ram-pc-corsair-vengeance-lpx-series--1930",
       "canonicalName": "RAM PC CORSAIR VENGEANCE LPX SERIES LOW PROFILE 8GB DDR4 3200MHZ CL16",
       "brand": "Corsair",
       "category": "ram",
@@ -2101,7 +1850,7 @@
       ]
     },
     {
-      "id": "prd-ram-kingston-fury-beast-8gb-ddr4-3200mhz-1919",
+      "id": "prd-ram-kingston-fury-beast-8gb-ddr4-3200mhz-1930",
       "canonicalName": "Kingston FURY Beast 8GB DDR4 3200MHz CL16 Memory",
       "brand": "Kingston",
       "category": "ram",
@@ -2129,7 +1878,7 @@
       ]
     },
     {
-      "id": "prd-ram-xpg-gammix-d35-8gb-ddr4-3200mhz-cl16-1919",
+      "id": "prd-ram-xpg-gammix-d35-8gb-ddr4-3200mhz-cl16-1930",
       "canonicalName": "XPG GAMMIX D35 8GB DDR4 3200MHz CL16 Memory",
       "brand": null,
       "category": "ram",
@@ -2157,7 +1906,7 @@
       ]
     },
     {
-      "id": "prd-ram-lexar-thor-16gb-(2x8gb)-ddr4-3600mhz-1919",
+      "id": "prd-ram-lexar-thor-16gb-(2x8gb)-ddr4-3600mhz-1930",
       "canonicalName": "Lexar THOR 16GB (2x8GB) DDR4 3600MHz CL18 Memory",
       "brand": "Lexar",
       "category": "ram",
@@ -2187,7 +1936,7 @@
       ]
     },
     {
-      "id": "prd-ram-agi-ddr4-16gb-3200mhz-memory-1919",
+      "id": "prd-ram-agi-ddr4-16gb-3200mhz-memory-1930",
       "canonicalName": "AGI DDR4 16GB 3200MHz Memory",
       "brand": null,
       "category": "ram",
@@ -2214,7 +1963,7 @@
       ]
     },
     {
-      "id": "prd-ram-adata-ddr4-8gb---16gb-3200-mhz-cl22--1919",
+      "id": "prd-ram-adata-ddr4-8gb---16gb-3200-mhz-cl22--1930",
       "canonicalName": "ADATA DDR4 8GB / 16GB 3200 MHz CL22 Memory",
       "brand": "Adata",
       "category": "ram",
@@ -2242,7 +1991,7 @@
       ]
     },
     {
-      "id": "prd-ram-xpg-spectrix-d35g-rgb-8gb-ddr4-3200m-1919",
+      "id": "prd-ram-xpg-spectrix-d35g-rgb-8gb-ddr4-3200m-1930",
       "canonicalName": "XPG SPECTRIX D35G RGB 8GB DDR4 3200MHz CL16 Memory",
       "brand": null,
       "category": "ram",
@@ -2271,7 +2020,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-mag-x870e-tom-1919",
+      "id": "prd-motherboard-carte-mère-msi-mag-x870e-tom-1930",
       "canonicalName": "CARTE MÈRE MSI MAG X870E TOMAHAWK WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2297,7 +2046,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-pro-x870e-p-w-1919",
+      "id": "prd-motherboard-carte-mère-msi-pro-x870e-p-w-1930",
       "canonicalName": "CARTE MÈRE MSI PRO X870E-P WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2323,7 +2072,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-pro-z890-p-wi-1919",
+      "id": "prd-motherboard-carte-mère-msi-pro-z890-p-wi-1930",
       "canonicalName": "CARTE MÈRE MSI PRO Z890-P WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2349,7 +2098,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-tuf-gaming-b-1919",
+      "id": "prd-motherboard-carte-mère-asus-tuf-gaming-b-1930",
       "canonicalName": "CARTE MÈRE ASUS TUF GAMING B860M-PLUS WIFI",
       "brand": "Asus",
       "category": "motherboard",
@@ -2375,7 +2124,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-z790-p-1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-z790-p-1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME Z790-P WIFI",
       "brand": "Asus",
       "category": "motherboard",
@@ -2401,7 +2150,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-mag-b760-toma-1919",
+      "id": "prd-motherboard-carte-mère-msi-mag-b760-toma-1930",
       "canonicalName": "CARTE MÈRE MSI MAG B760 TOMAHAWK WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2427,7 +2176,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-b650m-project-1919",
+      "id": "prd-motherboard-carte-mère-msi-b650m-project-1930",
       "canonicalName": "CARTE MÈRE MSI B650M PROJECT ZERO",
       "brand": "Msi",
       "category": "motherboard",
@@ -2452,7 +2201,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-mag-b650-toma-1919",
+      "id": "prd-motherboard-carte-mère-msi-mag-b650-toma-1930",
       "canonicalName": "CARTE MÈRE MSI MAG B650 TOMAHAWK WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2478,7 +2227,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-pro-b850m-p-w-1919",
+      "id": "prd-motherboard-carte-mère-msi-pro-b850m-p-w-1930",
       "canonicalName": "CARTE MÈRE MSI PRO B850M-P WIFI",
       "brand": "Msi",
       "category": "motherboard",
@@ -2504,7 +2253,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-b860-p-1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-b860-p-1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME B860-PLUS WIFI",
       "brand": "Asus",
       "category": "motherboard",
@@ -2530,7 +2279,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-msi-a520m-a-pro-1919",
+      "id": "prd-motherboard-carte-mère-msi-a520m-a-pro-1930",
       "canonicalName": "CARTE MÈRE MSI A520M-A PRO",
       "brand": "Msi",
       "category": "motherboard",
@@ -2553,7 +2302,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-a520m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-a520m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME A520M-R",
       "brand": "Asus",
       "category": "motherboard",
@@ -2576,7 +2325,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-a520m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-a520m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME A520M-K",
       "brand": "Asus",
       "category": "motherboard",
@@ -2599,7 +2348,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-z790-p-1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-z790-p-1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME Z790-P",
       "brand": "Asus",
       "category": "motherboard",
@@ -2624,7 +2373,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-gigabyte-b550m-k-1919",
+      "id": "prd-motherboard-carte-mère-gigabyte-b550m-k-1930",
       "canonicalName": "CARTE MÈRE GIGABYTE B550M K",
       "brand": "Gigabyte",
       "category": "motherboard",
@@ -2649,7 +2398,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-tuf-gaming-b-1919",
+      "id": "prd-motherboard-carte-mère-asus-tuf-gaming-b-1930",
       "canonicalName": "CARTE MÈRE ASUS TUF GAMING B650-PLUS",
       "brand": "Asus",
       "category": "motherboard",
@@ -2674,7 +2423,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-b650-p-1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-b650-p-1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME B650-PLUS",
       "brand": "Asus",
       "category": "motherboard",
@@ -2699,7 +2448,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-a620m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-a620m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME A620M-K",
       "brand": "Asus",
       "category": "motherboard",
@@ -2722,7 +2471,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-h610m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-h610m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME H610M-K D4",
       "brand": "Asus",
       "category": "motherboard",
@@ -2747,7 +2496,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-b760m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-b760m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME B760M-K DDR5",
       "brand": "Asus",
       "category": "motherboard",
@@ -2773,7 +2522,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-biostar-b550m-1919",
+      "id": "prd-motherboard-carte-mère-biostar-b550m-1930",
       "canonicalName": "CARTE MÈRE BIOSTAR B550M",
       "brand": "Biostar",
       "category": "motherboard",
@@ -2798,7 +2547,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-biostar-a520mh-1919",
+      "id": "prd-motherboard-carte-mère-biostar-a520mh-1930",
       "canonicalName": "CARTE MÈRE BIOSTAR A520MH",
       "brand": "Biostar",
       "category": "motherboard",
@@ -2821,7 +2570,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-b550m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-b550m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME B550M-K",
       "brand": "Asus",
       "category": "motherboard",
@@ -2846,7 +2595,7 @@
       ]
     },
     {
-      "id": "prd-motherboard-carte-mère-asus-prime-b760m--1919",
+      "id": "prd-motherboard-carte-mère-asus-prime-b760m--1930",
       "canonicalName": "CARTE MÈRE ASUS PRIME B760M-K D4",
       "brand": "Asus",
       "category": "motherboard",
@@ -2871,7 +2620,7 @@
       ]
     },
     {
-      "id": "prd-storage-hdd-seagate-barracuda-500gb-(rec-1919",
+      "id": "prd-storage-hdd-seagate-barracuda-500gb-(rec-1930",
       "canonicalName": "HDD SEAGATE BARRACUDA 500GB (RECYCLÉ)",
       "brand": "Seagate",
       "category": "storage",
@@ -2897,7 +2646,7 @@
       ]
     },
     {
-      "id": "prd-storage-toshiba-enterprise-mg-series-hdd-1919",
+      "id": "prd-storage-toshiba-enterprise-mg-series-hdd-1930",
       "canonicalName": "Toshiba Enterprise MG Series HDD 12TB / 16TB / 20TB / 24TB - 3.5\" SATA, Designed for your enterprise business",
       "brand": null,
       "category": "storage",
@@ -2923,7 +2672,7 @@
       ]
     },
     {
-      "id": "prd-storage-toshiba-surveillance-s300-hdd-2t-1919",
+      "id": "prd-storage-toshiba-surveillance-s300-hdd-2t-1930",
       "canonicalName": "Toshiba Surveillance S300 HDD 2TB / 4TB / 6TB / 8TB / 10TB - 3.5' SATA, 24/7 Operation, 64 Camera Support",
       "brand": null,
       "category": "storage",
@@ -2949,7 +2698,7 @@
       ]
     },
     {
-      "id": "prd-storage-seagate-video-hard-drive-500gb---1919",
+      "id": "prd-storage-seagate-video-hard-drive-500gb---1930",
       "canonicalName": "Seagate Video Hard drive 500GB / 1TB (Refurbished)",
       "brand": "Seagate",
       "category": "storage",
@@ -2974,7 +2723,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-gen-5-nvme-m.2-kioxia-exceri-1919",
+      "id": "prd-storage-ssd-gen-5-nvme-m.2-kioxia-exceri-1930",
       "canonicalName": "SSD GEN 5 NVMe M.2 KIOXIA EXCERIA PLUS G4 1TB",
       "brand": null,
       "category": "storage",
@@ -3000,7 +2749,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-gen-5-nvme-m.2-crucial-t700--1919",
+      "id": "prd-storage-ssd-gen-5-nvme-m.2-crucial-t700--1930",
       "canonicalName": "SSD GEN 5 NVMe M.2 CRUCIAL T700 1TB",
       "brand": "Crucial",
       "category": "storage",
@@ -3026,7 +2775,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-2.5”-sata-iii-crucial-bx500--1919",
+      "id": "prd-storage-ssd-2.5”-sata-iii-crucial-bx500--1930",
       "canonicalName": "SSD 2.5” SATA III CRUCIAL BX500 240GB | 500GB",
       "brand": "Crucial",
       "category": "storage",
@@ -3052,7 +2801,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-2.5”-sata-iii-hiksemi-wave-1-1919",
+      "id": "prd-storage-ssd-2.5”-sata-iii-hiksemi-wave-1-1930",
       "canonicalName": "SSD 2.5” SATA III HIKSEMI WAVE 128GB | 256GB | 512GB",
       "brand": null,
       "category": "storage",
@@ -3078,7 +2827,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-m.2-pcie-3.0-nvme-adata-lege-1919",
+      "id": "prd-storage-ssd-m.2-pcie-3.0-nvme-adata-lege-1930",
       "canonicalName": "SSD M.2 PCIe 3.0 NVME ADATA LEGEND 710 256GB | 512GB",
       "brand": "Adata",
       "category": "storage",
@@ -3105,7 +2854,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-2.5”-sata-iii-msi-spatium-s2-1919",
+      "id": "prd-storage-ssd-2.5”-sata-iii-msi-spatium-s2-1930",
       "canonicalName": "SSD 2.5” SATA III MSI SPATIUM S270 480GB",
       "brand": "Msi",
       "category": "storage",
@@ -3131,7 +2880,7 @@
       ]
     },
     {
-      "id": "prd-storage-ssd-2.5”-sata-iii-ultimate-su680-1919",
+      "id": "prd-storage-ssd-2.5”-sata-iii-ultimate-su680-1930",
       "canonicalName": "SSD 2.5” SATA III ULTIMATE SU680 512GB",
       "brand": null,
       "category": "storage",
@@ -3157,7 +2906,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-cooler-master-750w-80pl-1919",
+      "id": "prd-psu-power-supply-cooler-master-750w-80pl-1930",
       "canonicalName": "POWER SUPPLY COOLER MASTER 750W 80PLUS BRONZE 230V EU",
       "brand": "Cooler Master",
       "category": "psu",
@@ -3182,7 +2931,7 @@
       ]
     },
     {
-      "id": "prd-psu-havit-hv-550w-power-supply,-80plus-1919",
+      "id": "prd-psu-havit-hv-550w-power-supply,-80plus-1930",
       "canonicalName": "HAVIT HV-550W Power supply, 80PLUS",
       "brand": null,
       "category": "psu",
@@ -3207,7 +2956,7 @@
       ]
     },
     {
-      "id": "prd-psu-cooler-master-mwe-750w---850w-v2-pow-1919",
+      "id": "prd-psu-cooler-master-mwe-750w---850w-v2-pow-1930",
       "canonicalName": "Cooler Master MWE 750W / 850W V2 Power supply , ATX3.0, PCIe5.0, 80PLUS GOLD, Fully Modular",
       "brand": "Cooler Master",
       "category": "psu",
@@ -3233,7 +2982,7 @@
       ]
     },
     {
-      "id": "prd-psu-raidmax-xtb-rx-550-power-supply,-550-1919",
+      "id": "prd-psu-raidmax-xtb-rx-550-power-supply,-550-1930",
       "canonicalName": "RAIDMAX XTB RX-550 Power supply, 550W - Tray version",
       "brand": null,
       "category": "psu",
@@ -3258,7 +3007,7 @@
       ]
     },
     {
-      "id": "prd-psu-corsair-cv650-power-supply,-650w,-80-1919",
+      "id": "prd-psu-corsair-cv650-power-supply,-650w,-80-1930",
       "canonicalName": "Corsair CV650 Power supply, 650W, 80PLUS Bronze - Tray version",
       "brand": "Corsair",
       "category": "psu",
@@ -3283,7 +3032,7 @@
       ]
     },
     {
-      "id": "prd-psu-antec-atom-b750-power-supply,-750w,--1919",
+      "id": "prd-psu-antec-atom-b750-power-supply,-750w,--1930",
       "canonicalName": "Antec Atom B750 Power supply, 750W, 80PLUS Bronze",
       "brand": "Antec",
       "category": "psu",
@@ -3308,7 +3057,7 @@
       ]
     },
     {
-      "id": "prd-psu-gamemax-rgb-smart-1300w,-atx3.0-3.1,-1919",
+      "id": "prd-psu-gamemax-rgb-smart-1300w,-atx3.0-3.1,-1930",
       "canonicalName": "GAMEMAX RGB SMART 1300W, ATX3.0/3.1, PCIe5.0/5.1, 80PLUS PLATINUM Power supply (Black / White)",
       "brand": null,
       "category": "psu",
@@ -3333,7 +3082,7 @@
       ]
     },
     {
-      "id": "prd-psu-gamemax-rgb-smart-1050w-pro,-atx3.1,-1919",
+      "id": "prd-psu-gamemax-rgb-smart-1050w-pro,-atx3.1,-1930",
       "canonicalName": "GAMEMAX RGB SMART 1050W PRO, ATX3.1, PCIe5.1, 80PLUS GOLD, Power supply (Black / White)",
       "brand": null,
       "category": "psu",
@@ -3358,7 +3107,7 @@
       ]
     },
     {
-      "id": "prd-psu-gamemax-vp-600,-800,-rgb,-80plus-bro-1919",
+      "id": "prd-psu-gamemax-vp-600,-800,-rgb,-80plus-bro-1930",
       "canonicalName": "GAMEMAX VP-600, 800, RGB, 80PLUS Bronze Power supply",
       "brand": null,
       "category": "psu",
@@ -3381,7 +3130,7 @@
       ]
     },
     {
-      "id": "prd-psu-gamemax-ge-450,-500,-600,-700,-80plu-1919",
+      "id": "prd-psu-gamemax-ge-450,-500,-600,-700,-80plu-1930",
       "canonicalName": "GAMEMAX GE-450, 500, 600, 700, 80PLUS Power supply",
       "brand": null,
       "category": "psu",
@@ -3404,7 +3153,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-gigabyte-p550b-1919",
+      "id": "prd-psu-power-supply-gigabyte-p550b-1930",
       "canonicalName": "Power supply Gigabyte P550B",
       "brand": "Gigabyte",
       "category": "psu",
@@ -3427,7 +3176,7 @@
       ]
     },
     {
-      "id": "prd-psu-raidmax-xtb-rx-450-power-supply,-450-1919",
+      "id": "prd-psu-raidmax-xtb-rx-450-power-supply,-450-1930",
       "canonicalName": "RAIDMAX XTB RX-450 Power supply, 450W",
       "brand": null,
       "category": "psu",
@@ -3452,7 +3201,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-gamdias-helios-e1-500---1919",
+      "id": "prd-psu-power-supply-gamdias-helios-e1-500---1930",
       "canonicalName": "Power supply GAMDIAS HELIOS E1-500 / E1-600",
       "brand": "Amd",
       "category": "psu",
@@ -3475,7 +3224,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-gigabyte-gp-p750gm---p8-1919",
+      "id": "prd-psu-power-supply-gigabyte-gp-p750gm---p8-1930",
       "canonicalName": "Power supply Gigabyte GP-P750GM / P850GM",
       "brand": "Gigabyte",
       "category": "psu",
@@ -3498,7 +3247,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-raidmax-vortex-80plus-b-1919",
+      "id": "prd-psu-power-supply-raidmax-vortex-80plus-b-1930",
       "canonicalName": "Power supply RAIDMAX VORTEX 80PLUS BRONZE ARGB 500W",
       "brand": null,
       "category": "psu",
@@ -3523,7 +3272,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-raidmax-vortex-500w---7-1919",
+      "id": "prd-psu-power-supply-raidmax-vortex-500w---7-1930",
       "canonicalName": "Power supply RAIDMAX VORTEX 500W / 700W 80PLUS BRONZE",
       "brand": null,
       "category": "psu",
@@ -3548,7 +3297,7 @@
       ]
     },
     {
-      "id": "prd-psu-power-supply-acer-80plus-bronze-550w-1919",
+      "id": "prd-psu-power-supply-acer-80plus-bronze-550w-1930",
       "canonicalName": "Power supply Acer 80PLUS Bronze 550W / 650W / 750W Black - White",
       "brand": "Acer",
       "category": "psu",
@@ -3573,7 +3322,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-spirit-of-gamer-ghost-5--1919",
+      "id": "prd-case-boitier-pc-spirit-of-gamer-ghost-5--1930",
       "canonicalName": "BOITIER PC SPIRIT OF GAMER GHOST 5 ARGB EDITION",
       "brand": null,
       "category": "case",
@@ -3596,7 +3345,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-spirit-of-gamer-infinity-1919",
+      "id": "prd-case-boitier-pc-spirit-of-gamer-infinity-1930",
       "canonicalName": "BOITIER PC SPIRIT OF GAMER INFINITY DARK ARGB",
       "brand": null,
       "category": "case",
@@ -3619,7 +3368,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-antec-nx400-rgb-1919",
+      "id": "prd-case-boitier-pc-antec-nx400-rgb-1930",
       "canonicalName": "BOITIER PC ANTEC NX400 RGB",
       "brand": "Antec",
       "category": "case",
@@ -3642,7 +3391,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-nzxt-h5-flow-rgb-(2024)--1919",
+      "id": "prd-case-boitier-pc-nzxt-h5-flow-rgb-(2024)--1930",
       "canonicalName": "BOITIER PC NZXT H5 FLOW RGB (2024) BLACK / WHITE",
       "brand": "Nzxt",
       "category": "case",
@@ -3665,7 +3414,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-corsair-4000d-airflow-te-1919",
+      "id": "prd-case-boitier-pc-corsair-4000d-airflow-te-1930",
       "canonicalName": "BOITIER PC CORSAIR 4000D AIRFLOW TEMPERED GLASS (BLACK / WHITE)",
       "brand": "Corsair",
       "category": "case",
@@ -3688,7 +3437,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-cooler-master-masterbox--1919",
+      "id": "prd-case-boitier-pc-cooler-master-masterbox--1930",
       "canonicalName": "Boitier PC Cooler Master MasterBox TD500 Mesh Black V2",
       "brand": "Cooler Master",
       "category": "case",
@@ -3711,7 +3460,7 @@
       ]
     },
     {
-      "id": "prd-case-deepcool-ch690-digital-gaming-pc-ca-1919",
+      "id": "prd-case-deepcool-ch690-digital-gaming-pc-ca-1930",
       "canonicalName": "DeepCool CH690 DIGITAL Gaming PC Case, Customizable Elegance, Versatility And Functionality (Black / White)",
       "brand": "Deepcool",
       "category": "case",
@@ -3734,7 +3483,7 @@
       ]
     },
     {
-      "id": "prd-case-gamemax-hype-modern-aesthetic-dual--1919",
+      "id": "prd-case-gamemax-hype-modern-aesthetic-dual--1930",
       "canonicalName": "GameMax Hype Modern Aesthetic Dual Chamber Tempered Glass Mid-Tower ATX PC Gaming Case with 3 x Infinity 120mm ARGB Dual-Ring Fans, V4.0 PWM ARGB Hub & USB Type C (Black / White)",
       "brand": null,
       "category": "case",
@@ -3757,7 +3506,7 @@
       ]
     },
     {
-      "id": "prd-case-gamemax-precision-2-mid-tower-pc-ga-1919",
+      "id": "prd-case-gamemax-precision-2-mid-tower-pc-ga-1930",
       "canonicalName": "GameMax Precision 2 mid-tower PC Gaming Case, with argb fans (Black / White)",
       "brand": null,
       "category": "case",
@@ -3780,7 +3529,7 @@
       ]
     },
     {
-      "id": "prd-case-gamemax-vista-mb-micro-atx-tower-pc-1919",
+      "id": "prd-case-gamemax-vista-mb-micro-atx-tower-pc-1930",
       "canonicalName": "GAMEMAX Vista MB Micro-ATX Tower PC Gaming Case (Black / White)",
       "brand": null,
       "category": "case",
@@ -3803,7 +3552,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-infinita-i800-ch-1919",
+      "id": "prd-case-boitier-pc-raidmax-infinita-i800-ch-1930",
       "canonicalName": "BOITIER PC RAIDMAX INFINITA i800 CHROME ARGB",
       "brand": null,
       "category": "case",
@@ -3826,7 +3575,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-meshian-x605-arg-1919",
+      "id": "prd-case-boitier-pc-raidmax-meshian-x605-arg-1930",
       "canonicalName": "BOITIER PC RAIDMAX MESHIAN X605 ARGB",
       "brand": null,
       "category": "case",
@@ -3849,7 +3598,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-meshian-x603-nan-1919",
+      "id": "prd-case-boitier-pc-raidmax-meshian-x603-nan-1930",
       "canonicalName": "BOITIER PC RAIDMAX MESHIAN X603 NANO ARGB",
       "brand": null,
       "category": "case",
@@ -3872,7 +3621,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-vector-v216-1919",
+      "id": "prd-case-boitier-pc-raidmax-vector-v216-1930",
       "canonicalName": "BOITIER PC RAIDMAX VECTOR V216",
       "brand": null,
       "category": "case",
@@ -3895,7 +3644,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-vector-v213m-1919",
+      "id": "prd-case-boitier-pc-raidmax-vector-v213m-1930",
       "canonicalName": "BOITIER PC RAIDMAX VECTOR V213M",
       "brand": null,
       "category": "case",
@@ -3918,7 +3667,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-vector-v159-argb-1919",
+      "id": "prd-case-boitier-pc-raidmax-vector-v159-argb-1930",
       "canonicalName": "BOITIER PC RAIDMAX VECTOR V159 ARGB",
       "brand": null,
       "category": "case",
@@ -3941,7 +3690,7 @@
       ]
     },
     {
-      "id": "prd-case-hybrok-rs6-gaming-pc-case,-with-arg-1919",
+      "id": "prd-case-hybrok-rs6-gaming-pc-case,-with-arg-1930",
       "canonicalName": "HYBROK RS6 Gaming PC Case, with argb fans",
       "brand": null,
       "category": "case",
@@ -3964,7 +3713,7 @@
       ]
     },
     {
-      "id": "prd-case-magma-v8202-gaming-pc-case,-digital-1919",
+      "id": "prd-case-magma-v8202-gaming-pc-case,-digital-1930",
       "canonicalName": "MAGMA V8202 Gaming PC Case, Digital Screen, 3 Fans, USB-C, USB 3.0 (Black / White)",
       "brand": "Magma",
       "category": "case",
@@ -3987,7 +3736,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-infinita-i801-ai-1919",
+      "id": "prd-case-boitier-pc-raidmax-infinita-i801-ai-1930",
       "canonicalName": "BOITIER PC RAIDMAX INFINITA i801 AIR CHROME ARGB",
       "brand": null,
       "category": "case",
@@ -4010,7 +3759,7 @@
       ]
     },
     {
-      "id": "prd-case-boitier-pc-raidmax-infinita-i802-ai-1919",
+      "id": "prd-case-boitier-pc-raidmax-infinita-i802-ai-1930",
       "canonicalName": "BOITIER PC RAIDMAX INFINITA i802 AIR",
       "brand": null,
       "category": "case",
@@ -4033,7 +3782,7 @@
       ]
     },
     {
-      "id": "prd-case-case-havit-cf925-black---white-1919",
+      "id": "prd-case-case-havit-cf925-black---white-1930",
       "canonicalName": "Case HAVIT CF925 Black / White",
       "brand": null,
       "category": "case",
@@ -4056,7 +3805,7 @@
       ]
     },
     {
-      "id": "prd-case-msi-mag-forge-m100a-gaming-pc-case,-1919",
+      "id": "prd-case-msi-mag-forge-m100a-gaming-pc-case,-1930",
       "canonicalName": "MSI MAG FORGE M100A Gaming PC Case, With 4 RGB Fans",
       "brand": "Msi",
       "category": "case",
@@ -4079,7 +3828,7 @@
       ]
     },
     {
-      "id": "prd-case-case-deepcool-matrexx-55-add-rgb-3f-1919",
+      "id": "prd-case-case-deepcool-matrexx-55-add-rgb-3f-1930",
       "canonicalName": "Case DeepCool Matrexx 55 ADD-RGB 3F v3",
       "brand": "Deepcool",
       "category": "case",
@@ -4102,7 +3851,7 @@
       ]
     },
     {
-      "id": "prd-case-case-lian-li-o11-dynamic-mini-1919",
+      "id": "prd-case-case-lian-li-o11-dynamic-mini-1930",
       "canonicalName": "Case Lian Li O11 Dynamic Mini",
       "brand": "Lian Li",
       "category": "case",
@@ -4125,7 +3874,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-cooler-master-hyper--1919",
+      "id": "prd-cooling-air-cooling-cooler-master-hyper--1930",
       "canonicalName": "AIR COOLING COOLER MASTER HYPER 212 SPECTRUM V3",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4148,7 +3897,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-raidmax-am1204-digit-1919",
+      "id": "prd-cooling-air-cooling-raidmax-am1204-digit-1930",
       "canonicalName": "AIR COOLING RAIDMAX AM1204 DIGITAL ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4171,7 +3920,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-deepcool-ak620-g2-(b-1919",
+      "id": "prd-cooling-air-cooling-deepcool-ak620-g2-(b-1930",
       "canonicalName": "AIR COOLING DEEPCOOL AK620 G2 (BLACK / WHITE)",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4194,7 +3943,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-deepcool-ak700-digit-1919",
+      "id": "prd-cooling-air-cooling-deepcool-ak700-digit-1930",
       "canonicalName": "AIR COOLING DEEPCOOL AK700 DIGITAL WHITE",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4217,7 +3966,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-deepcool-ak500-g2-di-1919",
+      "id": "prd-cooling-air-cooling-deepcool-ak500-g2-di-1930",
       "canonicalName": "AIR COOLING DEEPCOOL AK500 G2 DIGITAL NYX BLACK",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4240,7 +3989,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-deepcool-ag620-argb--1919",
+      "id": "prd-cooling-air-cooling-deepcool-ag620-argb--1930",
       "canonicalName": "AIR COOLING DEEPCOOL AG620 ARGB V2 (BLACK / WHITE)",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4263,7 +4012,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-deepcool-ak500-g2-(b-1919",
+      "id": "prd-cooling-air-cooling-deepcool-ak500-g2-(b-1930",
       "canonicalName": "AIR COOLING DEEPCOOL AK500 G2 (BLACK / WHITE)",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4286,7 +4035,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-raidmax-lm240-lcd-a-1919",
+      "id": "prd-cooling-watercooling-raidmax-lm240-lcd-a-1930",
       "canonicalName": "WATERCOOLING RAIDMAX LM240 LCD ARGB",
       "brand": null,
       "category": "cooling",
@@ -4309,7 +4058,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-havit-f2001-argb-bl-1919",
+      "id": "prd-cooling-watercooling-havit-f2001-argb-bl-1930",
       "canonicalName": "WATERCOOLING HAVIT F2001 ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4332,7 +4081,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-deepcool-lq240-lcd--1919",
+      "id": "prd-cooling-watercooling-deepcool-lq240-lcd--1930",
       "canonicalName": "WATERCOOLING DEEPCOOL LQ240 LCD SCREEN ARGB BLACK / WHITE",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4355,7 +4104,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-deepcool-ld240-argb-1919",
+      "id": "prd-cooling-watercooling-deepcool-ld240-argb-1930",
       "canonicalName": "WATERCOOLING DEEPCOOL LD240 ARGB BLACK / WHITE",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4378,7 +4127,7 @@
       ]
     },
     {
-      "id": "prd-cpu-hybrok-hl240b-liquid-cpu-cooler,-240-1919",
+      "id": "prd-cpu-hybrok-hl240b-liquid-cpu-cooler,-240-1930",
       "canonicalName": "HYBROK HL240B Liquid CPU Cooler, 240mm PWM Fan with ARGB-Up to 2000RPM Speed, for Intel and AMD sockets (Black / White)",
       "brand": "Intel",
       "category": "cpu",
@@ -4401,7 +4150,7 @@
       ]
     },
     {
-      "id": "prd-cpu-magma-wl360ft-argb-liquid-cpu-cooler-1919",
+      "id": "prd-cpu-magma-wl360ft-argb-liquid-cpu-cooler-1930",
       "canonicalName": "MAGMA WL360FT ARGB Liquid CPU Cooler",
       "brand": "Magma",
       "category": "cpu",
@@ -4424,7 +4173,7 @@
       ]
     },
     {
-      "id": "prd-cpu-magma-ma421a-cpu-air-cooler,-for-int-1919",
+      "id": "prd-cpu-magma-ma421a-cpu-air-cooler,-for-int-1930",
       "canonicalName": "MAGMA MA421A CPU Air cooler, for Intel and AMD sockets, 120mm Liquid Cooling, ARGB",
       "brand": "Intel",
       "category": "cpu",
@@ -4447,7 +4196,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-cooler-master-hyper--1919",
+      "id": "prd-cooling-air-cooling-cooler-master-hyper--1930",
       "canonicalName": "AIR COOLING COOLER MASTER HYPER 622 HALO BLACK / WHITE",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4470,7 +4219,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-havit-f2002-black---whit-1919",
+      "id": "prd-cooling-cooling-havit-f2002-black---whit-1930",
       "canonicalName": "Cooling HAVIT F2002 Black / White",
       "brand": null,
       "category": "cooling",
@@ -4493,7 +4242,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-havit-f2005-1919",
+      "id": "prd-cooling-cooling-havit-f2005-1930",
       "canonicalName": "Cooling HAVIT F2005",
       "brand": null,
       "category": "cooling",
@@ -4516,7 +4265,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-havit-f2003-1919",
+      "id": "prd-cooling-cooling-havit-f2003-1930",
       "canonicalName": "Cooling HAVIT F2003",
       "brand": null,
       "category": "cooling",
@@ -4539,7 +4288,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-deepcool-lt240-argb-1919",
+      "id": "prd-cooling-watercooling-deepcool-lt240-argb-1930",
       "canonicalName": "WATERCOOLING DEEPCOOL LT240 ARGB BLACK / WHITE",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4562,7 +4311,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-deepcool-ld360-argb-1919",
+      "id": "prd-cooling-watercooling-deepcool-ld360-argb-1930",
       "canonicalName": "WATERCOOLING DEEPCOOL LD360 ARGB",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4585,7 +4334,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-deepcool-mystique-2-1919",
+      "id": "prd-cooling-watercooling-deepcool-mystique-2-1930",
       "canonicalName": "WATERCOOLING DEEPCOOL MYSTIQUE 240 ARGB",
       "brand": "Deepcool",
       "category": "cooling",
@@ -4608,7 +4357,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-raidmax-infinita-ls-1919",
+      "id": "prd-cooling-watercooling-raidmax-infinita-ls-1930",
       "canonicalName": "WATERCOOLING RAIDMAX INFINITA LS360 ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4631,7 +4380,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-raidmax-infinita-ls-1919",
+      "id": "prd-cooling-watercooling-raidmax-infinita-ls-1930",
       "canonicalName": "WATERCOOLING RAIDMAX INFINITA LS240 ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4654,7 +4403,7 @@
       ]
     },
     {
-      "id": "prd-cooling-watercooling-msi-mag-coreliquid--1919",
+      "id": "prd-cooling-watercooling-msi-mag-coreliquid--1930",
       "canonicalName": "WATERCOOLING MSI MAG CORELIQUID E360 ARGB",
       "brand": "Core",
       "category": "cooling",
@@ -4677,7 +4426,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-cooler-master-hyper--1919",
+      "id": "prd-cooling-air-cooling-cooler-master-hyper--1930",
       "canonicalName": "AIR COOLING COOLER MASTER HYPER 212 HALO BLACK / WHITE",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4700,7 +4449,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-cooler-master-hyper--1919",
+      "id": "prd-cooling-air-cooling-cooler-master-hyper--1930",
       "canonicalName": "AIR COOLING COOLER MASTER HYPER 212 BLACK",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4723,7 +4472,7 @@
       ]
     },
     {
-      "id": "prd-cooling-air-cooling-cooler-master-hyper--1919",
+      "id": "prd-cooling-air-cooling-cooler-master-hyper--1930",
       "canonicalName": "AIR COOLING COOLER MASTER HYPER T20",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4746,7 +4495,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-gamdias-aura-gl120-v2-1919",
+      "id": "prd-cooling-cooling-gamdias-aura-gl120-v2-1930",
       "canonicalName": "Cooling GAMDIAS AURA GL120 V2",
       "brand": "Amd",
       "category": "cooling",
@@ -4769,7 +4518,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-cooler-master-masterliqu-1919",
+      "id": "prd-cooling-cooling-cooler-master-masterliqu-1930",
       "canonicalName": "Cooling Cooler Master MasterLiquid ML360 Illusion",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4792,7 +4541,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-cooler-master-masterliqu-1919",
+      "id": "prd-cooling-cooling-cooler-master-masterliqu-1930",
       "canonicalName": "Cooling Cooler Master MasterLiquid 360L Core ARGB Black Edition",
       "brand": "Core",
       "category": "cooling",
@@ -4815,7 +4564,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-thermaltake-toughliquid--1919",
+      "id": "prd-cooling-cooling-thermaltake-toughliquid--1930",
       "canonicalName": "Cooling Thermaltake TOUGHLIQUID 240 ARGBSync",
       "brand": "Thermaltake",
       "category": "cooling",
@@ -4838,7 +4587,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-thermaltake-th240-argb-s-1919",
+      "id": "prd-cooling-cooling-thermaltake-th240-argb-s-1930",
       "canonicalName": "Cooling Thermaltake TH240 ARGB Sync Black / White Edition",
       "brand": "Thermaltake",
       "category": "cooling",
@@ -4861,7 +4610,7 @@
       ]
     },
     {
-      "id": "prd-cooling-cooling-cooler-master-masterliqu-1919",
+      "id": "prd-cooling-cooling-cooler-master-masterliqu-1930",
       "canonicalName": "Cooling Cooler Master MasterLiquid 240 Atmos",
       "brand": "Cooler Master",
       "category": "cooling",
@@ -4884,7 +4633,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-modular-raidmax-3in1-argb-b-1919",
+      "id": "prd-cooling-fans-modular-raidmax-3in1-argb-b-1930",
       "canonicalName": "FANS MODULAR RAIDMAX 3IN1 ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4907,7 +4656,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-raidmax-x-air-4in1-argb-bla-1919",
+      "id": "prd-cooling-fans-raidmax-x-air-4in1-argb-bla-1930",
       "canonicalName": "FANS RAIDMAX X-AIR 4IN1 ARGB BLACK / WHITE",
       "brand": null,
       "category": "cooling",
@@ -4930,7 +4679,7 @@
       ]
     },
     {
-      "id": "prd-case-gamemax-kf300r-x3-argb-case-cooler--1919",
+      "id": "prd-case-gamemax-kf300r-x3-argb-case-cooler--1930",
       "canonicalName": "GAMEMAX KF300R x3 ARGB Case Cooler Fan, 120mm case fans (Black / White)",
       "brand": null,
       "category": "case",
@@ -4953,7 +4702,7 @@
       ]
     },
     {
-      "id": "prd-case-gamemax-fn-12rainbow-c9-infinity-ar-1919",
+      "id": "prd-case-gamemax-fn-12rainbow-c9-infinity-ar-1930",
       "canonicalName": "GAMEMAX FN-12Rainbow-C9-Infinity ARGB Case Cooler Fan, 120mm case fans",
       "brand": null,
       "category": "case",
@@ -4976,7 +4725,7 @@
       ]
     },
     {
-      "id": "prd-monitor-fans-msi-mag-max-f20a-1-(195-x-1-1919",
+      "id": "prd-monitor-fans-msi-mag-max-f20a-1-(195-x-1-1930",
       "canonicalName": "Fans MSI MAG MAX F20A-1 (195 x 195 x25 mm / 7.68 x 7.68 x 1 inch)",
       "brand": "Msi",
       "category": "monitor",
@@ -5001,7 +4750,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-havit-f2089-1919",
+      "id": "prd-cooling-fans-havit-f2089-1930",
       "canonicalName": "Fans HAVIT F2089",
       "brand": null,
       "category": "cooling",
@@ -5024,7 +4773,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-havit-f2096-black---white-1919",
+      "id": "prd-cooling-fans-havit-f2096-black---white-1930",
       "canonicalName": "Fans HAVIT F2096 Black / White",
       "brand": null,
       "category": "cooling",
@@ -5047,7 +4796,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-havit-f2095-1919",
+      "id": "prd-cooling-fans-havit-f2095-1930",
       "canonicalName": "Fans HAVIT F2095",
       "brand": null,
       "category": "cooling",
@@ -5070,7 +4819,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-raidmax-nv-t120fb-1919",
+      "id": "prd-cooling-fans-raidmax-nv-t120fb-1930",
       "canonicalName": "Fans RAIDMAX NV-T120FB",
       "brand": null,
       "category": "cooling",
@@ -5093,7 +4842,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-raidmax-nv-i120fw-1919",
+      "id": "prd-cooling-fans-raidmax-nv-i120fw-1930",
       "canonicalName": "Fans RAIDMAX NV-I120FW",
       "brand": null,
       "category": "cooling",
@@ -5116,7 +4865,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-raidmax-nv-t120fwp-1919",
+      "id": "prd-cooling-fans-raidmax-nv-t120fwp-1930",
       "canonicalName": "Fans RAIDMAX NV-T120FWP",
       "brand": null,
       "category": "cooling",
@@ -5139,7 +4888,7 @@
       ]
     },
     {
-      "id": "prd-cooling-fans-alexander-weise-x-men-hero--1919",
+      "id": "prd-cooling-fans-alexander-weise-x-men-hero--1930",
       "canonicalName": "Fans ALEXANDER WEISE X-Men Hero ARGB x3",
       "brand": null,
       "category": "cooling",
@@ -5162,7 +4911,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-semi-mecanique-gaming-x-1919",
+      "id": "prd-keyboard-clavier-semi-mecanique-gaming-x-1930",
       "canonicalName": "CLAVIER SEMI MECANIQUE GAMING XTRIKE-ME KB-508 RGB",
       "brand": null,
       "category": "keyboard",
@@ -5185,7 +4934,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-repose-poignet-pour-clavier-erg-1919",
+      "id": "prd-keyboard-repose-poignet-pour-clavier-erg-1930",
       "canonicalName": "REPOSE POIGNET POUR CLAVIER ERGONOMIQUE",
       "brand": null,
       "category": "keyboard",
@@ -5208,7 +4957,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB874L RED SWITCH (BLACK / WHITE)",
       "brand": null,
       "category": "keyboard",
@@ -5231,7 +4980,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB881L RED SWITCH 65% (BLACK / WHITE)",
       "brand": null,
       "category": "keyboard",
@@ -5254,7 +5003,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB922L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5277,7 +5026,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-sans-f-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-sans-f-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING SANS FIL COOLER MASTER SK622 TTC RED SWITCHES",
       "brand": "Cooler Master",
       "category": "keyboard",
@@ -5300,7 +5049,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-magma--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-magma--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING MAGMA FIORA F61CT RED SWITCH",
       "brand": "Magma",
       "category": "keyboard",
@@ -5323,7 +5072,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-sans-f-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-sans-f-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING SANS FIL SPIRIT OF GAMER XPERT-K1300 RED LOW PROFILE SWITCHES",
       "brand": null,
       "category": "keyboard",
@@ -5346,7 +5095,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-furycu-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-furycu-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING FURYCUBE M68HE, MAGNETIC SWITCH (BLACK / WHITE)",
       "brand": "Fury",
       "category": "keyboard",
@@ -5369,7 +5118,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-attack-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-attack-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING ATTACK SHARK R82 HE, MAGNETIC SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5392,7 +5141,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-attack-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-attack-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING ATTACK SHARK X68 HE, MAGNETIC SWITCH (BLACK / WHITE / MOON LIGHT / PINK)",
       "brand": null,
       "category": "keyboard",
@@ -5415,7 +5164,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-ducky--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-ducky--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING DUCKY ONE 3 TKL MIST GREY, CHERRY MX SPEED SILVER SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5438,7 +5187,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-cherry-1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-cherry-1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING CHERRY XTRFY MX-LP 2.1 COMPACT WIRELESS, CHERRY MX LP SPEED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5461,7 +5210,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-ducky--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-ducky--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING DUCKY ONE 3 SF COSMIC BLUE, CHERRY MX RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5484,7 +5233,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB926L, BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5507,7 +5256,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB08L PRO, RED SWITCH (BLACK / WHITE)",
       "brand": null,
       "category": "keyboard",
@@ -5530,7 +5279,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-ajazz--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-ajazz--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING AJAZZ AK680 MAX MAGNETIC SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5553,7 +5302,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1919",
+      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1930",
       "canonicalName": "CLAVIER SEMI MECANIQUE GAMING HAVIT KB886L PRO RGB",
       "brand": null,
       "category": "keyboard",
@@ -5576,7 +5325,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-gaming-havit-kb275l-rgb-1919",
+      "id": "prd-keyboard-clavier-gaming-havit-kb275l-rgb-1930",
       "canonicalName": "CLAVIER GAMING HAVIT KB275L RGB",
       "brand": null,
       "category": "keyboard",
@@ -5599,7 +5348,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-msi-forge-gk6-1919",
+      "id": "prd-keyboard-clavier-mecanique-msi-forge-gk6-1930",
       "canonicalName": "CLAVIER MECANIQUE MSI FORGE GK600 TKL WIRELESS, LINEAR SWITCH",
       "brand": "Msi",
       "category": "keyboard",
@@ -5622,7 +5371,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB899L, RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5645,7 +5394,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB906L, MAGNETIC SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5668,7 +5417,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB903L, RED SWITCH (BLACK / WHITE / BLUE / TRANSPARENT)",
       "brand": null,
       "category": "keyboard",
@@ -5691,7 +5440,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB12L PRO BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5714,7 +5463,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1919",
+      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1930",
       "canonicalName": "CLAVIER SEMI MECANIQUE GAMING HAVIT KB26L RGB",
       "brand": null,
       "category": "keyboard",
@@ -5737,7 +5486,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT ASTRALFORCE-1 ALUMINUM RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5760,7 +5509,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB896L HOT-SWAP SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5783,7 +5532,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB901L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5806,7 +5555,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB902L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5829,7 +5578,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB875L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5852,7 +5601,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB884L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5875,7 +5624,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB885L RED SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5898,7 +5647,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB893L BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5921,7 +5670,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB890L BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5944,7 +5693,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB870L BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5967,7 +5716,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1919",
+      "id": "prd-keyboard-clavier-mecanique-gaming-havit--1930",
       "canonicalName": "CLAVIER MECANIQUE GAMING HAVIT KB892L BLUE SWITCH",
       "brand": null,
       "category": "keyboard",
@@ -5990,7 +5739,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1919",
+      "id": "prd-keyboard-clavier-semi-mecanique-gaming-h-1930",
       "canonicalName": "CLAVIER SEMI MECANIQUE GAMING HAVIT KB866L RGB",
       "brand": null,
       "category": "keyboard",
@@ -6013,7 +5762,7 @@
       ]
     },
     {
-      "id": "prd-keyboard-clavier-sans-fil-havit-kb279g-1919",
+      "id": "prd-keyboard-clavier-sans-fil-havit-kb279g-1930",
       "canonicalName": "CLAVIER SANS FIL HAVIT KB279G",
       "brand": null,
       "category": "keyboard",
@@ -6036,7 +5785,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-xtrike-me-g-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-xtrike-me-g-1930",
       "canonicalName": "SOURIS GAMING SANS FIL XTRIKE-ME GW-600 RGB 1600 DPI",
       "brand": null,
       "category": "mouse",
@@ -6059,7 +5808,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-xtrike-me-gm-216-rgb-1919",
+      "id": "prd-mouse-souris-gaming-xtrike-me-gm-216-rgb-1930",
       "canonicalName": "SOURIS GAMING XTRIKE-ME GM-216 RGB 3600 DPI ERGONOMIC",
       "brand": null,
       "category": "mouse",
@@ -6082,7 +5831,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-krake-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-krake-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT KRAKEN STARBLAZE-2 RGB TR-MODE 26000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6105,7 +5854,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-magma-swip-s01-rgb-7-1919",
+      "id": "prd-mouse-souris-gaming-magma-swip-s01-rgb-7-1930",
       "canonicalName": "SOURIS GAMING MAGMA SWIP S01 RGB 7200 DPI",
       "brand": "Magma",
       "category": "mouse",
@@ -6128,7 +5877,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-magma-swipct-(crysta-1919",
+      "id": "prd-mouse-souris-gaming-magma-swipct-(crysta-1930",
       "canonicalName": "SOURIS GAMING MAGMA SWIPCT (CRYSTAL) S80 RGB 7200 DPI",
       "brand": "Magma",
       "category": "mouse",
@@ -6151,7 +5900,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-asus-rog-pu-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-asus-rog-pu-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ASUS ROG PUGIO II RGB 16000 DPI",
       "brand": "Asus",
       "category": "mouse",
@@ -6174,7 +5923,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-asus-rog-gladius-ii--1919",
+      "id": "prd-mouse-souris-gaming-asus-rog-gladius-ii--1930",
       "canonicalName": "SOURIS GAMING ASUS ROG GLADIUS II ORIGIN RGB 12000 DPI",
       "brand": "Asus",
       "category": "mouse",
@@ -6197,7 +5946,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-asus-rog-keris-rgb-1-1919",
+      "id": "prd-mouse-souris-gaming-asus-rog-keris-rgb-1-1930",
       "canonicalName": "SOURIS GAMING ASUS ROG KERIS RGB 16000 DPI",
       "brand": "Asus",
       "category": "mouse",
@@ -6220,7 +5969,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms1029-rgb-720-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms1029-rgb-720-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS1029 RGB 7200 DPI",
       "brand": null,
       "category": "mouse",
@@ -6243,7 +5992,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-gams6-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-gams6-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT GAMS64WB 6400 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6266,7 +6015,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-logitech-g502-hero-2-1919",
+      "id": "prd-mouse-souris-gaming-logitech-g502-hero-2-1930",
       "canonicalName": "SOURIS GAMING LOGITECH G502 HERO 25600 DPI",
       "brand": null,
       "category": "mouse",
@@ -6289,7 +6038,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-gravastar-m-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-gravastar-m-1930",
       "canonicalName": "SOURIS GAMING SANS FIL GRAVASTAR MERCURY X PRO 8KHZ",
       "brand": null,
       "category": "mouse",
@@ -6312,7 +6061,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g5-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g5-1930",
       "canonicalName": "SOURIS GAMING SANS FIL LOGITECH G502X PLUS LIGHTSPEED RGB 25000 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6335,7 +6084,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-razer-deathadder-ess-1919",
+      "id": "prd-mouse-souris-gaming-razer-deathadder-ess-1930",
       "canonicalName": "SOURIS GAMING RAZER DEATHADDER ESSENTIAL 6400 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6358,7 +6107,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-logitech-g102-lights-1919",
+      "id": "prd-mouse-souris-gaming-logitech-g102-lights-1930",
       "canonicalName": "SOURIS GAMING LOGITECH G102 LIGHTSYNC 8000 DPI (BLACK / WHITE / PURPLE)",
       "brand": null,
       "category": "mouse",
@@ -6381,7 +6130,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK X11 , 22K DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6404,7 +6153,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms967-rgb-prog-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms967-rgb-prog-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS967 RGB PROGRAMMABLE 20000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6427,7 +6176,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g5-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g5-1930",
       "canonicalName": "SOURIS GAMING SANS FIL LOGITECH G502X LIGHTSPEED 25000 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6450,7 +6199,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK R11 ULTRA, 42K DPI BLACK",
       "brand": null,
       "category": "mouse",
@@ -6473,7 +6222,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-hyperx-puls-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-hyperx-puls-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HYPERX PULSEFIRE HASTE 2 26000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6496,7 +6245,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-xtrfy-m8-es-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-xtrfy-m8-es-1930",
       "canonicalName": "SOURIS GAMING SANS FIL XTRFY M8 ESPORT 55 GRAMS",
       "brand": null,
       "category": "mouse",
@@ -6519,7 +6268,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-xtrfy-m4-rg-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-xtrfy-m4-rg-1930",
       "canonicalName": "SOURIS GAMING SANS FIL XTRFY M4 RGB ESPORT 50 GRAMS",
       "brand": null,
       "category": "mouse",
@@ -6542,7 +6291,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-razer-death-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-razer-death-1930",
       "canonicalName": "SOURIS GAMING SANS FIL RAZER DEATHADDER V2 X HYPERSPEED 14000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6565,7 +6314,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-glorious-model-d-rgb-1919",
+      "id": "prd-mouse-souris-gaming-glorious-model-d-rgb-1930",
       "canonicalName": "SOURIS GAMING GLORIOUS MODEL D RGB 12000 DPI ERGONOMIC",
       "brand": null,
       "category": "mouse",
@@ -6588,7 +6337,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-msi-versa-3-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-msi-versa-3-1930",
       "canonicalName": "SOURIS GAMING SANS FIL MSI VERSA 300 RGB 8000 DPI ERGONOMIC (BLACK / WHITE)",
       "brand": "Msi",
       "category": "mouse",
@@ -6611,7 +6360,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-msi-forge-gm300-rgb--1919",
+      "id": "prd-mouse-souris-gaming-msi-forge-gm300-rgb--1930",
       "canonicalName": "SOURIS GAMING MSI FORGE GM300 RGB 7200 DPI",
       "brand": "Msi",
       "category": "mouse",
@@ -6634,7 +6383,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT MS1043WB RGB TRI-MODE 24000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6657,7 +6406,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT MS1042WB RGB TRI-MODE 24000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6680,7 +6429,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms104-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT MS1044WB RGB TRI-MODE 8000 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6703,7 +6452,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms102-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms102-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT MS1020WB RGB TRI-MODE 10000 DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6726,7 +6475,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-logitech-g502-x-2500-1919",
+      "id": "prd-mouse-souris-gaming-logitech-g502-x-2500-1930",
       "canonicalName": "SOURIS GAMING LOGITECH G502 X 25000 DPI (BLACK/ WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6749,7 +6498,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK R5 ULTRA 8K CARBON FIBER (BLACK / WHITE / RED)",
       "brand": null,
       "category": "mouse",
@@ -6772,7 +6521,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK X8 ULTIMATE TRI-MODE 42K DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -6795,7 +6544,7 @@
       ]
     },
     {
-      "id": "prd-mouse-havit-ms62wb-pro-wireless-mouse,-r-1919",
+      "id": "prd-mouse-havit-ms62wb-pro-wireless-mouse,-r-1930",
       "canonicalName": "HAVIT MS62WB Pro Wireless Mouse, Rechargeable, Bluetooth and 2.4GHz USB Receiver, DPI Adjustable",
       "brand": null,
       "category": "mouse",
@@ -6818,7 +6567,7 @@
       ]
     },
     {
-      "id": "prd-mouse-havit-ms58wb-wireless-mouse,-bluet-1919",
+      "id": "prd-mouse-havit-ms58wb-wireless-mouse,-bluet-1930",
       "canonicalName": "HAVIT MS58WB Wireless Mouse, Bluetooth 5.2/3.0 and 2.4GHz USB Receiver, 2400 DPI",
       "brand": null,
       "category": "mouse",
@@ -6841,7 +6590,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms969-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-havit-ms969-1930",
       "canonicalName": "SOURIS GAMING SANS FIL HAVIT MS969SE TRI-MODE 8000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6864,7 +6613,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms900-rgb-prog-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms900-rgb-prog-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS900 RGB PROGRAMMABLE 10000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6887,7 +6636,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms961-rgb-prog-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms961-rgb-prog-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS961 RGB PROGRAMMABLE 12000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6910,7 +6659,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms1033-rgb-pro-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms1033-rgb-pro-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS1033 RGB PROGRAMMABLE 8000 DPI",
       "brand": null,
       "category": "mouse",
@@ -6933,7 +6682,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms1034-rgb-pro-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms1034-rgb-pro-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS1034 RGB PROGRAMMABLE 4800 DPI",
       "brand": null,
       "category": "mouse",
@@ -6956,7 +6705,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms1022-rgb-320-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms1022-rgb-320-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS1022 RGB 3200 DPI",
       "brand": null,
       "category": "mouse",
@@ -6979,7 +6728,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms1003-rgb-120-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms1003-rgb-120-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS1003 RGB 1200 DPI",
       "brand": null,
       "category": "mouse",
@@ -7002,7 +6751,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-havit-ms4254-rgb-240-1919",
+      "id": "prd-mouse-souris-gaming-havit-ms4254-rgb-240-1930",
       "canonicalName": "SOURIS GAMING HAVIT MS4254 RGB 2400 DPI",
       "brand": null,
       "category": "mouse",
@@ -7025,7 +6774,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g7-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-logitech-g7-1930",
       "canonicalName": "SOURIS GAMING SANS FIL LOGITECH G703 LIGHTSPEED RGB 25600 DPI",
       "brand": null,
       "category": "mouse",
@@ -7048,7 +6797,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK X3PRO TRI-MODE 26K DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -7071,7 +6820,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK X3 TRI-MODE 26K DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -7094,7 +6843,7 @@
       ]
     },
     {
-      "id": "prd-mouse-mouse-spirit-of-gamer-elite-m70-1919",
+      "id": "prd-mouse-mouse-spirit-of-gamer-elite-m70-1930",
       "canonicalName": "Mouse Spirit of Gamer Elite-M70",
       "brand": null,
       "category": "mouse",
@@ -7117,7 +6866,7 @@
       ]
     },
     {
-      "id": "prd-mouse-mouse-spirit-of-gamer-elite-m60-1919",
+      "id": "prd-mouse-mouse-spirit-of-gamer-elite-m60-1930",
       "canonicalName": "Mouse Spirit of Gamer Elite-M60",
       "brand": null,
       "category": "mouse",
@@ -7140,7 +6889,7 @@
       ]
     },
     {
-      "id": "prd-mouse-mouse-logitech-g102---copy-1919",
+      "id": "prd-mouse-mouse-logitech-g102---copy-1930",
       "canonicalName": "Mouse Logitech G102 - COPY",
       "brand": null,
       "category": "mouse",
@@ -7163,7 +6912,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1919",
+      "id": "prd-mouse-souris-gaming-sans-fil-attack-shar-1930",
       "canonicalName": "SOURIS GAMING SANS FIL ATTACK SHARK R1 TRI-MODE 18K DPI (BLACK / WHITE)",
       "brand": null,
       "category": "mouse",
@@ -7186,7 +6935,7 @@
       ]
     },
     {
-      "id": "prd-mouse-souris-sans-fil-logitech-m170-1919",
+      "id": "prd-mouse-souris-sans-fil-logitech-m170-1930",
       "canonicalName": "SOURIS SANS FIL LOGITECH M170",
       "brand": null,
       "category": "mouse",
@@ -7209,7 +6958,7 @@
       ]
     },
     {
-      "id": "prd-mouse-mouse-havit-ms80-1919",
+      "id": "prd-mouse-mouse-havit-ms80-1930",
       "canonicalName": "Mouse HAVIT MS80",
       "brand": null,
       "category": "mouse",
@@ -7232,7 +6981,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2042d-rgb-p-1919",
+      "id": "prd-headset-casque-gaming-havit-h2042d-rgb-p-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2042D RGB PC/PS5/PS4/XBOX",
       "brand": null,
       "category": "headset",
@@ -7255,7 +7004,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-hyperx-cloud-iii---1919",
+      "id": "prd-headset-casque-gaming-hyperx-cloud-iii---1930",
       "canonicalName": "CASQUE GAMING HYPERX CLOUD III - FILAIRE (BLACK / RED / PINK)",
       "brand": null,
       "category": "headset",
@@ -7278,7 +7027,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-attack-shark-l80pr-1919",
+      "id": "prd-headset-casque-gaming-attack-shark-l80pr-1930",
       "canonicalName": "CASQUE GAMING ATTACK SHARK L80PRO TRI-MODE PC/PS4/PS5/XBOX/MAC (BLACK / WHITE)",
       "brand": null,
       "category": "headset",
@@ -7301,7 +7050,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-fuxi-h8-rgb--1919",
+      "id": "prd-headset-casque-gaming-havit-fuxi-h8-rgb--1930",
       "canonicalName": "CASQUE GAMING HAVIT FUXI-H8 RGB (BLACK / WHITE)",
       "brand": null,
       "category": "headset",
@@ -7324,7 +7073,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2037d-rgb-p-1919",
+      "id": "prd-headset-casque-gaming-havit-h2037d-rgb-p-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2037D RGB PC/PS5/PS4/XBOX",
       "brand": null,
       "category": "headset",
@@ -7347,7 +7096,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-havit-h100d-filaire-1919",
+      "id": "prd-headset-casque-havit-h100d-filaire-1930",
       "canonicalName": "CASQUE HAVIT H100D FILAIRE",
       "brand": null,
       "category": "headset",
@@ -7370,7 +7119,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-havit-h2263d-filaire-1919",
+      "id": "prd-headset-casque-havit-h2263d-filaire-1930",
       "canonicalName": "CASQUE HAVIT H2263D FILAIRE",
       "brand": null,
       "category": "headset",
@@ -7393,7 +7142,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-havit-h2106d-filaire-1919",
+      "id": "prd-headset-casque-havit-h2106d-filaire-1930",
       "canonicalName": "CASQUE HAVIT H2106D FILAIRE",
       "brand": null,
       "category": "headset",
@@ -7416,7 +7165,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-msi-maestro-300-pc-1919",
+      "id": "prd-headset-casque-gaming-msi-maestro-300-pc-1930",
       "canonicalName": "CASQUE GAMING MSI MAESTRO 300 PC/MAC/PLAYSTATION/NITENDO SWITCH/ANDROID/IOS",
       "brand": "Msi",
       "category": "headset",
@@ -7439,7 +7188,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-fuxi-h7-rgb--1919",
+      "id": "prd-headset-casque-gaming-havit-fuxi-h7-rgb--1930",
       "canonicalName": "CASQUE GAMING HAVIT FUXI-H7 RGB FIVE-MODE PS5/PS4/PC",
       "brand": null,
       "category": "headset",
@@ -7462,7 +7211,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2002p-rgb-7-1919",
+      "id": "prd-headset-casque-gaming-havit-h2002p-rgb-7-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2002P RGB 7.1 USB",
       "brand": null,
       "category": "headset",
@@ -7485,7 +7234,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2002d-pc-ps-1919",
+      "id": "prd-headset-casque-gaming-havit-h2002d-pc-ps-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2002D PC/PS4,/XBOX ONE",
       "brand": null,
       "category": "headset",
@@ -7508,7 +7257,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2007u-rgb-7-1919",
+      "id": "prd-headset-casque-gaming-havit-h2007u-rgb-7-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2007U RGB 7.1 USB",
       "brand": null,
       "category": "headset",
@@ -7531,7 +7280,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2046u-rgb-7-1919",
+      "id": "prd-headset-casque-gaming-havit-h2046u-rgb-7-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2046U RGB 7.1 USB",
       "brand": null,
       "category": "headset",
@@ -7554,7 +7303,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2043u-rgb-7-1919",
+      "id": "prd-headset-casque-gaming-havit-h2043u-rgb-7-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2043U RGB 7.1 USB",
       "brand": null,
       "category": "headset",
@@ -7577,7 +7326,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2049d-rgb-p-1919",
+      "id": "prd-headset-casque-gaming-havit-h2049d-rgb-p-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2049D RGB PC/PS5/PS4/XBOX (BLACK / WHITE)",
       "brand": null,
       "category": "headset",
@@ -7600,7 +7349,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2232d-rgb-p-1919",
+      "id": "prd-headset-casque-gaming-havit-h2232d-rgb-p-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2232D RGB PC/PS4/XBOX",
       "brand": null,
       "category": "headset",
@@ -7623,7 +7372,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h2027u-7.1-u-1919",
+      "id": "prd-headset-casque-gaming-havit-h2027u-7.1-u-1930",
       "canonicalName": "CASQUE GAMING HAVIT H2027U 7.1 USB",
       "brand": null,
       "category": "headset",
@@ -7646,7 +7395,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-gaming-havit-h659d-rgb-pc-1919",
+      "id": "prd-headset-casque-gaming-havit-h659d-rgb-pc-1930",
       "canonicalName": "CASQUE GAMING HAVIT H659D RGB PC/PS5/PS4/XBOX",
       "brand": null,
       "category": "headset",
@@ -7669,7 +7418,7 @@
       ]
     },
     {
-      "id": "prd-headset-headset-monster-beats-by-dr.-dre-1919",
+      "id": "prd-headset-headset-monster-beats-by-dr.-dre-1930",
       "canonicalName": "HEADSET Monster Beats by Dr. Dre",
       "brand": null,
       "category": "headset",
@@ -7692,7 +7441,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-nia-q1-sans-fil-bleutooth-1919",
+      "id": "prd-headset-casque-nia-q1-sans-fil-bleutooth-1930",
       "canonicalName": "CASQUE NIA-Q1 SANS FIL BLEUTOOTH V5.0",
       "brand": null,
       "category": "headset",
@@ -7715,7 +7464,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-nia-q2-sans-fil-bleutooth-1919",
+      "id": "prd-headset-casque-nia-q2-sans-fil-bleutooth-1930",
       "canonicalName": "CASQUE NIA-Q2 SANS FIL BLEUTOOTH",
       "brand": null,
       "category": "headset",
@@ -7738,7 +7487,7 @@
       ]
     },
     {
-      "id": "prd-headset-casque-nia-x9-sans-fil-bleutooth-1919",
+      "id": "prd-headset-casque-nia-x9-sans-fil-bleutooth-1930",
       "canonicalName": "CASQUE NIA-X9 SANS FIL BLEUTOOTH",
       "brand": null,
       "category": "headset",
@@ -7761,7 +7510,7 @@
       ]
     },
     {
-      "id": "prd-unknown-pc-portables-1919",
+      "id": "prd-unknown-pc-portables-1930",
       "canonicalName": "PC Portables",
       "brand": null,
       "category": "pc_part",
@@ -7784,7 +7533,7 @@
       ]
     },
     {
-      "id": "prd-storage-disque-ssd-1919",
+      "id": "prd-storage-disque-ssd-1930",
       "canonicalName": "Disque SSD",
       "brand": null,
       "category": "storage",
@@ -7809,7 +7558,7 @@
       ]
     },
     {
-      "id": "prd-unknown-ordinateurs-pc-fixe-1919",
+      "id": "prd-unknown-ordinateurs-pc-fixe-1930",
       "canonicalName": "Ordinateurs PC fixe",
       "brand": null,
       "category": "pc_part",
@@ -7832,7 +7581,7 @@
       ]
     },
     {
-      "id": "prd-unknown-informatique-1919",
+      "id": "prd-unknown-informatique-1930",
       "canonicalName": "Informatique",
       "brand": null,
       "category": "pc_part",
@@ -7855,7 +7604,7 @@
       ]
     },
     {
-      "id": "prd-unknown-samsung-1919",
+      "id": "prd-unknown-samsung-1930",
       "canonicalName": "Samsung",
       "brand": "Samsung",
       "category": "pc_part",
@@ -7878,7 +7627,7 @@
       ]
     },
     {
-      "id": "prd-unknown-imprimantes-1919",
+      "id": "prd-unknown-imprimantes-1930",
       "canonicalName": "Imprimantes",
       "brand": null,
       "category": "pc_part",
@@ -7901,7 +7650,7 @@
       ]
     },
     {
-      "id": "prd-unknown-toners-1919",
+      "id": "prd-unknown-toners-1930",
       "canonicalName": "Toners",
       "brand": null,
       "category": "pc_part",
@@ -7924,7 +7673,7 @@
       ]
     },
     {
-      "id": "prd-unknown-imprimante-code-a-barre-1919",
+      "id": "prd-unknown-imprimante-code-a-barre-1930",
       "canonicalName": "imprimante code a barre",
       "brand": null,
       "category": "pc_part",
@@ -7947,7 +7696,7 @@
       ]
     },
     {
-      "id": "prd-unknown-cartouches-1919",
+      "id": "prd-unknown-cartouches-1930",
       "canonicalName": "Cartouches",
       "brand": null,
       "category": "pc_part",
@@ -7970,7 +7719,7 @@
       ]
     },
     {
-      "id": "prd-unknown-consommables-1919",
+      "id": "prd-unknown-consommables-1930",
       "canonicalName": "Consommables",
       "brand": null,
       "category": "pc_part",
@@ -7993,7 +7742,7 @@
       ]
     },
     {
-      "id": "prd-unknown-points-d’accès-1919",
+      "id": "prd-unknown-points-d’accès-1930",
       "canonicalName": "Points d’accès",
       "brand": null,
       "category": "pc_part",
@@ -8016,7 +7765,7 @@
       ]
     },
     {
-      "id": "prd-unknown-switch-1919",
+      "id": "prd-unknown-switch-1930",
       "canonicalName": "Switch",
       "brand": null,
       "category": "pc_part",
@@ -8039,7 +7788,7 @@
       ]
     },
     {
-      "id": "prd-unknown-cartes-réseaux-1919",
+      "id": "prd-unknown-cartes-réseaux-1930",
       "canonicalName": "Cartes réseaux",
       "brand": null,
       "category": "pc_part",
@@ -8062,7 +7811,7 @@
       ]
     },
     {
-      "id": "prd-unknown-modems-&-routeurs-1919",
+      "id": "prd-unknown-modems-&-routeurs-1930",
       "canonicalName": "Modems & routeurs",
       "brand": null,
       "category": "pc_part",
@@ -8085,7 +7834,7 @@
       ]
     },
     {
-      "id": "prd-unknown-caméras-1919",
+      "id": "prd-unknown-caméras-1930",
       "canonicalName": "Caméras",
       "brand": null,
       "category": "pc_part",
@@ -8108,7 +7857,7 @@
       ]
     },
     {
-      "id": "prd-unknown-caméra-de-surveillance-1919",
+      "id": "prd-unknown-caméra-de-surveillance-1930",
       "canonicalName": "Caméra de surveillance",
       "brand": null,
       "category": "pc_part",
@@ -8131,7 +7880,7 @@
       ]
     },
     {
-      "id": "prd-unknown-accessoires-caméra-1919",
+      "id": "prd-unknown-accessoires-caméra-1930",
       "canonicalName": "Accessoires caméra",
       "brand": null,
       "category": "pc_part",
@@ -8154,7 +7903,7 @@
       ]
     },
     {
-      "id": "prd-unknown-appareils-photo-1919",
+      "id": "prd-unknown-appareils-photo-1930",
       "canonicalName": "Appareils Photo",
       "brand": null,
       "category": "pc_part",
@@ -8177,7 +7926,7 @@
       ]
     },
     {
-      "id": "prd-unknown-accessoires-1919",
+      "id": "prd-unknown-accessoires-1930",
       "canonicalName": "Accessoires",
       "brand": null,
       "category": "pc_part",
@@ -8200,7 +7949,7 @@
       ]
     },
     {
-      "id": "prd-unknown-cartes-graphiques-1919",
+      "id": "prd-unknown-cartes-graphiques-1930",
       "canonicalName": "Cartes graphiques",
       "brand": null,
       "category": "pc_part",
@@ -8223,7 +7972,7 @@
       ]
     },
     {
-      "id": "prd-unknown-cartes-mères-1919",
+      "id": "prd-unknown-cartes-mères-1930",
       "canonicalName": "Cartes mères",
       "brand": null,
       "category": "pc_part",
@@ -8246,7 +7995,7 @@
       ]
     },
     {
-      "id": "prd-storage-disques-durs-1919",
+      "id": "prd-storage-disques-durs-1930",
       "canonicalName": "Disques durs",
       "brand": null,
       "category": "storage",
@@ -8269,7 +8018,7 @@
       ]
     },
     {
-      "id": "prd-unknown-pièces-1919",
+      "id": "prd-unknown-pièces-1930",
       "canonicalName": "Pièces",
       "brand": null,
       "category": "pc_part",
@@ -8292,7 +8041,7 @@
       ]
     },
     {
-      "id": "prd-unknown-refroidissement-1919",
+      "id": "prd-unknown-refroidissement-1930",
       "canonicalName": "Refroidissement",
       "brand": null,
       "category": "pc_part",
@@ -8315,7 +8064,7 @@
       ]
     },
     {
-      "id": "prd-psu-alimentation-1919",
+      "id": "prd-psu-alimentation-1930",
       "canonicalName": "Alimentation",
       "brand": null,
       "category": "psu",
@@ -8338,30 +8087,7 @@
       ]
     },
     {
-      "id": "prd-storage-compare-1919",
-      "canonicalName": "Compare",
-      "brand": null,
-      "category": "storage",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 14200.0,
-      "worstPrice": 14200.0,
-      "averagePrice": 14200,
-      "listingCount": 1,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "CapMicro Dz",
-          "price": 14200.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/disque-dur-externe-twinmos-prodrive-1tb-usb-3-0/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-unknown-pack-canon-i-sensys-x-1440i-+-to-1919",
+      "id": "prd-unknown-pack-canon-i-sensys-x-1440i-+-to-1930",
       "canonicalName": "Pack Canon i-SENSYS X 1440i + Toner Original T13",
       "brand": null,
       "category": "pc_part",
@@ -8384,7 +8110,7 @@
       ]
     },
     {
-      "id": "prd-unknown-imprimante-canon-maxify-gx3040-m-1919",
+      "id": "prd-unknown-imprimante-canon-maxify-gx3040-m-1930",
       "canonicalName": "Imprimante CANON MAXIFY GX3040 MegaTank",
       "brand": null,
       "category": "pc_part",
@@ -8407,7 +8133,7 @@
       ]
     },
     {
-      "id": "prd-unknown-scanner-canon-formula-dr-c225-ii-1919",
+      "id": "prd-unknown-scanner-canon-formula-dr-c225-ii-1930",
       "canonicalName": "Scanner Canon FORMULA DR-C225 II",
       "brand": null,
       "category": "pc_part",
@@ -8425,75 +8151,6 @@
           "condition": "New",
           "location": "Algeria",
           "url": "https://capmicrodz.com/scanner-canon-imageformula-dr-c225-ii/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-keyboard-compare-1919",
-      "canonicalName": "Compare",
-      "brand": null,
-      "category": "keyboard",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 9000.0,
-      "worstPrice": 9000.0,
-      "averagePrice": 9000,
-      "listingCount": 1,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "CapMicro Dz",
-          "price": 9000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/clavier-mecanique-gaming-havit-kb875l/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-monitor-compare-1919",
-      "canonicalName": "Compare",
-      "brand": null,
-      "category": "monitor",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 25500.0,
-      "worstPrice": 25500.0,
-      "averagePrice": 25500,
-      "listingCount": 1,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "CapMicro Dz",
-          "price": 25500.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://capmicrodz.com/ecran-thinkvision-s22e-20-21-5-fhd-hdmi-vga/",
-          "imageUrl": null
-        }
-      ]
-    },
-    {
-      "id": "prd-cpu-ajouter-à-la-comparaison-1919",
-      "canonicalName": "Ajouter à la comparaison",
-      "brand": null,
-      "category": "cpu",
-      "specs": {},
-      "imageUrl": null,
-      "bestPrice": 22000.0,
-      "worstPrice": 22000.0,
-      "averagePrice": 22000,
-      "listingCount": 1,
-      "storeCount": 1,
-      "listings": [
-        {
-          "source": "AMI-DZ",
-          "price": 22000.0,
-          "condition": "New",
-          "location": "Algeria",
-          "url": "https://ami-dz.com/produit/amd-ryzen-5-5500-3-6-ghz-4-2-ghz-processor-box-version/",
           "imageUrl": null
         }
       ]
