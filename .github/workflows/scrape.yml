@@ -26,8 +26,8 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
-      - name: Run deduplication & cleaning
-        run: node scripts/clean-products.cjs
+      - name: Run deduplication & cleaning (hybrid v1+v2)
+        run: node scripts/clean-products-hybrid.cjs
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
