@@ -13,18 +13,22 @@ try:
 except ImportError:
     raise ImportError("Install supabase: pip install supabase")
 
-load_dotenv()
+SUPABASE_URL = None
+SUPABASE_KEY = None
 
-# Support both env var names
-SUPABASE_URL = os.environ.get('SUPABASE_URL') or os.environ.get('NEXT_PUBLIC_SUPABASE_URL')
-SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_KEY') or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
-
-if not SUPABASE_URL or not SUPABASE_KEY:
-    raise ValueError(
-        "Missing Supabase credentials. Set env vars:\n"
-        "  SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL)\n"
-        "  SUPABASE_SERVICE_KEY (or SUPABASE_SERVICE_ROLE_KEY)"
-    )
+def _load_credentials():
+    """Lazy-load credentials — only called when needed."""
+    global SUPABASE_URL, SUPABASE_KEY
+    if SUPABASE_URL is None or SUPABASE_KEY is None:
+        load_dotenv()
+        SUPABASE_URL = os.environ.get('SUPABASE_URL') or os.environ.get('NEXT_PUBLIC_SUPABASE_URL')
+        SUPABASE_KEY = os.environ.get('SUPABASE_SERVICE_KEY') or os.environ.get('SUPABASE_SERVICE_ROLE_KEY')
+        if not SUPABASE_URL or not SUPABASE_KEY:
+            raise ValueError(
+                "Missing Supabase credentials. Set env vars:\n"
+                "  SUPABASE_URL (or NEXT_PUBLIC_SUPABASE_URL)\n"
+                "  SUPABASE_SERVICE_KEY (or SUPABASE_SERVICE_ROLE_KEY)"
+            )
 
 _supabase: Optional[Client] = None
 
@@ -33,6 +37,7 @@ def get_client() -> Client:
     """Get or create Supabase client (singleton)."""
     global _supabase
     if _supabase is None:
+        _load_credentials()
         _supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
     return _supabase
 
