@@ -19,7 +19,7 @@ jobs:
           node-version: 22
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm install --legacy-peer-deps
 
       # ─── Python Setup ───
       - uses: actions/setup-python@v5
@@ -68,7 +68,7 @@ jobs:
         with:
           node-version: 22
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm install --legacy-peer-deps
       - name: Run cleanup
         run: node scripts/cleanup.cjs
         env:
