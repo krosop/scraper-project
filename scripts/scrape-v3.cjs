@@ -580,7 +580,7 @@ async function main() {
     timestamp: new Date().toISOString(),
     total: products.length,
     stats,
-    products: products.slice(0, 100) // Save preview
+    products: products // Save ALL products, not just preview
   }, null, 2));
   
   console.log(`Results saved to ${resultsPath}`);
