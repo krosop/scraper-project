@@ -1,225 +1,172 @@
 #!/usr/bin/env python3
 """
-PC Parts Scraper — Main Runner
-Orchestrates scraping from all sites, cleans data, builds comparisons, and saves output.
+PC Parts Scraper — Main Runner for 8 Algerian retailers
+Scrapes all sites, cleans data, pushes to Supabase.
+
 Usage:
-    python run.py                      # Scrape all sites, all categories
-    python run.py --sites licbplus     # Scrape only LICB Plus
-    python run.py --sites wifidjelfa   # Scrape only WIFI Djelfa
-    python run.py --cats cpu gpu       # Scrape only CPU and GPU categories
-    python run.py --dry-run            # Process existing data without scraping
+    python run.py                              # Scrape all sites
+    python run.py --sites licbplus tiza        # Only specific sites
+    python run.py --sites licbplus --cats cpu  # Site + category filter
+    python run.py --dry-run                    # Process existing data
+
+Sites: licbplus, wifidjelfa, tiza, geekzone, digitec, gigastore, gamingdz, lahlou, hardsoft
 """
 import argparse
-import json
 import sys
+import json
 from datetime import datetime
 from pathlib import Path
 
-# ─── Configuration ───
-DATA_DIR = Path('data')
-RAW_DIR = DATA_DIR / 'raw'
-HISTORY_DIR = DATA_DIR / 'history'
-OUTPUT_DIR = Path('docs') / 'data'
+sys.path.insert(0, str(Path(__file__).parent))
+
+from categorizer import clean_all
+from supabase_client import upsert_products_batch, test_connection
+
+# All available scrapers
+SCRAPER_MAP = {
+    'licbplus': 'sites.licbplus.LicbplusScraper',
+    'wifidjelfa': 'sites.wifidjelfa.WifidjelfaScraper',
+    'tiza': 'sites.tiza.TizaScraper',
+    'geekzone': 'sites.geekzone.GeekZoneScraper',
+    'digitec': 'sites.digitec.DigitecScraper',
+    'gigastore': 'sites.gigastore.GigastoreScraper',
+    'gamingdz': 'sites.gamingdz.GamingDZScraper',
+    'lahlou': 'sites.lahlou.LahlouScraper',
+    'hardsoft': 'sites.hardsoft.HardSoftScraper',
+}
 
 
-def ensure_dirs():
-    for d in [DATA_DIR, RAW_DIR, HISTORY_DIR, OUTPUT_DIR]:
-        d.mkdir(parents=True, exist_ok=True)
+def load_scraper(site_name: str):
+    """Dynamically load a scraper class by name."""
+    module_path, class_name = SCRAPER_MAP[site_name].rsplit('.', 1)
+    module = __import__(module_path, fromlist=[class_name])
+    return getattr(module, class_name)
 
 
-def load_existing_data() -> list:
-    """Load previously scraped data if available."""
-    existing = []
-    for f in sorted(RAW_DIR.glob('*.json'), reverse=True):
-        try:
-            with open(f, 'r', encoding='utf-8') as fp:
-                data = json.load(fp)
-                if isinstance(data, list):
-                    existing.extend(data)
-                    print(f"[+] Loaded {len(data)} products from {f.name}")
-        except Exception as e:
-            print(f"[!] Failed to load {f}: {e}")
-    return existing
-
-
-def run_scraper(site_name: str, categories: list = None) -> list:
-    """Run a specific scraper and return raw products."""
-    if site_name == 'licbplus':
-        from scraper.sites.licbplus import LicbplusScraper
-        scraper = LicbplusScraper()
+def scrape_site(site_name: str, categories: list = None) -> list:
+    """Run a scraper and return raw products."""
+    try:
+        ScraperClass = load_scraper(site_name)
+        scraper = ScraperClass()
         return scraper.scrape_all(categories=categories)
-
-    elif site_name == 'wifidjelfa':
-        from scraper.sites.wifidjelfa import WifidjelfaScraper
-        scraper = WifidjelfaScraper()
-        return scraper.scrape_all(categories=categories)
-
-    elif site_name == 'generic_sitemap':
-        from scraper.sites.generic_sitemap import scrape_all_sites
-        sitemap_path = Path(__file__).parent / 'sitemap.json'
-        return scrape_all_sites(sitemap_path, max_pages=1, max_sites=None)
-
-    else:
-        print(f"[!] Unknown site: {site_name}")
+    except ImportError as e:
+        print(f"[!] {site_name}: Missing dependency — {e}")
+        return []
+    except Exception as e:
+        print(f"[!] {site_name} scraper failed: {e}")
         return []
 
 
-def process_and_save(raw_products: list, args):
-    """Clean data, build comparisons, and save all outputs."""
-    from core.categorizer import clean_all, build_comparison_table
+def main():
+    parser = argparse.ArgumentParser(description='PC Parts Scraper — 9 Algerian retailers')
+    parser.add_argument('--sites', nargs='+',
+                        choices=list(SCRAPER_MAP.keys()) + ['all'],
+                        default=['all'],
+                        help='Sites to scrape (default: all)')
+    parser.add_argument('--cats', nargs='+',
+                        help='Categories: cpu, gpu, ram, monitor, storage, motherboard, psu, case, cooling, keyboard, mouse, headset')
+    parser.add_argument('--dry-run', action='store_true', help='Skip scraping, process existing data')
+    parser.add_argument('--no-browser', action='store_true', help='Skip browser-based scrapers (wifidjelfa, gamingdz)')
+    parser.add_argument('--save-raw', action='store_true', help='Save raw data to JSON before cleaning')
+    args = parser.parse_args()
 
-    print(f"\n{'='*60}")
-    print(f"  PROCESSING {len(raw_products)} RAW PRODUCTS")
-    print(f"{'='*60}\n")
+    print("=" * 65)
+    print("  PC PARTS SCRAPER — Algeria (9 retailers)")
+    print(f"  Started: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}")
+    print("=" * 65)
+    print()
+    print("  Sites: licbplus, wifidjelfa, tiza, geekzone, digitec,")
+    print("         gigastore, gamingdz, lahlou, hardsoft")
+    print()
 
-    # Step 1: Clean all products
+    # Determine sites to scrape
+    sites = list(SCRAPER_MAP.keys()) if 'all' in args.sites else args.sites
+
+    if args.no_browser:
+        browser_sites = {'wifidjelfa', 'gamingdz'}
+        sites = [s for s in sites if s not in browser_sites]
+        print(f"  [i] Browser scrapers disabled. Sites: {', '.join(sites)}")
+        print()
+
+    # ─── Test Supabase ───
+    print("[1] Testing Supabase connection...")
+    if not test_connection():
+        print("[!] Supabase not connected. Set SUPABASE_URL and SUPABASE_SERVICE_KEY.")
+        sys.exit(1)
+    print()
+
+    # ─── Scrape Phase ───
+    raw_products = []
+
+    if not args.dry_run:
+        for site in sites:
+            print(f"{'─' * 55}")
+            print(f"  SCRAPING: {site.upper()}")
+            print(f"{'─' * 55}")
+            products = scrape_site(site, categories=args.cats)
+            raw_products.extend(products)
+
+            if args.save_raw and products:
+                raw_dir = Path('data/raw')
+                raw_dir.mkdir(parents=True, exist_ok=True)
+                raw_file = raw_dir / f"{site}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+                with open(raw_file, 'w', encoding='utf-8') as f:
+                    json.dump(products, f, indent=2, ensure_ascii=False)
+                print(f"  [+] Saved raw: {raw_file}")
+            print()
+
+    if not raw_products:
+        print("[!] No products scraped. Exiting.")
+        sys.exit(1)
+
+    # ─── Clean Phase ───
+    print(f"[2] Cleaning {len(raw_products)} raw products...")
     cleaned = clean_all(raw_products)
     print(f"[+] Cleaned: {len(cleaned)} valid products")
 
     # Category breakdown
-    cat_counts = {}
+    cats = {}
     for p in cleaned:
-        cat = p.get('category', 'unknown')
-        cat_counts[cat] = cat_counts.get(cat, 0) + 1
-
+        c = p.get('category', 'unknown')
+        cats[c] = cats.get(c, 0) + 1
     print(f"[+] Categories:")
-    for cat, count in sorted(cat_counts.items(), key=lambda x: -x[1]):
-        print(f"    {cat:15s}: {count:4d} products")
+    for c, n in sorted(cats.items(), key=lambda x: -x[1]):
+        print(f"    {c:15s}: {n:4d}")
 
-    # Step 2: Save cleaned products
-    timestamp = datetime.utcnow().strftime('%Y%m%d_%H%M%S')
+    # Retailer breakdown
+    rets = {}
+    for p in cleaned:
+        r = p.get('retailer_name', 'unknown')
+        rets[r] = rets.get(r, 0) + 1
+    print(f"[+] Retailers:")
+    for r, n in sorted(rets.items(), key=lambda x: -x[1]):
+        print(f"    {r:20s}: {n:4d}")
+    print()
 
-    # Main products file (for frontend)
-    products_file = OUTPUT_DIR / 'products.json'
-    with open(products_file, 'w', encoding='utf-8') as f:
-        json.dump(cleaned, f, indent=2, ensure_ascii=False)
-    print(f"\n[+] Saved products.json ({len(cleaned)} items)")
-
-    # Archive with timestamp
-    archive_file = HISTORY_DIR / f'products_{timestamp}.json'
-    with open(archive_file, 'w', encoding='utf-8') as f:
-        json.dump(cleaned, f, indent=2, ensure_ascii=False)
-
-    # Step 3: Build comparison table
-    print(f"\n[+] Building cross-retailer comparisons...")
-    comparisons = build_comparison_table(cleaned)
-    print(f"[+] Found {len(comparisons)} products at multiple retailers")
-
-    if comparisons:
-        comp_file = OUTPUT_DIR / 'comparisons.json'
-        with open(comp_file, 'w', encoding='utf-8') as f:
-            json.dump(comparisons, f, indent=2, ensure_ascii=False)
-        print(f"[+] Saved comparisons.json")
-
-        # Print top savings
-        print(f"\n[+] Top price differences:")
-        for comp in comparisons[:10]:
-            print(f"    {comp['name'][:50]:50s} | Save {comp['savings']:>6,} DA | "
-                  f"{comp['cheapest_retailer']} ({comp['cheapest_price']}) vs "
-                  f"up to {comp['highest_price']}")
-
-    # Step 4: Save stats
-    prices = [p['price'] for p in cleaned if p.get('price', 0) > 0]
-    stats = {
-        'scraped_at': datetime.utcnow().isoformat(),
-        'total_products': len(cleaned),
-        'categories': cat_counts,
-        'retailers': list(set(p.get('retailer_name', '') for p in cleaned)),
-        'avg_price': round(sum(prices) / len(prices)) if prices else 0,
-        'min_price': round(min(prices)) if prices else 0,
-        'max_price': round(max(prices)) if prices else 0,
-        'on_sale': sum(1 for p in cleaned if p.get('old_price')),
-        'comparisons_found': len(comparisons),
-        'top_savings': [
-            {'name': c['name'][:60], 'savings': c['savings'],
-             'cheapest': c['cheapest_price'], 'retailer': c['cheapest_retailer']}
-            for c in comparisons[:5]
-        ]
-    }
-
-    stats_file = OUTPUT_DIR / 'stats.json'
-    with open(stats_file, 'w', encoding='utf-8') as f:
-        json.dump(stats, f, indent=2, ensure_ascii=False)
-    print(f"[+] Saved stats.json")
-
-    # Step 5: Save by category (for frontend filtering)
-    for cat in cat_counts:
-        cat_products = [p for p in cleaned if p.get('category') == cat]
-        cat_file = OUTPUT_DIR / f'{cat}.json'
-        with open(cat_file, 'w', encoding='utf-8') as f:
-            json.dump(cat_products, f, indent=2, ensure_ascii=False)
-
-    return cleaned, comparisons, stats
-
-
-def main():
-    parser = argparse.ArgumentParser(description='PC Parts Scraper for Algerian retailers')
-    parser.add_argument('--sites', nargs='+', choices=['licbplus', 'wifidjelfa', 'generic_sitemap', 'all'],
-                        default=['all'], help='Sites to scrape')
-    parser.add_argument('--cats', nargs='+', help='Specific categories to scrape')
-    parser.add_argument('--dry-run', action='store_true', help='Process existing data without scraping')
-    parser.add_argument('--no-browser', action='store_true', help='Skip browser-based scrapers')
-    args = parser.parse_args()
-
-    ensure_dirs()
-
-    print("=" * 60)
-    print("  PC PARTS SCRAPER — Algeria")
-    print(f"  Started: {datetime.utcnow().isoformat()}")
-    print("=" * 60)
-
-    raw_products = []
-
-    # ─── Scrape Phase ───
-    if not args.dry_run:
-        sites = ['licbplus', 'wifidjelfa'] if 'all' in args.sites else args.sites
-
-        for site in sites:
-            if site == 'wifidjelfa' and args.no_browser:
-                print(f"[!] Skipping {site} (browser disabled)")
-                continue
-
-            try:
-                print(f"\n{'─' * 50}")
-                print(f"  SCRAPING: {site.upper()}")
-                print(f"{'─' * 50}")
-                products = run_scraper(site, categories=args.cats)
-                raw_products.extend(products)
-
-                # Save raw immediately (per-site)
-                raw_file = RAW_DIR / f"{site}_{datetime.utcnow().strftime('%Y%m%d')}.json"
-                with open(raw_file, 'w', encoding='utf-8') as f:
-                    json.dump(products, f, indent=2, ensure_ascii=False)
-
-            except Exception as e:
-                print(f"[!] Scraper failed for {site}: {e}")
-                continue
-
-    # ─── Load existing if dry-run or scraper failed ───
-    if not raw_products:
-        print("\n[!] No new data scraped. Loading existing...")
-        raw_products = load_existing_data()
-
-    if not raw_products:
-        print("[!] No data available. Exiting.")
-        sys.exit(1)
-
-    # ─── Process Phase ───
-    cleaned, comparisons, stats = process_and_save(raw_products, args)
+    # ─── Push to Supabase ───
+    print(f"[3] Pushing {len(cleaned)} products to Supabase...")
+    stats = upsert_products_batch(cleaned)
+    print(f"[+] Upserted: {stats['inserted']}, Failed: {stats['failed']}")
+    print()
 
     # ─── Summary ───
-    print(f"\n{'=' * 60}")
-    print(f"  DONE — Summary:")
-    print(f"    Products:   {stats['total_products']}")
-    print(f"    Categories: {len(stats['categories'])}")
-    print(f"    Retailers:  {', '.join(stats['retailers'])}")
-    print(f"    Avg Price:  {stats['avg_price']:,} DA")
-    print(f"    On Sale:    {stats['on_sale']}")
-    print(f"    Multi-shop: {stats['comparisons_found']} products")
-    print(f"    Output:     {OUTPUT_DIR}")
-    print(f"{'=' * 60}\n")
+    prices = [p['price'] for p in cleaned if p['price'] > 0]
+    avg_price = sum(prices) // len(prices) if prices else 0
+    on_sale = sum(1 for p in cleaned if p.get('old_price'))
 
-    return cleaned, comparisons
+    print(f"{'=' * 65}")
+    print(f"  DONE — Summary")
+    print(f"{'=' * 65}")
+    print(f"    Total products:  {len(cleaned)}")
+    print(f"    Categories:      {len(cats)}")
+    print(f"    Retailers:       {len(rets)}")
+    print(f"    Avg price:       {avg_price:,} DA")
+    print(f"    On sale:         {on_sale}")
+    print(f"    Price range:     {min(prices):,} - {max(prices):,} DA" if prices else "    No valid prices")
+    print(f"{'=' * 65}")
+    print()
+
+    return cleaned
 
 
 if __name__ == '__main__':

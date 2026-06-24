@@ -4,12 +4,9 @@ requests>=2.31.0
 beautifulsoup4>=4.12.0
 lxml>=4.9.0
 
+# ─── Supabase ───
+supabase>=2.5.0
+python-dotenv>=1.0.0
+
 # ─── Data Processing ───
 python-dateutil>=2.8.0
-
-# ─── Supabase Upload ───
-supabase>=2.3.0
-
-# ─── Dev / Testing ───
-pytest>=7.4.0
-pytest-xdist>=3.3.0

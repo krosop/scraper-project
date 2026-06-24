@@ -35,12 +35,12 @@ jobs:
           cd scripts/pc-parts-scraper
           pip install -r requirements.txt
 
-      # ─── Run Python Scraper + Adapter ───
-      - name: Run Python scraper (licbplus + wifidjelfa)
-        run: cd scripts/pc-parts-scraper && python adapter.py
+      # ─── Run Scraper V2 via Adapter ───
+      - name: Run Scraper V2 (7 Algerian stores)
+        run: cd scripts && python adapter_v2.py
         env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          PYTHONIOENCODING: utf-8
+        timeout-minutes: 20
 
       # ─── Upload artifacts ───
       - name: Upload results artifacts
@@ -49,7 +49,7 @@ jobs:
           name: scrape-results
           path: |
             public/clean-products.json
-            scripts/pc-parts-scraper/docs/data/
+            scripts/pc-parts-scraper/data/raw/
           retention-days: 7
 
       # ─── Commit updated data ───
