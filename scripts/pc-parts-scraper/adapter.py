@@ -161,7 +161,7 @@ def main():
     ensure_dirs()
     
     raw_products = []
-    sites = ['licbplus', 'wifidjelfa']
+    sites = ['licbplus', 'generic_sitemap', 'wifidjelfa']
     
     for site in sites:
         try:

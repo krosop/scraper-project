@@ -54,6 +54,11 @@ def run_scraper(site_name: str, categories: list = None) -> list:
         scraper = WifidjelfaScraper()
         return scraper.scrape_all(categories=categories)
 
+    elif site_name == 'generic_sitemap':
+        from scraper.sites.generic_sitemap import scrape_all_sites
+        sitemap_path = Path(__file__).parent / 'sitemap.json'
+        return scrape_all_sites(sitemap_path, max_pages=1, max_sites=None)
+
     else:
         print(f"[!] Unknown site: {site_name}")
         return []
@@ -149,7 +154,7 @@ def process_and_save(raw_products: list, args):
 
 def main():
     parser = argparse.ArgumentParser(description='PC Parts Scraper for Algerian retailers')
-    parser.add_argument('--sites', nargs='+', choices=['licbplus', 'wifidjelfa', 'all'],
+    parser.add_argument('--sites', nargs='+', choices=['licbplus', 'wifidjelfa', 'generic_sitemap', 'all'],
                         default=['all'], help='Sites to scrape')
     parser.add_argument('--cats', nargs='+', help='Specific categories to scrape')
     parser.add_argument('--dry-run', action='store_true', help='Process existing data without scraping')

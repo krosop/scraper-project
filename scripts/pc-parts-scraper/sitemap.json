@@ -1,0 +1,933 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Scraper sitemap for Algerian PC parts & PC stores",
+    "total_sites": 35,
+    "last_updated": "2026-06-24",
+    "user_agent": "Mozilla/5.0 (compatible; PCBot/1.0; +http://yourbot.com/bot)"
+  },
+  "sites": [
+    {
+      "id": 1,
+      "name": "CHB-Store",
+      "domain": "chb-store.com",
+      "base_url": "https://chb-store.com",
+      "platform": "wordpress_woocommerce",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/",
+        "shop": "/boutique/",
+        "categories": [
+          "/categorie-produit/composants-ordinateur/alimentation-composants-ordinateur/",
+          "/categorie-produit/composants-ordinateur/boitier-composants-ordinateur/",
+          "/categorie-produit/composants-ordinateur/cartes-graphiques-composants-ordinateur/",
+          "/categorie-produit/composants-ordinateur/cartes-meres/",
+          "/categorie-produit/composants-ordinateur/cpu-processeur/",
+          "/categorie-produit/composants-ordinateur/refroidissement-composants-ordinateur/"
+        ],
+        "product_pattern": "/produit/{slug}/",
+        "sitemap_xml": "/wp-sitemap.xml"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".woocommerce-loop-product__title",
+        "product_price": ".price .woocommerce-Price-amount",
+        "product_link": "a.woocommerce-LoopProduct-link",
+        "product_image": "img.attachment-woocommerce_thumbnail",
+        "pagination": ".page-numbers a",
+        "next_page": ".page-numbers a.next"
+      },
+      "pagination": {
+        "type": "page_numbers",
+        "url_pattern": "/page/{page}/"
+      }
+    },
+    {
+      "id": 2,
+      "name": "GeekZone Dz",
+      "domain": "geekzonedz.com",
+      "base_url": "https://www.geekzonedz.com",
+      "platform": "prestashop",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/",
+        "categories": [
+          "/14-composants",
+          "/18-peripheriques",
+          "/32-moniteurs",
+          "/47-goodies",
+          "/82-connectique-pc"
+        ],
+        "product_pattern": "/{category}/{id}-{slug}.html"
+      },
+      "selectors": {
+        "product_list": ".product-container",
+        "product_name": ".product-name a",
+        "product_price": ".content_price .price.product-price",
+        "product_link": ".product-name a",
+        "product_image": ".product-image-container img",
+        "pagination": "#pagination a",
+        "next_page": "#pagination_next a"
+      },
+      "pagination": {
+        "type": "query_param",
+        "param": "p",
+        "url_pattern": "?p={page}"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Singularity Computers",
+      "domain": "singularitycomputers.com",
+      "base_url": "https://singularitycomputers.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product-item",
+        "product_name": ".product-title",
+        "product_price": ".product-price",
+        "product_link": ".product-title a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a",
+        "next_page": ".pagination .next"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 4,
+      "name": "PC Line",
+      "domain": "pcline.dz",
+      "base_url": "https://www.pcline.dz",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".product-price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a",
+        "next_page": ".pagination .next"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 5,
+      "name": "LICB+",
+      "domain": "licbplus.com.dz",
+      "base_url": "https://www.licbplus.com.dz",
+      "platform": "custom",
+      "language": "fr",
+      "crawl_delay": 1,
+      "priority": 1,
+      "urls": {
+        "home": "/",
+        "pc_builder": "/pc-builder",
+        "categories": [
+          "/accessoires/keyboard",
+          "/monitor/pc-monitor",
+          "/accessoires/headset",
+          "/accessoires/mouse",
+          "/pc-components/ssd",
+          "/pc-components/case",
+          "/pc-components/power-supply",
+          "/pc-components/cooling",
+          "/laptop-computers/laptop",
+          "/networking/router",
+          "/streaming/microphone"
+        ]
+      },
+      "selectors": {
+        "product_list": ".product-card",
+        "product_name": ".product-title",
+        "product_price": ".product-price",
+        "product_link": ".product-card a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a",
+        "next_page": ".pagination .next"
+      },
+      "pagination": {
+        "type": "infinite_scroll"
+      },
+      "api": {
+        "products_endpoint": "/api/products",
+        "category_endpoint": "/api/products?category={category_id}&page={page}"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lahlou Industrie",
+      "domain": "lahlou-industrie.com",
+      "base_url": "https://lahlou-industrie.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Gaming DZ",
+      "domain": "gamingdz.com",
+      "base_url": "https://gamingdz.com",
+      "platform": "custom",
+      "language": "fr",
+      "crawl_delay": 1,
+      "priority": 1,
+      "urls": {
+        "home": "/",
+        "shop": "/store",
+        "pc_builder": "/mypc",
+        "categories": [
+          "/store/composants/alimentations-psu",
+          "/store/composants/boitier-case",
+          "/store/composants/refroidisseur-cpu",
+          "/store/composants/mixte-composants",
+          "/store/composants/cartes-graphiques",
+          "/store/peripheriques/claviers"
+        ],
+        "product_pattern": "/store/{category}/{product_slug}"
+      },
+      "selectors": {
+        "product_list": ".product-item",
+        "product_name": ".product-title",
+        "product_price": ".product-price",
+        "product_link": ".product-item a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a",
+        "next_page": ".pagination .next"
+      },
+      "pagination": {
+        "type": "query_param",
+        "param": "page",
+        "url_pattern": "?page={page}"
+      },
+      "api": {
+        "products_endpoint": "/api/products",
+        "search_endpoint": "/api/search?q={query}"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Informatics DZ",
+      "domain": "informatics-dz.com",
+      "base_url": "https://informatics-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 9,
+      "name": "MaxFrame",
+      "domain": "maxframe.dz",
+      "base_url": "https://www.maxframe.dz",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Fractal-Shop",
+      "domain": "fractal-shop.com",
+      "base_url": "https://fractal-shop.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 11,
+      "name": "Campus Informatique",
+      "domain": "campusinformatique.com",
+      "base_url": "https://campusinformatique.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/",
+        "pc_builder": "/pc-builder"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 12,
+      "name": "DeskCom IT & Gaming",
+      "domain": "deskcom-dz.com",
+      "base_url": "https://deskcom-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 13,
+      "name": "Alger PC",
+      "domain": "algerpc.com",
+      "base_url": "https://www.algerpc.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 14,
+      "name": "GigaStore DZ",
+      "domain": "gigastore-dz.com",
+      "base_url": "https://gigastore-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 1,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 15,
+      "name": "Blida Computer",
+      "domain": "blidacomputer.dz",
+      "base_url": "https://blidacomputer.dz",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 16,
+      "name": "DzTechStore",
+      "domain": "dztechstore.net",
+      "base_url": "https://dztechstore.net",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 17,
+      "name": "WIFI Djelfa",
+      "domain": "wifidjelfa.com",
+      "base_url": "https://wifidjelfa.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 18,
+      "name": "Click-Dz",
+      "domain": "click-dz.com",
+      "base_url": "https://click-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 19,
+      "name": "El Assli Hi-Tech",
+      "domain": "elasslihitech.com",
+      "base_url": "https://elasslihitech.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 20,
+      "name": "Horizon Biskra",
+      "domain": "horizon-biskra.com",
+      "base_url": "https://horizon-biskra.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 21,
+      "name": "Laoufi",
+      "domain": "laoufi.com",
+      "base_url": "https://laoufi.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 22,
+      "name": "Africapap",
+      "domain": "africapap.com",
+      "base_url": "https://africapap.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 23,
+      "name": "Iconom",
+      "domain": "iconom.com",
+      "base_url": "https://iconom.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 24,
+      "name": "AureshiTech",
+      "domain": "aureshitech.com",
+      "base_url": "https://aureshitech.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 25,
+      "name": "Admin-Info",
+      "domain": "admin-info.dz",
+      "base_url": "https://admin-info.dz",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 26,
+      "name": "DigiTec Dz",
+      "domain": "digitecdz.com",
+      "base_url": "https://digitecdz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 2,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 27,
+      "name": "NCIS-DZ",
+      "domain": "ncis-dz.com",
+      "base_url": "https://ncis-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 28,
+      "name": "CapMicro Dz",
+      "domain": "capmicrodz.com",
+      "base_url": "https://capmicrodz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 29,
+      "name": "WebSoog",
+      "domain": "websoog.com",
+      "base_url": "https://websoog.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 30,
+      "name": "CirtaIT",
+      "domain": "cirtait.com",
+      "base_url": "https://cirtait.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 31,
+      "name": "DzDuino",
+      "domain": "dzduino.com",
+      "base_url": "https://dzduino.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 32,
+      "name": "UltraTech Dz",
+      "domain": "ultratechdz.com",
+      "base_url": "https://ultratechdz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 33,
+      "name": "AMI-DZ",
+      "domain": "ami-dz.com",
+      "base_url": "https://ami-dz.com",
+      "platform": "unknown",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/"
+      },
+      "selectors": {
+        "product_list": ".product",
+        "product_name": ".product-name",
+        "product_price": ".price",
+        "product_link": ".product a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "page_numbers"
+      }
+    },
+    {
+      "id": 34,
+      "name": "Ouedkniss PC Parts",
+      "domain": "ouedkniss.com",
+      "base_url": "https://www.ouedkniss.com",
+      "platform": "classifieds",
+      "language": "fr",
+      "crawl_delay": 3,
+      "priority": 1,
+      "urls": {
+        "pc_parts_category": "/informatique-pieces-pc-fixe/1",
+        "laptops_category": "/informatique-ordinateurs-portables/1",
+        "category_pattern": "/{category}/{page}"
+      },
+      "selectors": {
+        "listing": ".annonce",
+        "title": ".annonce_titre",
+        "price": ".annonce_prix",
+        "link": ".annonce_titre a",
+        "image": ".annonce_image img",
+        "location": ".annonce_get_location",
+        "date": ".annonce_date",
+        "seller": ".annonceur_nom",
+        "pagination": ".pagination a",
+        "next_page": ".pagination .suivant"
+      },
+      "pagination": {
+        "type": "path_segment",
+        "url_pattern": "/{category}/{page}"
+      },
+      "anti_scraping": {
+        "captcha": true,
+        "rate_limit": "Very strict - use proxy rotation",
+        "headers_required": ["User-Agent", "Accept-Language", "Referer"]
+      }
+    },
+    {
+      "id": 35,
+      "name": "Ubuy Algeria",
+      "domain": "ubuy.dz",
+      "base_url": "https://www.ubuy.dz",
+      "platform": "marketplace",
+      "language": "fr",
+      "crawl_delay": 2,
+      "priority": 3,
+      "urls": {
+        "home": "/",
+        "pc_parts": "/en/category/computers-tablets-21452"
+      },
+      "selectors": {
+        "product_list": ".product-item",
+        "product_name": ".product-title",
+        "product_price": ".product-price",
+        "product_link": ".product-title a",
+        "product_image": ".product-image img",
+        "pagination": ".pagination a"
+      },
+      "pagination": {
+        "type": "query_param",
+        "param": "page"
+      },
+      "anti_scraping": {
+        "js_rendered": true,
+        "requires": "Playwright/Selenium"
+      }
+    }
+  ]
+}
