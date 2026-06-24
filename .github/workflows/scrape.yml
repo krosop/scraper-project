@@ -1,15 +1,15 @@
-name: Scrape Algerian Market
+name: Daily Scrape + Clean Pipeline
 
 on:
   schedule:
-    - cron: '0 0 * * *'     # Once per day at midnight UTC
-  workflow_dispatch:        # Manual trigger
+    - cron: "0 0 * * *"  # Every day at midnight UTC
+  workflow_dispatch:
 
 jobs:
-  scrape-tier-1:
-    name: Scrape Tier 1 E-Commerce
+  scrape:
+    name: Scrape Algerian PC Stores
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -26,18 +26,34 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
-      - name: Upload results artifact
+      - name: Run deduplication & cleaning
+        run: node scripts/clean-products.cjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
+      - name: Upload results artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: scrape-results-v3
-          path: scripts/scrape-results.json
+          name: scrape-results
+          path: |
+            scripts/scrape-results.json
+            scripts/clean-products.json
           retention-days: 7
+
+      - name: Commit clean data to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/clean-products.json public/scrape-data.json
+          git diff --cached --quiet || git commit -m "data: update scraped & cleaned products $(date -u +%Y-%m-%d)"
+          git push
 
   cleanup:
     name: Cleanup Expired Data
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: scrape-tier-1
+    needs: scrape
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -1,16 +1,29 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 
-export interface ScrapedProduct {
-  source: string;
-  title: string;
-  price: number;
-  url: string;
-  imageUrl?: string | null;
+// Cleaned data format from clean-products.cjs
+export interface CleanProduct {
+  id: string;
+  canonicalName: string;
+  brand: string | null;
   category: string;
-  location: string;
-  condition: string;
+  specs: Record<string, string | boolean>;
+  imageUrl: string | null;
+  bestPrice: number;
+  worstPrice: number;
+  averagePrice: number;
+  listingCount: number;
+  storeCount: number;
+  listings: {
+    source: string;
+    price: number;
+    condition: string;
+    location: string;
+    url: string;
+    imageUrl: string | null;
+  }[];
 }
 
+// Frontend format (what components expect)
 export interface ProcessedProduct {
   id: string;
   name: string;
@@ -39,7 +52,7 @@ export interface ProductListing {
   imageUrl: string | null;
 }
 
-let dataCache: ScrapedProduct[] | null = null;
+let dataCache: CleanProduct[] | null = null;
 
 function generateId(prefix: string, seed: string): string {
   let hash = 0;
@@ -51,95 +64,43 @@ function generateId(prefix: string, seed: string): string {
   return `${prefix}-${absHash}`;
 }
 
-function cleanTitle(title: string): string {
-  let cleaned = title.replace(/<[^>]+>/g, "");
-  cleaned = cleaned.replace(/https?:\/\/\S+/g, "");
-  cleaned = cleaned.replace(/\s+/g, " ").trim();
-  if (cleaned.length > 200) cleaned = cleaned.substring(0, 200);
-  return cleaned;
-}
+function mapCleanToProcessed(clean: CleanProduct): ProcessedProduct {
+  const listings: ProductListing[] = clean.listings.map((l, idx) => ({
+    id: generateId("lst", `${clean.id}-${idx}`),
+    price: l.price,
+    condition: l.condition || "new",
+    location: l.location || "Algeria",
+    url: l.url,
+    sourceName: l.source,
+    sourceType: "axios",
+    scrapedAt: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
+    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    imageUrl: l.imageUrl || clean.imageUrl || null,
+  }));
 
-function extractBrand(title: string): string | null {
-  const brands = [
-    "ASUS", "MSI", "Gigabyte", "AMD", "Intel", "NVIDIA", "ZOTAC",
-    "Corsair", "Cooler Master", "Samsung", "Apple", "ASRock",
-    "ColorFul", "iNNO3D", "SAPPHIRE", "ANTEC", "OCYPUS", "DeepCool",
-    "AOC", "MATOS", "NEONIX", "AGI", "Lenovo", "Dell",
-    "HP", "Acer", "LG", "Logitech", "HyperX", "SteelSeries", "Razer",
-    "Crucial", "Kingston", "Western Digital", "WD", "Seagate", "Noctua",
-  ];
-  const upper = title.toUpperCase();
-  for (const brand of brands) {
-    if (upper.includes(brand.toUpperCase())) return brand;
-  }
-  return null;
-}
+  // Filter out listings with no URL
+  const validListings = listings.filter(l => l.url && l.url.length > 5);
 
-function extractSpecs(title: string): Record<string, string> {
-  const specs: Record<string, string> = {};
-  const t = title.toLowerCase();
-  const wattMatch = title.match(/(\d+)\s*[Ww]\b/);
-  if (wattMatch) specs.wattage = wattMatch[1] + "W";
-  const vramMatch = title.match(/(\d+)\s*GB/);
-  if (vramMatch && (t.includes("rtx") || t.includes("gtx") || t.includes("rx "))) {
-    specs.vram = vramMatch[1] + "GB";
-  }
-  if (t.includes("ddr5")) specs.memory = "DDR5";
-  else if (t.includes("ddr4")) specs.memory = "DDR4";
-  if (t.includes("nvme")) specs.interface = "NVMe";
-  return specs;
-}
-
-function processProducts(scraped: ScrapedProduct[]): ProcessedProduct[] {
-  const groups: Record<string, ScrapedProduct[]> = {};
-  for (const p of scraped) {
-    const cleaned = cleanTitle(p.title);
-    const key = cleaned.toLowerCase();
-    if (!key || key.length < 3) continue;
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(p);
-  }
-
-  const processed: ProcessedProduct[] = [];
-  for (const [key, items] of Object.entries(groups)) {
-    const first = items[0];
-    const cleanedTitle = cleanTitle(first.title);
-    const brand = extractBrand(cleanedTitle);
-    const specs = extractSpecs(cleanedTitle);
-
-    const productListings: ProductListing[] = items.map((item, idx) => ({
-      id: generateId("lst", `${key}-${idx}`),
-      price: item.price,
-      condition: item.condition || "new",
-      location: item.location || "Algeria",
-      url: item.url,
-      sourceName: item.source,
-      sourceType: "axios",
-      scrapedAt: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-      imageUrl: null,
-    }));
-
-    productListings.sort((a, b) => a.price - b.price);
-
-    processed.push({
-      id: generateId("prd", key),
-      name: cleanedTitle,
-      category: first.category || "pc_part",
-      brand,
-      model: brand ? cleanedTitle.split(brand)[1]?.trim() || cleanedTitle : cleanedTitle,
-      specs,
-      imageUrl: first.imageUrl || null,
-      listings: productListings,
-      bestPrice: productListings[0]?.price || 0,
-      listingCount: productListings.length,
-      bestStore: productListings[0]?.sourceName || "Unknown",
-      bestLocation: productListings[0]?.location || "Algeria",
-    });
-  }
-
-  processed.sort((a, b) => b.listingCount - a.listingCount);
-  return processed;
+  return {
+    id: clean.id,
+    name: clean.canonicalName,
+    category: clean.category || "pc_part",
+    brand: clean.brand,
+    model: clean.brand
+      ? clean.canonicalName.split(clean.brand)[1]?.trim() || clean.canonicalName
+      : clean.canonicalName,
+    specs: Object.fromEntries(
+      Object.entries(clean.specs)
+        .filter(([_, v]) => typeof v === "string")
+        .map(([k, v]) => [k, v as string])
+    ),
+    imageUrl: clean.imageUrl || null,
+    listings: validListings,
+    bestPrice: validListings[0]?.price || clean.bestPrice || 0,
+    listingCount: validListings.length,
+    bestStore: validListings[0]?.sourceName || "Unknown",
+    bestLocation: validListings[0]?.location || "Algeria",
+  };
 }
 
 export function useStaticData() {
@@ -150,21 +111,25 @@ export function useStaticData() {
   useEffect(() => {
     async function load() {
       if (dataCache) {
-        setProducts(processProducts(dataCache));
+        setProducts(dataCache.map(mapCleanToProcessed));
         setLoading(false);
         return;
       }
 
       try {
-        const res = await fetch("/scrape-data.json");
-        if (!res.ok) throw new Error("Failed to load data");
-        const data = await res.json();
-        const scraped: ScrapedProduct[] = (data.products || []).filter((p: ScrapedProduct) => {
-          const cleaned = cleanTitle(p.title);
-          return cleaned.length > 3 && cleaned.length < 200 && p.price > 1000 && !cleaned.includes("<img");
+        // Try clean data first (deduplicated), fallback to raw data
+        let res = await fetch("/clean-products.json");
+        let data;
+        if (!res.ok) {
+          res = await fetch("/scrape-data.json");
+          if (!res.ok) throw new Error("Failed to load data");
+        }
+        data = await res.json();
+        const cleanProducts: CleanProduct[] = (data.products || []).filter((p: CleanProduct) => {
+          return p.canonicalName?.length > 3 && p.canonicalName.length < 200 && p.bestPrice > 1000;
         });
-        dataCache = scraped;
-        setProducts(processProducts(scraped));
+        dataCache = cleanProducts;
+        setProducts(cleanProducts.map(mapCleanToProcessed));
       } catch (e: any) {
         setError(e.message || "Failed to load product data");
       } finally {
@@ -199,26 +164,9 @@ export function useStaticData() {
     [products]
   );
 
-  const getById = useCallback(
-    (id: string): ProcessedProduct | undefined => {
-      return products.find((p) => p.id === id);
-    },
-    [products]
-  );
+  const trending = useMemo(() => {
+    return products.slice(0, 8);
+  }, [products]);
 
-  const trending = useMemo(
-    () => [
-      { query: "rtx 4060", count: 42 },
-      { query: "alimentation 750w", count: 28 },
-      { query: "ryzen 7", count: 35 },
-      { query: "ecran 27", count: 19 },
-      { query: "rtx 4070", count: 31 },
-      { query: "carte mere", count: 22 },
-      { query: "ssd nvme", count: 17 },
-      { query: "ddr5", count: 15 },
-    ],
-    []
-  );
-
-  return { products, loading, error, search, byCategory, getById, trending };
+  return { products, loading, error, search, byCategory, trending };
 }

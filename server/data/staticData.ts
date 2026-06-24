@@ -5,26 +5,31 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-interface ScrapedProduct {
-  source: string;
-  title: string;
-  price: number;
-  url: string;
-  category: string;
-  location: string;
-  condition: string;
-  imageUrl?: string;
-}
-
-interface SourceInfo {
+// Cleaned data format (from clean-products.cjs)
+interface CleanProduct {
   id: string;
-  name: string;
-  baseUrl: string;
-  categoryFocus: string[];
-  isActive: boolean;
+  canonicalName: string;
+  brand: string | null;
+  category: string;
+  specs: Record<string, string | boolean>;
+  imageUrl: string | null;
+  bestPrice: number;
+  worstPrice: number;
+  averagePrice: number;
+  listingCount: number;
+  storeCount: number;
+  listings: {
+    source: string;
+    price: number;
+    condition: string;
+    location: string;
+    url: string;
+    imageUrl: string | null;
+  }[];
 }
 
-interface ProcessedProduct {
+// Frontend/server format
+export interface ProcessedProduct {
   id: string;
   canonicalName: string;
   category: string;
@@ -37,7 +42,7 @@ interface ProcessedProduct {
   listingCount: number;
 }
 
-interface ProductListing {
+export interface ProductListing {
   id: string;
   price: number;
   condition: string;
@@ -50,71 +55,16 @@ interface ProductListing {
   imageUrl: string | null;
 }
 
+interface SourceInfo {
+  id: string;
+  name: string;
+  baseUrl: string;
+  categoryFocus: string[];
+  isActive: boolean;
+}
+
 let productsCache: ProcessedProduct[] | null = null;
 let sourcesCache: SourceInfo[] | null = null;
-
-const EXTRACTED_BRANDS = [
-  "ASUS", "MSI", "Gigabyte", "AMD", "Intel", "NVIDIA", "ZOTAC",
-  "Corsair", "Cooler Master", "Samsung", "Apple", "Xiaomi", "ASRock",
-  "ColorFul", "iNNO3D", "SAPPHIRE", "ANTEC", "OCYPUS", "DeepCool",
-  "AOC", "MATOS", "NEONIX", "AGI", "COOLER MASTER", "Lenovo", "Dell",
-  "HP", "Acer", "LG", "Logitech", "HyperX", "SteelSeries", "Razer",
-  "Crucial", "Kingston", "Western Digital", "WD", "Seagate", "Noctua",
-  "Be Quiet!", "Thermaltake", "EVGA", "MSI", "PNY", "Palit",
-];
-
-function cleanTitle(title: string): string {
-  // Remove HTML tags
-  let cleaned = title.replace(/<[^>]+>/g, "");
-  // Remove URLs
-  cleaned = cleaned.replace(/https?:\/\/\S+/g, "");
-  // Normalize whitespace
-  cleaned = cleaned.replace(/\s+/g, " ").trim();
-  // Truncate reasonable length
-  if (cleaned.length > 200) cleaned = cleaned.substring(0, 200);
-  return cleaned;
-}
-
-function extractBrand(title: string): string | null {
-  const upper = title.toUpperCase();
-  for (const brand of EXTRACTED_BRANDS) {
-    if (upper.includes(brand.toUpperCase())) {
-      return brand;
-    }
-  }
-  return null;
-}
-
-function extractSpecs(title: string): Record<string, string> {
-  const specs: Record<string, string> = {};
-  const t = title.toLowerCase();
-
-  // Wattage
-  const wattMatch = title.match(/(\d+)\s*[Ww]\b/);
-  if (wattMatch) specs.wattage = wattMatch[1] + "W";
-
-  // VRAM
-  const vramMatch = title.match(/(\d+)\s*GB/);
-  if (vramMatch && (t.includes("rtx") || t.includes("gtx") || t.includes("rx "))) {
-    specs.vram = vramMatch[1] + "GB";
-  }
-
-  // DDR
-  if (t.includes("ddr5")) specs.memory = "DDR5";
-  else if (t.includes("ddr4")) specs.memory = "DDR4";
-
-  // SSD
-  if (t.includes("nvme")) specs.interface = "NVMe";
-  else if (t.includes("sata")) specs.interface = "SATA";
-
-  // Screen size
-  const screenMatch = title.match(/(\d+(?:\.\d+)?)\s*['\"]?/);
-  if (screenMatch && (t.includes("ecran") || t.includes("monitor"))) {
-    specs.screen = screenMatch[1] + "\"";
-  }
-
-  return specs;
-}
 
 function generateId(prefix: string, seed: string): string {
   let hash = 0;
@@ -123,32 +73,73 @@ function generateId(prefix: string, seed: string): string {
     hash = ((hash << 5) - hash + char) | 0;
   }
   const absHash = Math.abs(hash).toString(16).padStart(8, "0");
-  return `${prefix}-${absHash}-${Date.now().toString(36).slice(-4)}`;
+  return `${prefix}-${absHash}`;
 }
 
-function loadScrapedData(): ScrapedProduct[] {
+function loadCleanData(): CleanProduct[] {
   try {
-    const filePath = path.join(__dirname, "scrape-results.json");
+    // Try clean data first, fallback to raw
+    const cleanPath = path.join(__dirname, "clean-products.json");
+    const rawPath = path.join(__dirname, "scrape-results.json");
+    
+    let filePath = cleanPath;
+    if (!fs.existsSync(cleanPath)) {
+      filePath = rawPath;
+    }
     if (!fs.existsSync(filePath)) return [];
 
     const data = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    const products: ScrapedProduct[] = data.products || [];
-
-    // Filter out products with invalid titles (HTML remnants)
+    const products: CleanProduct[] = data.products || [];
+    
     return products.filter((p) => {
-      const cleaned = cleanTitle(p.title);
-      return cleaned.length > 3 && cleaned.length < 200 && p.price > 1000;
+      return p.canonicalName?.length > 3 && p.canonicalName.length < 200 && p.bestPrice > 1000;
     });
   } catch {
     return [];
   }
 }
 
+function mapCleanToProcessed(clean: CleanProduct): ProcessedProduct {
+  const listings: ProductListing[] = clean.listings.map((l, idx) => ({
+    id: generateId("lst", `${clean.id}-${idx}`),
+    price: l.price,
+    condition: l.condition || "new",
+    location: l.location || "Algeria",
+    url: l.url,
+    sourceName: l.source,
+    sourceType: "axios",
+    scrapedAt: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
+    expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    imageUrl: l.imageUrl || clean.imageUrl || null,
+  }));
+
+  const validListings = listings.filter(l => l.url && l.url.length > 5);
+
+  return {
+    id: clean.id,
+    canonicalName: clean.canonicalName,
+    category: clean.category || "pc_part",
+    brand: clean.brand,
+    model: clean.brand
+      ? clean.canonicalName.split(clean.brand)[1]?.trim() || clean.canonicalName
+      : clean.canonicalName,
+    specs: Object.fromEntries(
+      Object.entries(clean.specs)
+        .filter(([_, v]) => typeof v === "string")
+        .map(([k, v]) => [k, v as string])
+    ),
+    imageUrl: clean.imageUrl || null,
+    listings: validListings,
+    bestPrice: validListings[0]?.price || clean.bestPrice || 0,
+    listingCount: validListings.length,
+  };
+}
+
 export function getSources(): SourceInfo[] {
   if (sourcesCache) return sourcesCache;
 
-  const products = loadScrapedData();
-  const sourceNames = [...new Set(products.map((p) => p.source))];
+  const products = loadCleanData();
+  const sourceNames = [...new Set(products.flatMap(p => p.listings.map(l => l.source)))];
 
   const sourceUrls: Record<string, string> = {
     "CHB-Store": "https://chb-store.com",
@@ -173,60 +164,12 @@ export function getSources(): SourceInfo[] {
 export function getStaticProducts(): ProcessedProduct[] {
   if (productsCache) return productsCache;
 
-  const scraped = loadScrapedData();
-
-  // Group by cleaned title
-  const groups: Record<string, ScrapedProduct[]> = {};
-  for (const p of scraped) {
-    const cleaned = cleanTitle(p.title);
-    const key = cleaned.toLowerCase();
-    if (!groups[key]) groups[key] = [];
-    groups[key].push(p);
-  }
-
-  const processed: ProcessedProduct[] = [];
-
-  for (const [key, items] of Object.entries(groups)) {
-    const first = items[0];
-    const cleanedTitle = cleanTitle(first.title);
-    const brand = extractBrand(cleanedTitle);
-    const specs = extractSpecs(cleanedTitle);
-
-    const productListings: ProductListing[] = items.map((item, idx) => {
-      return {
-        id: generateId("lst", `${key}-${idx}`),
-        price: item.price,
-        condition: item.condition || "new",
-        location: item.location || "Algeria",
-        url: item.url,
-        sourceName: item.source,
-        sourceType: "axios",
-        scrapedAt: new Date(Date.now() - Math.random() * 12 * 60 * 60 * 1000).toISOString(),
-        expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-        imageUrl: item.imageUrl || null,
-      };
-    });
-
-    // Sort listings by price
-    productListings.sort((a, b) => a.price - b.price);
-
-    processed.push({
-      id: generateId("prd", key),
-      canonicalName: cleanedTitle,
-      category: first.category || "pc_part",
-      brand,
-      model: brand ? cleanedTitle.split(brand)[1]?.trim() || cleanedTitle : cleanedTitle,
-      specs,
-      imageUrl: first.imageUrl || null,
-      listings: productListings,
-      bestPrice: productListings[0]?.price || 0,
-      listingCount: productListings.length,
-    });
-  }
-
-  // Sort by listing count (more listings = more popular)
+  const cleanProducts = loadCleanData();
+  const processed = cleanProducts.map(mapCleanToProcessed);
+  
+  // Sort by popularity (most listings first)
   processed.sort((a, b) => b.listingCount - a.listingCount);
-
+  
   productsCache = processed;
   return processed;
 }
@@ -274,4 +217,10 @@ export function getStaticTrending(): { query: string; count: number }[] {
     { query: "ssd nvme", count: 17 },
     { query: "ddr5", count: 15 },
   ];
+}
+
+// Reset cache (useful for dev/hot reload)
+export function resetStaticCache() {
+  productsCache = null;
+  sourcesCache = null;
 }
