@@ -77,6 +77,9 @@ class LicbplusScraper(BaseScraper):
                 name_el = card.select_one(self.SELECTORS['name'])
                 if not name_el:
                     continue
+                # Remove stock status badge from name if present
+                for badge in name_el.select('span.stock-status'):
+                    badge.decompose()
                 name = name_el.get_text(strip=True)
 
                 price_el = card.select_one(self.SELECTORS['price'])
