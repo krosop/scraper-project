@@ -156,7 +156,7 @@ def main():
     
     # Step 1: Run Python scraper
     print("\n[1/4] Running Python scraper...")
-    from run import ensure_dirs, run_scraper, process_and_save
+    from run import ensure_dirs, run_scraper
     
     ensure_dirs()
     
@@ -169,6 +169,8 @@ def main():
             products = run_scraper(site)
             raw_products.extend(products)
             print(f"  [+] {site}: {len(products)} products")
+        except ImportError as e:
+            print(f"  [!] {site} skipped: {e}")
         except Exception as e:
             print(f"  [!] {site} failed: {e}")
     
