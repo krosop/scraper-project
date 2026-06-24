@@ -9,11 +9,11 @@ function required(name: string): string {
 }
 
 export const env = {
-  appId: required("APP_ID"),
-  appSecret: required("APP_SECRET"),
-  isProduction: process.env.NODE_ENV === "production",
-  databaseUrl: required("DATABASE_URL"),
-  supabaseUrl: required("SUPABASE_URL"),
-  supabaseKey: required("SUPABASE_KEY"),
-  bingApiKey: process.env.BING_API_KEY ?? "",
+  get appId() { return required("APP_ID"); },
+  get appSecret() { return required("APP_SECRET"); },
+  get isProduction() { return process.env.NODE_ENV === "production"; },
+  get databaseUrl() { return required("DATABASE_URL"); },
+  get supabaseUrl() { return required("SUPABASE_URL"); },
+  get supabaseKey() { return required("SUPABASE_KEY"); },
+  get bingApiKey() { return process.env.BING_API_KEY ?? ""; },
 };
