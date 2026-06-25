@@ -1,6 +1,7 @@
 {
   "version": 2,
   "framework": "vite",
+  "buildCommand": "vite build && node scripts/build-api.js",
   "outputDirectory": "dist/public",
   "routes": [
     { "src": "/api/(.*)", "dest": "/api/bundle.js" },
