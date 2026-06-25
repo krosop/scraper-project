@@ -148,18 +148,20 @@ class OuedknissScraper:
                 if old_price_val is not None and old_price_val != price_val:
                     old_price = f"{old_price_val:,.0f} DA"
 
-                # Image
-                image = ''
-                default_media = ann.get('defaultMedia')
-                if default_media and default_media.get('mediaUrl'):
-                    image = default_media['mediaUrl']
-                elif ann.get('medias') and len(ann['medias']) > 0:
-                    image = ann['medias'][0].get('mediaUrl', '')
-
-                # URL
+                # URL — Ouedkniss SPA format: /{slug}-d{id}/
                 ann_id = ann.get('id', '')
                 slug = ann.get('slug', '')
-                url = f"{BASE_URL}/annonces/{ann_id}/{slug}/" if ann_id and slug else ''
+                url = f"{BASE_URL}/{slug}-d{ann_id}" if ann_id and slug else ''
+
+                # Image — try defaultMedia first, then medias, then thumbnail
+                image = ''
+                default_media = ann.get('defaultMedia')
+                if default_media:
+                    image = default_media.get('mediaUrl') or default_media.get('thumbnail') or ''
+                if not image:
+                    medias = ann.get('medias', [])
+                    if medias and len(medias) > 0:
+                        image = medias[0].get('mediaUrl') or medias[0].get('thumbnail') or ''
 
                 # Location
                 location = 'Algeria'
