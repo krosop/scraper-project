@@ -7,14 +7,5 @@
     { "src": "/scrape-data.json", "dest": "/scrape-data.json" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
-  ],
-  "functions": {
-    "api/index.ts": {
-      "includeFiles": [
-        "server/**",
-        "db/**",
-        "drizzle.config.ts"
-      ]
-    }
-  }
+  ]
 }
