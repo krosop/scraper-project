@@ -110,6 +110,14 @@ export function getRelated(product: DZProduct, count: number = 6): DZProduct[] {
     .slice(0, count);
 }
 
+export function getProductCount(): number {
+  return _data?.products.length || 0;
+}
+
+export function getStoreCount(): number {
+  return Object.keys(_data?.storeColors || {}).length;
+}
+
 export function getLiveDeals(count: number = 10) {
   return getTopDeals(count).map(p => {
     const best = p.prices[0];
