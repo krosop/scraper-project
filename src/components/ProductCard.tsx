@@ -31,7 +31,7 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
           <img
             src={product.product_image || '/images/product-pc-case.jpg'}
             alt={product.product_name}
-            className="w-[85%] h-[85%] object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out p-2"
             loading="lazy"
           />
         </div>
