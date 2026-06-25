@@ -3,9 +3,7 @@
   "framework": "vite",
   "outputDirectory": "dist/public",
   "routes": [
-    { "src": "/api/minimal", "dest": "/api/minimal" },
-    { "src": "/api/static-test", "dest": "/api/static-test" },
-    { "src": "/api/(.*)", "dest": "/api/index" },
+    { "src": "/api/(.*)", "dest": "/api/bundle.js" },
     { "src": "/scrape-data.json", "dest": "/scrape-data.json" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
