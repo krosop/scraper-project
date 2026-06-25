@@ -122,6 +122,9 @@ export default function DataProvider({ children }: { children: React.ReactNode }
     setLoading(true);
     setError(null);
     try {
+      // Always load JSON data first (canonical source for allProducts)
+      const jsonOk = await loadFromJson();
+
       const [cats, strs, deals, trend, pCount, sCount] = await Promise.all([
         getCategories(),
         getStores(),
@@ -131,7 +134,7 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         getStoreCount(),
       ]);
 
-      // If Supabase returned data, use it
+      // If Supabase returned data, use it for other fields
       if (cats.length > 0 && deals.length > 0) {
         setCategories(cats as CategoryStat[]);
         setStores(strs);
@@ -146,10 +149,8 @@ export default function DataProvider({ children }: { children: React.ReactNode }
             getTopDeals(10).then(setLiveDeals);
           });
         }
-      } else {
-        // Fall back to JSON
-        const ok = await loadFromJson();
-        if (!ok) setError('Aucune donnée disponible');
+      } else if (!jsonOk) {
+        setError('Aucune donnée disponible');
       }
     } catch (err: any) {
       // On error, try JSON fallback
