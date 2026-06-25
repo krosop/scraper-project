@@ -3,6 +3,7 @@
   "framework": "vite",
   "outputDirectory": "dist/public",
   "routes": [
+    { "src": "/api/minimal", "dest": "/api/minimal" },
     { "src": "/api/(.*)", "dest": "/api/index" },
     { "src": "/scrape-data.json", "dest": "/scrape-data.json" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
