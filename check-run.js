@@ -1,0 +1,1 @@
+let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{const j=JSON.parse(d); j.workflow_runs.slice(0,3).forEach(r=>console.log('ID: ' + r.id + ' | Status: ' + r.status + ' | Conclusion: ' + (r.conclusion||'N/A') + ' | Created: ' + r.created_at))});
