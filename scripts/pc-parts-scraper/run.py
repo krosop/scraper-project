@@ -32,7 +32,8 @@ SCRAPER_MAP = {
     'gigastore': 'sites.gigastore.GigastoreScraper',
     'gamingdz': 'sites.gamingdz.GamingDZScraper',
     'lahlou': 'sites.lahlou.LahlouScraper',
-    'hardsoft': 'sites.hardsoft.HardSoftScraper',
+    'matos': 'sites.matos.MatosScraper',
+    'ouedkniss': 'sites.ouedkniss.OuedknissScraper',
 }
 
 

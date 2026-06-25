@@ -43,8 +43,8 @@ ALL_BRANDS = [
     'corsair psu', 'evga psu', 'seasonic', 'thermaltake psu', 'be quiet psu', 'cooler master psu',
     # Peripherals
     'logitech', 'razer', 'hyperx', 'steelseries', 'redragon', 'corsair peripheral', 'roccat', 'glorious',
-    # Algerian/local brands
-    'magma', 'maxipower', 'game revolution', 'xiaomi', 'proart', 't-dagger', 'fantech',
+    # Algerian/local brands + monitor brands
+    'magma', 'maxipower', 'game revolution', 'xiaomi', 'proart', 't-dagger', 'fantech', 'matos', 'neonix',
 ]
 
 

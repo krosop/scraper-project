@@ -88,7 +88,7 @@ def main():
     from run import scrape_site, SCRAPER_MAP
     
     raw_products = []
-    sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'hardsoft', 'digitec']
+    sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'hardsoft', 'digitec', 'matos', 'ouedkniss']
     
     for site in sites:
         try:

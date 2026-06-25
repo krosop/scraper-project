@@ -34,9 +34,10 @@ jobs:
         run: |
           cd scripts/pc-parts-scraper
           pip install -r requirements.txt
+          playwright install chromium
 
       # ─── Run Scraper V2 via Adapter ───
-      - name: Run Scraper V2 (7 Algerian stores)
+      - name: Run Scraper V2 (9 Algerian stores)
         run: cd scripts && python adapter_v2.py
         env:
           PYTHONIOENCODING: utf-8
