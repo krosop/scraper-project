@@ -1,10 +1,10 @@
 export function CardSkeleton() {
   return (
-    <div className="bg-[#111821] border border-[#1a2332] rounded-xl p-5 animate-pulse">
-      <div className="h-56 bg-[#1a2332] rounded-lg mb-5" />
-      <div className="h-5 bg-[#1a2332] rounded w-16 mb-3" />
+    <div className="bg-[#111821] border border-[#1a2332] rounded-xl p-3 sm:p-5 animate-pulse">
+      <div className="h-44 sm:h-56 bg-[#1a2332] rounded-lg mb-3 sm:mb-5" />
+      <div className="h-5 bg-[#1a2332] rounded w-16 mb-2 sm:mb-3" />
       <div className="h-4 bg-[#1a2332] rounded w-full mb-2" />
-      <div className="h-4 bg-[#1a2332] rounded w-3/4 mb-3" />
+      <div className="h-4 bg-[#1a2332] rounded w-3/4 mb-2 sm:mb-3" />
       <div className="h-5 bg-[#1a2332] rounded w-24" />
     </div>
   );
@@ -24,7 +24,7 @@ export function CategorySkeleton() {
 
 export function DealSkeleton() {
   return (
-    <div className="flex-shrink-0 w-[280px] bg-[#111821] border border-[#1a2332] rounded-lg p-3.5 animate-pulse">
+    <div className="flex-shrink-0 w-[260px] sm:w-[280px] bg-[#111821] border border-[#1a2332] rounded-lg p-3 animate-pulse">
       <div className="h-4 bg-[#1a2332] rounded w-20 mb-2" />
       <div className="h-12 bg-[#1a2332] rounded" />
     </div>

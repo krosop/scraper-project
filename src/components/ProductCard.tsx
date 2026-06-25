@@ -25,9 +25,9 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
     >
       <Link
         to={`/product/${product.product_slug}`}
-        className="group block bg-[#111821] border border-[#1a2332] rounded-xl p-5 hover:border-[#00d4aa]/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00d4aa]/5 transition-all duration-300"
+        className="group block bg-[#111821] border border-[#1a2332] rounded-xl p-3 sm:p-5 hover:border-[#00d4aa]/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00d4aa]/5 transition-all duration-300"
       >
-        <div className="h-56 bg-[#0d131c] rounded-lg overflow-hidden flex items-center justify-center mb-5">
+        <div className="h-44 sm:h-56 bg-[#0d131c] rounded-lg overflow-hidden flex items-center justify-center mb-3 sm:mb-5">
           <img
             src={product.product_image || '/images/product-pc-case.jpg'}
             alt={product.product_name}
@@ -37,22 +37,22 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         </div>
 
         <span
-          className="inline-block text-[12px] font-semibold uppercase tracking-[0.06em] px-3 py-1.5 rounded-md mb-2.5"
+          className="inline-block text-[10px] sm:text-[12px] font-semibold uppercase tracking-[0.06em] px-2 sm:px-3 py-1 sm:py-1.5 rounded-md mb-2 sm:mb-2.5"
           style={{ color: product.store_color, backgroundColor: `${product.store_color}15` }}
         >
           {product.product_brand}
         </span>
 
-        <h3 className="text-base font-semibold text-[#c8d0d9] group-hover:text-white truncate mb-2.5 leading-snug transition-colors">
+        <h3 className="text-sm sm:text-base font-semibold text-[#c8d0d9] group-hover:text-white truncate mb-2 sm:mb-2.5 leading-snug transition-colors">
           {product.product_name}
         </h3>
 
-        <div className="flex items-baseline gap-2.5 mb-2.5">
-          <span className="text-xl font-bold text-[#00d4aa]">
+        <div className="flex items-baseline gap-2 sm:gap-2.5 mb-2 sm:mb-2.5">
+          <span className="text-lg sm:text-xl font-bold text-[#00d4aa]">
             {fmtDZD(product.current_price)}
           </span>
           {product.original_price > product.current_price && (
-            <span className="text-[13px] text-[#4a5568] line-through">
+            <span className="text-[11px] sm:text-[13px] text-[#4a5568] line-through">
               {fmtDZD(product.original_price)}
             </span>
           )}
@@ -60,15 +60,15 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
 
         {savingsPercent > 0 && (
           <div className="flex items-center justify-between">
-            <span className="text-[12px] font-semibold text-[#00d4aa] bg-[#00d4aa]/10 px-2.5 py-1 rounded">
+            <span className="text-[10px] sm:text-[12px] font-semibold text-[#00d4aa] bg-[#00d4aa]/10 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded">
               {t.save} {savingsPercent}%
             </span>
-            <span className="text-[12px] text-[#4a5568]">{t.at_store} {product.store_name}</span>
+            <span className="text-[10px] sm:text-[12px] text-[#4a5568]">{t.at_store} {product.store_name}</span>
           </div>
         )}
 
-        <div className="mt-4 pt-4 border-t border-[#1a2332]">
-          <StarRating rating={product.product_rating} size={14} reviewCount={product.product_review_count} />
+        <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-[#1a2332]">
+          <StarRating rating={product.product_rating} size={12} reviewCount={product.product_review_count} />
         </div>
       </Link>
     </motion.div>

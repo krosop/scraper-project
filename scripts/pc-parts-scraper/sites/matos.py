@@ -111,14 +111,15 @@ class MatosScraper:
                     price_text = price_el.get_text(' ', strip=True)
                     price_str, old_price, _, _ = self._parse_price(price_text)
 
-                # Image
+                # Image — Nectar theme uses data-nectar-img-src for lazyload
                 image = ''
                 img = card.find('img', class_=lambda c: c and 'attachment-woocommerce_thumbnail' in c)
                 if img:
-                    image = img.get('data-src') or img.get('src', '')
-                    # Skip lazyload placeholders
-                    if image and ('placeholder' in image or 'data:image' in image):
-                        image = img.get('data-lazy-src', '') or img.get('data-original', '')
+                    # Nectar lazy-load: actual image is in data-nectar-img-src
+                    image = img.get('data-nectar-img-src') or img.get('data-src') or img.get('src', '')
+                    # Skip SVG placeholders
+                    if image and ('data:image/svg' in image or 'placeholder' in image):
+                        image = img.get('data-nectar-img-src') or ''
 
                 # Availability — check for "Non Disponible" or "Rupture"
                 availability = 'In stock'

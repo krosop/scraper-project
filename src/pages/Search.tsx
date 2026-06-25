@@ -138,13 +138,13 @@ export default function SearchPage() {
               onSubmit={handleSearch}
               className="flex items-center bg-[#131b26] border border-[#1a2332] rounded-xl focus-within:border-[#00d4aa]/50 focus-within:ring-2 focus-within:ring-[#00d4aa]/10 transition-all"
             >
-              <Search className="w-5 h-5 text-[#4a5568] mx-4 shrink-0" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5 text-[#4a5568] mx-3 sm:mx-4 shrink-0" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t.hero_search_placeholder}
-                className={`flex-1 h-12 sm:h-14 text-[15px] text-white placeholder:text-[#4a5568] bg-transparent outline-none ${isRTL ? 'text-right' : 'text-left'}`}
+                className={`flex-1 h-10 sm:h-14 text-sm sm:text-[15px] text-white placeholder:text-[#4a5568] bg-transparent outline-none ${isRTL ? 'text-right' : 'text-left'}`}
                 dir={isRTL ? 'rtl' : 'ltr'}
               />
               {query && (
@@ -153,12 +153,12 @@ export default function SearchPage() {
                   onClick={clearSearch}
                   className="p-2 text-[#4a5568] hover:text-white transition-colors"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               )}
               <button
                 type="submit"
-                className="h-10 sm:h-[42px] mx-1.5 px-5 bg-[#00d4aa] hover:bg-[#00b894] text-[#0a0e14] text-sm font-bold rounded-lg transition-colors shrink-0"
+                className="h-8 sm:h-[42px] mx-1 sm:mx-1.5 px-3 sm:px-5 bg-[#00d4aa] hover:bg-[#00b894] text-[#0a0e14] text-xs sm:text-sm font-bold rounded-lg transition-colors shrink-0"
               >
                 Search
               </button>
@@ -169,15 +169,15 @@ export default function SearchPage() {
         {/* Filters & Results */}
         <section className="page-padding py-6 sm:py-8">
           {/* Filter bar */}
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6">
-            {/* Category pills */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <SlidersHorizontal className="w-4 h-4 text-[#4a5568] shrink-0" />
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-5 sm:mb-6">
+            {/* Category pills — horizontally scrollable on mobile */}
+            <div className="flex items-center gap-2 flex-nowrap overflow-x-auto pb-2 sm:pb-0 -mx-2 px-2 sm:mx-0 sm:px-0 scrollbar-none">
+              <SlidersHorizontal className="w-4 h-4 text-[#4a5568] shrink-0 hidden sm:block" />
               {categories.map(([slug, name]) => (
                 <button
                   key={slug}
                   onClick={() => setActiveCategory(slug)}
-                  className={`px-3 py-1.5 rounded-lg text-[12px] font-medium whitespace-nowrap transition-all ${
+                  className={`px-2.5 sm:px-3 py-1.5 rounded-lg text-[11px] sm:text-[12px] font-medium whitespace-nowrap transition-all shrink-0 ${
                     activeCategory === slug
                       ? 'bg-[#00d4aa]/10 text-[#00d4aa] border border-[#00d4aa]/30'
                       : 'bg-[#131b26] text-[#7a8a9e] border border-[#1a2332] hover:border-[#2a3545]'
@@ -202,8 +202,8 @@ export default function SearchPage() {
           </div>
 
           {/* Results count */}
-          <div className="mb-4">
-            <span className="text-[13px] text-[#5a6a7e]">
+          <div className="mb-3 sm:mb-4">
+            <span className="text-xs sm:text-[13px] text-[#5a6a7e]">
               {loading || !loaded ? (
                 'Loading...'
               ) : (
@@ -221,7 +221,7 @@ export default function SearchPage() {
 
           {/* Results grid */}
           {loading || !loaded ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
                 <CardSkeleton key={i} />
               ))}
@@ -252,7 +252,7 @@ export default function SearchPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6"
             >
               {results.map((product, i) => (
                 <ProductCard key={`${product.product_id}-${i}`} product={product} index={i} />
