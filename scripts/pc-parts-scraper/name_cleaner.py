@@ -1,4 +1,4 @@
-Smart Name Cleaner — Transforms raw scraped names into clean, structured product names.
+"""Smart Name Cleaner — Transforms raw scraped names into clean, structured product names.
 
 Input:  "NewGPU CARTE GRAPHIQUE ASUS DUAL GEFORCE RTX 5060 OC EDITION 8GB"
 Output: "ASUS Dual GeForce RTX 5060 OC 8GB"
