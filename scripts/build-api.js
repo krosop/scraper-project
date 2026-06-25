@@ -17,18 +17,16 @@ async function main() {
       outfile: join(rootDir, "api", "bundle.js"),
       sourcemap: true,
       target: "node22",
-      // Bundle everything into a single file
       splitting: false,
-      // Ensure all dependencies are resolved
       resolveExtensions: [".ts", ".js", ".json"],
-      // Define __dirname for bundled files
+      // Use globalThis instead of const to avoid redeclaration conflicts
       banner: {
         js: `import { createRequire } from 'module';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { fileURLToPath as _fileURLToPath } from 'url';
+import { dirname as _dirname } from 'path';
 const require = createRequire(import.meta.url);
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);`,
+globalThis.__filename = _fileURLToPath(import.meta.url);
+globalThis.__dirname = _dirname(globalThis.__filename);`,
       },
     });
     
