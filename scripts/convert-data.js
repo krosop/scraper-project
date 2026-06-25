@@ -122,7 +122,7 @@ function convertData(input) {
   Array.from(storeNames).forEach((name, i) => {
     storeColors[name] = STORE_COLORS[i % STORE_COLORS.length];
   });
-  
+
   // Convert products
   const convertedProducts = products.map(p => {
     const catSlug = CATEGORY_MAP[p.category] || 'pc-parts';
@@ -132,6 +132,18 @@ function convertData(input) {
     prices.forEach(pr => {
       if (storeColors[pr.retailer]) {
         pr.color = storeColors[pr.retailer];
+      }
+    });
+
+    // Sanity check: fix prices that are clearly off by 100x (e.g., 9.6M instead of 96K)
+    prices.forEach(pr => {
+      if (pr.current > 5000000) {
+        const fixed = Math.round(pr.current / 100);
+        if (fixed >= 1000 && fixed <= 5000000) {
+          pr.current = fixed;
+          pr.original = pr.original > 5000000 ? Math.round(pr.original / 100) : pr.original;
+          pr.savings = pr.original > pr.current ? pr.original - pr.current : 0;
+        }
       }
     });
     

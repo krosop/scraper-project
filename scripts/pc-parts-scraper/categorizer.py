@@ -421,28 +421,37 @@ def clean_name(name: str, category: str = '') -> str:
 
 
 def clean_price(price_str: str) -> Optional[float]:
-    """Extract numeric price from various formats — FIXED dot separator bug."""
+    """Extract numeric price from various formats — handles Algerian, French, and decimal."""
     if not price_str:
         return None
     cleaned = re.sub(r'[\s\u00A0\u202F]', '', str(price_str))
-    # Handle Algerian format: 55.000 DA (dot = thousands separator)
-    # First remove currency, then handle dot vs comma
     cleaned = re.sub(r'DA|DZD|\$|€|£|din', '', cleaned, flags=re.I)
 
-    # Detect format: if dot is followed by 3 digits at end, it's thousands separator
-    # e.g., "55.000" → "55000", "15.000" → "15000"
-    # But "55.99" → "55.99" (decimal)
-    if re.match(r'^[\d.]+\.\d{3}$', cleaned):
-        cleaned = cleaned.replace('.', '')
-    else:
-        cleaned = cleaned.replace(',', '')
-        # If still has dot and not 3 digits after, it's decimal
-        if '.' in cleaned and not re.search(r'\.\d{3}$', cleaned):
+    # French decimal format: comma as decimal separator (e.g., "96000,00")
+    if ',' in cleaned:
+        if re.search(r',\d{1,2}$', cleaned):
+            # Decimal cents — replace comma with dot for float parsing
+            cleaned = cleaned.replace(',', '.')
+        else:
+            # Thousands separator — remove comma
+            cleaned = cleaned.replace(',', '')
+
+    # Handle dot as Algerian thousands separator vs decimal
+    # e.g., "55.000" = 55,000 (Algerian) vs "96000.00" = 96000.00 (decimal cents)
+    if re.match(r'^\d+\.\d{3}$', cleaned):
+        # Three digits after dot — could be Algerian thousands (55.000) or decimal (55.500)
+        parts = cleaned.split('.')
+        if parts[1] == '000':
             cleaned = cleaned.replace('.', '')
+        # else: keep as decimal (e.g., 55.500)
+    elif re.match(r'^\d+\.\d{1,2}$', cleaned):
+        # Decimal with 1-2 digits (e.g., 96000.00, 96000.0) — keep as is for float parsing
+        pass
 
     try:
         val = float(cleaned)
-        return val if val > 0 else None
+        # Sanity cap: max 5,000,000 DZD (~$37K USD) for a single PC component
+        return val if val > 0 and val < 5000000 else None
     except ValueError:
         return None
 
