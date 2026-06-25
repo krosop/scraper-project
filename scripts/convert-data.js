@@ -146,6 +146,11 @@ function convertData(input) {
         }
       }
     });
+
+    // Cheapest price for card display / filtering
+    const cheapest = prices.length > 0
+      ? prices.reduce((min, p) => p.current < min.current ? p : min, prices[0])
+      : null;
     
     return {
       id: p.id || `prd-${Math.random().toString(36).slice(2, 10)}`,
@@ -159,6 +164,12 @@ function convertData(input) {
       description: generateDescription(p),
       specs: convertSpecs(p.specs),
       prices: prices,
+      // Top-level fields for filtering/sorting in frontend
+      current_price: cheapest ? cheapest.current : null,
+      original_price: cheapest ? cheapest.original : null,
+      store: cheapest ? cheapest.retailer : null,
+      store_color: cheapest ? cheapest.color : null,
+      savings: cheapest ? cheapest.savings : 0,
     };
   }).filter(p => p.prices.length > 0 && p.prices[0].current > 0);
   
