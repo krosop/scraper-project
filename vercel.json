@@ -2,10 +2,10 @@
   "version": 2,
   "framework": "vite",
   "outputDirectory": "dist/public",
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/api/index" },
-    { "source": "/scrape-data.json", "destination": "/scrape-data.json" },
-    { "source": "/assets/:path*", "destination": "/assets/:path*" },
-    { "source": "/:path*", "destination": "/index.html" }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/index" },
+    { "src": "/scrape-data.json", "dest": "/scrape-data.json" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
