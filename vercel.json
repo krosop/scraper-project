@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "framework": "vite",
+  "buildCommand": "vite build && node scripts/build-api.js",
   "outputDirectory": "dist/public",
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/index" },
+    { "src": "/api/(.*)", "dest": "/api/bundle" },
     { "src": "/scrape-data.json", "dest": "/scrape-data.json" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/(.*)", "dest": "/index.html" }
