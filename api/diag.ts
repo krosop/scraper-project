@@ -1,86 +1,61 @@
 import { Hono } from "hono";
+import { handle } from "@hono/node-server/vercel";
 
 const app = new Hono();
 
 app.get("/", async (c) => {
-  const diagnostics: any = {
-    nodeVersion: process.version,
-    env: Object.keys(process.env).filter(k => !k.includes('SECRET') && !k.includes('KEY') && !k.includes('PASSWORD') && !k.includes('TOKEN')),
-    cwd: process.cwd(),
+  const results: any = {
+    step: "start",
     time: new Date().toISOString(),
+    nodeVersion: process.version,
+    cwd: process.cwd(),
   };
 
-  // Try importing modules one by one
   const modules = [
-    "hono",
-    "@trpc/server",
-    "superjson",
-    "zod",
-    "drizzle-orm",
-    "drizzle-orm/pg-core",
-    "postgres",
+    ["hono", () => import("hono")],
+    ["@trpc/server", () => import("@trpc/server")],
+    ["superjson", () => import("superjson")],
+    ["zod", () => import("zod")],
+    ["drizzle-orm", () => import("drizzle-orm")],
+    ["drizzle-orm/pg-core", () => import("drizzle-orm/pg-core")],
+    ["postgres", () => import("postgres")],
   ];
 
-  for (const mod of modules) {
+  for (const [name, importer] of modules) {
     try {
-      await import(mod);
-      diagnostics[`import_${mod.replace(/[^a-z0-9]/g, '_')}`] = "OK";
+      await importer();
+      results[`import_${name.replace(/[^a-z0-9]/g, "_")}`] = "OK";
     } catch (e: any) {
-      diagnostics[`import_${mod.replace(/[^a-z0-9]/g, '_')}`] = `FAIL: ${e.message}`;
+      results[`import_${name.replace(/[^a-z0-9]/g, "_")}`] = `FAIL: ${e.message}`;
+      results.failedAt = name;
+      return c.json(results);
     }
   }
 
-  // Try importing our server modules
-  try {
-    await import("../server/lib/env");
-    diagnostics.import_server_lib_env = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_lib_env = `FAIL: ${e.message}`;
+  const ourModules = [
+    ["server/lib/env", () => import("../server/lib/env")],
+    ["server/lib/supabase", () => import("../server/lib/supabase")],
+    ["db/schema", () => import("../../db/schema")],
+    ["db/relations", () => import("../../db/relations")],
+    ["server/queries/connection", () => import("../server/queries/connection")],
+    ["server/middleware", () => import("../server/middleware")],
+    ["server/router", () => import("../server/router")],
+    ["server/app", () => import("../server/app")],
+  ];
+
+  for (const [name, importer] of ourModules) {
+    try {
+      await importer();
+      results[`import_${name.replace(/[^a-z0-9]/g, "_")}`] = "OK";
+    } catch (e: any) {
+      results[`import_${name.replace(/[^a-z0-9]/g, "_")}`] = `FAIL: ${e.message}`;
+      results.failedAt = name;
+      return c.json(results);
+    }
   }
 
-  try {
-    await import("../server/lib/supabase");
-    diagnostics.import_server_lib_supabase = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_lib_supabase = `FAIL: ${e.message}`;
-  }
-
-  try {
-    await import("../db/schema");
-    diagnostics.import_db_schema = "OK";
-  } catch (e: any) {
-    diagnostics.import_db_schema = `FAIL: ${e.message}`;
-  }
-
-  try {
-    await import("../server/queries/connection");
-    diagnostics.import_server_queries_connection = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_queries_connection = `FAIL: ${e.message}`;
-  }
-
-  try {
-    await import("../server/middleware");
-    diagnostics.import_server_middleware = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_middleware = `FAIL: ${e.message}`;
-  }
-
-  try {
-    await import("../server/router");
-    diagnostics.import_server_router = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_router = `FAIL: ${e.message}`;
-  }
-
-  try {
-    await import("../server/app");
-    diagnostics.import_server_app = "OK";
-  } catch (e: any) {
-    diagnostics.import_server_app = `FAIL: ${e.message}`;
-  }
-
-  return c.json(diagnostics);
+  results.status = "ALL_OK";
+  return c.json(results);
 });
 
-export default app;
+export default handle(app);
