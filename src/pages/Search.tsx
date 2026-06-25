@@ -221,7 +221,7 @@ export default function SearchPage() {
 
           {/* Results grid */}
           {loading || !loaded ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
               {Array.from({ length: 6 }).map((_, i) => (
                 <CardSkeleton key={i} />
               ))}
@@ -252,7 +252,7 @@ export default function SearchPage() {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6"
             >
               {results.map((product, i) => (
                 <ProductCard key={`${product.product_id}-${i}`} product={product} index={i} />
