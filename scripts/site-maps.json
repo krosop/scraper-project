@@ -1,0 +1,322 @@
+{
+  "hardsoft.dz": {
+    "store": "hardsoft.dz",
+    "base_url": "https://hardsoft.dz",
+    "type": "custom-php",
+    "categories": {
+      "processor": "https://hardsoft.dz/categorie.php?id=4",
+      "graphics-card": "https://hardsoft.dz/categorie.php?id=19",
+      "motherboard": "https://hardsoft.dz/categorie.php?id=1",
+      "ram": "https://hardsoft.dz/categorie.php?id=26",
+      "storage": "https://hardsoft.dz/categorie.php?id=6",
+      "psu": "https://hardsoft.dz/categorie.php?id=11",
+      "case": "https://hardsoft.dz/categorie.php?id=28",
+      "cooling": "https://hardsoft.dz/categorie.php?id=47",
+      "thermal-paste": "https://hardsoft.dz/categorie.php?id=88",
+      "pc-pack": "https://hardsoft.dz/categorie.php?id=60",
+      "headset": "https://hardsoft.dz/categorie.php?id=73",
+      "keyboard": "https://hardsoft.dz/categorie.php?id=29",
+      "mouse": "https://hardsoft.dz/categorie.php?id=2",
+      "monitor-gamer": "https://hardsoft.dz/categorie.php?id=83",
+      "monitor-office": "https://hardsoft.dz/categorie.php?id=84"
+    },
+    "product_selector": "div.articles",
+    "name_selector": "h2, h3, strong",
+    "price_selector": "string with DA",
+    "image_selector": "img",
+    "url_selector": "a",
+    "pagination_pattern": null,
+    "sample_products": [
+      {
+        "name": "Carte Graphique (GPU)",
+        "price": "152500.00 DA",
+        "url": "https://hardsoft.dz/categorie.php?id=19",
+        "image": "https://hardsoft.dz/images/articles/2157/1782207424-5b1eb9e8-a5c5-4c02-94c7-9edd71fab42f.png"
+      }
+    ],
+    "price_format": "258900.00 DA"
+  },
+  "lahlou-industrie.com": {
+    "store": "lahlou-industrie.com",
+    "base_url": "https://lahlou-industrie.com",
+    "categories_found": 164,
+    "category_links": [
+      {
+        "href": "https://lahlou-industrie.com/collections/alimentation?_pos=2&_psq=ali&_ss=e&_v=1.0",
+        "text": "Alimentation"
+      },
+      {
+        "href": "https://lahlou-industrie.com/collections/boitier-pc",
+        "text": "Boitier"
+      },
+      {
+        "href": "https://lahlou-ipro.com/en/collections/carte-graphique",
+        "text": "Carte graphique"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/carte-graphique?_pos=2&_psq=carte+gra&_ss=e&_v=1.0&ose=false",
+        "text": "Geforce Nvidia"
+      },
+      {
+        "href": "https://lahlou-industrie.com/collections/amd-radeon",
+        "text": "AMD Radeon"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/carte-mere-1?_pos=1&_psq=carte+mere&_ss=e&_v=1.0",
+        "text": "carte mére"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/carte-mere-intel?_pos=1&_psq=carte+mere+inte&_ss=e&_v=1.0",
+        "text": "carte mére INTEL"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/carte-mere-amd?_pos=1&_psq=carte+mere+am&_ss=e&_v=1.0",
+        "text": "carte mére AMD"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/cpu?_pos=2&_psq=processeur+%28CPU%29&_ss=e&_v=1.0",
+        "text": "processeur (CPU)"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/cpu-intel?_pos=1&_psq=cpu+in&_ss=e&_v=1.0",
+        "text": "CPU INTEL"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/cpu-amd?_pos=1&_psq=CPU+AM&_ss=e&_v=1.0",
+        "text": "CPU AMD"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/disque-stockage?_pos=1&_psq=disque+st&_ss=e&_v=1.0",
+        "text": "Stockage PC"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/disque-ssd?_pos=1&_psq=SSD&_ss=e&_v=1.0",
+        "text": "Disque SSD"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/disque-hdd?_pos=2&_psq=HDD&_ss=e&_v=1.0",
+        "text": "Disque HDD"
+      },
+      {
+        "href": "https://lahlou-industrie.com/en/collections/memoire-ram?_pos=1&_psq=M%C3%A9moire+%28RAM%29&_ss=e&_v=1.0",
+        "text": "Mémoire (RAM)"
+      }
+    ]
+  },
+  "gamingdz.com": {
+    "store": "gamingdz.com",
+    "base_url": "https://gamingdz.com",
+    "categories_found": 169,
+    "category_links": [
+      {
+        "href": "https://gamingdz.com/search?category=all&search=AMD",
+        "text": "AMD"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=GIGABYTE",
+        "text": "GIGABYTE"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=NONE",
+        "text": "NONE"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=MSI",
+        "text": "MSI"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=WESTERN DIGITAL",
+        "text": "WESTERN DIGITAL"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ANTEC",
+        "text": "ANTEC"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=INTEL",
+        "text": "INTEL"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ADATA",
+        "text": "ADATA"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ACER",
+        "text": "ACER"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ADR",
+        "text": "ADR"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ALEXANDER+WEISE",
+        "text": "ALEXANDER WEISE"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=AOC",
+        "text": "AOC"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ASUS",
+        "text": "ASUS"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=AIRDISK",
+        "text": "AIRDISK"
+      },
+      {
+        "href": "https://gamingdz.com/search?category=all&search=ALFA",
+        "text": "ALFA"
+      }
+    ]
+  },
+  "geekzonedz.com": {
+    "store": "geekzonedz.com",
+    "base_url": "https://geekzonedz.com",
+    "categories_found": 3,
+    "category_links": [
+      {
+        "href": "https://geekzonedz.com#newProduct",
+        "text": "Nouvel arrivage"
+      },
+      {
+        "href": "https://geekzonedz.com#featureProduct",
+        "text": "En vedette"
+      },
+      {
+        "href": "https://www.geekzonedz.com/nouveaux-produits",
+        "text": "Voir plus de produits"
+      }
+    ]
+  },
+  "gigastoredz.com": {
+    "store": "gigastoredz.com",
+    "error": "HTTPSConnectionPool(host='gigastoredz.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='gigastoredz.com', port=443): Failed to resolve 'gigastoredz.com' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  "digitecdz.com": {
+    "store": "digitecdz.com",
+    "base_url": "https://digitecdz.com",
+    "categories_found": 236,
+    "category_links": [
+      {
+        "href": "https://www.digitecdz.com/product-category/gaming/",
+        "text": "GAMING"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/powered-by-asus/",
+        "text": "POWERED BY ASUS"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/laptops/",
+        "text": "LAPTOP"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/",
+        "text": "Composants PC"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/disques-durs-et-ssd/",
+        "text": "Disques Durs & SSD"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/cartes-meres/",
+        "text": "Cartes Mères"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/processeurs/",
+        "text": "Processeurs"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/boitiers-pc/",
+        "text": "Boitiers PC"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/barrettes-memoire/",
+        "text": "Barrettes Mémoire"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/alimentations-pc/",
+        "text": "Alimentations PC"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/cartes-graphiques/",
+        "text": "Cartes Graphiques"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/radiateurs-refroidissement/",
+        "text": "Radiateurs / Refroidissement"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/composants-pc/watercooling/",
+        "text": "Watercooling"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/peripheriques-pc/",
+        "text": "PÉRIPHÉRIQUES PC"
+      },
+      {
+        "href": "https://www.digitecdz.com/product-category/peripheriques-pc/accessoires-peripheriques-pc/",
+        "text": "Accessoires périphériques PC"
+      }
+    ]
+  },
+  "matos-gaming.com": {
+    "store": "matos-gaming.com",
+    "base_url": "https://matos-gaming.com",
+    "categories_found": 13,
+    "category_links": [
+      {
+        "href": "https://matos-gaming.com/shop/",
+        "text": "Products"
+      },
+      {
+        "href": "https://matos-gaming.com/product-category/matos-gaming-monitors/mini-led-monitors/",
+        "text": "Mini LED Monitors"
+      },
+      {
+        "href": "https://matos-gaming.com/product-category/professional-monitor/",
+        "text": "Professional Monitors"
+      },
+      {
+        "href": "https://matos-gaming.com/product-category/audio-products/",
+        "text": "Audio"
+      },
+      {
+        "href": "https://matos-gaming.com/product-category/garantie-matos/",
+        "text": "Extension de Garantie Jusqu’à 7 ans"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-space-49/",
+        "text": "Matos SPACE 49"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-neon-4k/",
+        "text": "Matos NEON 4K"
+      },
+      {
+        "href": "https://matos-gaming.com/product/studioart-sa02-sa03/",
+        "text": "StudioART SA02/SA03"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-horizon/",
+        "text": "Matos Horizon"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-vega/",
+        "text": "Matos VEGA"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-delta-msg2712/",
+        "text": "Matos DELTA MSG2712"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-zx25-white-edition/",
+        "text": "Matos ZX25 (White Edition)"
+      },
+      {
+        "href": "https://matos-gaming.com/product/matos-rocket-540hz/",
+        "text": "Matos Rocket 540HZ"
+      }
+    ]
+  }
+}

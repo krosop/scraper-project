@@ -26,11 +26,14 @@ class HardSoftScraper:
         'storage': 'https://hardsoft.dz/categorie.php?id=6',   # Stockage
         'psu': 'https://hardsoft.dz/categorie.php?id=11',      # Alimentation
         'case': 'https://hardsoft.dz/categorie.php?id=28',     # Boitier
-        'cooling': 'https://hardsoft.dz/categorie.php?id=47',  # Refroidissement
-        'monitor': 'https://hardsoft.dz/categorie.php?id=14',  # Ecran/Moniteur
+        'cooling': 'https://hardsoft.dz/categorie.php?id=47',  # Refroidisseurs
+        'monitor-gamer': 'https://hardsoft.dz/categorie.php?id=83',  # Moniteur Gamer
+        'monitor-office': 'https://hardsoft.dz/categorie.php?id=84', # Moniteur Bureautique
         'keyboard': 'https://hardsoft.dz/categorie.php?id=29', # Clavier
         'mouse': 'https://hardsoft.dz/categorie.php?id=2',     # Souris
         'headset': 'https://hardsoft.dz/categorie.php?id=73',  # Casque
+        'thermal-paste': 'https://hardsoft.dz/categorie.php?id=88', # Pate thermique
+        'pc-pack': 'https://hardsoft.dz/categorie.php?id=60',  # Pack composants
     }
 
     # Keywords to auto-discover categories from homepage
@@ -43,10 +46,13 @@ class HardSoftScraper:
         'psu': ['alimentation', 'power supply'],
         'case': ['boitier', 'case'],
         'cooling': ['refroidissement', 'cooling'],
-        'monitor': ['ecran', 'monitor', 'moniteur'],
+        'monitor-gamer': ['moniteur gamer', 'ecran gamer'],
+        'monitor-office': ['moniteur bureautique', 'ecran bureautique'],
         'keyboard': ['clavier', 'keyboard'],
         'mouse': ['souris', 'mouse'],
         'headset': ['casque', 'headset'],
+        'thermal-paste': ['pate thermique', 'thermal paste'],
+        'pc-pack': ['pack composants', 'pack pc'],
     }
 
     def __init__(self, delay: float = 1.5):
