@@ -4,6 +4,7 @@ import { fmtDZD } from '@/data/dzProducts';
 import { useTranslation } from '@/i18n/useTranslation';
 import type { PriceView } from '@/supabase/types';
 import StarRating from './StarRating';
+import CategoryImage from './CategoryImage';
 
 interface ProductCardProps {
   product: PriceView;
@@ -27,12 +28,14 @@ export default function ProductCard({ product, index = 0 }: ProductCardProps) {
         to={`/product/${product.product_slug}`}
         className="group block bg-[#111821] border border-[#1a2332] rounded-xl p-3 sm:p-5 hover:border-[#00d4aa]/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-[#00d4aa]/5 transition-all duration-300"
       >
-        <div className="h-44 sm:h-56 bg-[#0d131c] rounded-lg overflow-hidden flex items-center justify-center mb-3 sm:mb-5">
-          <img
-            src={product.product_image || '/images/product-pc-case.jpg'}
-            alt={product.product_name}
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out p-2"
-            loading="lazy"
+        <div className="h-44 sm:h-56 bg-[#0d131c] rounded-lg overflow-hidden mb-3 sm:mb-5">
+          <CategoryImage
+            src={product.product_image || ''}
+            category={product.category_slug}
+            storeName={product.store_name}
+            storeColor={product.store_color}
+            productName={product.product_name}
+            className="w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
           />
         </div>
 
