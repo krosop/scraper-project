@@ -109,12 +109,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dztechhunt-v3.vercel.app/#/product/gamer-king-ghidorah-7-7700x-32g-ram-nvme-m-2-1tb-b650m-s2h</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/rtx-5080-16gb-soc-msi-vanguard-launch</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
@@ -272,6 +266,12 @@
   </url>
   <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/zotac-gaming-rtx-5070ti-solid-sff-16gb-gddr7-256-bits</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dztechhunt-v3.vercel.app/#/product/mpg-491-cqp-qd-oled</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -853,6 +853,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dztechhunt-v3.vercel.app/#/product/setup-gaming-ryzen-7-5700g-pack-3</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/corsair-xeneon-315qhd</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
@@ -878,6 +884,12 @@
   </url>
   <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/amd-ryzen-9-9950x3d-16c-32t-5-7ghz-144mo-cache</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dztechhunt-v3.vercel.app/#/product/amd-ryzen-9-9900x3d-processeur</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
@@ -1033,6 +1045,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dztechhunt-v3.vercel.app/#/product/intel-i9-14900k-lga1700-processeur</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/asus-dual-geforce-rtx-4060-ti-oc-8gb</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
@@ -1147,6 +1165,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dztechhunt-v3.vercel.app/#/product/ryzen-7-9800x3d-am5-processeur</loc>
+    <lastmod>2026-06-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/gigabyte-x870-aorus-stealth-ice</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
@@ -1225,12 +1249,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://dztechhunt-v3.vercel.app/#/product/bureau-hp-290-g9-i3-12100-ddr4-8gb-ssd-256gb-grv-dvd</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/laptop-gaming-dell-g5-5590-i7-9750h-ram-16-gb-ssd-250gb-sans</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
@@ -1238,24 +1256,6 @@
   </url>
   <url>
     <loc>https://dztechhunt-v3.vercel.app/#/product/hp-probook-450-g10-fhd-15-6-ips-i5-1355u-intel-uhd-graphics-</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dztechhunt-v3.vercel.app/#/product/rtx-5060-8gb-oc-msi-shadow-x2-bulk</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dztechhunt-v3.vercel.app/#/product/zotac-rtx-5060-8gb-gddr7-twin-edge-128-bit</loc>
-    <lastmod>2026-06-26</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dztechhunt-v3.vercel.app/#/product/matos-neon-4k</loc>
     <lastmod>2026-06-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
