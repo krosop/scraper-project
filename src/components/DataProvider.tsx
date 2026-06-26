@@ -98,16 +98,25 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         }))
       );
 
-      // Products sorted by savings (top deals)
-      const deals = [...allProducts].sort((a, b) => b.savings - a.savings).slice(0, 10);
-      // Products sorted by review count (trending)
-      const trend = [...allProducts].sort((a, b) => b.product_review_count - a.product_review_count).slice(0, 10);
+      // Products sorted by savings (top deals) — include some Ouedkniss items
+      const ouedknissProducts = allProducts.filter(p => p.store_name === 'Ouedkniss');
+      const otherProducts = allProducts.filter(p => p.store_name !== 'Ouedkniss');
+      
+      const deals = [...otherProducts].sort((a, b) => b.savings - a.savings).slice(0, 8);
+      // Mix in 2 Ouedkniss deals
+      const ouedDeals = [...ouedknissProducts].sort((a, b) => b.savings - a.savings).slice(0, 2);
+      const mixedDeals = [...deals, ...ouedDeals].sort((a, b) => b.savings - a.savings);
+      
+      // Products sorted by review count (trending) — include some Ouedkniss items
+      const trendOthers = [...otherProducts].sort((a, b) => b.product_review_count - a.product_review_count).slice(0, 8);
+      const trendOued = [...ouedknissProducts].sort((a, b) => b.product_review_count - a.product_review_count).slice(0, 2);
+      const mixedTrend = [...trendOthers, ...trendOued].sort((a, b) => b.product_review_count - a.product_review_count);
 
       setCategories(cats);
       setStores(storeEntries);
       setAllProducts(allProducts);
-      setLiveDeals(deals);
-      setTrending(trend);
+      setLiveDeals(mixedDeals);
+      setTrending(mixedTrend);
       setProductCount(data.products?.length || 0);
       setStoreCount(storeEntries.length);
       setLoaded(true);
