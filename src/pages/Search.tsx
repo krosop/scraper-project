@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
+import { Search, SlidersHorizontal, X, Sparkles } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import type { PriceView } from '@/supabase/types';
 import { useTranslation } from '@/i18n/useTranslation';
@@ -9,6 +9,7 @@ import NavigationBar from '@/components/NavigationBar';
 import ProductCard from '@/components/ProductCard';
 import { CardSkeleton } from '@/components/LoadingSkeleton';
 import SEO from '@/components/SEO';
+import { fuzzySearch, getSuggestions } from '@/utils/fuzzySearch';
 
 export default function SearchPage() {
   const { t, isRTL } = useTranslation();
@@ -19,26 +20,25 @@ export default function SearchPage() {
   const [query, setQuery] = useState(queryParam);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'relevance' | 'price-asc' | 'price-desc' | 'savings'>('relevance');
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Sync URL param to input
   useEffect(() => {
     setQuery(queryParam);
   }, [queryParam]);
 
-  // Filter products
-  const results = useMemo(() => {
+  // Smart fuzzy search with suggestions
+  const searchResults = useMemo(() => {
     let filtered = allProducts;
 
-    // Text search
     if (query.trim()) {
-      const q = query.toLowerCase().trim();
-      filtered = filtered.filter(
-        (p) =>
-          p.product_name.toLowerCase().includes(q) ||
-          p.product_brand.toLowerCase().includes(q) ||
-          p.category_name_fr.toLowerCase().includes(q) ||
-          p.store_name.toLowerCase().includes(q)
+      // Use fuzzy search with relevance scoring
+      const results = fuzzySearch(
+        allProducts,
+        query,
+        (p) => `${p.product_name} ${p.product_brand} ${p.category_name_fr} ${p.store_name}`
       );
+      filtered = results.map(r => r.item);
     }
 
     // Category filter
@@ -68,12 +68,19 @@ export default function SearchPage() {
         filtered = [...filtered].sort((a, b) => b.savings - a.savings);
         break;
       default:
-        // relevance: keep original order
+        // relevance: keep fuzzy search order
         break;
     }
 
     return filtered;
   }, [allProducts, query, activeCategory, sortBy]);
+
+  // Search suggestions
+  const suggestions = useMemo(() => {
+    if (!query.trim() || query.length < 2) return [];
+    const productNames = allProducts.map(p => p.product_name);
+    return getSuggestions(productNames, query, 6);
+  }, [query, allProducts]);
 
   // Get unique categories from results
   const categories = useMemo(() => {
@@ -149,7 +156,12 @@ export default function SearchPage() {
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setShowSuggestions(true);
+                }}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 placeholder={t.hero_search_placeholder}
                 className={`flex-1 h-10 sm:h-14 text-sm sm:text-[15px] text-white placeholder:text-[#4a5568] bg-transparent outline-none ${isRTL ? 'text-right' : 'text-left'}`}
                 dir={isRTL ? 'rtl' : 'ltr'}
@@ -170,6 +182,33 @@ export default function SearchPage() {
                 Search
               </button>
             </motion.form>
+
+            {/* Search Suggestions */}
+            {showSuggestions && suggestions.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-2 bg-[#111821] border border-[#1a2332] rounded-xl overflow-hidden shadow-lg"
+              >
+                <div className="px-3 py-2 text-[10px] text-[#4a5568] uppercase tracking-wider font-semibold flex items-center gap-1">
+                  <Sparkles className="w-3 h-3" /> Suggestions
+                </div>
+                {suggestions.map((s, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setQuery(s);
+                      setSearchParams({ q: s });
+                      setShowSuggestions(false);
+                    }}
+                    className="w-full text-left px-4 py-2.5 text-[13px] text-[#c8d0d9] hover:bg-[#00d4aa]/5 hover:text-[#00d4aa] transition-colors flex items-center gap-2"
+                  >
+                    <Search className="w-3.5 h-3.5 text-[#4a5568]" />
+                    <span className="truncate">{s}</span>
+                  </button>
+                ))}
+              </motion.div>
+            )}
           </div>
         </section>
 
@@ -215,7 +254,7 @@ export default function SearchPage() {
                 'Loading...'
               ) : (
                 <>
-                  <span className="text-white font-semibold">{results.length.toLocaleString()}</span> products found
+                  <span className="text-white font-semibold">{searchResults.length.toLocaleString()}</span> products found
                   {query && (
                     <>
                       {' '}for "<span className="text-[#00d4aa]">{query}</span>"
@@ -233,7 +272,7 @@ export default function SearchPage() {
                 <CardSkeleton key={i} />
               ))}
             </div>
-          ) : results.length === 0 ? (
+          ) : searchResults.length === 0 ? (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -261,7 +300,7 @@ export default function SearchPage() {
               animate={{ opacity: 1 }}
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6"
             >
-              {results.map((product, i) => (
+              {searchResults.map((product, i) => (
                 <ProductCard key={`${product.product_id}-${i}`} product={product} index={i} />
               ))}
             </motion.div>
