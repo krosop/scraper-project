@@ -657,7 +657,72 @@ export function smartSearch(
     return smartSearch(products, query, null);
   }
 
-  return results.sort((a, b) => b.score - a.score);
+  // Category intent: detect what category the user is looking for
+  const categoryIntent = detectCategoryIntent(rawQuery);
+
+  // Apply category priority boost — products in the intended category get a score bump
+  if (categoryIntent.length > 0) {
+    const catPriority = (catSlug: string) => {
+      const idx = categoryIntent.indexOf(catSlug);
+      return idx === -1 ? 0 : (categoryIntent.length - idx) * 100;
+    };
+    for (const r of results) {
+      r.score += catPriority(r.item.category_slug || '');
+    }
+  }
+
+  // Sort by score (primary), then review count (secondary), then price (tertiary)
+  return results.sort((a, b) => {
+    const scoreDiff = b.score - a.score;
+    if (scoreDiff !== 0) return scoreDiff;
+    const reviewDiff = (b.item.product_review_count || 0) - (a.item.product_review_count || 0);
+    if (reviewDiff !== 0) return reviewDiff;
+    return (a.item.current_price || 0) - (b.item.current_price || 0);
+  });
+}
+
+// Detect which category the user is searching for based on query keywords
+function detectCategoryIntent(query: string): string[] {
+  const words = tokenize(query);
+  const intents: string[] = [];
+
+  const gpuTerms = ['rtx', 'gtx', 'radeon', 'geforce', 'gpu', 'vga', 'graphics', 'carte', 'graphique', 'nvidia', 'amd'];
+  if (words.some(w => gpuTerms.includes(w))) intents.push('graphics-cards');
+
+  const cpuTerms = ['cpu', 'processor', 'processeur', 'procesador', 'i3', 'i5', 'i7', 'i9', 'ryzen', 'core', 'threadripper', 'athlon', 'pentium', 'celeron'];
+  if (words.some(w => cpuTerms.includes(w))) intents.push('processors');
+
+  const ramTerms = ['ram', 'memory', 'memoire', 'memoria', 'ddr', 'ddr3', 'ddr4', 'ddr5', 'dominator', 'vengeance', 'fury'];
+  if (words.some(w => ramTerms.includes(w))) intents.push('memory');
+
+  const storageTerms = ['ssd', 'hdd', 'nvme', 'm2', 'm.2', 'solid', 'hard', 'disk', 'disque', 'sata', 'sn850', 'sn770', '980', '990'];
+  if (words.some(w => storageTerms.includes(w))) intents.push('storage');
+
+  const monitorTerms = ['monitor', 'ecran', 'display', 'screen', '144hz', '240hz', '165hz', 'ips', 'oled', 'va', 'tn', 'ultrawide', 'curved', '27', '32', '24'];
+  if (words.some(w => monitorTerms.includes(w))) intents.push('monitors');
+
+  const mbTerms = ['motherboard', 'carte', 'mere', 'placa', 'base', 'mainboard', 'b650', 'z790', 'x670', 'b550', 'z690'];
+  if (words.some(w => mbTerms.includes(w))) intents.push('pc-parts');
+
+  const psuTerms = ['psu', 'alimentation', 'power', 'supply', 'rm', 'tx', 'cx', 'ax', 'hx', 'watt', '750w', '850w', '650w'];
+  if (words.some(w => psuTerms.includes(w))) intents.push('power-supplies');
+
+  const caseTerms = ['case', 'boitier', 'chassis', 'caja', 'tower', 'mid', 'full', 'atx', 'micro'];
+  if (words.some(w => caseTerms.includes(w))) intents.push('cases');
+
+  const coolingTerms = ['cooler', 'cooling', 'refroidissement', 'ventilateur', 'fan', 'watercooling', 'aio', 'radiator', 'heatsink'];
+  if (words.some(w => coolingTerms.includes(w))) intents.push('cooling');
+
+  const kbTerms = ['keyboard', 'clavier', 'teclado', 'mechanical', 'mecanique'];
+  if (words.some(w => kbTerms.includes(w))) intents.push('keyboard');
+
+  const mouseTerms = ['mouse', 'souris', 'raton'];
+  if (words.some(w => mouseTerms.includes(w))) intents.push('mouse');
+
+  const laptopTerms = ['laptop', 'notebook', 'portable', 'ordinateur'];
+  if (words.some(w => laptopTerms.includes(w))) intents.push('pc-parts');
+
+  return intents;
 }
 
 function isUnitAlias(a: string, b: string): boolean {
