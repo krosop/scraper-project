@@ -48,6 +48,7 @@ def convert_to_frontend(cleaned_products):
             listings.append({
                 'source': p.get('retailer_name', p.get('site', 'Unknown')),
                 'price': p.get('price', 0),
+                'old_price': p.get('old_price') or 0,
                 'condition': p.get('condition', 'new'),
                 'location': 'Algeria',
                 'url': url,
