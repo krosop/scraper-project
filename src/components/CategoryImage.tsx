@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Monitor, Cpu, HardDrive, MemoryStick, Zap, Box, Fan, Gamepad2, Headphones, Keyboard, Mouse, Laptop, Disc, ImageOff } from 'lucide-react';
+import { Monitor, Cpu, HardDrive, MemoryStick, Zap, Box, Fan, Gamepad2, Headphones, Keyboard, Mouse, Laptop, Disc, ImageOff, Loader2 } from 'lucide-react';
+import { useProductImage } from '@/hooks/useProductImage';
 
 interface CategoryImageProps {
   category: string;
@@ -9,6 +10,7 @@ interface CategoryImageProps {
   src: string;
   className?: string;
   size?: 'sm' | 'md' | 'lg';
+  priority?: boolean; // Preload this image
 }
 
 const CATEGORY_ICONS: Record<string, any> = {
@@ -62,18 +64,24 @@ const CATEGORY_BG: Record<string, string> = {
   'default': 'radial-gradient(circle at 30% 30%, rgba(55,65,81,0.08) 0%, transparent 60%)',
 };
 
-export default function CategoryImage({ category, storeName, storeColor, productName, src, className, size = 'md' }: CategoryImageProps) {
+export default function CategoryImage({ category, storeName, storeColor, productName, src, className, size = 'md', priority = false }: CategoryImageProps) {
   const [error, setError] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   const hasSrc = src && src.length > 10 && !src.includes('product-pc-case');
-  const isPlaceholder = !hasSrc || error;
+  const needsFallback = !hasSrc || error;
+  const { imageUrl: fetchedImage, loading: fetchingImage } = useProductImage(productName, !needsFallback);
+
+  // Use fetched image if available, otherwise original src
+  const effectiveSrc = needsFallback && fetchedImage ? fetchedImage : src;
+  const isPlaceholder = !effectiveSrc || (needsFallback && !fetchedImage && !fetchingImage);
+
   const catKey = CATEGORY_ICONS[category] ? category : 'default';
   const Icon = CATEGORY_ICONS[catKey] || CATEGORY_ICONS.default;
   const catColor = CATEGORY_COLORS[catKey] || CATEGORY_COLORS.default;
   const bgGradient = CATEGORY_BG[catKey] || CATEGORY_BG.default;
 
-  // Reset states when src changes (critical for reused cards in lists)
+  // Reset states when src changes
   useEffect(() => {
     setError(false);
     setLoaded(false);
@@ -88,16 +96,12 @@ export default function CategoryImage({ category, storeName, storeColor, product
         className={`${className} relative overflow-hidden`}
         style={{ background: `linear-gradient(135deg, #0d131c 0%, #111821 100%)` }}
       >
-        {/* Gradient overlay */}
         <div className="absolute inset-0 opacity-60" style={{ background: bgGradient }} />
-        
-        {/* Subtle grid pattern */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
           backgroundImage: `linear-gradient(${catColor} 1px, transparent 1px), linear-gradient(90deg, ${catColor} 1px, transparent 1px)`,
           backgroundSize: '20px 20px',
         }} />
 
-        {/* Icon */}
         <div className="absolute inset-0 flex flex-col items-center justify-center p-3 sm:p-4">
           <div
             className="rounded-xl p-2.5 sm:p-3 mb-2 sm:mb-3 border border-[#1a2332]"
@@ -119,7 +123,6 @@ export default function CategoryImage({ category, storeName, storeColor, product
           </span>
         </div>
 
-        {/* Store badge */}
         <div className="absolute bottom-2 left-2 right-2 flex justify-center">
           <span
             className="text-[9px] sm:text-[10px] font-semibold px-2.5 py-1 rounded-lg border border-[#1a2332] truncate max-w-full"
@@ -135,23 +138,30 @@ export default function CategoryImage({ category, storeName, storeColor, product
   return (
     <div className={`${className} bg-[#0d131c] relative overflow-hidden`}>
       <img
-        src={src}
+        src={effectiveSrc}
         alt={productName}
         referrerPolicy="no-referrer"
         className={`w-full h-full object-contain p-2 transition-opacity duration-500 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}
         onLoad={() => setLoaded(true)}
         onError={() => setError(true)}
-        loading="lazy"
-        decoding="async"
+        loading={priority ? 'eager' : 'lazy'}
+        decoding={priority ? 'auto' : 'async'}
+        fetchPriority={priority ? 'high' : 'auto'}
       />
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="rounded-xl p-3 border border-[#1a2332]" style={{ backgroundColor: `${catColor}08` }}>
-            <Icon className="w-10 h-10 sm:w-14 sm:h-14 opacity-20 animate-pulse" style={{ color: catColor }} />
-          </div>
+          {fetchingImage ? (
+            <div className="flex flex-col items-center gap-2">
+              <Loader2 className="w-6 h-6 text-[#00d4aa] animate-spin" />
+              <span className="text-[10px] text-[#4a5568]">Loading image...</span>
+            </div>
+          ) : (
+            <div className="rounded-xl p-3 border border-[#1a2332]" style={{ backgroundColor: `${catColor}08` }}>
+              <Icon className="w-10 h-10 sm:w-14 sm:h-14 opacity-20 animate-pulse" style={{ color: catColor }} />
+            </div>
+          )}
         </div>
       )}
-      {/* Subtle vignette when loaded */}
       {loaded && (
         <div className="absolute inset-0 pointer-events-none" style={{
           boxShadow: 'inset 0 0 30px 10px rgba(13,19,28,0.3)',
