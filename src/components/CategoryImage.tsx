@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Monitor, Cpu, HardDrive, MemoryStick, Zap, Box, Fan, Gamepad2, Headphones, Keyboard, Mouse, Laptop, Disc } from 'lucide-react';
+import { proxiedImageUrl } from '@/hooks/useProductImage';
 
 interface CategoryImageProps {
   category: string;
@@ -69,31 +70,40 @@ export default function CategoryImage({ category, storeName, storeColor, product
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const hasSrc = src && src.length > 10 && !src.includes('product-pc-case');
-  const isPlaceholder = !hasSrc || error;
 
   const catKey = CATEGORY_ICONS[category] ? category : 'default';
   const Icon = CATEGORY_ICONS[catKey] || CATEGORY_ICONS.default;
   const catColor = CATEGORY_COLORS[catKey] || CATEGORY_COLORS.default;
   const bgGradient = CATEGORY_BG[catKey] || CATEGORY_BG.default;
 
+  const imgSrc = useMemo(() => {
+    if (!hasSrc) return null;
+    const proxied = proxiedImageUrl(src);
+    // If proxy fails, fall back to original URL
+    return proxied || src;
+  }, [src, hasSrc]);
+
+  const hasValidSrc = !!imgSrc;
+  const isPlaceholder = !hasValidSrc || error;
+
   // Reset states when src changes, with timeout fallback
   useEffect(() => {
     setError(false);
     setLoaded(false);
-    
-    // If image doesn't load in 3 seconds, show placeholder
-    if (hasSrc && !priority) {
+
+    // If image doesn't load in 4 seconds, show placeholder
+    if (hasValidSrc && !priority) {
       timeoutRef.current = setTimeout(() => {
         setError(true);
-      }, 3000);
+      }, 4000);
     }
-    
+
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [src, hasSrc, priority]);
+  }, [src, hasValidSrc, priority]);
 
   const iconSize = size === 'sm' ? 'w-8 h-8' : size === 'lg' ? 'w-16 h-16 sm:w-20 sm:h-20' : 'w-12 h-12 sm:w-16 sm:h-16';
   const textSize = size === 'sm' ? 'text-[9px]' : 'text-[10px] sm:text-xs';
@@ -142,7 +152,7 @@ export default function CategoryImage({ category, storeName, storeColor, product
   return (
     <div className={`${className} bg-[#0d131c] relative overflow-hidden`}>
       <img
-        src={src}
+        src={imgSrc || ''}
         alt={productName}
         referrerPolicy="no-referrer"
         className={`w-full h-full object-contain p-2 transition-opacity duration-500 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}

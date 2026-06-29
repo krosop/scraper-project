@@ -1,105 +1,99 @@
 import { useState, useEffect, useRef } from 'react';
 
 const imageCache = new Map<string, string>();
-const pendingRequests = new Map<string, Promise<string>>();
+const pendingRequests = new Map<string, Promise<string | null>>();
 
-const API_BASE = import.meta.env.PROD 
-  ? 'https://dztechhunt-v3.vercel.app/api/images' 
-  : '/api/images';
-
-export async function fetchProductImage(productName: string): Promise<string | null> {
-  const cacheKey = productName.trim().toLowerCase();
+/** Build a proxied image URL that handles CORS, caching, and resizing */
+export function proxiedImageUrl(originalUrl: string, width: number = 300): string | null {
+  if (!originalUrl || originalUrl.length < 10) return null;
   
-  // Check memory cache
-  if (imageCache.has(cacheKey)) {
-    return imageCache.get(cacheKey)!;
+  // Already proxied — don't double-proxy
+  if (originalUrl.includes('weserv.nl') || originalUrl.includes('wsrv.nl')) {
+    return originalUrl;
   }
-
-  // Check localStorage cache
+  
+  // Data URIs — pass through
+  if (originalUrl.startsWith('data:')) return originalUrl;
+  
+  // Use weserv.nl proxy (free, global CDN, handles CORS, caches images)
+  // Parameters: w=width, q=quality, output=webp for smaller size
   try {
-    const stored = localStorage.getItem(`img_${cacheKey}`);
-    if (stored) {
-      const { url, timestamp } = JSON.parse(stored);
-      if (Date.now() - timestamp < 7 * 24 * 60 * 60 * 1000) { // 7 days
-        imageCache.set(cacheKey, url);
-        return url;
-      }
-    }
-  } catch { /* ignore */ }
-
-  // Deduplicate in-flight requests
-  if (pendingRequests.has(cacheKey)) {
-    return pendingRequests.get(cacheKey)!;
+    const encoded = encodeURIComponent(originalUrl);
+    return `https://images.weserv.nl/?url=${encoded}&w=${width}&q=85&output=webp&n=-1&we`;
+  } catch {
+    return originalUrl; // fallback to original if encoding fails
   }
+}
 
-  const request = fetch(`${API_BASE}?q=${encodeURIComponent(productName)}`)
-    .then(async (res) => {
-      if (!res.ok) throw new Error('Failed');
-      const data = await res.json();
-      const url = data.imageUrl;
-      
-      // Cache in memory
-      imageCache.set(cacheKey, url);
-      
-      // Cache in localStorage
-      try {
-        localStorage.setItem(`img_${cacheKey}`, JSON.stringify({ url, timestamp: Date.now() }));
-      } catch { /* ignore */ }
-      
-      return url;
-    })
-    .catch(() => null)
-    .finally(() => {
-      pendingRequests.delete(cacheKey);
+/** Check if an image URL is available (HEAD request) */
+export async function checkImageAvailable(url: string): Promise<boolean> {
+  if (!url || url.length < 10) return false;
+  
+  const cacheKey = `avail_${url}`;
+  if (imageCache.has(cacheKey)) {
+    return imageCache.get(cacheKey) === 'ok';
+  }
+  
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    
+    const res = await fetch(url, { 
+      method: 'HEAD', 
+      mode: 'no-cors',
+      signal: controller.signal 
     });
-
-  pendingRequests.set(cacheKey, request);
-  return request;
+    
+    clearTimeout(timeout);
+    imageCache.set(cacheKey, 'ok');
+    return true;
+  } catch {
+    imageCache.set(cacheKey, 'fail');
+    return false;
+  }
 }
 
 /** Preload images in batches — called from page components */
-export async function preloadProductImages(productNames: string[]): Promise<void> {
-  // Filter out already cached names
-  const uncached = productNames.filter(name => {
-    const key = name.trim().toLowerCase();
-    return !imageCache.has(key) && !pendingRequests.has(key);
-  });
-
-  if (uncached.length === 0) return;
-
-  // Fire all requests in parallel (up to 20 at a time to avoid overwhelming the API)
-  const BATCH_SIZE = 20;
-  for (let i = 0; i < uncached.length; i += BATCH_SIZE) {
-    const batch = uncached.slice(i, i + BATCH_SIZE);
-    await Promise.all(batch.map(name => fetchProductImage(name)));
+export async function preloadProductImages(imageUrls: string[]): Promise<void> {
+  // Just trigger browser preloading via Image objects
+  const uniqueUrls = [...new Set(imageUrls.filter(u => u && u.length > 10))];
+  
+  const BATCH_SIZE = 10;
+  for (let i = 0; i < uniqueUrls.length; i += BATCH_SIZE) {
+    const batch = uniqueUrls.slice(i, i + BATCH_SIZE);
+    await Promise.all(
+      batch.map(url => 
+        new Promise<void>((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve();
+          img.onerror = () => resolve(); // Don't block on errors
+          img.src = proxiedImageUrl(url) || url;
+        })
+      )
+    );
   }
 }
 
-export function useProductImage(productName: string, hasImage: boolean) {
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+export function useProductImage(productName: string, imageUrl: string | null | undefined) {
+  const [resolvedUrl, setResolvedUrl] = useState<string | null>(imageUrl || null);
   const [loading, setLoading] = useState(false);
   const fetched = useRef(false);
 
   useEffect(() => {
-    if (hasImage || !productName || fetched.current) return;
-    
-    fetched.current = true;
-    
-    // Check if already cached (from preload)
-    const cacheKey = productName.trim().toLowerCase();
-    if (imageCache.has(cacheKey)) {
-      setImageUrl(imageCache.get(cacheKey)!);
+    // If we already have an image URL, proxy it
+    if (imageUrl && imageUrl.length > 10) {
+      const proxied = proxiedImageUrl(imageUrl);
+      setResolvedUrl(proxied);
       return;
     }
     
-    setLoading(true);
+    // No image URL available — resolvedUrl stays null, component will show placeholder
+    if (!productName || fetched.current) return;
+    fetched.current = true;
     
-    fetchProductImage(productName)
-      .then((url) => {
-        if (url) setImageUrl(url);
-      })
-      .finally(() => setLoading(false));
-  }, [productName, hasImage]);
+    // No fallback search — just accept there's no image
+    setResolvedUrl(null);
+  }, [productName, imageUrl]);
 
-  return { imageUrl, loading };
+  return { imageUrl: resolvedUrl, loading };
 }
