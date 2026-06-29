@@ -9,7 +9,6 @@ jobs:
   scrape:
     name: Scrape 8 Algerian Stores (Ouedkniss runs locally)
     runs-on: ubuntu-latest
-    timeout-minutes: 25
     permissions:
       contents: write
     steps:
@@ -41,11 +40,10 @@ jobs:
         run: cd scripts && python adapter_v2.py
         env:
           PYTHONIOENCODING: utf-8
-        timeout-minutes: 20
 
-      # ─── Convert data for new frontend ───
+      # ─── Convert data for new frontend (with taxonomy) ───
       - name: Convert data to DZ TechHunt format
-        run: node scripts/convert-data.js
+        run: node scripts/convert-data-enhanced.js
 
       # ─── Upload artifacts ───
       - name: Upload results artifacts
@@ -70,7 +68,6 @@ jobs:
   cleanup:
     name: Cleanup Expired Data
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     needs: scrape
     steps:
       - uses: actions/checkout@v4
