@@ -1,11 +1,23 @@
 #!/usr/bin/env python3
 """
-Quick merge script: loads existing clean-products.json, removes old Ouedkniss data,
-adds fresh Ouedkniss data from scripts/ouedkniss-raw.json, and saves.
+Merge script: loads existing clean-products.json, removes old Ouedkniss data,
+cleans fresh Ouedkniss data through the SAME categorizer pipeline as non-Ouedkniss data,
+and merges with existing non-Ouedkniss products.
 """
 import json
+import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+# ── Path setup so we can import categorizer and adapter_v2 ──
+SCRIPTS_DIR = Path(__file__).parent
+SCRAPER_DIR = SCRIPTS_DIR / 'pc-parts-scraper'
+sys.path.insert(0, str(SCRAPER_DIR))
+sys.path.insert(0, str(SCRIPTS_DIR))
+
+from categorizer import clean_all
+from adapter_v2 import convert_to_frontend
 
 OUEDKNISS_NAMES = {
     'ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions',
@@ -15,127 +27,9 @@ OUEDKNISS_NAMES = {
 
 
 def is_ouedkniss(source: str) -> bool:
-    return source.strip().lower() in OUEDKNISS_NAMES
-
-
-def convert_ouedkniss_to_frontend(raw_products):
-    """Convert Ouedkniss raw products to frontend CleanProduct format."""
-    from collections import defaultdict
-    
-    # Group by name (lowercase, normalized)
-    groups = defaultdict(list)
-    for p in raw_products:
-        name = p.get('name', '').strip()
-        if not name or len(name) < 3:
-            continue
-        # Parse price
-        price_str = p.get('price', '').replace(',', '').replace(' DA', '').strip()
-        try:
-            price = int(price_str) if price_str else 0
-        except:
-            price = 0
-        old_price_str = (p.get('old_price') or '').replace(',', '').replace(' DA', '').strip()
-        try:
-            old_price = int(old_price_str) if old_price_str else None
-        except:
-            old_price = None
-        
-        # Simple category detection
-        lower = name.lower()
-        category = 'pc_part'
-        if any(x in lower for x in ['gpu', 'rtx', 'gtx', 'rx ', 'radeon', 'graphics card', 'carte graphique']):
-            category = 'graphics-cards'
-        elif any(x in lower for x in ['cpu', 'processeur', 'processor', 'core i', 'ryzen', 'intel']):
-            category = 'processors'
-        elif any(x in lower for x in ['ram', 'memoire', 'memory', 'ddr']):
-            category = 'memory'
-        elif any(x in lower for x in ['motherboard', 'carte mere', 'mainboard']):
-            category = 'motherboards'
-        elif any(x in lower for x in ['ssd', 'hdd', 'disque dur', 'stockage', 'nvme', 'hard drive']):
-            category = 'storage'
-        elif any(x in lower for x in ['psu', 'alimentation', 'power supply']):
-            category = 'power-supplies'
-        elif any(x in lower for x in ['case', 'boitier', 'chassis']):
-            category = 'cases'
-        elif any(x in lower for x in ['cooler', 'refroidissement', 'watercooling', 'fan']):
-            category = 'cooling'
-        elif any(x in lower for x in ['monitor', 'ecran', 'moniteur', 'display']):
-            category = 'monitors'
-        elif any(x in lower for x in ['keyboard', 'clavier']):
-            category = 'keyboards'
-        elif any(x in lower for x in ['mouse', 'souris']):
-            category = 'mice'
-        elif any(x in lower for x in ['headset', 'casque', 'headphone']):
-            category = 'headsets'
-        
-        # Simple brand detection
-        brand = None
-        brands = ['ASUS', 'MSI', 'Gigabyte', 'ASRock', 'Corsair', 'EVGA', 'AMD', 'Intel', 
-                  'NVIDIA', 'Samsung', 'Crucial', 'Kingston', 'WD', 'Seagate', 'Cooler Master',
-                  'NZXT', 'Be Quiet', 'Thermaltake', 'Fractal', 'Phanteks', 'Noctua',
-                  'Logitech', 'Razer', 'SteelSeries', 'HyperX', 'AOC', 'LG', 'Dell', 'HP']
-        for b in brands:
-            if b.lower() in lower:
-                brand = b
-                break
-        
-        key = f"{category}::{name.lower().replace(' ', '-')[:40]}"
-        groups[key].append({
-            'name': name,
-            'price': price,
-            'old_price': old_price,
-            'url': p.get('url', ''),
-            'image': p.get('image', ''),
-            'retailer_name': p.get('retailer_name', 'Ouedkniss'),
-            'brand': brand,
-            'category': category,
-        })
-    
-    products = []
-    for group_key, items in groups.items():
-        if not items:
-            continue
-        first = items[0]
-        prices = [p['price'] for p in items if p['price'] > 0]
-        
-        seen_urls = set()
-        listings = []
-        for p in items:
-            url = p.get('url', '')
-            if url in seen_urls or not url:
-                continue
-            seen_urls.add(url)
-            listings.append({
-                'source': p.get('retailer_name', 'Ouedkniss'),
-                'price': p['price'],
-                'old_price': p.get('old_price') or 0,
-                'condition': 'new',
-                'location': 'Algeria',
-                'url': url,
-                'imageUrl': p.get('image', '') or None,
-            })
-        
-        if not listings or not prices:
-            continue
-        
-        products.append({
-            'id': f"prd-{group_key.replace('::', '-').replace('/', '-')[:40]}-{datetime.now().strftime('%H%M')}",
-            'name': first['name'],
-            'canonicalName': first['name'],
-            'brand': first.get('brand'),
-            'category': first.get('category', 'pc_part') if first.get('category') != 'pc_part' else 'pc_part',
-            'specs': {},
-            'imageUrl': first.get('image', '') or None,
-            'bestPrice': min(prices) if prices else 0,
-            'worstPrice': max(prices) if prices else 0,
-            'averagePrice': round(sum(prices) / len(prices)) if prices else 0,
-            'listingCount': len(listings),
-            'storeCount': len(set(l['source'] for l in listings)),
-            'listings': sorted(listings, key=lambda x: x['price']),
-        })
-    
-    products.sort(key=lambda x: x['listingCount'], reverse=True)
-    return products
+    """Normalize whitespace before checking source against Ouedkniss retailer names."""
+    normalized = re.sub(r'\s+', ' ', source).strip().lower()
+    return normalized in OUEDKNISS_NAMES
 
 
 def main():
@@ -143,27 +37,33 @@ def main():
     clean_path = project_root / 'public' / 'clean-products.json'
     oued_path = project_root / 'scripts' / 'ouedkniss-raw.json'
     
-    print("[1/3] Loading existing clean-products.json...")
+    print("[1/4] Loading existing clean-products.json...")
     with open(clean_path, 'r', encoding='utf-8') as f:
         clean_data = json.load(f)
     
     existing_products = clean_data.get('products', [])
     print(f"  [i] Loaded {len(existing_products)} existing products")
     
-    # Remove old Ouedkniss products
+    # Remove old Ouedkniss products (keep non-Ouedkniss as-is — already processed)
     non_oued = [p for p in existing_products 
                 if not any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', []))]
     removed = len(existing_products) - len(non_oued)
     print(f"  [i] Removed {removed} old Ouedkniss products, kept {len(non_oued)} non-Ouedkniss")
     
-    print("\n[2/3] Loading fresh Ouedkniss data...")
+    print("\n[2/4] Loading fresh Ouedkniss data...")
     with open(oued_path, 'r', encoding='utf-8') as f:
         oued_data = json.load(f)
     oued_raw = oued_data.get('products', [])
     print(f"  [+] Loaded {len(oued_raw)} raw Ouedkniss products")
     
-    print("\n[3/3] Converting and merging Ouedkniss data...")
-    oued_frontend = convert_ouedkniss_to_frontend(oued_raw)
+    print("\n[3/4] Cleaning Ouedkniss data through categorizer pipeline...")
+    # clean_all handles: price parsing, category detection, brand detection,
+    # specs extraction, name cleaning, SKU deduplication
+    oued_cleaned = clean_all(oued_raw)
+    print(f"  [+] Cleaned to {len(oued_cleaned)} products")
+    
+    print("\n[4/4] Converting to frontend format and merging...")
+    oued_frontend = convert_to_frontend(oued_cleaned)
     print(f"  [+] Converted to {len(oued_frontend)} frontend products")
     
     merged = non_oued + oued_frontend
