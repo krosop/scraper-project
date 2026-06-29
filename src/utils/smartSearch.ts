@@ -657,21 +657,36 @@ export function smartSearch(
     return smartSearch(products, query, null);
   }
 
-  // Category intent: detect what category the user is looking for
+  // Category intent: detect what category the user is searching for
   const categoryIntent = detectCategoryIntent(rawQuery);
 
-  // Apply category priority boost — products in the intended category get a score bump
+  // Apply category priority boost + penalty for better category targeting
   if (categoryIntent.length > 0) {
-    const catPriority = (catSlug: string) => {
-      const idx = categoryIntent.indexOf(catSlug);
-      return idx === -1 ? 0 : (categoryIntent.length - idx) * 100;
-    };
+    const isComponentIntent = categoryIntent.some(c =>
+      c === 'graphics-cards' || c === 'processors' || c === 'memory' ||
+      c === 'storage' || c === 'monitors' || c === 'power-supplies' ||
+      c === 'cases' || c === 'cooling' || c === 'keyboard' || c === 'mouse' || c === 'headset'
+    );
     for (const r of results) {
-      r.score += catPriority(r.item.category_slug || '');
+      const catSlug = r.item.category_slug || '';
+      const idx = categoryIntent.indexOf(catSlug);
+      if (idx !== -1) {
+        // Strong boost for matching intended category (+300 for first, +200 for second, etc.)
+        r.score += (categoryIntent.length - idx) * 300;
+        r.matchReasons.push('cat-priority');
+      } else if (isComponentIntent && catSlug === 'pc-parts') {
+        // HEAVY penalty for laptops / generic pc-parts when searching for a specific component
+        r.score -= 200;
+        r.matchReasons.push('cat-mismatch');
+      } else if (isComponentIntent && catSlug !== '') {
+        // Smaller penalty for other non-matching categories
+        r.score -= 50;
+        r.matchReasons.push('cat-mismatch');
+      }
     }
   }
 
-  // Sort by score (primary), then review count (secondary), then price (tertiary)
+  // Secondary sort: by score (primary), then review count (secondary), then price (tertiary)
   return results.sort((a, b) => {
     const scoreDiff = b.score - a.score;
     if (scoreDiff !== 0) return scoreDiff;
@@ -686,16 +701,16 @@ function detectCategoryIntent(query: string): string[] {
   const words = tokenize(query);
   const intents: string[] = [];
 
-  const gpuTerms = ['rtx', 'gtx', 'radeon', 'geforce', 'gpu', 'vga', 'graphics', 'carte', 'graphique', 'nvidia', 'amd'];
+  const gpuTerms = ['rtx', 'gtx', 'radeon', 'geforce', 'gpu', 'vga', 'graphics', 'carte', 'graphique', 'nvidia', 'amd', '4060', '4070', '4080', '4090', '3060', '3070', '3080', '3090', '5060', '5070', '5080', '5090', '3050', '5050', '2060', '2070', '2080', '1660', '1650', '1080', '1070', '1060', '1050', '6600', '6700', '6800', '6900', '7600', '7700', '7800', '7900', '9070', 'rx', 'gt', 'quadro', 'tesla', 'arc'];
   if (words.some(w => gpuTerms.includes(w))) intents.push('graphics-cards');
 
-  const cpuTerms = ['cpu', 'processor', 'processeur', 'procesador', 'i3', 'i5', 'i7', 'i9', 'ryzen', 'core', 'threadripper', 'athlon', 'pentium', 'celeron'];
+  const cpuTerms = ['cpu', 'processor', 'processeur', 'procesador', 'i3', 'i5', 'i7', 'i9', 'ultra', 'ultra 5', 'ultra 7', 'ultra 9', 'ryzen', 'core', 'threadripper', 'athlon', 'pentium', 'celeron', '10100', '10400', '10600', '10700', '10900', '11400', '11600', '11700', '11900', '12100', '12400', '12600', '12700', '12900', '13100', '13400', '13600', '13700', '13900', '14400', '14600', '14700', '14900', '5300', '5500', '5600', '5700', '5800', '5900', '5950', '7600', '7700', '7800', '7900', '7950', '9600', '9700', '9800', '9900', '9950'];
   if (words.some(w => cpuTerms.includes(w))) intents.push('processors');
 
-  const ramTerms = ['ram', 'memory', 'memoire', 'memoria', 'ddr', 'ddr3', 'ddr4', 'ddr5', 'dominator', 'vengeance', 'fury'];
+  const ramTerms = ['ram', 'memory', 'memoire', 'memoria', 'ddr', 'ddr3', 'ddr4', 'ddr5', 'lpddr', 'ecc', 'dominator', 'vengeance', 'fury', 'beast', 'ripjaws', 'trident', 'flare', 'renegade', 'predator', 'toughram', 'aegis', 'value', 'select', 'hyperx', 'xpg', 'adata', 'corsair', 'gskill', 'g.skill', 'kingston', 'crucial', 'teamgroup', 'tforce', 'lexar', 'apacer', 'ocpc', '16gb', '32gb', '64gb', '8gb', '4gb', '128gb', '3200', '3600', '4800', '5200', '5600', '6000', '6400', '7200', 'mhz', 'mt/s'];
   if (words.some(w => ramTerms.includes(w))) intents.push('memory');
 
-  const storageTerms = ['ssd', 'hdd', 'nvme', 'm2', 'm.2', 'solid', 'hard', 'disk', 'disque', 'sata', 'sn850', 'sn770', '980', '990'];
+  const storageTerms = ['ssd', 'hdd', 'nvme', 'm2', 'm.2', 'solid', 'hard', 'disk', 'disque', 'sata', 'sn850', 'sn770', 'sn570', 'sn500', '980', '990', '970', '870', '860', '850', '840', 'pm', 'sm', 'mx', 'bx', 'mp', 'sp', 'cs', 'nm', 'wd', 'western', 'seagate', 'samsung', 'crucial', 'kingston', 'teamgroup', 'sabrent', '1tb', '2tb', '4tb', '500gb', '250gb', '128gb', 'gen4', 'gen5', 'pcie', '2280', '2242'];
   if (words.some(w => storageTerms.includes(w))) intents.push('storage');
 
   const monitorTerms = ['monitor', 'ecran', 'display', 'screen', '144hz', '240hz', '165hz', 'ips', 'oled', 'va', 'tn', 'ultrawide', 'curved', '27', '32', '24'];
