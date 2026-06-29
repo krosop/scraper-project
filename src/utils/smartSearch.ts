@@ -671,16 +671,16 @@ export function smartSearch(
       const catSlug = r.item.category_slug || '';
       const idx = categoryIntent.indexOf(catSlug);
       if (idx !== -1) {
-        // Strong boost for matching intended category (+300 for first, +200 for second, etc.)
-        r.score += (categoryIntent.length - idx) * 300;
+        // Very strong boost for matching intended category (+500 for first, +400 for second, etc.)
+        r.score += (categoryIntent.length - idx) * 500;
         r.matchReasons.push('cat-priority');
       } else if (isComponentIntent && catSlug === 'pc-parts') {
-        // HEAVY penalty for laptops / generic pc-parts when searching for a specific component
-        r.score -= 200;
+        // SEVERE penalty for laptops / generic pc-parts when searching for a specific component
+        r.score -= 400;
         r.matchReasons.push('cat-mismatch');
       } else if (isComponentIntent && catSlug !== '') {
-        // Smaller penalty for other non-matching categories
-        r.score -= 50;
+        // Moderate penalty for other non-matching categories
+        r.score -= 100;
         r.matchReasons.push('cat-mismatch');
       }
     }

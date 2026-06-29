@@ -18,7 +18,26 @@ function isLaptop(name) {
   // Normalize accents for better matching (e.g., Précision -> precision)
   const normalized = name.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove accents
-  return laptopIndicators.test(normalized) || laptopModel.test(normalized) || laptopKeywords.test(normalized);
+  
+  // Explicit laptop keywords
+  if (laptopIndicators.test(normalized) || laptopModel.test(normalized) || laptopKeywords.test(normalized)) {
+    return true;
+  }
+  
+  // Laptop pattern detection: name contains multiple laptop components (CPU + GPU + RAM + storage + screen)
+  // This catches products like "AORUS Master 16 / ultra 9-275hx / 32gb / 1tb SSD / RTX 5080 / 16 2.5k OLED"
+  const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
+  const hasGPU = /\b(?:rtx|gtx|rx|geforce|radeon)\b/.test(normalized);
+  // RAM must be system RAM (DDR + GB) not just GPU VRAM (standalone GB)
+  const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized);
+  const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b\d+\s*(?:tb|to)\b/.test(normalized);
+  const hasScreen = /\b(?:\d+\s*["\']|\d+\.\d+\s*["\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
+  
+  // If name has 3+ of: CPU, GPU, RAM, storage, screen → it's a laptop or desktop PC
+  const laptopSignals = [hasCPU, hasGPU, hasRAM, hasStorage, hasScreen].filter(Boolean).length;
+  if (laptopSignals >= 3) return true;
+  
+  return false;
 }
 
 // Fallback keyword-based detection (preserved from old version)
