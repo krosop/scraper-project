@@ -8,7 +8,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 function detectCategoryFromName(name) {
   if (!name) return null;
   const lower = name.toLowerCase();
-  // GPU — highest priority
+  
+  // LAPTOP check first — if title has laptop keywords + RTX/GPU, it's a laptop
+  const laptopKeywords = /\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b|\bpavilion\b|\bomen\b|\blegion\b|\bzephyrus\b|\brog\s+strix\b|\bthinkpad\b|\bideapad\b|\bvictus\b|\bnitro\b|\bpredator\b|\balienware\b|\bxps\b|\blatitude\b|\binspiron\b|\bsurface\b|\bmacbook\b|\bchromebook\b|\byoga\b|\bswift\b|\baspire\b|\bstealth\b|\brazer\b|\bblade\b|\bdefender\b|\berazer\b/;
+  if (laptopKeywords.test(lower)) return 'pc-parts';
+  
+  // GPU — standalone graphics card
   if (/\brtx\s*\d{3,4}\b|\bgtx\s*\d{3,4}\b|\brx\s*\d{4}\b|\bgeforce\s+rtx\b|\bgeforce\s+gtx\b|\bradeon\s+rx\b/.test(lower)) return 'graphics-cards';
   // CPU
   if (/\bryzen\s*[3579]\b|\bcore\s+i[3579]\b|\bathlon\b|\bpentium\b|\bceleron\b|\bthreadripper\b|\bxeon\b/.test(lower)) return 'processors';
