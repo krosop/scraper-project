@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { TrendingDown, Store, RotateCcw, ChevronDown, Tag } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import { useTranslation } from '@/i18n/useTranslation';
-import { preloadProductImages } from '@/hooks/useProductImage';
 import NavigationBar from '@/components/NavigationBar';
 import ProductCard from '@/components/ProductCard';
 import { CardSkeleton } from '@/components/LoadingSkeleton';
@@ -131,14 +130,16 @@ export default function DealsPage() {
     return uniqueDeals.reduce((sum, d) => sum + d.savings, 0);
   }, [uniqueDeals]);
 
-  // Preload images for visible products
+  // Preload actual image URLs for visible cards (not names - the Google API is gone)
   useEffect(() => {
     if (loaded && paginated.length > 0) {
-      const names = paginated
-        .filter(p => !p.product_image || p.product_image.length < 10)
-        .map(p => p.product_name);
-      if (names.length > 0) {
-        preloadProductImages(names);
+      const urls = paginated
+        .filter(p => p.product_image && p.product_image.length > 10)
+        .slice(0, 12) // Preload first 12 images
+        .map(p => p.product_image);
+      for (const url of urls) {
+        const img = new Image();
+        img.src = url!; // Non-null: already filtered above
       }
     }
   }, [loaded, paginated]);
