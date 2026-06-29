@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TrendingUp, Tag, RotateCcw, Flame } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import { useTranslation } from '@/i18n/useTranslation';
+import { preloadProductImages } from '@/hooks/useProductImage';
 import NavigationBar from '@/components/NavigationBar';
 import ProductCard from '@/components/ProductCard';
 import { CardSkeleton } from '@/components/LoadingSkeleton';
@@ -74,6 +75,18 @@ export default function TrendingPage() {
   }, [uniqueTrending, activeCategory, sortBy, allProducts]);
 
   const paginated = filtered.slice(0, 15);
+
+  // Preload images for visible products
+  useEffect(() => {
+    if (loaded && paginated.length > 0) {
+      const names = paginated
+        .filter(p => !p.product_image || p.product_image.length < 10)
+        .map(p => p.product_name);
+      if (names.length > 0) {
+        preloadProductImages(names);
+      }
+    }
+  }, [loaded, paginated]);
 
   const sortLabels: Record<TrendingSort, string> = {
     'reviews-desc': t.search_sort_relevance,
@@ -218,6 +231,7 @@ export default function TrendingPage() {
                   product={product}
                   index={i}
                   animate={false}
+                  priority={i < 6}
                 />
               ))}
             </motion.div>

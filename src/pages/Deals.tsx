@@ -1,9 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TrendingDown, Store, RotateCcw, ChevronDown, Zap, Tag } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import { useTranslation } from '@/i18n/useTranslation';
+import { preloadProductImages } from '@/hooks/useProductImage';
 import NavigationBar from '@/components/NavigationBar';
 import ProductCard from '@/components/ProductCard';
 import { CardSkeleton } from '@/components/LoadingSkeleton';
@@ -120,6 +121,18 @@ export default function DealsPage() {
   const totalSavings = useMemo(() => {
     return uniqueDeals.reduce((sum, d) => sum + d.savings, 0);
   }, [uniqueDeals]);
+
+  // Preload images for visible products
+  useEffect(() => {
+    if (loaded && paginated.length > 0) {
+      const names = paginated
+        .filter(p => !p.product_image || p.product_image.length < 10)
+        .map(p => p.product_name);
+      if (names.length > 0) {
+        preloadProductImages(names);
+      }
+    }
+  }, [loaded, paginated]);
 
   const sortLabels: Record<DealSort, string> = {
     'savings-desc': t.search_sort_savings,
@@ -306,6 +319,7 @@ export default function DealsPage() {
                     product={deal}
                     index={i}
                     animate={false}
+                    priority={i < 6}
                   />
                 ))}
               </motion.div>

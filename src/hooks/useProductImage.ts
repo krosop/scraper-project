@@ -57,6 +57,24 @@ export async function fetchProductImage(productName: string): Promise<string | n
   return request;
 }
 
+/** Preload images in batches — called from page components */
+export async function preloadProductImages(productNames: string[]): Promise<void> {
+  // Filter out already cached names
+  const uncached = productNames.filter(name => {
+    const key = name.trim().toLowerCase();
+    return !imageCache.has(key) && !pendingRequests.has(key);
+  });
+
+  if (uncached.length === 0) return;
+
+  // Fire all requests in parallel (up to 20 at a time to avoid overwhelming the API)
+  const BATCH_SIZE = 20;
+  for (let i = 0; i < uncached.length; i += BATCH_SIZE) {
+    const batch = uncached.slice(i, i + BATCH_SIZE);
+    await Promise.all(batch.map(name => fetchProductImage(name)));
+  }
+}
+
 export function useProductImage(productName: string, hasImage: boolean) {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -66,6 +84,14 @@ export function useProductImage(productName: string, hasImage: boolean) {
     if (hasImage || !productName || fetched.current) return;
     
     fetched.current = true;
+    
+    // Check if already cached (from preload)
+    const cacheKey = productName.trim().toLowerCase();
+    if (imageCache.has(cacheKey)) {
+      setImageUrl(imageCache.get(cacheKey)!);
+      return;
+    }
+    
     setLoading(true);
     
     fetchProductImage(productName)

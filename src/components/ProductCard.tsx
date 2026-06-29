@@ -12,6 +12,7 @@ interface ProductCardProps {
   index?: number;
   query?: string;
   animate?: boolean;
+  priority?: boolean; // Priority image loading for above-fold cards
 }
 
 function HighlightedTitle({ segments }: { segments: HighlightSegment[] }) {
@@ -41,7 +42,7 @@ function HighlightedTitle({ segments }: { segments: HighlightSegment[] }) {
   );
 }
 
-export default function ProductCard({ product, index = 0, query, animate = true }: ProductCardProps) {
+export default function ProductCard({ product, index = 0, query, animate = true, priority = false }: ProductCardProps) {
   const { t } = useTranslation();
   const savingsPercent = product.original_price > 0
     ? Math.round((product.savings / product.original_price) * 100)
@@ -74,6 +75,7 @@ export default function ProductCard({ product, index = 0, query, animate = true 
             storeColor={product.store_color}
             productName={product.product_name}
             className="w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
+            priority={priority}
           />
         </div>
 
