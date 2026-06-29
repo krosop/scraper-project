@@ -15,8 +15,8 @@ type TrendingSort = 'reviews-desc' | 'price-asc' | 'price-desc' | 'savings-desc'
 export default function TrendingPage() {
   const { t, isRTL } = useTranslation();
   const { loaded, loading, allProducts } = useData();
-  // Remove page state, no pagination needed for 15 items
-  const [sortBy, setSortBy] = useState<TrendingSort>('reviews-desc');
+  // Default sort: random shuffle for fresh content each visit, include all products + Ouedkniss
+  const [sortBy, setSortBy] = useState<TrendingSort>('most-listed');
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
   // Deduplicate by product_id — keep the one with highest reviews

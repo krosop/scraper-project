@@ -146,7 +146,13 @@ CATEGORY_PATTERNS = {
     ],
     'laptop': [
         (r'\bpc\s+portable\b|\blaptop\b|\bnotebook\b|\bordinateur\s+portable\b', 10),
-        (r'\b(asus|msi|dell|hp|lenovo|acer|apple|macbook)\s+(?:rog|predator|thinkpad|pavilion|omen|nitro|ideapad|victus)\b', 6),
+        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook|microsoft|surface)\b.*\b(?:ryzen|core\s+i|rtx|gtx|intel\s+core)\b', 12),
+        (r'\b(?:ryzen|core\s+i|rtx|gtx)\b.*\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b', 15),
+        (r'\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b.*\b(?:ryzen|core\s+i|rtx|gtx)\b', 15),
+        (r'\b(?:15\.6|14|13\.3|17\.3|16)\s*["\']?\s*\b(?:laptop|pc|notebook|portable)\b', 10),
+        (r'\b(?:macbook|surface|thinkpad|ideapad|pavilion|omen|victus|nitro|predator|rog|zephyrus|flow|vivobook|zenbook|envy|spectre|xps|alienware|latitude|inspiron|chromebook|yoga|swift|aspire)\b', 8),
+        (r'\b(?:i[3579]|ryzen\s*[3579])\b.*\b(?:gb|go)\b.*\b(?:ssd|hdd|nvme)\b', 12),
+        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook)\s+(?:rog|predator|thinkpad|pavilion|omen|nitro|ideapad|victus)\b', 6),
         (r'\b\d+["\']?\s*laptop\b', 5),
     ],
     'desktop': [
@@ -475,6 +481,11 @@ def detect_category(name: str, url: str = '') -> str:
         if hint in lower_url:
             scores[cat] = scores.get(cat, 0) + 5
 
+    # Cross-pattern: laptop with specs boost
+    if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name or 'ryzen' in lower_name or 'core i' in lower_name):
+        if any(w in lower_name for w in ['ssd', 'hdd', 'nvme', 'ram', 'ddr']):
+            scores['laptop'] = scores.get('laptop', 0) + 20
+
     if scores:
         best = max(scores.items(), key=lambda x: x[1])
         if best[1] >= 3:
@@ -640,7 +651,12 @@ def clean_product(raw: dict) -> Optional[dict]:
     if not name or len(name) < 3:
         return None
 
-    category = detect_category(name, url)
+    # Use scraper's category if present and valid, otherwise detect
+    raw_category = raw.get('category', '')
+    if raw_category and raw_category in ('cpu', 'gpu', 'ram', 'motherboard', 'storage', 'monitor', 'psu', 'case', 'cooling', 'keyboard', 'mouse', 'headset', 'laptop', 'desktop'):
+        category = raw_category
+    else:
+        category = detect_category(name, url)
     brand = detect_brand(name)
     specs = extract_specs(name, category)
     condition = detect_condition(name)

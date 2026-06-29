@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Monitor, Cpu, HardDrive, MemoryStick, Zap, Box, Fan, Gamepad2, Headphones, Keyboard, Mouse, Laptop, Disc, ImageOff, Loader2 } from 'lucide-react';
-import { useProductImage } from '@/hooks/useProductImage';
+import { Monitor, Cpu, HardDrive, MemoryStick, Zap, Box, Fan, Gamepad2, Headphones, Keyboard, Mouse, Laptop, Disc } from 'lucide-react';
 
 interface CategoryImageProps {
   category: string;
@@ -69,12 +68,7 @@ export default function CategoryImage({ category, storeName, storeColor, product
   const [loaded, setLoaded] = useState(false);
 
   const hasSrc = src && src.length > 10 && !src.includes('product-pc-case');
-  const needsFallback = !hasSrc || error;
-  const { imageUrl: fetchedImage, loading: fetchingImage } = useProductImage(productName, !needsFallback);
-
-  // Use fetched image if available, otherwise original src
-  const effectiveSrc = needsFallback && fetchedImage ? fetchedImage : src;
-  const isPlaceholder = !effectiveSrc || (needsFallback && !fetchedImage && !fetchingImage);
+  const isPlaceholder = !hasSrc || error;
 
   const catKey = CATEGORY_ICONS[category] ? category : 'default';
   const Icon = CATEGORY_ICONS[catKey] || CATEGORY_ICONS.default;
@@ -107,11 +101,7 @@ export default function CategoryImage({ category, storeName, storeColor, product
             className="rounded-xl p-2.5 sm:p-3 mb-2 sm:mb-3 border border-[#1a2332]"
             style={{ backgroundColor: `${catColor}10` }}
           >
-            {error ? (
-              <ImageOff className={`${iconSize} opacity-30`} style={{ color: catColor }} />
-            ) : (
-              <Icon className={`${iconSize} opacity-30`} style={{ color: catColor }} />
-            )}
+            <Icon className={`${iconSize} opacity-30`} style={{ color: catColor }} />
           </div>
           
           <span className={`${textSize} font-semibold uppercase tracking-[0.08em] opacity-40`} style={{ color: catColor }}>
@@ -138,7 +128,7 @@ export default function CategoryImage({ category, storeName, storeColor, product
   return (
     <div className={`${className} bg-[#0d131c] relative overflow-hidden`}>
       <img
-        src={effectiveSrc}
+        src={src}
         alt={productName}
         referrerPolicy="no-referrer"
         className={`w-full h-full object-contain p-2 transition-opacity duration-500 ease-out ${loaded ? 'opacity-100' : 'opacity-0'}`}
@@ -150,16 +140,9 @@ export default function CategoryImage({ category, storeName, storeColor, product
       />
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center">
-          {fetchingImage ? (
-            <div className="flex flex-col items-center gap-2">
-              <Loader2 className="w-6 h-6 text-[#00d4aa] animate-spin" />
-              <span className="text-[10px] text-[#4a5568]">Loading image...</span>
-            </div>
-          ) : (
-            <div className="rounded-xl p-3 border border-[#1a2332]" style={{ backgroundColor: `${catColor}08` }}>
-              <Icon className="w-10 h-10 sm:w-14 sm:h-14 opacity-20 animate-pulse" style={{ color: catColor }} />
-            </div>
-          )}
+          <div className="rounded-xl p-3 border border-[#1a2332]" style={{ backgroundColor: `${catColor}08` }}>
+            <Icon className="w-10 h-10 sm:w-14 sm:h-14 opacity-20 animate-pulse" style={{ color: catColor }} />
+          </div>
         </div>
       )}
       {loaded && (

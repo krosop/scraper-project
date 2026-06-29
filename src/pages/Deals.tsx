@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { TrendingDown, Store, RotateCcw, ChevronDown, Zap, Tag } from 'lucide-react';
+import { TrendingDown, Store, RotateCcw, ChevronDown, Tag } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import { useTranslation } from '@/i18n/useTranslation';
 import { preloadProductImages } from '@/hooks/useProductImage';
@@ -50,17 +50,26 @@ export default function DealsPage() {
     return Array.from(byProduct.values());
   }, [allProducts]);
 
-  // Filter for products with actual deals first, fallback to most-compared
-  const hasRealDeals = dealsProducts.some(d => d.hasSavings);
-  
+  // Filter for products with actual savings (top 20 deals), include Ouedkniss
   const uniqueDeals = useMemo(() => {
-    if (hasRealDeals) {
-      // Only show products with actual savings AND 6+ listings
-      return dealsProducts.filter(d => d.hasSavings && d.listings >= 6).map(d => d.product);
+    // Get products with actual savings, sorted by savings desc
+    const withSavings = dealsProducts
+      .filter(d => d.hasSavings)
+      .sort((a, b) => b.bestSavings - a.bestSavings)
+      .slice(0, 20)
+      .map(d => d.product);
+    
+    // If no real savings, fall back to most compared (6+ listings)
+    if (withSavings.length === 0) {
+      return dealsProducts
+        .filter(d => d.listings >= 6)
+        .sort((a, b) => b.listings - a.listings)
+        .slice(0, 20)
+        .map(d => d.product);
     }
-    // Fallback: show products with 6+ listings (most compared = best deals potential)
-    return dealsProducts.filter(d => d.listings >= 6).map(d => d.product);
-  }, [dealsProducts, hasRealDeals]);
+    
+    return withSavings;
+  }, [dealsProducts]);
 
   // Available stores and categories
   const stores = useMemo(() => {
@@ -170,14 +179,12 @@ export default function DealsPage() {
                 <div className="flex items-center gap-2 mb-2">
                   <TrendingDown className="w-5 h-5 text-[#00d4aa]" />
                   <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#00d4aa]">
-                    {hasRealDeals ? t.deals_title : 'Most Compared'}
+                    {t.deals_title}
                   </span>
                 </div>
                 <h1 className="text-2xl sm:text-3xl font-bold text-white">{t.page_deals_title}</h1>
                 <p className="mt-2 text-[13px] sm:text-[15px] text-[#5a6a7e] max-w-[600px]">
-                  {hasRealDeals 
-                    ? t.page_deals_desc 
-                    : 'Products with the most price comparisons across Algerian stores. Real deals coming after next data refresh.'}
+                  {t.page_deals_desc}
                 </p>
               </motion.div>
 
@@ -190,32 +197,19 @@ export default function DealsPage() {
                 <div className="bg-[#111821] border border-[#1a2332] rounded-xl px-4 py-3 text-center">
                   <p className="text-xl font-bold text-[#00d4aa]">{uniqueDeals.length}</p>
                   <p className="text-[10px] text-[#4a5568] uppercase tracking-wider font-medium">
-                    {hasRealDeals ? 'Deals' : 'Compared'}
+                    Deals
                   </p>
                 </div>
-                {hasRealDeals && (
-                  <div className="bg-[#111821] border border-[#1a2332] rounded-xl px-4 py-3 text-center">
+                <div className="bg-[#111821] border border-[#1a2332] rounded-xl px-4 py-3 text-center">
                     <p className="text-xl font-bold text-[#00d4aa]">
                       {(totalSavings / 1000).toFixed(0)}K
                     </p>
                     <p className="text-[10px] text-[#4a5568] uppercase tracking-wider font-medium">DA Saved</p>
                   </div>
-                )}
               </motion.div>
             </div>
           </div>
         </section>
-
-        {!hasRealDeals && (
-          <div className="page-padding py-3">
-            <div className="bg-[#00d4aa]/5 border border-[#00d4aa]/15 rounded-xl px-4 py-3 flex items-center gap-3">
-              <Zap className="w-4 h-4 text-[#00d4aa]/60 shrink-0" />
-              <p className="text-[12px] text-[#7a8a9e]">
-                <span className="text-[#00d4aa] font-medium">Coming soon:</span> Real discount detection is active. After the next daily data refresh, this page will show actual price drops from Algerian stores.
-              </p>
-            </div>
-          </div>
-        )}
 
         {/* Filters & Results */}
         <section className="page-padding py-6 sm:py-8">

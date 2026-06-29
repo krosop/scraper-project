@@ -102,26 +102,23 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         }))
       );
 
-      // Products sorted by savings (top deals) — include some Ouedkniss items
-      const ouedknissProducts = allProducts.filter(p => p.store_name === 'Ouedkniss');
-      const otherProducts = allProducts.filter(p => p.store_name !== 'Ouedkniss');
+      // Products with actual savings (real deals) — pick top 20 across all stores including Ouedkniss
+      const allDealsWithSavings = [...allProducts].filter(p => p.savings > 0).sort((a, b) => b.savings - a.savings);
       
-      const deals = [...otherProducts].sort((a, b) => b.savings - a.savings).slice(0, 8);
-      // Mix in 2 Ouedkniss deals
-      const ouedDeals = [...ouedknissProducts].sort((a, b) => b.savings - a.savings).slice(0, 2);
-      const mixedDeals = [...deals, ...ouedDeals].sort((a, b) => b.savings - a.savings);
+      // Randomly shuffle remaining products with savings for Live Deals section (rotate each reload)
+      const shuffledDeals = [...allDealsWithSavings].sort(() => Math.random() - 0.5);
+      const randomLiveDeals = shuffledDeals.slice(0, 10);
       
-      // Products sorted by review count (trending) — include some Ouedkniss items
-      const trendOthers = [...otherProducts].sort((a, b) => b.product_review_count - a.product_review_count).slice(0, 8);
-      const trendOued = [...ouedknissProducts].sort((a, b) => b.product_review_count - a.product_review_count).slice(0, 2);
-      const mixedTrend = [...trendOthers, ...trendOued].sort((a, b) => b.product_review_count - a.product_review_count);
+      // Randomly shuffle all products for Most Compared (trending) — rotate each reload
+      const shuffledAll = [...allProducts].sort(() => Math.random() - 0.5);
+      const randomTrending = shuffledAll.slice(0, 15);
 
       setCategories(cats);
       setStores(storeEntries);
       setAllProducts(allProducts);
       setSearchIndex(buildSearchIndex(allProducts));
-      setLiveDeals(mixedDeals);
-      setTrending(mixedTrend);
+      setLiveDeals(randomLiveDeals);
+      setTrending(randomTrending);
       setProductCount(data.products?.length || 0);
       setStoreCount(storeEntries.length);
       setLoaded(true);
