@@ -87,6 +87,7 @@ def main():
     # Import and run the new scraper
     print("\n[1/3] Running new scraper V2...")
     from run import scrape_site, SCRAPER_MAP
+    from sites.ouedkniss import OUEDKNISS_STORES
     
     raw_products = []
     sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'hardsoft', 'digitec', 'matos', 'ouedkniss']
@@ -94,13 +95,69 @@ def main():
     for site in sites:
         try:
             print(f"  Scraping {site}...")
-            products = scrape_site(site)
+            # Pass Ouedkniss stores for store-specific scraping
+            if site == 'ouedkniss':
+                products = scrape_site(site, stores=OUEDKNISS_STORES)
+            else:
+                products = scrape_site(site)
             raw_products.extend(products)
             print(f"  [+] {site}: {len(products)} products")
         except Exception as e:
             print(f"  [!] {site} failed: {e}")
     
     print(f"\n[+] Total raw: {len(raw_products)} products")
+    
+    # If Ouedkniss returned 0 products, try again with individual stores
+    ouedkniss_count = sum(1 for p in raw_products if p.get('site') == 'ouedkniss.com')
+    if ouedkniss_count == 0:
+        print("\n[!] Ouedkniss returned 0 products. Retrying individual stores...")
+        from sites.ouedkniss import OuedknissScraper
+        scraper = OuedknissScraper()
+        for store_id, store_name in OUEDKNISS_STORES.items():
+            try:
+                print(f"  Retrying {store_name} (store {store_id})...")
+                products = scraper._scrape_category_or_store('informatique', store_name, store_id=store_id)
+                raw_products.extend(products)
+                print(f"  [+] {store_name}: {len(products)} products")
+            except Exception as e:
+                print(f"  [!] {store_name} failed: {e}")
+        print(f"\n[+] After retry — total raw: {len(raw_products)} products")
+        ouedkniss_count = sum(1 for p in raw_products if p.get('site') == 'ouedkniss.com')
+    
+    # Fallback: preserve Ouedkniss data from previous scrape if current scrape fails completely
+    if ouedkniss_count == 0:
+        print("\n[!] Ouedkniss still 0. Loading previous data as fallback...")
+        project_root = SCRAPER_DIR.parent.parent
+        fallback_paths = [
+            project_root / 'public' / 'clean-products.json',
+        ]
+        for fp in fallback_paths:
+            if fp.exists():
+                try:
+                    with open(fp, 'r', encoding='utf-8') as f:
+                        old_data = json.load(f)
+                    old_oued = [p for p in old_data.get('products', []) 
+                                if any(l.get('source', '').lower() in ['ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions', 'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics', 'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz'] 
+                                       for l in p.get('listings', []))]
+                    if old_oued:
+                        # Convert old format back to raw format for re-cleaning
+                        for p in old_oued:
+                            for l in p.get('listings', []):
+                                if l.get('source', '').lower() in ['ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions', 'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics', 'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz']:
+                                    raw_products.append({
+                                        'name': p.get('name', ''),
+                                        'price': l.get('price', 0),
+                                        'old_price': l.get('old_price', 0),
+                                        'url': l.get('url', ''),
+                                        'image': l.get('imageUrl', ''),
+                                        'site': 'ouedkniss.com',
+                                        'retailer_name': l.get('source', 'Ouedkniss'),
+                                        'scraped_at': datetime.utcnow().isoformat(),
+                                    })
+                        print(f"  [+] Restored {len(old_oued)} old Ouedkniss products from {fp}")
+                        break
+                except Exception as e:
+                    print(f"  [!] Failed to load fallback: {e}")
     
     # Clean
     print("\n[2/3] Cleaning...")

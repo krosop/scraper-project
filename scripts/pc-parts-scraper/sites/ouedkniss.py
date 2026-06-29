@@ -102,8 +102,8 @@ class OuedknissScraper:
             'Referer': 'https://www.ouedkniss.com/',
         })
 
-    def _fetch_page(self, category_slug: str, page: int = 1, store_id: str = None) -> dict:
-        """Fetch a page of announcements via GraphQL."""
+    def _fetch_page(self, category_slug: str, page: int = 1, store_id: str = None, max_retries: int = 3) -> dict:
+        """Fetch a page of announcements via GraphQL with retry."""
         import time, random
         time.sleep(random.uniform(0.8, self.delay))
 
@@ -139,9 +139,25 @@ class OuedknissScraper:
             'query': SEARCH_QUERY,
         }
 
-        resp = self.session.post(GRAPHQL_URL, json=payload, timeout=20)
-        resp.raise_for_status()
-        return resp.json()
+        last_error = None
+        for attempt in range(max_retries):
+            try:
+                resp = self.session.post(GRAPHQL_URL, json=payload, timeout=20)
+                resp.raise_for_status()
+                data = resp.json()
+                # Verify response structure
+                if 'data' not in data or data.get('data') is None:
+                    if 'errors' in data:
+                        raise Exception(f"GraphQL errors: {data['errors']}")
+                    raise Exception("Invalid response: missing data field")
+                return data
+            except Exception as e:
+                last_error = e
+                wait = (2 ** attempt) + random.uniform(0, 1)
+                print(f"    [!] Attempt {attempt + 1}/{max_retries} failed: {e}. Retrying in {wait:.1f}s...")
+                time.sleep(wait)
+        
+        raise Exception(f"All {max_retries} retries failed: {last_error}")
 
     def _parse_announcements(self, data: dict) -> List[Dict]:
         """Parse GraphQL response into product dicts."""
@@ -248,12 +264,12 @@ class OuedknissScraper:
                         all_products.extend(products)
                         print(f"    Page {page}: {len(products)} products")
                     except Exception as e:
-                        print(f"    Pagination stopped: {e}")
+                        print(f"    Pagination stopped at page {page}: {e}")
                         break
         except Exception as e:
             print(f"    [!] Failed: {e}")
 
-        print(f"[+] {label}: {len(all_products)} total (API reported {total if 'total' in dir() else 'N/A'})")
+        print(f"[+] {label}: {len(all_products)} total (API reported {total})")
         return all_products
 
     def scrape_all(self, categories: list = None, stores: dict = None) -> List[Dict]:
