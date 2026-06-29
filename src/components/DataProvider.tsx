@@ -102,8 +102,11 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         }))
       );
 
-      // Seeded random for daily rotation — same day = same shuffle, different day = different shuffle
-      const todaySeed = new Date().toISOString().slice(0, 10); // '2026-06-29'
+      // Seeded random for 2-hour rotation — same 2-hour block = same shuffle, different block = different shuffle
+      const now = new Date();
+      const dateStr = now.toISOString().slice(0, 10); // '2026-06-29'
+      const hourBlock = Math.floor(now.getHours() / 2) * 2;
+      const twoHourSeed = `${dateStr}-${String(hourBlock).padStart(2, '0')}`; // '2026-06-29-00', '2026-06-29-02', ...
       function seededRandom(seed: string) {
         let h = 0;
         for (let i = 0; i < seed.length; i++) h = (h << 5) - h + seed.charCodeAt(i);
@@ -114,14 +117,14 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         };
       }
 
-      // Products with actual savings (real deals) — pick top 20, then shuffle with daily seed
+      // Products with actual savings (real deals) — pick top 20, then shuffle with 2-hour seed
       const allDealsWithSavings = [...allProducts].filter(p => p.savings > 0).sort((a, b) => b.savings - a.savings);
-      const dealRng = seededRandom(todaySeed + '-deals');
+      const dealRng = seededRandom(twoHourSeed + '-deals');
       const shuffledDeals = [...allDealsWithSavings].sort(() => dealRng() - 0.5);
       const randomLiveDeals = shuffledDeals.slice(0, 10);
 
-      // Most Compared (trending) — shuffle all products with daily seed
-      const trendRng = seededRandom(todaySeed + '-trending');
+      // Most Compared (trending) — shuffle all products with 2-hour seed
+      const trendRng = seededRandom(twoHourSeed + '-trending');
       const shuffledAll = [...allProducts].sort(() => trendRng() - 0.5);
       const randomTrending = shuffledAll.slice(0, 15);
 
