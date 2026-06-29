@@ -102,15 +102,27 @@ export default function DataProvider({ children }: { children: React.ReactNode }
         }))
       );
 
-      // Products with actual savings (real deals) — pick top 20 across all stores including Ouedkniss
+      // Seeded random for daily rotation — same day = same shuffle, different day = different shuffle
+      const todaySeed = new Date().toISOString().slice(0, 10); // '2026-06-29'
+      function seededRandom(seed: string) {
+        let h = 0;
+        for (let i = 0; i < seed.length; i++) h = (h << 5) - h + seed.charCodeAt(i);
+        const s = (h & 0x7fffffff) / 0x7fffffff;
+        return () => {
+          h = (h * 16807 + 0) & 0x7fffffff;
+          return (h / 0x7fffffff + s) % 1;
+        };
+      }
+
+      // Products with actual savings (real deals) — pick top 20, then shuffle with daily seed
       const allDealsWithSavings = [...allProducts].filter(p => p.savings > 0).sort((a, b) => b.savings - a.savings);
-      
-      // Randomly shuffle remaining products with savings for Live Deals section (rotate each reload)
-      const shuffledDeals = [...allDealsWithSavings].sort(() => Math.random() - 0.5);
+      const dealRng = seededRandom(todaySeed + '-deals');
+      const shuffledDeals = [...allDealsWithSavings].sort(() => dealRng() - 0.5);
       const randomLiveDeals = shuffledDeals.slice(0, 10);
-      
-      // Randomly shuffle all products for Most Compared (trending) — rotate each reload
-      const shuffledAll = [...allProducts].sort(() => Math.random() - 0.5);
+
+      // Most Compared (trending) — shuffle all products with daily seed
+      const trendRng = seededRandom(todaySeed + '-trending');
+      const shuffledAll = [...allProducts].sort(() => trendRng() - 0.5);
       const randomTrending = shuffledAll.slice(0, 15);
 
       setCategories(cats);
