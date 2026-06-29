@@ -1,7 +1,6 @@
 name: Deploy to Vercel
 on:
-  push:
-    branches: [main]
+  workflow_dispatch: # Manual trigger only — Vercel auto-deploy handles pushes
 jobs:
   deploy:
     runs-on: ubuntu-latest
