@@ -78,7 +78,7 @@ function detectCategoryFromName(name) {
 // Enhanced category detection using taxonomy + fallback
 function detectCategoryEnhanced(name, taxonomy) {
   // 1. Always check laptop first
-  if (isLaptop(name)) return { category: 'pc-parts', source: 'laptop-detection', taxonomyMatch: null };
+  if (isLaptop(name)) return { category: 'laptop', source: 'laptop-detection', taxonomyMatch: null };
 
   // 2. Try taxonomy matching (for non-laptops)
   const taxMatch = findTaxonomyMatch(name, taxonomy);
@@ -112,7 +112,7 @@ const CATEGORY_MAP = {
   'monitor': 'monitors',
   'mouse': 'mouse',
   'keyboard': 'keyboard',
-  'laptop': 'pc-parts',
+  'laptop': 'laptop',
   'accessory': 'accessories',
   'unknown': 'pc-parts',
   'pc_part': 'pc-parts',
@@ -133,6 +133,7 @@ const CATEGORY_NAMES = {
   'keyboard': 'Claviers',
   'phones': 'Téléphones',
   'peripherals': 'Périphériques',
+  'laptop': 'Laptops',
 };
 
 const STORE_COLORS = [
@@ -232,7 +233,7 @@ function convertData(input, taxonomy) {
       if (rawCategory === 'unknown' || rawCategory === 'pc_part' || rawCategory === 'accessory') {
         finalCategory = detected.category;
       } else if (detected.source === 'laptop-detection') {
-        finalCategory = 'pc-parts'; // Keep laptop
+        finalCategory = 'laptop'; // Keep laptop as its own category
       } else if (detected.source === 'taxonomy') {
         // Taxonomy is more reliable, keep it
       } else {
