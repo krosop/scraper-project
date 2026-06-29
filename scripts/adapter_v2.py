@@ -16,6 +16,18 @@ sys.path.insert(0, str(SCRAPER_DIR))
 from categorizer import clean_all
 
 
+# ── Ouedkniss store names (for detecting Ouedkniss data) ──
+OUEDKNISS_NAMES = {
+    'ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions',
+    'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics',
+    'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz',
+}
+
+
+def is_ouedkniss(source: str) -> bool:
+    return source.strip().lower() in OUEDKNISS_NAMES
+
+
 def convert_to_frontend(cleaned_products):
     """Convert new scraper cleaned products to frontend CleanProduct format."""
     
@@ -79,13 +91,60 @@ def convert_to_frontend(cleaned_products):
     return products
 
 
+def load_previous_data(path: Path) -> list:
+    """Load Ouedkniss products from previous clean-products.json."""
+    if not path.exists():
+        return []
+    try:
+        with open(path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        old_products = data.get('products', [])
+        oued_products = []
+        for p in old_products:
+            has_oued = any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', []))
+            if has_oued:
+                oued_products.append(p)
+        print(f"  [i] Loaded {len(oued_products)} old Ouedkniss products from {path}")
+        return oued_products
+    except Exception as e:
+        print(f"  [!] Failed to load previous data: {e}")
+        return []
+
+
+def merge_ouedkniss(new_products: list, old_products: list) -> list:
+    """Merge old Ouedkniss products into new products. Only add products that don't exist."""
+    # Build set of existing product names (canonicalized)
+    existing_names = set()
+    for p in new_products:
+        existing_names.add(p.get('name', '').strip().lower())
+    
+    merged = list(new_products)
+    added = 0
+    for p in old_products:
+        name = p.get('name', '').strip().lower()
+        if name and name not in existing_names:
+            merged.append(p)
+            added += 1
+    
+    if added > 0:
+        print(f"  [+] Merged {added} old Ouedkniss products that were missing from new scrape")
+    return merged
+
+
 def main():
     print("=" * 60)
     print("  DEAL FINDER DZ — Scraper V2 Adapter")
     print("=" * 60)
     
-    # Import and run the new scraper
-    print("\n[1/3] Running new scraper V2...")
+    project_root = SCRAPER_DIR.parent.parent
+    clean_products_path = project_root / 'public' / 'clean-products.json'
+    
+    # ── 0. Save old data before scraping ──
+    print("\n[0/4] Loading previous data for fallback...")
+    old_oued_products = load_previous_data(clean_products_path)
+    
+    # ── 1. Scrape ──
+    print("\n[1/4] Running new scraper V2...")
     from run import scrape_site, SCRAPER_MAP
     from sites.ouedkniss import OUEDKNISS_STORES
     
@@ -95,8 +154,11 @@ def main():
     for site in sites:
         try:
             print(f"  Scraping {site}...")
-            # Pass Ouedkniss stores for store-specific scraping
             if site == 'ouedkniss':
+                # Long delay before Ouedkniss to avoid rate limiting after other sites
+                print("  [i] Cooling down before Ouedkniss...")
+                import time
+                time.sleep(10)
                 products = scrape_site(site, stores=OUEDKNISS_STORES)
             else:
                 products = scrape_site(site)
@@ -107,69 +169,35 @@ def main():
     
     print(f"\n[+] Total raw: {len(raw_products)} products")
     
-    # If Ouedkniss returned 0 products, try again with individual stores
-    ouedkniss_count = sum(1 for p in raw_products if p.get('site') == 'ouedkniss.com')
-    if ouedkniss_count == 0:
-        print("\n[!] Ouedkniss returned 0 products. Retrying individual stores...")
-        from sites.ouedkniss import OuedknissScraper
-        scraper = OuedknissScraper()
-        for store_id, store_name in OUEDKNISS_STORES.items():
-            try:
-                print(f"  Retrying {store_name} (store {store_id})...")
-                products = scraper._scrape_category_or_store('informatique', store_name, store_id=store_id)
-                raw_products.extend(products)
-                print(f"  [+] {store_name}: {len(products)} products")
-            except Exception as e:
-                print(f"  [!] {store_name} failed: {e}")
-        print(f"\n[+] After retry — total raw: {len(raw_products)} products")
-        ouedkniss_count = sum(1 for p in raw_products if p.get('site') == 'ouedkniss.com')
+    # Count Ouedkniss raw products
+    oued_raw_count = sum(1 for p in raw_products if p.get('site') == 'ouedkniss.com')
+    print(f"[+] Ouedkniss raw products: {oued_raw_count}")
     
-    # Fallback: preserve Ouedkniss data from previous scrape if current scrape fails completely
-    if ouedkniss_count == 0:
-        print("\n[!] Ouedkniss still 0. Loading previous data as fallback...")
-        project_root = SCRAPER_DIR.parent.parent
-        fallback_paths = [
-            project_root / 'public' / 'clean-products.json',
-        ]
-        for fp in fallback_paths:
-            if fp.exists():
-                try:
-                    with open(fp, 'r', encoding='utf-8') as f:
-                        old_data = json.load(f)
-                    old_oued = [p for p in old_data.get('products', []) 
-                                if any(l.get('source', '').lower() in ['ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions', 'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics', 'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz'] 
-                                       for l in p.get('listings', []))]
-                    if old_oued:
-                        # Convert old format back to raw format for re-cleaning
-                        for p in old_oued:
-                            for l in p.get('listings', []):
-                                if l.get('source', '').lower() in ['ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions', 'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics', 'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz']:
-                                    raw_products.append({
-                                        'name': p.get('name', ''),
-                                        'price': l.get('price', 0),
-                                        'old_price': l.get('old_price', 0),
-                                        'url': l.get('url', ''),
-                                        'image': l.get('imageUrl', ''),
-                                        'site': 'ouedkniss.com',
-                                        'retailer_name': l.get('source', 'Ouedkniss'),
-                                        'scraped_at': datetime.utcnow().isoformat(),
-                                    })
-                        print(f"  [+] Restored {len(old_oued)} old Ouedkniss products from {fp}")
-                        break
-                except Exception as e:
-                    print(f"  [!] Failed to load fallback: {e}")
-    
-    # Clean
-    print("\n[2/3] Cleaning...")
+    # ── 2. Clean ──
+    print("\n[2/4] Cleaning...")
     cleaned = clean_all(raw_products)
     print(f"[+] Cleaned: {len(cleaned)} products")
     
-    # Convert to frontend format
-    print("\n[3/3] Converting to frontend format...")
+    # ── 3. Convert to frontend format ──
+    print("\n[3/4] Converting to frontend format...")
     frontend_products = convert_to_frontend(cleaned)
     print(f"[+] Frontend products: {len(frontend_products)}")
     
-    # Build output
+    # Count Ouedkniss in new data
+    new_oued_count = sum(1 for p in frontend_products
+                         if any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', [])))
+    print(f"[+] New Ouedkniss products: {new_oued_count}")
+    
+    # ── 4. Merge old Ouedkniss data if new scrape is insufficient ──
+    if old_oued_products and new_oued_count < 200:
+        print(f"\n[!] Ouedkniss count low ({new_oued_count}). Merging old data...")
+        frontend_products = merge_ouedkniss(frontend_products, old_oued_products)
+        merged_oued_count = sum(1 for p in frontend_products
+                                  if any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', [])))
+        print(f"[+] After merge: {merged_oued_count} Ouedkniss products, {len(frontend_products)} total")
+    
+    # ── 5. Save ──
+    print("\n[4/4] Saving output...")
     output = {
         'timestamp': datetime.now().isoformat(),
         'total': len(frontend_products),
@@ -182,11 +210,8 @@ def main():
         'products': frontend_products,
     }
     
-    # Save
-    print("\n[4/4] Saving output...")
-    project_root = SCRAPER_DIR.parent.parent
     paths = [
-        project_root / 'public' / 'clean-products.json',
+        clean_products_path,
         project_root / 'server' / 'data' / 'clean-products.json',
     ]
     
