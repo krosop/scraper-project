@@ -1,73 +1,96 @@
 import { useRef, useEffect } from 'react';
 
-// ASCII art for PC components (each row is a string, spaces are empty)
+// Matrix rain characters: Katakana + Latin + PC symbols
+const MATRIX_CHARS = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEF░▒▓█▓▒░═║╬╪╫┌┐└┘│─├┤┬┴┼◢◣◤◥◯●◉◎◐◑◒◓▪▫■□▬▭▮▯◆◇▰▱▲△▴▵▸▹►▻◄◅◊◈☼☀☁☂☃☄★☆☇☈☉☊☋☌☍☎☏☐☑☒☓☔☕☖☗☘☙☚☛☜☝☞☟☠☡☢☣☤☥☦☧☨☩☪☫☬☭☮☯☰☱☲☳☴☵☶☷☸☹☺☻☼☽☾☿♀♁♂♃♄♅♆♇♈♉♊♋♌♍♎♏♐♑♒♓♔♕♖♗♘♙♚♛♜♝♞♟♠♡♢♣♤♥♦♧♨♩♪♫♬♭♮♯♰♱♲♳♴♵♶♷♸♹♺♻♼♽♾♿⚀⚁⚂⚃⚄⚅⚆⚇⚈⚉⚊⚋⚌⚍⚎⚏⚐⚑⚒⚓⚔⚕⚖⚗⚘⚙⚚⚛⚜⚝⚞⚟⚠⚡⚢⚣⚤⚥⚦⚧⚨⚩⚪⚫⚬⚭⚮⚯⚰⚱⚲⚳⚴⚵⚶⚷⚸⚹⚺⚻⚼⚽⚾⚿⛀⛁⛂⛃⛄⛅⛆⛇⛈⛉⛊⛋⛌⛍⎷√∛∜∞∟∠∡∢∣∤∥∦∧∨∩∪∫∬∭∮∯∰∱∲∳∴∵∶∷∸∹∺∻∼∽∾∿≀≁≂≃≄≅≆≇≈≉≊≋≌≍≎≏≐≑≒≓≔≕≖≗≘≙≚≛≜≝≞≟≠≡≢≣≤≥≦≧≨≩≪≫≬≭≮≯≰≱≲≳≴≵≶≷≸≹≺≻≼≽≾≿⊀⊁⊂⊃⊄⊅⊆⊇⊈⊉⊊⊋⊌⊍⊎⊏⊐⊑⊒⊓⊔⊕⊖⊗⊘⊙⊚⊛⊜⊝⊞⊟⊠⊡⊢⊣⊤⊥⊦⊧⊨⊩⊪⊫⊬⊭⊮⊯⊰⊱⊲⊳⊴⊵⊶⊷⊸⊹⊺⊻⊼⊽⊾⊿⋀⋁⋂⋃⋄⋅⋆⋇⋈⋉⋊⋋⋌⋍⋎⋏⋐⋑⋒⋓⋔⋕⋖⋗⋘⋙⋚⋛⋜⋝⋞⋟⋠⋡⋢⋣⋤⋥⋦⋧⋨⋩⋪⋫⋬⋭⋮⋯⋰⋱⋲⋳⋴⋵⋶⋷⋸⋹⋺⋻⋼⋽⋾⋿';
+
+// Detailed PC component shapes for Matrix silhouette effect
+// Using block characters for better density
 const SHAPES = [
   {
     name: 'cpu',
-    // 16x6 CPU with heat spreader
+    // 18x10 detailed CPU
     art: [
-      '  ▓▓▓▓▓▓▓▓▓▓▓▓  ',
-      '  ▓▓░░░░░░░░▓▓  ',
-      '  ▓▓░▓▓▓▓▓▓░▓▓  ',
-      '  ▓▓░▓▓▓▓▓▓░▓▓  ',
-      '  ▓▓░░░░░░░░▓▓  ',
-      '  ▓▓▓▓▓▓▓▓▓▓▓▓  ',
+      '  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ',
+      '  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ',
+      '  ▓▓░░░░░░░░░░░░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░▓▓▓▓▓▓▓▓▓▓▓░▓▓  ',
+      '  ▓▓░░░░░░░░░░░░▓▓  ',
+      '  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ',
+      '  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓  ',
     ],
-    color: '#00d4aa', // Cyan
+    color: '#00ff88',
   },
   {
     name: 'gpu',
-    // 18x6 GPU with dual fan
+    // 22x10 detailed triple-fan GPU (based on reference image)
     art: [
-      ' ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ',
-      ' ▓▓  ◯◯    ◯◯  ▓▓ ',
-      ' ▓▓ ◯◯◯◯  ◯◯◯◯ ▓▓ ',
-      ' ▓▓  ◯◯    ◯◯  ▓▓ ',
-      ' ▓▓            ▓▓ ',
-      ' ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ',
+      ' ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ',
+      ' ▓▓                  ▓▓ ',
+      ' ▓▓  ◯◯◯      ◯◯◯   ▓▓ ',
+      ' ▓▓ ◯◯◯◯◯    ◯◯◯◯◯  ▓▓ ',
+      ' ▓▓ ◯◯◯◯◯    ◯◯◯◯◯  ▓▓ ',
+      ' ▓▓  ◯◯◯      ◯◯◯   ▓▓ ',
+      ' ▓▓  ◯◯◯      ◯◯◯   ▓▓ ',
+      ' ▓▓ ◯◯◯◯◯    ◯◯◯◯◯  ▓▓ ',
+      ' ▓▓ ◯◯◯◯◯    ◯◯◯◯◯  ▓▓ ',
+      ' ▓▓  ◯◯◯      ◯◯◯   ▓▓ ',
+      ' ▓▓                  ▓▓ ',
+      ' ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ',
     ],
-    color: '#00b4d8', // Blue
+    color: '#00d4ff',
   },
   {
     name: 'case',
-    // 18x14 PC case front view with 3 RGB fans
+    // 24x16 PC case with RGB fans (based on reference image)
     art: [
-      ' ┌──────────────┐ ',
-      ' │              │ ',
-      ' │   ╔══════╗   │ ',
-      ' │   ║ ◯  ◯ ║   │ ',
-      ' │   ║  ◯◯  ║   │ ',
-      ' │   ╚══════╝   │ ',
-      ' │              │ ',
-      ' │   ╔══════╗   │ ',
-      ' │   ║ ◯  ◯ ║   │ ',
-      ' │   ║  ◯◯  ║   │ ',
-      ' │   ╚══════╝   │ ',
-      ' │              │ ',
-      ' │   ╔══════╗   │ ',
-      ' │   ║ ◯  ◯ ║   │ ',
-      ' │   ║  ◯◯  ║   │ ',
-      ' │   ╚══════╝   │ ',
-      ' │              │ ',
-      ' └──────────────┘ ',
+      ' ┌────────────────────┐ ',
+      ' │                    │ ',
+      ' │   ┌──────────┐     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   └──────────┘     │ ',
+      ' │                    │ ',
+      ' │   ┌──────────┐     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   └──────────┘     │ ',
+      ' │                    │ ',
+      ' │   ┌──────────┐     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   │ ◯◯◯◯◯◯ ◯ │     │ ',
+      ' │   └──────────┘     │ ',
+      ' │                    │ ',
+      ' │                    │ ',
+      ' └────────────────────┘ ',
     ],
-    color: '#a855f7', // Purple for RGB case
+    color: '#ffaa00',
   },
 ];
 
-const RAIN_CHARS = '0123456789ABCDEF░▒▓█│─┌┐└┘├┤┬┴┼╱╲╳◯●◉';
-
-interface Cell {
-  char: string;
-  targetChar: string | null;
-  brightness: number; // 0-1
-  settled: boolean;
-  inShape: boolean;
-  y: number;
+interface MatrixColumn {
   x: number;
+  y: number;
+  speed: number;
+  chars: string[];
+  brightness: number[];
+  length: number;
 }
 
-export default function AsciiMatrixBackground() {
+export default function CyberMatrixBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef<number>(0);
 
@@ -83,12 +106,13 @@ export default function AsciiMatrixBackground() {
     let rows = 0;
     let cellW = 0;
     let cellH = 0;
-    const grid: Cell[][] = [];
-    let rainDrops: { x: number; y: number; speed: number; trail: string[] }[] = [];
+    const columns: MatrixColumn[] = [];
     let shapeIndex = 0;
     let shapePhase: 'forming' | 'holding' | 'dissolving' = 'forming';
     let shapeTimer = 0;
-    let rgbHue = 0; // For RGB fan cycling
+    let rgbHue = 0;
+    let shapeGrid: boolean[][] = [];
+    let shapeChars: string[][] = [];
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -102,33 +126,22 @@ export default function AsciiMatrixBackground() {
       canvas.style.height = `${h}px`;
       ctx.scale(dpr, dpr);
 
-      // Recalculate grid based on monospace font size
-      cellW = 14; // approximate char width
-      cellH = 18; // approximate char height
+      cellW = 12;
+      cellH = 16;
       cols = Math.ceil(w / cellW);
       rows = Math.ceil(h / cellH);
 
-      // Reset grid
-      grid.length = 0;
-      for (let r = 0; r < rows; r++) {
-        grid[r] = [];
-        for (let c = 0; c < cols; c++) {
-          grid[r][c] = {
-            char: randomChar(),
-            targetChar: null,
-            brightness: 0.1 + Math.random() * 0.1,
-            settled: false,
-            inShape: false,
-            y: r,
-            x: c,
-          };
-        }
+      // Reset columns
+      columns.length = 0;
+      for (let c = 0; c < cols; c++) {
+        spawnColumn(c, true);
       }
 
       loadShape(shapeIndex);
     };
 
-    const randomChar = () => RAIN_CHARS[Math.floor(Math.random() * RAIN_CHARS.length)];
+    const randomChar = () =>
+      MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
 
     const loadShape = (idx: number) => {
       const shape = SHAPES[idx];
@@ -136,21 +149,20 @@ export default function AsciiMatrixBackground() {
       const artH = art.length;
       const artW = art[0].length;
 
-      // Center the shape in the grid
       const startRow = Math.floor((rows - artH) / 2);
       const startCol = Math.floor((cols - artW) / 2);
 
-      // Reset all cells
+      shapeGrid = [];
+      shapeChars = [];
       for (let r = 0; r < rows; r++) {
+        shapeGrid[r] = [];
+        shapeChars[r] = [];
         for (let c = 0; c < cols; c++) {
-          grid[r][c].targetChar = null;
-          grid[r][c].settled = false;
-          grid[r][c].inShape = false;
-          grid[r][c].brightness = 0.05 + Math.random() * 0.1;
+          shapeGrid[r][c] = false;
+          shapeChars[r][c] = ' ';
         }
       }
 
-      // Mark shape cells
       for (let r = 0; r < artH; r++) {
         for (let c = 0; c < artW; c++) {
           const gr = startRow + r;
@@ -158,82 +170,68 @@ export default function AsciiMatrixBackground() {
           if (gr >= 0 && gr < rows && gc >= 0 && gc < cols) {
             const ch = art[r][c];
             if (ch !== ' ') {
-              grid[gr][gc].targetChar = ch;
-              grid[gr][gc].inShape = true;
+              shapeGrid[gr][gc] = true;
+              shapeChars[gr][gc] = ch;
             }
           }
         }
       }
     };
 
-    const spawnRain = () => {
-      // Spawn more rain over shape areas to help form them faster
-      const shape = SHAPES[shapeIndex];
-      const artW = shape.art[0].length;
-      const startCol = Math.floor((cols - artW) / 2);
-
-      // 70% chance to rain over shape area, 30% random
-      let x: number;
-      if (Math.random() < 0.7) {
-        x = startCol + Math.floor(Math.random() * artW);
-      } else {
-        x = Math.floor(Math.random() * cols);
+    const spawnColumn = (colIndex: number, randomY: boolean = false) => {
+      const length = Math.floor(5 + Math.random() * 15);
+      const chars: string[] = [];
+      const brightness: number[] = [];
+      for (let i = 0; i < length; i++) {
+        chars.push(randomChar());
+        brightness.push(i === 0 ? 1 : Math.max(0.1, 1 - i / length));
       }
-
-      rainDrops.push({
-        x,
-        y: 0,
-        speed: 0.5 + Math.random() * 1.5,
-        trail: [],
+      columns.push({
+        x: colIndex,
+        y: randomY ? Math.random() * rows * cellH : -length * cellH,
+        speed: 0.3 + Math.random() * 1.2,
+        chars,
+        brightness,
+        length,
       });
     };
 
     let frame = 0;
 
     const animate = () => {
-      ctx.fillStyle = '#0a0e14';
+      // Dark fade effect for trails
+      ctx.fillStyle = 'rgba(10, 14, 20, 0.15)';
       ctx.fillRect(0, 0, w, h);
 
       frame++;
-      rgbHue = (rgbHue + 0.5) % 360;
-
-      // Shape phase management
+      rgbHue = (rgbHue + 0.8) % 360;
       shapeTimer++;
 
-      // Count settled cells in shape
-      let settledCount = 0;
+      const shape = SHAPES[shapeIndex];
+      const isCase = shape.name === 'case';
+
+      // Phase management
       let totalShapeCells = 0;
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
-          if (grid[r][c].inShape) {
+          if (shapeGrid[r]?.[c]) {
             totalShapeCells++;
-            if (grid[r][c].settled) settledCount++;
           }
         }
       }
 
       if (shapePhase === 'forming') {
-        if (settledCount / totalShapeCells > 0.85) {
+        if (shapeTimer > 180) {
           shapePhase = 'holding';
           shapeTimer = 0;
         }
       } else if (shapePhase === 'holding') {
-        if (shapeTimer > 120) { // Hold for ~2 seconds at 60fps
+        if (shapeTimer > 150) {
           shapePhase = 'dissolving';
           shapeTimer = 0;
         }
       } else if (shapePhase === 'dissolving') {
-        // Dissolve from bottom up
-        const dissolveRow = Math.floor((shapeTimer / 90) * rows);
-        for (let r = rows - 1; r >= rows - dissolveRow; r--) {
-          for (let c = 0; c < cols; c++) {
-            if (grid[r][c].settled) {
-              grid[r][c].settled = false;
-              grid[r][c].brightness = 0.1;
-            }
-          }
-        }
-        if (shapeTimer > 90) {
+        if (shapeTimer > 120) {
           shapeIndex = (shapeIndex + 1) % SHAPES.length;
           shapePhase = 'forming';
           shapeTimer = 0;
@@ -241,100 +239,99 @@ export default function AsciiMatrixBackground() {
         }
       }
 
-      // Spawn rain
-      if (frame % 2 === 0) spawnRain();
-      if (frame % 3 === 0) spawnRain();
+      // Dissolve progress (0-1)
+      const dissolveProgress =
+        shapePhase === 'dissolving' ? Math.min(1, shapeTimer / 120) : 0;
+      const formProgress =
+        shapePhase === 'forming' ? Math.min(1, shapeTimer / 180) : 1;
 
-      // Update rain drops
-      for (let i = rainDrops.length - 1; i >= 0; i--) {
-        const drop = rainDrops[i];
-        drop.y += drop.speed;
-        const row = Math.floor(drop.y);
-        const col = Math.floor(drop.x);
-
-        if (row >= 0 && row < rows && col >= 0 && col < cols) {
-          const cell = grid[row][col];
-
-          if (cell.inShape && !cell.settled && shapePhase === 'forming') {
-            // Rain hits an unsettled shape cell — it settles!
-            cell.settled = true;
-            cell.char = cell.targetChar || randomChar();
-            cell.brightness = 1;
-          } else if (!cell.settled) {
-            // Just a passing rain drop
-            cell.char = randomChar();
-            cell.brightness = 0.3 + Math.random() * 0.3;
-          }
-
-          // Leave a trail
-          for (let t = 1; t <= 3; t++) {
-            const tr = row - t;
-            if (tr >= 0 && tr < rows) {
-              const trailCell = grid[tr][col];
-              if (!trailCell.settled) {
-                trailCell.char = randomChar();
-                trailCell.brightness = 0.15 - t * 0.04;
-              }
-            }
-          }
-        }
-
-        if (drop.y > rows + 5) {
-          rainDrops.splice(i, 1);
-        }
-      }
-
-      // Draw grid
-      ctx.font = '14px "JetBrains Mono", "Courier New", monospace';
+      // Update and draw columns
+      ctx.font = '13px "JetBrains Mono", "Courier New", monospace';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      const shape = SHAPES[shapeIndex];
-      const isCase = shape.name === 'case';
+      for (let i = columns.length - 1; i >= 0; i--) {
+        const col = columns[i];
+        col.y += col.speed;
 
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const cell = grid[r][c];
-          const px = c * cellW + cellW / 2;
-          const py = r * cellH + cellH / 2;
+        const colRow = Math.floor(col.y / cellH);
 
+        // Draw each character in the column
+        for (let j = 0; j < col.length; j++) {
+          const charRow = colRow - j;
+          if (charRow < 0 || charRow >= rows) continue;
+
+          const px = col.x * cellW + cellW / 2;
+          const py = charRow * cellH + cellH / 2;
+
+          const isShapeCell = shapeGrid[charRow]?.[col.x] ?? false;
+          const shapeChar = shapeChars[charRow]?.[col.x] ?? ' ';
+          const isFan = isCase && shapeChar === '◯';
+
+          let alpha = col.brightness[j];
           let color: string;
-          let alpha: number;
+          let char = col.chars[j];
 
-          if (cell.settled) {
-            // Settled shape cell
-            alpha = cell.brightness;
+          if (isShapeCell) {
+            // Shape cell — use the shape character or the rain char
+            if (shapePhase === 'forming') {
+              alpha *= formProgress;
+            } else if (shapePhase === 'dissolving') {
+              alpha *= 1 - dissolveProgress;
+            }
 
-            if (isCase && cell.char === '◯') {
-              // RGB fan effect for PC case
-              const hue = (rgbHue + r * 20 + c * 15) % 360;
-              color = `hsl(${hue}, 80%, 60%)`;
+            if (isFan) {
+              // RGB fan effect
+              const hue = (rgbHue + charRow * 15 + col.x * 20) % 360;
+              color = `hsl(${hue}, 90%, 55%)`;
+              // Make fan characters brighter
+              alpha = Math.min(1, alpha * 1.5);
             } else {
               color = shape.color;
             }
 
-            // Fade settled cells during dissolve
-            if (shapePhase === 'dissolving') {
-              const dissolveRow = Math.floor((shapeTimer / 90) * rows);
-              if (r > rows - dissolveRow - 3) {
-                alpha *= Math.max(0, (rows - r) / (dissolveRow + 3));
-              }
+            // Use the shape's intended character for settled cells
+            if (
+              shapePhase !== 'dissolving' ||
+              dissolveProgress < 0.5
+            ) {
+              char = shapeChar;
             }
           } else {
-            // Background rain
-            alpha = cell.brightness * 0.5;
-            color = '#00d4aa';
+            // Background rain — Matrix green/cyan
+            if (j === 0) {
+              // Head of the column — bright white
+              color = '#ffffff';
+              alpha = Math.min(1, alpha * 0.8);
+            } else if (j === 1) {
+              color = '#00ff88';
+            } else {
+              color = '#00d4aa';
+              alpha *= 0.6;
+            }
           }
 
           if (alpha > 0.02) {
-            ctx.globalAlpha = Math.min(alpha, 1);
+            ctx.globalAlpha = alpha;
             ctx.fillStyle = color;
-            ctx.fillText(cell.char, px, py);
+            ctx.fillText(char, px, py);
           }
         }
-      }
-      ctx.globalAlpha = 1;
 
+        // Reset column if it goes off screen
+        if (col.y > (rows + col.length) * cellH) {
+          columns.splice(i, 1);
+          spawnColumn(col.x);
+        }
+      }
+
+      // Ensure minimum column density
+      while (columns.length < cols * 0.8) {
+        const randomCol = Math.floor(Math.random() * cols);
+        spawnColumn(randomCol);
+      }
+
+      ctx.globalAlpha = 1;
       rafRef.current = requestAnimationFrame(animate);
     };
 
