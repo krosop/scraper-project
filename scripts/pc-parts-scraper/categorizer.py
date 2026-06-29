@@ -150,9 +150,9 @@ CATEGORY_PATTERNS = {
         (r'\b(?:ryzen|core\s+i|rtx|gtx)\b.*\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b', 15),
         (r'\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b.*\b(?:ryzen|core\s+i|rtx|gtx)\b', 15),
         (r'\b(?:15\.6|14|13\.3|17\.3|16)\s*["\']?\s*\b(?:laptop|pc|notebook|portable)\b', 10),
-        (r'\b(?:macbook|surface|thinkpad|ideapad|pavilion|omen|victus|nitro|predator|rog|zephyrus|flow|vivobook|zenbook|envy|spectre|xps|alienware|latitude|inspiron|chromebook|yoga|swift|aspire)\b', 8),
+        (r'\b(?:macbook|surface|thinkpad|ideapad|pavilion|omen|victus|nitro|predator|zephyrus|flow|vivobook|zenbook|envy|spectre|xps|alienware|latitude|inspiron|chromebook|yoga|swift|aspire)\b', 8),
         (r'\b(?:i[3579]|ryzen\s*[3579])\b.*\b(?:gb|go)\b.*\b(?:ssd|hdd|nvme)\b', 12),
-        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook)\s+(?:rog|predator|thinkpad|pavilion|omen|nitro|ideapad|victus)\b', 6),
+        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook)\s+(?:predator|thinkpad|pavilion|omen|nitro|ideapad|victus)\b', 6),
         (r'\b\d+["\']?\s*laptop\b', 5),
     ],
     'desktop': [
@@ -481,10 +481,19 @@ def detect_category(name: str, url: str = '') -> str:
         if hint in lower_url:
             scores[cat] = scores.get(cat, 0) + 5
 
-    # Cross-pattern: laptop with specs boost
+    # Cross-pattern: laptop with specs boost (but NOT if 'gddr' is present — that's GPU memory)
     if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name or 'ryzen' in lower_name or 'core i' in lower_name):
-        if any(w in lower_name for w in ['ssd', 'hdd', 'nvme', 'ram', 'ddr']):
+        # Use word-boundary matching so 'gddr' doesn't trigger on 'gddr6/gddr7'
+        if any(re.search(r'\b' + re.escape(w) + r'\b', lower_name) for w in ['ssd', 'hdd', 'nvme', 'ram', 'ddr']):
             scores['laptop'] = scores.get('laptop', 0) + 20
+
+    # Safety override: clear laptop score for products with RTX/GTX but no real laptop indicators
+    # (prevents ROG/Strix GPUs from being misclassified as laptops)
+    if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name):
+        has_laptop_indicator = bool(re.search(r'\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b|\b(?:g15|g16|g18|g14|g17)\b', lower_name))
+        has_gpu_variant = bool(re.search(r'\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime)\b', lower_name))
+        if not has_laptop_indicator and has_gpu_variant:
+            scores['laptop'] = 0  # This is a GPU, not a laptop
 
     if scores:
         best = max(scores.items(), key=lambda x: x[1])
