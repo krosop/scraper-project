@@ -4,6 +4,37 @@ import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Detect category from product name (fallback when scraper categorization is wrong)
+function detectCategoryFromName(name) {
+  if (!name) return null;
+  const lower = name.toLowerCase();
+  // GPU — highest priority
+  if (/\brtx\s*\d{3,4}\b|\bgtx\s*\d{3,4}\b|\brx\s*\d{4}\b|\bgeforce\s+rtx\b|\bgeforce\s+gtx\b|\bradeon\s+rx\b/.test(lower)) return 'graphics-cards';
+  // CPU
+  if (/\bryzen\s*[3579]\b|\bcore\s+i[3579]\b|\bathlon\b|\bpentium\b|\bceleron\b|\bthreadripper\b|\bxeon\b/.test(lower)) return 'processors';
+  // RAM
+  if (/\bddr[345]\b|\bram\b|\bmemoire\s+ram\b|\bbarrette\s+memoire\b/.test(lower)) return 'memory';
+  // Storage
+  if (/\bssd\b|\bnvme\b|\bm\.2\b|\bhdd\b|\bdisque\s+dur\b/.test(lower)) return 'storage';
+  // Monitor
+  if (/\bmonitor\b|\becran\s+pc\b|\b\d+\s*hz\b.*\bips\b|\b144hz\b|\b240hz\b|\b27\s*["\']/.test(lower)) return 'monitors';
+  // PSU
+  if (/\bpsu\b|\balimentation\b|\bpower\s+supply\b|\b80\s*plus\b/.test(lower)) return 'power-supplies';
+  // Case
+  if (/\bboitier\b|\bcase\b|\bchassis\b|\btower\b/.test(lower)) return 'cases';
+  // Cooling
+  if (/\bwatercooling\b|\baio\b|\bcooler\b|\bradiator\b|\bheatsink\b/.test(lower)) return 'cooling';
+  // Keyboard
+  if (/\bkeyboard\b|\bclavier\b/.test(lower)) return 'keyboard';
+  // Mouse
+  if (/\bmouse\b|\bsouris\b/.test(lower)) return 'mouse';
+  // Headset
+  if (/\bheadset\b|\bcasque\b|\bheadphone\b/.test(lower)) return 'headset';
+  // Motherboard
+  if (/\bmotherboard\b|\bcarte\s+mere\b|\bmainboard\b/.test(lower)) return 'pc-parts';
+  return null;
+}
+
 // Category mapping: our categories → new frontend categories
 const CATEGORY_MAP = {
   'gpu': 'graphics-cards',
@@ -129,7 +160,8 @@ function convertData(input) {
 
   // Convert products
   const convertedProducts = products.map(p => {
-    const catSlug = CATEGORY_MAP[p.category] || 'pc-parts';
+    const detectedCat = detectCategoryFromName(p.name || p.canonicalName);
+    const catSlug = detectedCat || CATEGORY_MAP[p.category] || 'pc-parts';
     const prices = convertListingsToPrices(p.listings || []);
     
     // Update colors based on assigned store colors
