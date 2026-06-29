@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Search, ShieldCheck, RefreshCw, Zap, ChevronDown } from 'lucide-react';
 import { useTranslation } from '@/i18n/useTranslation';
 
+import DataStreamBackground from '@/components/DataStreamBackground';
+
 export default function HeroSection() {
   const { t, isRTL } = useTranslation();
   const navigate = useNavigate();
@@ -36,9 +38,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-[600px] h-[90vh] sm:h-screen flex items-center justify-center overflow-hidden">
-      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover opacity-40">
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
-      </video>
+      <DataStreamBackground />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0e14]/60 via-[#0a0e14]/80 to-[#0a0e14]" />
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: 'linear-gradient(rgba(0,212,170,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,170,0.3) 1px, transparent 1px)',
