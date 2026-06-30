@@ -15,6 +15,7 @@ Sites: licbplus, wifidjelfa, tiza, geekzone, digitec, gigastore, gamingdz, lahlo
 import argparse
 import sys
 import json
+import concurrent.futures
 from datetime import datetime
 from pathlib import Path
 
@@ -48,15 +49,24 @@ def load_scraper(site_name: str):
     return getattr(module, class_name)
 
 
-def scrape_site(site_name: str, categories: list = None, stores: dict = None) -> list:
-    """Run a scraper and return raw products."""
+def _scrape(site_name: str, categories: list = None, stores: dict = None) -> list:
+    """Internal scrape function to run in a thread."""
+    ScraperClass = load_scraper(site_name)
+    scraper = ScraperClass()
+    if site_name == 'ouedkniss' and stores:
+        return scraper.scrape_all(stores=stores)
+    return scraper.scrape_all(categories=categories)
+
+
+def scrape_site(site_name: str, categories: list = None, stores: dict = None, timeout: int = 30) -> list:
+    """Run a scraper with timeout and return raw products."""
     try:
-        ScraperClass = load_scraper(site_name)
-        scraper = ScraperClass()
-        # Ouedkniss supports store-specific scraping
-        if site_name == 'ouedkniss' and stores:
-            return scraper.scrape_all(stores=stores)
-        return scraper.scrape_all(categories=categories)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(_scrape, site_name, categories, stores)
+            return future.result(timeout=timeout)
+    except concurrent.futures.TimeoutError:
+        print(f"[!] {site_name}: Timed out after {timeout}s")
+        return []
     except ImportError as e:
         print(f"[!] {site_name}: Missing dependency — {e}")
         return []

@@ -676,20 +676,31 @@ export function smartSearch(
         r.matchReasons.push('cat-priority');
       } else if (isComponentIntent && catSlug === 'pc-parts') {
         // SEVERE penalty for laptops / generic pc-parts when searching for a specific component
-        r.score -= 400;
+        r.score -= 800;
         r.matchReasons.push('cat-mismatch');
       } else if (isComponentIntent && catSlug !== '') {
         // Moderate penalty for other non-matching categories
-        r.score -= 100;
+        r.score -= 200;
         r.matchReasons.push('cat-mismatch');
       }
     }
   }
 
-  // Secondary sort: by score (primary), then review count (secondary), then price (tertiary)
+  // Secondary sort: by score (primary), category priority (secondary), then review count, then price
   return results.sort((a, b) => {
     const scoreDiff = b.score - a.score;
     if (scoreDiff !== 0) return scoreDiff;
+    // Category priority: component categories (GPU, CPU, etc.) before pc-parts (laptops)
+    const catPriority = (slug: string) => {
+      const priorities: Record<string, number> = {
+        'graphics-cards': 10, 'processors': 9, 'memory': 8, 'storage': 7,
+        'monitors': 6, 'power-supplies': 5, 'cases': 4, 'cooling': 3,
+        'keyboard': 2, 'mouse': 2, 'headset': 1,
+      };
+      return priorities[slug] || 0;
+    };
+    const catDiff = catPriority(b.item.category_slug || '') - catPriority(a.item.category_slug || '');
+    if (catDiff !== 0) return catDiff;
     const reviewDiff = (b.item.product_review_count || 0) - (a.item.product_review_count || 0);
     if (reviewDiff !== 0) return reviewDiff;
     return (a.item.current_price || 0) - (b.item.current_price || 0);

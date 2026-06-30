@@ -202,54 +202,62 @@ def main():
     print("\n[0/4] Loading fresh Ouedkniss data...")
     ouedkniss_raw = load_ouedkniss_raw(ouedkniss_raw_path)
     
-    # ── 1. Scrape (8 non-Ouedkniss stores) ──
-    print("\n[1/4] Running scraper for 8 non-Ouedkniss stores...")
-    from run import scrape_site, SCRAPER_MAP
-    
-    raw_products = []
-    sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'digitec', 'wifidjelfa', 'tiza', 'hardsoft', 'matos']
-    
-    for site in sites:
+    # ── 1. Load existing clean-products and filter out old Ouedkniss ──
+    print("\n[1/4] Loading existing clean-products...")
+    existing_products = []
+    if clean_products_path.exists():
         try:
-            print(f"  Scraping {site}...")
-            products = scrape_site(site)
-            raw_products.extend(products)
-            print(f"  [+] {site}: {len(products)} products")
+            with open(clean_products_path, 'r', encoding='utf-8') as f:
+                existing = json.load(f)
+            existing_products = existing.get('products', [])
+            # Keep only non-Ouedkniss products
+            non_oued = [p for p in existing_products if not any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', []))]
+            print(f"  [+] Existing: {len(existing_products)} products")
+            print(f"  [+] Non-Ouedkniss kept: {len(non_oued)} products")
+            existing_products = non_oued
         except Exception as e:
-            print(f"  [!] {site} failed: {e}")
+            print(f"  [!] Could not load existing: {e}")
     
-    print(f"\n[+] Total raw (non-Ouedkniss): {len(raw_products)} products")
+    # ── 2. Skip remote scrapers (unreliable / timeout-prone) ──
+    print("\n[2/4] Skipping remote scrapers (unreliable / timeout-prone)")
+    raw_products = []
     
     # Add fresh Ouedkniss raw data
     if ouedkniss_raw:
         raw_products.extend(ouedkniss_raw)
         print(f"[+] Added {len(ouedkniss_raw)} fresh Ouedkniss products")
-        print(f"[+] Total raw (all): {len(raw_products)} products")
+        print(f"[+] Total raw: {len(raw_products)} products")
     
-    # ── 2. Clean ──
-    print("\n[2/4] Cleaning...")
+    # ── 3. Clean ──
+    print("\n[3/4] Cleaning...")
     cleaned = clean_all(raw_products)
     print(f"[+] Cleaned: {len(cleaned)} products")
     
-    # ── 3. Convert to frontend format ──
-    print("\n[3/4] Converting to frontend format...")
-    frontend_products = convert_to_frontend(cleaned)
-    print(f"[+] Frontend products: {len(frontend_products)}")
+    # ── 4. Convert to frontend format ──
+    print("\n[4/4] Converting to frontend format...")
+    oued_frontend = convert_to_frontend(cleaned)
+    print(f"[+] Fresh Ouedkniss frontend: {len(oued_frontend)} products")
     
-    # ── 4. Save ──
-    print("\n[4/4] Saving output...")
-    oued_count = sum(1 for p in frontend_products if any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', [])))
+    # Merge with existing non-Ouedkniss products
+    merged = merge_ouedkniss(existing_products, oued_frontend)
+    print(f"[+] Merged total: {len(merged)} products")
+    
+    # ── 5. Save ──
+    print("\n[5/4] Saving output...")
+    oued_count = sum(1 for p in merged if any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', [])))
     output = {
         'timestamp': datetime.now().isoformat(),
-        'total': len(frontend_products),
+        'total': len(merged),
         'stats': {
             'originalCount': len(raw_products),
             'cleanCount': len(cleaned),
-            'uniqueCount': len(frontend_products),
+            'uniqueCount': len(oued_frontend),
+            'mergedTotal': len(merged),
             'ouedknissCount': oued_count,
-            'reductionRate': f"{((len(raw_products) - len(frontend_products)) / len(raw_products) * 100):.1f}%" if raw_products else "0%",
+            'nonOuedCount': len(merged) - oued_count,
+            'reductionRate': f"{((len(raw_products) - len(oued_frontend)) / len(raw_products) * 100):.1f}%" if raw_products else "0%",
         },
-        'products': frontend_products,
+        'products': merged,
     }
     
     paths = [
@@ -264,7 +272,7 @@ def main():
         print(f"  [+] {p}")
     
     print(f"\n{'=' * 60}")
-    print(f"  DONE: {len(frontend_products)} products ({oued_count} Ouedkniss)")
+    print(f"  DONE: {len(merged)} products ({oued_count} Ouedkniss, {len(merged) - oued_count} other)")
     print(f"{'=' * 60}\n")
 
 

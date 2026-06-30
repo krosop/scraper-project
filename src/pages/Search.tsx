@@ -3,8 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Search, SlidersHorizontal, X, Sparkles, Tag, Banknote, Filter,
-  Lightbulb, TrendingUp, ArrowRight, PackageOpen, Zap, RotateCcw,
-  ChevronDown
+  TrendingUp, PackageOpen, Zap, RotateCcw, ChevronDown
 } from 'lucide-react';
 import { useData } from '@/components/DataProvider';
 import type { PriceView } from '@/supabase/types';
@@ -15,7 +14,6 @@ import { CardSkeleton } from '@/components/LoadingSkeleton';
 import SEO from '@/components/SEO';
 import {
   smartSearch, getSuggestions, detectQueryIntent,
-  suggestCorrection, buildVocabulary,
   type SearchResult, type PriceFilter
 } from '@/utils/smartSearch';
 
@@ -33,16 +31,12 @@ const SEARCH_HINTS: Record<string, string[]> = {
 // ---------------------------------------------------------------------------
 function NoResultsSuggestions({
   query,
-  correction,
-  onCorrect,
   allProducts,
   activeCategory,
   t,
   isRTL,
 }: {
   query: string;
-  correction: { correctedQuery: string; confidence: number; reason: string } | null;
-  onCorrect: (q: string) => void;
   allProducts: PriceView[];
   activeCategory: string;
   t: any;
@@ -100,28 +94,6 @@ function NoResultsSuggestions({
         <p className="text-[13px] sm:text-sm text-[#5a6a7e] max-w-md mx-auto mb-6">
           {t.search_no_results_desc} "<span className="text-[#c8d0d9]">{query}</span>". {t.search_try_different}
         </p>
-
-        {correction && correction.confidence > 0.4 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="mb-8"
-          >
-            <div className="inline-flex items-center gap-3 bg-[#00d4aa]/10 border border-[#00d4aa]/20 rounded-xl px-5 py-3.5">
-              <Lightbulb className="w-5 h-5 text-[#00d4aa] shrink-0" />
-              <div className={`text-${isRTL ? 'right' : 'left'}`}>
-                <p className="text-[11px] text-[#00d4aa] font-medium uppercase tracking-wide">{t.search_did_you_mean}</p>
-                <button
-                  onClick={() => onCorrect(correction.correctedQuery)}
-                  className="text-sm sm:text-base font-semibold text-white hover:text-[#00d4aa] transition-colors flex items-center gap-1.5 mt-0.5"
-                >
-                  {correction.correctedQuery}
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
       </div>
 
       {popularProducts.length > 0 && (
@@ -210,13 +182,6 @@ export default function SearchPage() {
     };
   }, [inputValue]);
 
-  // Build vocabulary once for spell correction
-  useEffect(() => {
-    if (allProducts.length > 0) {
-      buildVocabulary(allProducts);
-    }
-  }, [allProducts]);
-
   // Sync URL param to both input and search state
   useEffect(() => {
     setQuery(queryParam);
@@ -277,14 +242,6 @@ export default function SearchPage() {
 
   const hasMore = paginatedResults.length < searchResults.length;
 
-  // Spell correction — always compute when query exists (not just for zero results)
-  const correction = useMemo(() => {
-    if (query.trim() && !loading && loaded) {
-      return suggestCorrection(query, allProducts);
-    }
-    return null;
-  }, [query, loading, loaded, allProducts]);
-
   // Search suggestions (debounced)
   const suggestions = useMemo(() => {
     if (!debouncedInput.trim() || debouncedInput.length < 2) return [];
@@ -322,13 +279,6 @@ export default function SearchPage() {
     setQuery('');
     setPage(1);
     setSearchParams({});
-  };
-
-  const applyCorrection = (correctedQuery: string) => {
-    setInputValue(correctedQuery);
-    setQuery(correctedQuery);
-    setPage(1);
-    setSearchParams({ q: correctedQuery });
   };
 
   const formatPriceFilter = (pf: PriceFilter | null): string | null => {
@@ -590,29 +540,6 @@ export default function SearchPage() {
             )}
           </div>
 
-          {/* Did you mean? — shown when results exist but a correction was found */}
-          {correction && correction.confidence > 0.5 && hasResults && (
-            <motion.div
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-4 sm:mb-5"
-            >
-              <div className="inline-flex items-center gap-3 bg-[#00d4aa]/5 border border-[#00d4aa]/15 rounded-xl px-4 py-2.5">
-                <Lightbulb className="w-4 h-4 text-[#00d4aa]/60 shrink-0" />
-                <span className="text-[13px] text-[#7a8a9e]">
-                  {t.search_did_you_mean}{' '}
-                  <button
-                    onClick={() => applyCorrection(correction.correctedQuery)}
-                    className="font-semibold text-[#00d4aa] hover:underline underline-offset-2"
-                  >
-                    {correction.correctedQuery}
-                  </button>
-                  ?
-                </span>
-              </div>
-            </motion.div>
-          )}
-
           {/* Results grid */}
           {loading || !loaded ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
@@ -623,8 +550,6 @@ export default function SearchPage() {
           ) : isEmpty ? (
             <NoResultsSuggestions
               query={query}
-              correction={correction}
-              onCorrect={applyCorrection}
               allProducts={allProducts}
               activeCategory={activeCategory}
               t={t}
