@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Laptop detection (unchanged - this must run FIRST)
 const laptopIndicators = /\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b/;
 const laptopModel = /\b(?:g15|g16|g18|g14|g17|g513|g733)\b/;
-const laptopKeywords = /\bpavilion\b|\bomen\b|\blegion\b|\bzephyrus\b|\bthinkpad\b|\bideapad\b|\bvictus\b|\bnitro\b|\bpredator\b|\balienware\b|\bxps\b|\blatitude\b|\binspiron\b|\bsurface\b|\bmacbook\b|\bchromebook\b|\byoga\b|\bswift\b|\baspire\b|\bstealth\b|\brazer\b|\bblade\b|\bdefender\b|\berazer\b|\bthin\b|\bzbook\b|\bprecision\b|\bloq\b|\bprobook\b|\bfirefly\b|\bcyborg\b|\bproart\b|\bxmg\b|\bge75\b|\bge76\b|\bge77\b/;
+const laptopKeywords = /\bpavilion\b|\bomen\b|\blegion\b|\bzephyrus\b|\bthinkpad\b|\bideapad\b|\bvictus\b|\bnitro\b|\bpredator\b|\balienware\b|\baleinware\b|\bxps\b|\blatitude\b|\binspiron\b|\bsurface\b|\bmacbook\b|\bchromebook\b|\byoga\b|\bswift\b|\baspire\b|\bstealth\b|\brazer\b|\bblade\b|\bdefender\b|\berazer\b|\bthin\b|\bzbook\b|\bprecision\b|\bloq\b|\bprobook\b|\bfirefly\b|\bcyborg\b|\bproart\b|\bxmg\b|\bge75\b|\bge76\b|\bge77\b|\bkatana\b|\bgf66\b|\bgf76\b|\bgp66\b|\bgp76\b|\bgl66\b|\bgl76\b|\bvivobook\b|\bzenbook\b|\bcreator\b|\bflow\b|\bdash\b/;
 
 function isLaptop(name) {
   const normalized = name.toLowerCase()
@@ -27,8 +27,9 @@ function isLaptop(name) {
   const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
   const hasGPU = /\b(?:rtx|gtx|rx|geforce|radeon)\b/.test(normalized);
   // RAM must be system RAM (DDR + GB) not just GPU VRAM (standalone GB)
-  const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized);
-  const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b\d+\s*(?:tb|to)\b/.test(normalized);
+  const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized) || /\b(?:8|16|32|64|128)\s*(?:gb|go)\b/.test(normalized);
+  // Storage: match SSD/NVMe/HDD keywords OR common storage sizes (128GB, 256GB, 512GB, 1TB, 2TB, 4TB)
+  const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b(?:128|256|512|1024|2048|4096|1|2|4)\s*(?:tb|to|gb|go)\b/.test(normalized);
   const hasScreen = /\b(?:\d+\s*[\"\']|\d+\.\d+\s*[\"\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
   
   // Count laptop signals (require 4+ for prebuilt systems to avoid GPU false positives)
@@ -40,7 +41,8 @@ function isLaptop(name) {
     // Extra check: make sure it's not a standalone GPU card with extra specs in the title
     const hasGpuVariant = /\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime|phantom|gamingtrio|gaming\s+x|master|xtreme|aorus|ftw3|xc|ultra|founder|ko|phoenix|hof|amp|gaming\s+oc|windforce\s+oc|eagle\s+oc)\b/.test(normalized);
     const hasGpuCard = /\bcarte\s+graphique\b|\bgraphics\s+card\b|\bvga\b|\bvideo\s+card\b/.test(normalized);
-    if (hasGpuCard || (hasGpuVariant && !hasScreen)) {
+    // A GPU card has a GPU variant but NO CPU and NO RAM (laptops have both)
+    if (hasGpuCard || (hasGpuVariant && !hasScreen && !hasCPU)) {
       return false; // This is a GPU card, not a laptop
     }
     return true;
