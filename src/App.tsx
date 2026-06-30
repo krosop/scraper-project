@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import DataProvider, { DataProviderDebug } from '@/components/DataProvider';
+import DataProvider from '@/components/DataProvider';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import SearchPage from './pages/Search';
@@ -8,7 +8,6 @@ import HowItWorksPage from './pages/HowItWorks';
 export default function App() {
   return (
     <DataProvider>
-      <DataProviderDebug />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<SearchPage />} />
