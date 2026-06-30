@@ -671,16 +671,16 @@ export function smartSearch(
       const catSlug = r.item.category_slug || '';
       const idx = categoryIntent.indexOf(catSlug);
       if (idx !== -1) {
-        // Very strong boost for matching intended category (+500 for first, +400 for second, etc.)
-        r.score += (categoryIntent.length - idx) * 500;
+        // Very strong boost for matching intended category (+1500 for first, +1000 for second, etc.)
+        r.score += (categoryIntent.length - idx) * 1500;
         r.matchReasons.push('cat-priority');
-      } else if (isComponentIntent && catSlug === 'pc-parts') {
+      } else if (isComponentIntent && (catSlug === 'pc-parts' || catSlug === 'laptop')) {
         // SEVERE penalty for laptops / generic pc-parts when searching for a specific component
-        r.score -= 800;
+        r.score -= 2000;
         r.matchReasons.push('cat-mismatch');
       } else if (isComponentIntent && catSlug !== '') {
         // Moderate penalty for other non-matching categories
-        r.score -= 200;
+        r.score -= 500;
         r.matchReasons.push('cat-mismatch');
       }
     }
@@ -690,12 +690,12 @@ export function smartSearch(
   return results.sort((a, b) => {
     const scoreDiff = b.score - a.score;
     if (scoreDiff !== 0) return scoreDiff;
-    // Category priority: component categories (GPU, CPU, etc.) before pc-parts (laptops)
+    // Category priority: component categories before laptops/desktops
     const catPriority = (slug: string) => {
       const priorities: Record<string, number> = {
         'graphics-cards': 10, 'processors': 9, 'memory': 8, 'storage': 7,
         'monitors': 6, 'power-supplies': 5, 'cases': 4, 'cooling': 3,
-        'keyboard': 2, 'mouse': 2, 'headset': 1,
+        'keyboard': 2, 'mouse': 2, 'headset': 1, 'laptop': 0, 'desktop': 0, 'pc-parts': 0,
       };
       return priorities[slug] || 0;
     };
