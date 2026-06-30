@@ -153,7 +153,8 @@ export default function DataProvider({ children }: { children: React.ReactNode }
       setLoaded(true);
       setError(null);
       return true;
-    } catch {
+    } catch (err: any) {
+      console.error('DataProvider loadFromJson error:', err);
       return false;
     }
   }, []);
