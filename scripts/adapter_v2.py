@@ -28,6 +28,7 @@ OUEDKNISS_NAMES = {
     'ouedkniss', 'admin informatique', 'it device', 'v2 tech', 'kpc solutions',
     'br informatique', 'hiprospace', 'microsoft pro dz', 'informatics',
     'best buy dz', 'tech mania', 'orbitech', 'gamingzone by divatech', 'pc pro dz',
+    'future city informatique', 'khalil technologie', 'g2t informatique',
 }
 
 
@@ -155,18 +156,31 @@ def load_previous_ouedkniss(path: Path) -> list:
 
 
 def merge_ouedkniss(new_products: list, oued_products: list) -> list:
-    """Merge Ouedkniss products into new products. Only add products that don't exist."""
-    # Build set of existing product names (canonicalized)
-    existing_names = set()
+    """Merge Ouedkniss products into new products. Only add products that don't exist.
+    Uses name + model_key matching for better deduplication."""
+    # Build set of existing identifiers (name + model_key combination)
+    existing = set()
     for p in new_products:
-        existing_names.add(p.get('name', '').strip().lower())
+        name = p.get('name', '').strip().lower()
+        key = p.get('model_key', '')
+        existing.add(name)
+        if key:
+            existing.add(key)
     
     merged = list(new_products)
     added = 0
     for p in oued_products:
         name = p.get('name', '').strip().lower()
-        if name and name not in existing_names:
+        key = p.get('model_key', '')
+        # Check if this product is already present (by name or model_key)
+        if name and name not in existing and key and key not in existing:
             merged.append(p)
+            existing.add(name)
+            existing.add(key)
+            added += 1
+        elif name and name not in existing:
+            merged.append(p)
+            existing.add(name)
             added += 1
     
     if added > 0:
@@ -193,7 +207,7 @@ def main():
     from run import scrape_site, SCRAPER_MAP
     
     raw_products = []
-    sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'digitec']
+    sites = ['licbplus', 'gamingdz', 'geekzone', 'gigastore', 'lahlou', 'digitec', 'wifidjelfa', 'tiza', 'hardsoft', 'matos']
     
     for site in sites:
         try:

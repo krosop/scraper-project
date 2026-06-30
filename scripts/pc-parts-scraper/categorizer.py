@@ -490,10 +490,17 @@ def detect_category(name: str, url: str = '') -> str:
     # Safety override: clear laptop score for products with RTX/GTX but no real laptop indicators
     # (prevents ROG/Strix GPUs from being misclassified as laptops)
     if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name):
-        has_laptop_indicator = bool(re.search(r'\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b|\b(?:g15|g16|g18|g14|g17)\b', lower_name))
-        has_gpu_variant = bool(re.search(r'\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime)\b', lower_name))
-        if not has_laptop_indicator and has_gpu_variant:
+        has_laptop_indicator = bool(re.search(r'\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b|\b(?:g15|g16|g18|g14|g17|g513|g733)\b', lower_name))
+        has_gpu_variant = bool(re.search(r'\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime|phantom|gamingtrio|gaming\s+x|master|xtreme|aorus|ftw3|xc|ultra|founder|ko|phoenix|hof|amp|gaming\s+oc|windforce\s+oc|eagle\s+oc)\b', lower_name))
+        has_standalone_gpu = bool(re.search(r'\bcarte\s+graphique\b|\bgraphics\s+card\b|\bvga\b|\bvideo\s+card\b', lower_name))
+        if not has_laptop_indicator and (has_gpu_variant or has_standalone_gpu):
             scores['laptop'] = 0  # This is a GPU, not a laptop
+    
+    # Additional safety: if laptop score is low and gpu score is high, trust GPU
+    if scores.get('laptop', 0) > 0 and scores.get('laptop', 0) < 15 and scores.get('gpu', 0) >= 10:
+        has_laptop_indicator = bool(re.search(r'\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b|\b(?:g15|g16|g18|g14|g17|g513|g733)\b', lower_name))
+        if not has_laptop_indicator:
+            scores['laptop'] = 0
 
     if scores:
         best = max(scores.items(), key=lambda x: x[1])
@@ -560,12 +567,18 @@ def normalize_model_key(name: str, category: str) -> str:
         for p in [r'i[3579]\s*\d{4,5}[a-z]*', r'ryzen\s+[3579]\s*\d{4}[a-z]*', r'athlon\s+\w+']:
             m = re.search(p, lower)
             if m:
-                return f"{brand_prefix}{m.group(0).replace(' ', '')}"
+                return f"{brand_prefix}{m.group(0).replace(' ', '').replace('-', '')}"
     elif category == 'gpu':
         for p in [r'rtx\s*\d{4}\s*(?:ti|super)?', r'rx\s*\d{4}\s*(?:xt|xtx)?', r'gtx\s*\d{3,4}']:
             m = re.search(p, lower)
             if m:
-                return f"{brand_prefix}{m.group(0).replace(' ', '')}"
+                chip = m.group(0).replace(' ', '')
+                # Extract VRAM to distinguish variants (e.g., 16GB vs 12GB)
+                vram = ''
+                vram_match = re.search(r'(\d+)\s*(?:gb|go)', lower)
+                if vram_match:
+                    vram = f"-{vram_match.group(1)}gb"
+                return f"{brand_prefix}{chip}{vram}"
     elif category == 'ram':
         m = re.search(r'\d+\s*gb.*ddr[345].*\d{4}', lower)
         if m:

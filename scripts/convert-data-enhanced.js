@@ -15,27 +15,36 @@ const laptopModel = /\b(?:g15|g16|g18|g14|g17|g513|g733)\b/;
 const laptopKeywords = /\bpavilion\b|\bomen\b|\blegion\b|\bzephyrus\b|\bthinkpad\b|\bideapad\b|\bvictus\b|\bnitro\b|\bpredator\b|\balienware\b|\bxps\b|\blatitude\b|\binspiron\b|\bsurface\b|\bmacbook\b|\bchromebook\b|\byoga\b|\bswift\b|\baspire\b|\bstealth\b|\brazer\b|\bblade\b|\bdefender\b|\berazer\b|\bthin\b|\bzbook\b|\bprecision\b|\bloq\b|\bprobook\b|\bfirefly\b|\bcyborg\b|\bproart\b|\bxmg\b|\bge75\b|\bge76\b|\bge77\b/;
 
 function isLaptop(name) {
-  // Normalize accents for better matching (e.g., Précision -> precision)
   const normalized = name.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, ''); // Remove accents
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   
-  // Explicit laptop keywords
+  // Explicit laptop keywords (must-have for strong signal)
   if (laptopIndicators.test(normalized) || laptopModel.test(normalized) || laptopKeywords.test(normalized)) {
     return true;
   }
   
   // Laptop pattern detection: name contains multiple laptop components (CPU + GPU + RAM + storage + screen)
-  // This catches products like "AORUS Master 16 / ultra 9-275hx / 32gb / 1tb SSD / RTX 5080 / 16 2.5k OLED"
   const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
   const hasGPU = /\b(?:rtx|gtx|rx|geforce|radeon)\b/.test(normalized);
   // RAM must be system RAM (DDR + GB) not just GPU VRAM (standalone GB)
   const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized);
   const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b\d+\s*(?:tb|to)\b/.test(normalized);
-  const hasScreen = /\b(?:\d+\s*["\']|\d+\.\d+\s*["\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
+  const hasScreen = /\b(?:\d+\s*[\"\']|\d+\.\d+\s*[\"\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
   
-  // If name has 3+ of: CPU, GPU, RAM, storage, screen → it's a laptop or desktop PC
+  // Count laptop signals (require 4+ for prebuilt systems to avoid GPU false positives)
   const laptopSignals = [hasCPU, hasGPU, hasRAM, hasStorage, hasScreen].filter(Boolean).length;
-  if (laptopSignals >= 3) return true;
+  
+  // Must have 4+ signals AND at least one of CPU+GPU+RAM+storage
+  // Screen alone is weak signal (monitors have screen)
+  if (laptopSignals >= 4 && hasCPU && hasGPU && hasRAM && hasStorage) {
+    // Extra check: make sure it's not a standalone GPU card with extra specs in the title
+    const hasGpuVariant = /\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime|phantom|gamingtrio|gaming\s+x|master|xtreme|aorus|ftw3|xc|ultra|founder|ko|phoenix|hof|amp|gaming\s+oc|windforce\s+oc|eagle\s+oc)\b/.test(normalized);
+    const hasGpuCard = /\bcarte\s+graphique\b|\bgraphics\s+card\b|\bvga\b|\bvideo\s+card\b/.test(normalized);
+    if (hasGpuCard || (hasGpuVariant && !hasScreen)) {
+      return false; // This is a GPU card, not a laptop
+    }
+    return true;
+  }
   
   return false;
 }
@@ -46,7 +55,7 @@ function detectCategoryFromName(name) {
   const lower = name.toLowerCase();
 
   // LAPTOP check first (must not be matched as GPU)
-  if (isLaptop(name)) return 'pc-parts';
+  if (isLaptop(name)) return 'laptop';
 
   // GPU — standalone graphics card
   if (/\brtx\s*\d{3,4}\b|\bgtx\s*\d{3,4}\b|\brx\s*\d{4}\b|\bgeforce\s+rtx\b|\bgeforce\s+gtx\b|\bradeon\s+rx\b/.test(lower)) return 'graphics-cards';

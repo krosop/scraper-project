@@ -40,6 +40,9 @@ STORES = {
     '34384': 'Tech Mania',
     '38815': 'GamingZone by Divatech',
     '39421': 'Best Buy DZ',
+    '30409': 'Future City Informatique',
+    '31499': 'Khalil Technologie',
+    '27096': 'G2T Informatique',
 }
 
 
@@ -111,7 +114,7 @@ def parse_announcements(data):
                 continue
             
             lower = title.lower()
-            if any(x in lower for x in ['voiture', 'appartement', 'maison', 'terrain', 'scooter', 'moto']):
+            if any(x in lower for x in ['voiture', 'appartement', 'maison', 'terrain', 'scooter', 'moto', 'phone', 'telephone', 'tablet', 'tablette', 'console', 'playstation', 'xbox', 'switch', 'camera', 'appareil photo', 'imprimante', 'printer', 'scanner', 'photocopieur', 'tv', 'television', 'smart tv', 'ecran tv', 'chargeur', 'cable', 'adaptateur', 'sac', 'sacoche', 'support', 'tapis', 'hub usb', 'carte sd', 'cle usb', 'antivirus', 'windows', 'office', 'logiciel', 'compte', 'abonnement', 'recharge', 'carte', 'modem', 'routeur', 'switch reseau', 'point d\'acces']):
                 continue
             
             price_val = ann.get('price')
