@@ -146,12 +146,12 @@ CATEGORY_PATTERNS = {
     ],
     'laptop': [
         (r'\bpc\s+portable\b|\blaptop\b|\bnotebook\b|\bordinateur\s+portable\b', 10),
-        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook|microsoft|surface)\b.*\b(?:ryzen|core\s+i|rtx|gtx|intel\s+core)\b', 12),
-        (r'\b(?:ryzen|core\s+i|rtx|gtx)\b.*\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b', 15),
-        (r'\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b.*\b(?:ryzen|core\s+i|rtx|gtx)\b', 15),
+        (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook|microsoft|surface)\b.*\b(?:ryzen|core\s+i|rtx|gtx|intel\s+core|r[3579])\b', 12),
+        (r'\b(?:ryzen|core\s+i|rtx|gtx|r[3579])\b.*\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b', 15),
+        (r'\b(?:gb|go|tb|to)\b.*\b(?:ssd|ram|ddr|hdd)\b.*\b(?:ryzen|core\s+i|rtx|gtx|r[3579])\b', 15),
         (r'\b(?:15\.6|14|13\.3|17\.3|16)\s*["\']?\s*\b(?:laptop|pc|notebook|portable)\b', 10),
         (r'\b(?:macbook|surface|thinkpad|ideapad|pavilion|omen|victus|nitro|predator|zephyrus|flow|vivobook|zenbook|envy|spectre|xps|alienware|latitude|inspiron|chromebook|yoga|swift|aspire)\b', 8),
-        (r'\b(?:i[3579]|ryzen\s*[3579])\b.*\b(?:gb|go)\b.*\b(?:ssd|hdd|nvme)\b', 12),
+        (r'\b(?:i[3579]|ryzen\s*[3579]|r[3579])\b.*\b(?:gb|go)\b.*\b(?:ssd|hdd|nvme)\b', 12),
         (r'\b(?:asus|msi|dell|hp|lenovo|acer|apple|macbook)\s+(?:predator|thinkpad|pavilion|omen|nitro|ideapad|victus)\b', 6),
         (r'\b\d+["\']?\s*laptop\b', 5),
     ],
@@ -493,7 +493,7 @@ def detect_category(name: str, url: str = '') -> str:
             scores[cat] = scores.get(cat, 0) + 5
 
     # Cross-pattern: laptop with specs boost (but NOT if 'gddr' is present — that's GPU memory)
-    if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name or 'ryzen' in lower_name or 'core i' in lower_name):
+    if scores.get('laptop', 0) > 0 and ('rtx' in lower_name or 'gtx' in lower_name or 'ryzen' in lower_name or 'core i' in lower_name or 'r7' in lower_name or 'r5' in lower_name or 'r9' in lower_name or 'r3' in lower_name):
         # Use word-boundary matching so 'gddr' doesn't trigger on 'gddr6/gddr7'
         if any(re.search(r'\b' + re.escape(w) + r'\b', lower_name) for w in ['ssd', 'hdd', 'nvme', 'ram', 'ddr']):
             scores['laptop'] = scores.get('laptop', 0) + 20
@@ -505,8 +505,10 @@ def detect_category(name: str, url: str = '') -> str:
         has_gpu_variant = bool(re.search(r'\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime|phantom|gamingtrio|gaming\s+x|master|xtreme|aorus|ftw3|xc|ultra|founder|ko|phoenix|hof|amp|gaming\s+oc|windforce\s+oc|eagle\s+oc)\b', lower_name))
         has_standalone_gpu = bool(re.search(r'\bcarte\s+graphique\b|\bgraphics\s+card\b|\bvga\b|\bvideo\s+card\b', lower_name))
         has_motherboard = bool(re.search(r'\b(?:b\d{3}[a-z]?|z\d{3}[a-z]?|x\d{3}[a-z]?|h\d{3}[a-z]?)\b', lower_name))
-        if not has_laptop_indicator and not has_motherboard and (has_gpu_variant or has_standalone_gpu):
-            scores['laptop'] = 0  # This is a GPU, not a laptop or desktop PC
+        has_cpu = bool(re.search(r'\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|r[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b', lower_name))
+        # Only clear laptop score if it's a standalone GPU: no CPU, no motherboard, no laptop indicators
+        if not has_laptop_indicator and not has_motherboard and not has_cpu and (has_gpu_variant or has_standalone_gpu):
+            scores['laptop'] = 0  # This is a GPU card, not a laptop or desktop PC
     
     # NEW: Desktop PC override - if product has a motherboard model and no laptop keyword, it's a desktop
     if scores.get('laptop', 0) > 0:

@@ -24,10 +24,10 @@ function isLaptop(name) {
   }
   
   // Laptop pattern detection: name contains multiple laptop components (CPU + GPU + RAM + storage + screen)
-  const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
+  const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|r[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
   const hasGPU = /\b(?:rtx|gtx|rx|geforce|radeon)\b/.test(normalized);
   // RAM must be system RAM (DDR + GB) not just GPU VRAM (standalone GB)
-  const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized) || /\b(?:8|16|32|64|128)\s*(?:gb|go)\b/.test(normalized);
+  const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized) || /\b(?:8|16|32|64|128)\s*(?:gb|go)\b/.test(normalized) || /\b\d+\s*(?:gb|go)?\s*(?:ddr[345x]|ram)\b/.test(normalized);
   // Storage: match SSD/NVMe/HDD keywords OR common storage sizes (128GB, 256GB, 512GB, 1TB, 2TB, 4TB)
   const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b(?:128|256|512|1024|2048|4096|1|2|4)\s*(?:tb|to|gb|go)\b/.test(normalized);
   const hasScreen = /\b(?:\d+\s*[\"\']|\d+\.\d+\s*[\"\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
