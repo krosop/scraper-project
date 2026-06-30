@@ -9,42 +9,55 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 //  ENHANCED CATEGORY DETECTION: Taxonomy Primary + Fallback
 // ═══════════════════════════════════════════════════════════
 
-// Laptop detection (unchanged - this must run FIRST)
+// Laptop detection (must run FIRST)
 const laptopIndicators = /\blaptop\b|\bnotebook\b|\bpc\s+portable\b|\bordinateur\s+portable\b/;
 const laptopModel = /\b(?:g15|g16|g18|g14|g17|g513|g733)\b/;
-const laptopKeywords = /\bpavilion\b|\bomen\b|\blegion\b|\bzephyrus\b|\bthinkpad\b|\bideapad\b|\bvictus\b|\bnitro\b|\bpredator\b|\balienware\b|\baleinware\b|\bxps\b|\blatitude\b|\binspiron\b|\bsurface\b|\bmacbook\b|\bchromebook\b|\byoga\b|\bswift\b|\baspire\b|\bstealth\b|\brazer\b|\bblade\b|\bdefender\b|\berazer\b|\bthin\b|\bzbook\b|\bprecision\b|\bloq\b|\bprobook\b|\bfirefly\b|\bcyborg\b|\bproart\b|\bxmg\b|\bge75\b|\bge76\b|\bge77\b|\bkatana\b|\bgf66\b|\bgf76\b|\bgp66\b|\bgp76\b|\bgl66\b|\bgl76\b|\bvivobook\b|\bzenbook\b|\bcreator\b|\bflow\b|\bdash\b/;
 
 function isLaptop(name) {
   const normalized = name.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   
-  // Explicit laptop keywords (must-have for strong signal)
-  if (laptopIndicators.test(normalized) || laptopModel.test(normalized) || laptopKeywords.test(normalized)) {
+  // EXPLICIT laptop keywords (unambiguous - immediate return)
+  const unambiguousLaptop = /\b(?:laptop|notebook|pc\s+portable|ordinateur\s+portable|macbook|surface|thinkpad|ideapad|pavilion|omen|victus|nitro|predator|alienware|xps|latitude|inspiron|chromebook|yoga|swift|aspire|stealth|blade|razer|zbook|precision|loq|probook|firefly|vivobook|zenbook|expertbook|defender|erazer|thin|ge75|ge76|ge77|katana|gf66|gf76|gp66|gp76|gl66|gl76|creator|flow|dash|cyborg|proart|xmg|titan|vector|raider|summit|prestige|modern|alpha|delta|bravo|pulse|sword|crosshair)\b/;
+  if (unambiguousLaptop.test(normalized)) {
     return true;
   }
   
-  // Laptop pattern detection: name contains multiple laptop components (CPU + GPU + RAM + storage + screen)
+  // Laptop model numbers (unambiguous)
+  if (laptopModel.test(normalized)) {
+    return true;
+  }
+  
+  // Laptop pattern detection: name contains multiple laptop components
   const hasCPU = /\b(?:core\s+i[3579]|i[3579]-\d{3,5}|i[3579]\b|r[3579]\b|ryzen\s*[3579]|ultra\s*[579]|athlon|pentium|celeron|xeon|threadripper)\b/.test(normalized);
   const hasGPU = /\b(?:rtx|gtx|rx|geforce|radeon)\b/.test(normalized);
-  // RAM must be system RAM (DDR + GB) not just GPU VRAM (standalone GB)
   const hasRAM = /\b(?:ddr[345x]|ram)\b/.test(normalized) || /\b\d+\s*(?:gb|go)\s+(?:ddr|ram)\b/.test(normalized) || /\b(?:8|16|32|64|128)\s*(?:gb|go)\b/.test(normalized) || /\b\d+\s*(?:gb|go)?\s*(?:ddr[345x]|ram)\b/.test(normalized);
-  // Storage: match SSD/NVMe/HDD keywords OR common storage sizes (128GB, 256GB, 512GB, 1TB, 2TB, 4TB)
   const hasStorage = /\b(?:ssd|nvme|hdd)\b/.test(normalized) || /\b(?:128|256|512|1024|2048|4096|1|2|4)\s*(?:tb|to|gb|go)\b/.test(normalized);
   const hasScreen = /\b(?:\d+\s*[\"\']|\d+\.\d+\s*[\"\']|pouces?|inch|full\s*hd|2k|2\.5k|4k|qhd|fhd|oled|ips|144hz|165hz|240hz|360hz)\b/.test(normalized);
   
-  // Count laptop signals (require 4+ for prebuilt systems to avoid GPU false positives)
-  const laptopSignals = [hasCPU, hasGPU, hasRAM, hasStorage, hasScreen].filter(Boolean).length;
+  // Ambiguous signals that suggest laptop but are not definitive alone
+  const hasTUF = /\btuf\b/.test(normalized);
+  const hasROG = /\b(?:rog\s+strix|rog\s+zephyrus|rog\s+flow)\b/.test(normalized);
+  const hasAORUS = /\baorus\s+(?:16|17|15)\b/.test(normalized);
+  const hasMSI = /\b(?:gf63|gf65|gf77|crosshair|pulse|sword|bravo|alpha|delta|modern|summit|prestige|cyborg|vector|raider|titan)\b/.test(normalized);
+  const hasLegion = /\blegion\b/.test(normalized);
   
-  // Must have 4+ signals AND at least one of CPU+GPU+RAM+storage
-  // Screen alone is weak signal (monitors have screen)
-  if (laptopSignals >= 4 && hasCPU && hasGPU && hasRAM && hasStorage) {
-    // Extra check: make sure it's not a standalone GPU card with extra specs in the title
-    const hasGpuVariant = /\b(?:dual|tuf|strix|gaming|eagle|ventus|aero|suprim|windforce|shadow|inspire|astral|prime|phantom|gamingtrio|gaming\s+x|master|xtreme|aorus|ftw3|xc|ultra|founder|ko|phoenix|hof|amp|gaming\s+oc|windforce\s+oc|eagle\s+oc)\b/.test(normalized);
+  // Count signals: CPU + GPU + RAM + storage + screen = 5
+  // Plus ambiguous signals: TUF, ROG, AORUS, MSI, Legion
+  const laptopSignals = [hasCPU, hasGPU, hasRAM, hasStorage, hasScreen, hasTUF, hasROG, hasAORUS, hasMSI, hasLegion].filter(Boolean).length;
+  
+  // For TUF/ROG/AORUS products: require 4+ signals including screen and CPU and RAM
+  // For non-TUF products: require 4+ signals including screen and CPU and RAM and storage
+  const hasAmbiguous = hasTUF || hasROG || hasAORUS || hasMSI || hasLegion;
+  
+  if (hasAmbiguous && laptopSignals >= 4 && hasScreen && hasCPU && hasRAM) {
+    // Extra check: make sure it's not a standalone GPU card
     const hasGpuCard = /\bcarte\s+graphique\b|\bgraphics\s+card\b|\bvga\b|\bvideo\s+card\b/.test(normalized);
-    // A GPU card has a GPU variant but NO CPU and NO RAM (laptops have both)
-    if (hasGpuCard || (hasGpuVariant && !hasScreen && !hasCPU)) {
-      return false; // This is a GPU card, not a laptop
-    }
+    if (hasGpuCard) return false;
+    return true;
+  }
+  
+  if (!hasAmbiguous && laptopSignals >= 4 && hasScreen && hasCPU && hasRAM && hasStorage) {
     return true;
   }
   
@@ -81,305 +94,181 @@ function detectCategoryFromName(name) {
   if (/\bmouse\b|\bsouris\b/.test(lower)) return 'mouse';
   // Headset
   if (/\bheadset\b|\bcasque\b|\bheadphone\b/.test(lower)) return 'headset';
+  // Desktop
+  if (/\bpc\s+fixe\b|\bpc\s+bureau\b|\bordinateur\s+de\s+bureau\b|\bdesktop\b/.test(lower)) return 'desktop';
   // Motherboard
-  if (/\bmotherboard\b|\bcarte\s+mere\b|\bmainboard\b/.test(lower)) return 'pc-parts';
+  if (/\bcarte\s+mere\b|\bmotherboard\b|\bmainboard\b/.test(lower)) return 'pc-parts';
+  
   return null;
 }
 
-// Enhanced category detection using taxonomy + fallback
-function detectCategoryEnhanced(name, taxonomy) {
-  // 1. Always check laptop first
-  if (isLaptop(name)) return { category: 'laptop', source: 'laptop-detection', taxonomyMatch: null };
+// ═══════════════════════════════════════════════════════════
+//  MAIN CONVERSION
+// ═══════════════════════════════════════════════════════════
 
-  // 2. Try taxonomy matching (for non-laptops)
-  const taxMatch = findTaxonomyMatch(name, taxonomy);
-  if (taxMatch) {
-    const frontendCat = getFrontendCategory(taxMatch.match.path);
-    if (frontendCat) {
-      return { category: frontendCat, source: 'taxonomy', taxonomyMatch: taxMatch.match };
-    }
-  }
-
-  // 3. Fallback to old keyword detection
-  const fallback = detectCategoryFromName(name);
-  if (fallback) {
-    return { category: fallback, source: 'keyword-fallback', taxonomyMatch: null };
-  }
-
-  // 4. Default
-  return { category: 'pc-parts', source: 'default', taxonomyMatch: null };
-}
-
-// Category mapping: our old categories → new frontend categories
 const CATEGORY_MAP = {
-  'gpu': 'graphics-cards',
+  'laptop': 'laptop',
+  'desktop': 'desktop',
   'cpu': 'processors',
+  'gpu': 'graphics-cards',
   'ram': 'memory',
-  'motherboard': 'pc-parts',
   'storage': 'storage',
+  'monitor': 'monitors',
+  'motherboard': 'pc-parts',
   'psu': 'power-supplies',
   'case': 'cases',
-  'cooler': 'cooling',
-  'monitor': 'monitors',
-  'mouse': 'mouse',
+  'cooling': 'cooling',
   'keyboard': 'keyboard',
-  'laptop': 'laptop',
-  'accessory': 'accessories',
-  'unknown': 'pc-parts',
+  'mouse': 'mouse',
+  'headset': 'headset',
   'pc_part': 'pc-parts',
+  'pc-parts': 'pc-parts',
+  'unknown': 'pc-parts',
 };
 
-const CATEGORY_NAMES = {
-  'graphics-cards': 'Cartes Graphiques',
-  'processors': 'Processeurs',
-  'memory': 'Mémoire RAM',
-  'pc-parts': 'Composants PC',
-  'storage': 'Stockage',
-  'power-supplies': 'Alimentations',
-  'cases': 'Boîtiers PC',
-  'cooling': 'Refroidissement',
-  'monitors': 'Écrans',
-  'accessories': 'Accessoires',
-  'mouse': 'Souris',
-  'keyboard': 'Claviers',
-  'phones': 'Téléphones',
-  'peripherals': 'Périphériques',
-  'laptop': 'Laptops',
-};
-
-const STORE_COLORS = [
-  '#f68b1e', '#2563eb', '#00d4aa', '#e11d48', '#8b5cf6',
-  '#06b6d4', '#f59e0b', '#ec4899', '#10b981', '#6366f1',
-  '#14b8a6', '#f43f5e', '#84cc16', '#a855f7', '#f97316',
-];
-
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '')
-    .substring(0, 60);
-}
-
-function generateSlug(product) {
-  const base = product.name || product.canonicalName || 'product';
-  return slugify(base);
-}
-
-function generateDescription(product) {
-  const name = product.name || product.canonicalName || 'Produit';
-  const storeCount = product.storeCount || product.listingCount || 1;
-  const bestPrice = product.bestPrice || 0;
-  return `${name} - Comparé sur ${storeCount} boutique(s) en Algérie. Prix le plus bas: ${bestPrice.toLocaleString('fr-DZ')} DA`;
-}
-
-function generateRating() {
-  return Math.round((3.5 + Math.random() * 1.3) * 10) / 10;
-}
-
-function generateReviewCount() {
-  return Math.floor(3 + Math.random() * 22);
-}
-
-function convertSpecs(specs) {
-  if (!specs || typeof specs !== 'object') return ['Produit neuf'];
-  const result = [];
-  for (const [key, value] of Object.entries(specs)) {
-    if (value && value !== 'Unknown' && value !== 'N/A') {
-      result.push(`${key}: ${value}`);
-    }
+function convertProduct(product, taxonomy, storeColors) {
+  // Use taxonomy engine first
+  const taxonomyMatch = findTaxonomyMatch(product.name, taxonomy);
+  const taxonomyCategory = taxonomyMatch ? getFrontendCategory(taxonomyMatch.match.path) : null;
+  
+  // Fallback: use categorizer category or keyword detection
+  const rawCategory = product.category || '';
+  const fallbackCategory = detectCategoryFromName(product.name) || CATEGORY_MAP[rawCategory] || 'pc-parts';
+  
+  // Priority: taxonomy > laptop-detection > categorizer > keyword-fallback
+  let category = taxonomyCategory || fallbackCategory;
+  let categorySource = taxonomyCategory ? 'taxonomy' : (CATEGORY_MAP[rawCategory] ? 'categorizer' : 'keyword-fallback');
+  
+  // Laptop detection override (must run after taxonomy because converter has more context)
+  if (isLaptop(product.name)) {
+    category = 'laptop';
+    categorySource = 'laptop-detection';
+  } else if (category === 'laptop' && !isLaptop(product.name)) {
+    // Categorizer falsely classified as laptop - reset to fallback
+    category = fallbackCategory === 'laptop' ? 'pc-parts' : fallbackCategory;
+    categorySource = 'categorizer-corrected';
   }
-  return result.length > 0 ? result : ['Produit neuf'];
-}
-
-function convertListingsToPrices(listings) {
-  if (!Array.isArray(listings) || listings.length === 0) return [];
-
-  return listings.map((l, i) => {
-    const currentPrice = l.price || 0;
-    const originalPrice = l.old_price || l.originalPrice || currentPrice;
-    const savings = originalPrice > currentPrice ? originalPrice - currentPrice : 0;
-
+  
+  // Normalize brand
+  const brand = product.brand || 'Unknown';
+  
+  // Calculate prices at product level
+  const listings = product.listings || [];
+  const currentPrices = listings.map(p => p.price).filter(p => p > 0);
+  const currentPrice = currentPrices.length > 0 ? Math.min(...currentPrices) : 0;
+  const originalPrice = product.worstPrice || product.averagePrice || 0;
+  const savings = originalPrice > currentPrice ? Math.round((1 - currentPrice / originalPrice) * 100) : 0;
+  
+  // Get store info
+  const store = listings?.[0]?.source || product.store || 'Unknown';
+  const store_color = product.store_color || '#6366f1';
+  
+  // Image fallback
+  const image = product.imageUrl || product.image || '';
+  
+  // Specs as array (frontend expects string[])
+  const specs = product.specs ? Object.entries(product.specs).map(([k, v]) => `${k}: ${v}`) : [];
+  
+  // Transform listings to RetailerPrice format (frontend expects these fields)
+  const prices = listings.map(l => {
+    const lCurrent = l.price || 0;
+    const lOriginal = l.old_price || 0;
+    const lSavings = lOriginal > lCurrent ? Math.round((1 - lCurrent / lOriginal) * 100) : 0;
     return {
-      retailer: l.source || l.retailer || l.site || l.store_name || 'Boutique',
-      color: STORE_COLORS[i % STORE_COLORS.length],
-      current: currentPrice,
-      original: originalPrice,
-      shipping: 'Livraison disponible',
-      stock: l.inStock !== false ? 'En Stock' : 'Rupture',
-      savings: savings,
-      url: l.url || l.product_url || '#',
+      retailer: l.source || 'Unknown',
+      color: storeColors[l.source] || '#6366f1',
+      current: lCurrent,
+      original: lOriginal,
+      shipping: l.shipping || '',
+      stock: l.stock || 'متوفر',
+      savings: lSavings,
+      url: l.url || '',
     };
-  }).sort((a, b) => a.current - b.current);
-}
-
-function convertData(input, taxonomy) {
-  const products = input.products || [];
-
-  // Collect unique stores
-  const storeNames = new Set();
-  products.forEach(p => {
-    (p.listings || []).forEach(l => {
-      storeNames.add(l.source || l.retailer || l.site || l.store_name || 'Boutique');
-    });
   });
-
-  const storeColors = {};
-  Array.from(storeNames).forEach((name, i) => {
-    storeColors[name] = STORE_COLORS[i % STORE_COLORS.length];
-  });
-
-  // Convert products
-  const convertedProducts = products.map(p => {
-    const name = p.name || p.canonicalName || '';
-
-    // Enhanced category detection: taxonomy + fallback
-    const detected = detectCategoryEnhanced(name, taxonomy);
-
-    // Also check scraper's category if it was set and valid
-    let finalCategory = detected.category;
-    const rawCategory = p.category || '';
-    if (rawCategory && CATEGORY_MAP[rawCategory]) {
-      // If scraper says 'unknown'/'pc_part' but we detected a specific category, trust our detection
-      if (rawCategory === 'unknown' || rawCategory === 'pc_part' || rawCategory === 'accessory') {
-        finalCategory = detected.category;
-      } else if (detected.source === 'laptop-detection') {
-        finalCategory = 'laptop'; // Keep laptop as its own category
-      } else if (detected.source === 'taxonomy') {
-        // Taxonomy is more reliable, keep it
-      } else {
-        // Fallback: use scraper's category if it's a real category
-        finalCategory = CATEGORY_MAP[rawCategory] || detected.category;
-      }
-    }
-
-    const prices = convertListingsToPrices(p.listings || []);
-    prices.forEach(pr => {
-      if (storeColors[pr.retailer]) pr.color = storeColors[pr.retailer];
-    });
-
-    // Sanity check: fix prices off by 100x
-    prices.forEach(pr => {
-      if (pr.current > 5000000) {
-        const fixed = Math.round(pr.current / 100);
-        if (fixed >= 1000 && fixed <= 5000000) {
-          pr.current = fixed;
-          pr.original = pr.original > 5000000 ? Math.round(pr.original / 100) : pr.original;
-          pr.savings = pr.original > pr.current ? pr.original - pr.current : 0;
-        }
-      }
-    });
-
-    const cheapest = prices.length > 0
-      ? prices.reduce((min, p) => p.current < min.current ? p : min, prices[0])
-      : null;
-
-    // Build enhanced specs from taxonomy if available
-    let specs = convertSpecs(p.specs);
-    const taxMatch = detected.taxonomyMatch;
-    if (taxMatch) {
-      // Enrich specs with taxonomy data
-      if (taxMatch.key_specs && taxMatch.key_specs !== 'Unknown') {
-        specs = [taxMatch.key_specs, ...specs.filter(s => s !== 'Produit neuf')];
-      }
-      // If original specs had nothing useful, use taxonomy specs
-      if (specs.length === 0 || (specs.length === 1 && specs[0] === 'Produit neuf')) {
-        specs = [taxMatch.key_specs || 'Produit neuf'];
-      }
-    }
-
-    // Add taxonomy metadata for frontend display
-    const taxonomyMeta = taxMatch ? {
-      taxonomyId: taxMatch.id,
-      canonicalName: taxMatch.name,
-      taxonomyCategory: taxMatch.category,
-      brand: taxMatch.brand || p.brand || 'Marque inconnue',
-      model: taxMatch.model || '',
-      keySpecs: taxMatch.key_specs || '',
-      interface: taxMatch.interface_socket || '',
-      releaseYear: taxMatch.release_year || '',
-      priceUSD: taxMatch.price_usd || '',
-      condition: taxMatch.condition || '',
-      notes: taxMatch.notes || '',
-      matchSource: detected.source,
-    } : {
-      brand: p.brand || 'Marque inconnue',
-      matchSource: detected.source,
-    };
-
-    return {
-      id: p.id || `prd-${Math.random().toString(36).slice(2, 10)}`,
-      slug: generateSlug(p),
-      name: p.name || p.canonicalName || 'Produit',
-      brand: taxonomyMeta.brand,
-      category: finalCategory,
-      image: p.imageUrl || p.image || '',
-      rating: generateRating(),
-      reviewCount: generateReviewCount(),
-      description: generateDescription(p),
-      specs: specs,
-      prices: prices,
-      current_price: cheapest ? cheapest.current : null,
-      original_price: cheapest ? cheapest.original : null,
-      store: cheapest ? cheapest.retailer : null,
-      store_color: cheapest ? cheapest.color : null,
-      savings: cheapest ? cheapest.savings : 0,
-      // NEW: Taxonomy metadata (preserves old data, adds new)
-      taxonomy: taxonomyMeta,
-    };
-  }).filter(p => p.prices.length > 0 && p.prices[0].current > 0);
-
-  // Build categories with counts
-  const catCounts = {};
-  convertedProducts.forEach(p => {
-    catCounts[p.category] = (catCounts[p.category] || 0) + 1;
-  });
-
-  const categories = Object.entries(catCounts)
-    .map(([slug, count]) => ({
-      slug,
-      name: CATEGORY_NAMES[slug] || slug,
-      count,
-    }))
-    .sort((a, b) => b.count - a.count);
-
+  
   return {
-    storeColors,
-    categories,
-    products: convertedProducts,
-    taxonomyVersion: '1.0',
-    taxonomyBuildTime: new Date().toISOString(),
+    id: product.id,
+    slug: product.canonicalName || product.name || '',
+    name: product.name,
+    brand: brand,
+    category: category,
+    image: image,
+    rating: 0,
+    reviewCount: product.listingCount || 0,
+    description: '',
+    specs: specs,
+    prices: prices,
+    current_price: currentPrice,
+    original_price: originalPrice,
+    store: store,
+    store_color: store_color,
+    savings: savings,
   };
 }
 
 function main() {
-  const inputPath = join(__dirname, '..', 'public', 'clean-products.json');
-  const outputDir = join(__dirname, '..', 'public', 'data');
-  const outputPath = join(outputDir, 'products.json');
-
-  console.log('Loading taxonomy...');
+  // Load data
+  const rawData = JSON.parse(readFileSync(join(__dirname, '../public/clean-products.json'), 'utf8'));
+  const products = rawData.products || [];
+  
+  // Load taxonomy
   const taxonomy = loadTaxonomy();
-
-  console.log(`Reading ${inputPath}...`);
-  const raw = readFileSync(inputPath, 'utf8');
-  const input = JSON.parse(raw);
-
-  console.log(`Converting ${input.products?.length || 0} products with taxonomy...`);
-  const output = convertData(input, taxonomy);
-
-  console.log(`Converted: ${output.products.length} products, ${output.categories.length} categories, ${Object.keys(output.storeColors).length} stores`);
-
-  // Stats on taxonomy matches
-  const sources = {};
-  output.products.forEach(p => {
-    const src = p.taxonomy?.matchSource || 'unknown';
-    sources[src] = (sources[src] || 0) + 1;
-  });
-  console.log('Category sources:', sources);
-
+  
+  // First pass: collect all stores to build storeColors map
+  const storeColors = {};
+  for (const p of products) {
+    const listings = p.listings || [];
+    for (const l of listings) {
+      const source = l.source || 'Unknown';
+      if (!storeColors[source]) {
+        storeColors[source] = p.store_color || '#6366f1';
+      }
+    }
+  }
+  
+  // Second pass: convert all products with storeColors
+  const converted = products.map(p => convertProduct(p, taxonomy, storeColors));
+  
+  // Collect store colors (final pass to ensure all stores are captured)
+  for (const p of converted) {
+    if (p.store && !storeColors[p.store]) {
+      storeColors[p.store] = p.store_color;
+    }
+  }
+  
+  // Collect categories as array with slug/name/count (frontend expects this format)
+  const categories = [];
+  for (const p of converted) {
+    const existing = categories.find(c => c.slug === p.category);
+    if (existing) {
+      existing.count++;
+    } else {
+      categories.push({ slug: p.category, name: p.category, count: 1 });
+    }
+  }
+  
+  // Category source stats
+  const categorySources = {};
+  for (const p of converted) {
+    const source = p.categorySource || 'default';
+    categorySources[source] = (categorySources[source] || 0) + 1;
+  }
+  
+  console.log('Category sources:', categorySources);
+  
+  // Write output
+  const outputDir = join(__dirname, '../public/data');
   mkdirSync(outputDir, { recursive: true });
-  writeFileSync(outputPath, JSON.stringify(output, null, 2));
-  console.log(`Written to ${outputPath}`);
+  
+  writeFileSync(join(outputDir, 'products.json'), JSON.stringify({
+    storeColors,
+    categories,
+    products: converted,
+    taxonomyVersion: '1.0',
+    taxonomyBuildTime: new Date().toISOString(),
+  }, null, 2));
+  
+  console.log(`Converted: ${converted.length} products, ${categories.length} categories, ${Object.keys(storeColors).length} stores`);
 }
 
 main();

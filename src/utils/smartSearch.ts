@@ -623,6 +623,79 @@ export function smartSearch(
       }
     }
 
+    // STRICT MODEL MISMATCH PENALTY
+    // If query specifies exact GPU/CPU model number, penalize products with different model numbers
+    const gpuModels = /\b(3050|3060|3060ti|3070|3070ti|3080|3080ti|3090|3090ti|4050|4060|4060ti|4070|4070ti|4080|4080s|4090|5050|5060|5060ti|5070|5070ti|5080|5090|5090d|1650|1660|1660ti|1660s|1070|1080|1080ti|2060|2070|2070s|2080|2080ti|2080s|1060|1050|1030|980|970|960)\b/;
+    const cpuModels = /\b(i3[-\s]?\d{3,5}|i5[-\s]?\d{3,5}|i7[-\s]?\d{3,5}|i9[-\s]?\d{3,5}|ultra[-\s]?[3579][-\s]?\d{3,5}|ryzen[-\s]?[3579]|ryzen[-\s]?\d{4,5}|athlon[-\s]?\d{4}|threadripper[-\s]?\d{4})\b/;
+    const queryGpuMatch = rawQuery.toLowerCase().match(gpuModels);
+    const queryCpuMatch = rawQuery.toLowerCase().match(cpuModels);
+    if (queryGpuMatch || queryCpuMatch) {
+      const queryModel = (queryGpuMatch || queryCpuMatch)![0];
+      const normTextLower = searchText.toLowerCase();
+      // Check if product has a DIFFERENT model number from the same series
+      if (queryGpuMatch) {
+        // Product has a different GPU model (e.g., query=3060, product=4060)
+        const allGpuModels = /\b(3050|3060|3060ti|3070|3070ti|3080|3080ti|3090|3090ti|4050|4060|4060ti|4070|4070ti|4080|4080s|4090|5050|5060|5060ti|5070|5070ti|5080|5090|5090d|1650|1660|1660ti|1660s|1070|1080|1080ti|2060|2070|2070s|2080|2080ti|2080s|1060|1050|1030|980|970|960)\b/g;
+        let m: RegExpExecArray | null;
+        while ((m = allGpuModels.exec(normTextLower)) !== null) {
+          if (m[0] !== queryModel) {
+            totalScore -= 3000; // Severe penalty for wrong GPU model
+            if (!matchReasons.includes('model-mismatch')) matchReasons.push('model-mismatch');
+            break;
+          }
+        }
+      } else if (queryCpuMatch) {
+        // Product has a different CPU model (e.g., query=i5-13600, product=i7-13700)
+        const allCpuModels = /\b(i3[-\s]?\d{3,5}|i5[-\s]?\d{3,5}|i7[-\s]?\d{3,5}|i9[-\s]?\d{3,5}|ultra[-\s]?[3579][-\s]?\d{3,5}|ryzen[-\s]?[3579]|ryzen[-\s]?\d{4,5}|athlon[-\s]?\d{4})\b/g;
+        let m: RegExpExecArray | null;
+        while ((m = allCpuModels.exec(normTextLower)) !== null) {
+          if (m[0] !== queryModel) {
+            totalScore -= 3000; // Severe penalty for wrong CPU model
+            if (!matchReasons.includes('model-mismatch')) matchReasons.push('model-mismatch');
+            break;
+          }
+        }
+      }
+    }
+
+    // PC build penalty: when searching for a specific CPU/GPU model, penalize pre-built PC configs
+    if (queryCpuMatch || queryGpuMatch) {
+      const lowerName = item.product_name.toLowerCase();
+      if (lowerName.includes('config') || lowerName.includes('pc gamer') || lowerName.includes('gaming pc') || lowerName.includes('pc fixe') || lowerName.includes('unité centrale') || lowerName.includes('pc complet') || lowerName.includes('pc assemblé')) {
+        totalScore -= 500; // Penalize pre-built PC configs
+        if (!matchReasons.includes('pc-build')) matchReasons.push('pc-build');
+      }
+    }
+
+    // Ambiguous brand-line boost: "ASUS TUF Gaming" without GPU model → likely laptop
+    if (queryWords.includes('tuf') && queryWords.includes('gaming') && !queryGpuMatch) {
+      const catSlug = item.category_slug || '';
+      if (catSlug === 'laptop') {
+        totalScore += 1500; // Strong boost for laptops
+        if (!matchReasons.includes('tuf-laptop')) matchReasons.push('tuf-laptop');
+      } else if (catSlug === 'graphics-cards') {
+        totalScore -= 800; // Penalty for GPUs without explicit model
+        if (!matchReasons.includes('tuf-gpu')) matchReasons.push('tuf-gpu');
+      } else if (catSlug === 'mouse' || catSlug === 'keyboard' || catSlug === 'headset' || catSlug === 'cases' || catSlug === 'cooling' || catSlug === 'monitors') {
+        totalScore -= 600; // Penalty for peripherals without explicit type keyword
+        if (!matchReasons.includes('tuf-peripheral')) matchReasons.push('tuf-peripheral');
+      }
+    }
+
+    // Similar boost for ROG Strix / ROG Zephyrus without GPU model
+    if ((queryWords.includes('rog') && queryWords.includes('strix')) || (queryWords.includes('rog') && queryWords.includes('zephyrus'))) {
+      if (!queryGpuMatch) {
+        const catSlug = item.category_slug || '';
+        if (catSlug === 'laptop') {
+          totalScore += 1500;
+          if (!matchReasons.includes('rog-laptop')) matchReasons.push('rog-laptop');
+        } else if (catSlug === 'graphics-cards') {
+          totalScore -= 800;
+          if (!matchReasons.includes('rog-gpu')) matchReasons.push('rog-gpu');
+        }
+      }
+    }
+
     // Full phrase match bonus
     const normQuery = normalize(rawQuery);
     const normText = normalize(searchText);
@@ -674,13 +747,43 @@ export function smartSearch(
         // Very strong boost for matching intended category (+1500 for first, +1000 for second, etc.)
         r.score += (categoryIntent.length - idx) * 1500;
         r.matchReasons.push('cat-priority');
-      } else if (isComponentIntent && (catSlug === 'pc-parts' || catSlug === 'laptop')) {
+      } else if (isComponentIntent && (catSlug === 'pc-parts' || catSlug === 'laptop' || catSlug === 'desktop')) {
         // SEVERE penalty for laptops / generic pc-parts when searching for a specific component
         r.score -= 2000;
         r.matchReasons.push('cat-mismatch');
       } else if (isComponentIntent && catSlug !== '') {
         // Moderate penalty for other non-matching categories
         r.score -= 500;
+        r.matchReasons.push('cat-mismatch');
+      }
+    }
+  }
+
+  // Laptop intent: boost laptops, penalize non-laptops
+  const isLaptopIntent = categoryIntent.includes('laptop');
+  if (isLaptopIntent) {
+    for (const r of results) {
+      const catSlug = r.item.category_slug || '';
+      if (catSlug === 'laptop') {
+        r.score += 2000;
+        r.matchReasons.push('laptop-intent');
+      } else if (catSlug !== '') {
+        r.score -= 1000;
+        r.matchReasons.push('cat-mismatch');
+      }
+    }
+  }
+
+  // Desktop intent: boost desktops, penalize non-desktops
+  const isDesktopIntent = categoryIntent.includes('desktop');
+  if (isDesktopIntent) {
+    for (const r of results) {
+      const catSlug = r.item.category_slug || '';
+      if (catSlug === 'desktop') {
+        r.score += 2000;
+        r.matchReasons.push('desktop-intent');
+      } else if (catSlug !== '') {
+        r.score -= 1000;
         r.matchReasons.push('cat-mismatch');
       }
     }
@@ -746,7 +849,10 @@ function detectCategoryIntent(query: string): string[] {
   if (words.some(w => mouseTerms.includes(w))) intents.push('mouse');
 
   const laptopTerms = ['laptop', 'notebook', 'portable', 'ordinateur'];
-  if (words.some(w => laptopTerms.includes(w))) intents.push('pc-parts');
+  if (words.some(w => laptopTerms.includes(w))) intents.push('laptop');
+
+  const desktopTerms = ['desktop', 'fixe', 'bureau'];
+  if (words.some(w => desktopTerms.includes(w))) intents.push('desktop');
 
   return intents;
 }

@@ -155,36 +155,34 @@ export default function DataProvider({ children }: { children: React.ReactNode }
     try {
       // Always load JSON data first (canonical source for allProducts)
       const jsonOk = await loadFromJson();
-
-      const [cats, strs, deals, trend, pCount, sCount] = await Promise.all([
-        getCategories(),
-        getStores(),
-        getTopDeals(10),
-        getTrending(10),
-        getProductCount(),
-        getStoreCount(),
-      ]);
-
-      // If Supabase returned data, use it for other fields
-      if (cats.length > 0 && deals.length > 0) {
-        setCategories(cats as CategoryStat[]);
-        setStores(strs);
-        setLiveDeals(deals);
-        setTrending(trend);
-        setProductCount(pCount);
-        setStoreCount(sCount);
-        setLoaded(true);
-
-        if (!realtimeRef.current) {
-          realtimeRef.current = subscribeToPriceChanges(() => {
-            getTopDeals(10).then(setLiveDeals);
-          });
-        }
-      } else if (!jsonOk) {
-        setError('Aucune donnée disponible');
+      
+      // If JSON loaded, UI is ready — set loading false immediately
+      if (jsonOk) {
+        setLoading(false);
       }
+      
+      // Try Supabase in background — don't block UI on it
+      Promise.all([
+        getCategories(), getStores(), getTopDeals(10), getTrending(10), getProductCount(), getStoreCount(),
+      ]).then(([cats, strs, deals, trend, pCount, sCount]) => {
+        if (cats.length > 0 && deals.length > 0) {
+          setCategories(cats as CategoryStat[]);
+          setStores(strs);
+          setLiveDeals(deals);
+          setTrending(trend);
+          setProductCount(pCount);
+          setStoreCount(sCount);
+          setLoaded(true);
+          if (!realtimeRef.current) {
+            realtimeRef.current = subscribeToPriceChanges(() => {
+              getTopDeals(10).then(setLiveDeals);
+            });
+          }
+        }
+      }).catch(() => {
+        // Supabase failed, JSON data is already loaded and UI is ready
+      });
     } catch (err: any) {
-      // On error, try JSON fallback
       const ok = await loadFromJson();
       if (!ok) setError(err.message || 'Erreur de chargement');
     } finally {

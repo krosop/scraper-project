@@ -46,6 +46,28 @@ class LahlouScraper:
         resp.raise_for_status()
         return resp.text
 
+    def _fetch_json(self, url: str) -> dict:
+        """Fetch Shopify product JSON endpoint for image."""
+        try:
+            json_url = url + '.json'
+            resp = self.session.get(json_url, timeout=10)
+            if resp.status_code == 200:
+                return resp.json()
+        except Exception:
+            pass
+        return {}
+
+    def _get_image_from_json(self, product_json: dict) -> str:
+        """Extract image URL from Shopify product JSON."""
+        try:
+            p = product_json.get('product', {})
+            img = p.get('image')
+            if img:
+                return img.get('src', '')
+        except Exception:
+            pass
+        return ''
+
     def _parse_page(self, html: str) -> List[Dict]:
         soup = BeautifulSoup(html, 'lxml')
         products = []
@@ -155,6 +177,24 @@ class LahlouScraper:
                 print(f"    Pagination stopped: {e}")
                 break
 
+        # Fetch images from Shopify JSON endpoints
+        print(f"    [i] Fetching images for {len(all_products)} products...")
+        import concurrent.futures
+        def fetch_img(product):
+            try:
+                j = self._fetch_json(product['url'])
+                img = self._get_image_from_json(j)
+                if img:
+                    product['image'] = img
+            except Exception:
+                pass
+            return product
+
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            all_products = list(executor.map(fetch_img, all_products))
+
+        with_images = sum(1 for p in all_products if p['image'])
+        print(f"    [i] {with_images}/{len(all_products)} products with images")
         print(f"[+] {name}: {len(all_products)} total")
         return all_products
 
