@@ -64,8 +64,36 @@ export default function BrowsePage() {
   const filteredProducts = useMemo(() => {
     let pool: typeof allProducts;
 
+    // Helper: exclude incorrectly categorized products
+    function isCorrectCategory(p: typeof allProducts[0]): boolean {
+      if (!activeCategory) return true;
+      const name = p.product_name.toLowerCase();
+      switch (activeCategory) {
+        case 'graphics-cards':
+          // Exclude laptops with GPUs, cases, monitors, etc.
+          if (name.includes('laptop') || name.includes('legion') || name.includes('zephyrus') || name.includes('omen') || name.includes('victus') || name.includes('nitro') || name.includes('rog') || name.includes('tuf') || name.includes('predator') || name.includes('g5') || name.includes('g3') || name.includes('g7') || name.includes('gf63') || name.includes('g15') || name.includes('gf75') || name.includes('g17') || name.includes('pavilion') || name.includes('ideapad') || name.includes('thinkpad') || name.includes('elitebook') || name.includes('probook') || name.includes('xps') || name.includes('inspiron') || name.includes('alienware') || name.includes('blade') || name.includes('razer') || name.includes('gt302') || name.includes('forge') || name.includes('boitier') || name.includes('case') || name.includes('boîtier')) return false;
+          // Must have a GPU chip name
+          if (!name.match(/rtx\s*\d{3,4}|gtx\s*\d{3,4}|rx\s*\d{3,4}|rtx\s*\d{3,4}|gt\s*\d{3,4}|quadro|radeon|arc\s*\w+/)) return false;
+          return true;
+        case 'cooling':
+          // Exclude laptops with "cooling" in description
+          if (name.includes('laptop') || name.includes('legion') || name.includes('ideapad') || name.includes('pavilion')) return false;
+          return true;
+        case 'mouse':
+          // Exclude keyboards with mouse in description
+          if (name.includes('keyboard') || name.includes('clavier') || name.includes('clavier')) return false;
+          return true;
+        case 'keyboard':
+          // Exclude mouse with keyboard in description
+          if (name.includes('souris') || name.includes('mouse') || name.includes('gaming mouse')) return false;
+          return true;
+        default:
+          return true;
+      }
+    }
+
     if (activeCategory) {
-      pool = allProducts.filter(p => p.category_slug === activeCategory);
+      pool = allProducts.filter(p => p.category_slug === activeCategory && isCorrectCategory(p));
     } else {
       // "All" — pick top 3 products from each category for a mixed view
       const categoryMap = new Map<string, typeof allProducts>();
