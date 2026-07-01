@@ -22,7 +22,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 from categorizer import clean_all
-from supabase_client import upsert_products_batch, test_connection
+
+# Lazy import Supabase to avoid loading it when just scraping
+def _get_supabase_client():
+    from supabase_client import upsert_products_batch, test_connection
+    return upsert_products_batch, test_connection
 
 from sites.ouedkniss import OUEDKNISS_STORES
 
@@ -109,6 +113,7 @@ def main():
 
     # ─── Test Supabase ───
     print("[1] Testing Supabase connection...")
+    _, test_connection = _get_supabase_client()
     if not test_connection():
         print("[!] Supabase not connected. Set SUPABASE_URL and SUPABASE_SERVICE_KEY.")
         sys.exit(1)
@@ -164,6 +169,7 @@ def main():
 
     # ─── Push to Supabase ───
     print(f"[3] Pushing {len(cleaned)} products to Supabase...")
+    upsert_products_batch, _ = _get_supabase_client()
     stats = upsert_products_batch(cleaned)
     print(f"[+] Upserted: {stats['inserted']}, Failed: {stats['failed']}")
     print()
