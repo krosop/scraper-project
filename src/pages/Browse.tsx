@@ -104,7 +104,7 @@ export default function BrowsePage() {
         categoryMap.get(p.category_slug)!.push(p);
       }
       pool = [];
-      for (const [, products] of categoryMap) {
+      for (const [catSlug, products] of categoryMap) {
         // Deduplicate by product_id within this category first
         const seenInCat = new Set<string>();
         const unique: typeof products = [];
@@ -114,8 +114,29 @@ export default function BrowsePage() {
             unique.push(p);
           }
         }
+        // Also filter out incorrectly categorized products per category
+        const cleaned = unique.filter((p) => {
+          const name = p.product_name.toLowerCase();
+          switch (catSlug) {
+            case 'graphics-cards':
+              if (name.includes('laptop') || name.includes('legion') || name.includes('zephyrus') || name.includes('omen') || name.includes('victus') || name.includes('nitro') || name.includes('predator') || name.includes('g5') || name.includes('g3') || name.includes('g7') || name.includes('gf63') || name.includes('g15') || name.includes('gf75') || name.includes('g17') || name.includes('pavilion') || name.includes('ideapad') || name.includes('thinkpad') || name.includes('elitebook') || name.includes('probook') || name.includes('xps') || name.includes('inspiron') || name.includes('alienware') || name.includes('blade') || name.includes('razer') || name.includes('gt302') || name.includes('forge') || name.includes('boitier') || name.includes('case') || name.includes('boîtier')) return false;
+              if (!name.match(/rtx\s*\d{3,4}|gtx\s*\d{3,4}|rx\s*\d{3,4}|gt\s*\d{3,4}|quadro|radeon|arc\s*\w+/)) return false;
+              return true;
+            case 'cooling':
+              if (name.includes('laptop') || name.includes('legion') || name.includes('ideapad') || name.includes('pavilion')) return false;
+              return true;
+            case 'mouse':
+              if (name.includes('keyboard') || name.includes('clavier')) return false;
+              return true;
+            case 'keyboard':
+              if (name.includes('souris') || name.includes('mouse')) return false;
+              return true;
+            default:
+              return true;
+          }
+        });
         // Sort by rating + review count, take top 3 unique products
-        const sorted = unique.sort((a, b) => {
+        const sorted = cleaned.sort((a, b) => {
           const aScore = (a.product_rating || 0) * 10 + (a.product_review_count || 0);
           const bScore = (b.product_rating || 0) * 10 + (b.product_review_count || 0);
           return bScore - aScore;
