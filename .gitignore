@@ -45,3 +45,10 @@ coverage/
 .nyc_output/
 
 .vercel
+# Raw scrape data (temporary, not committed)
+scripts/ouedkniss-raw.json
+scripts/scrape-results*.json
+scripts/scrape-test-results.json
+scripts/clean-products.json
+public/scrape-data.json
+server/data/scrape-results.json
