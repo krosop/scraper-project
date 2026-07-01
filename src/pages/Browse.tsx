@@ -66,8 +66,20 @@ export default function BrowsePage() {
 
     // Helper: filter incorrectly categorized products by category
     function filterByCategory(products: typeof allProducts, catSlug: string): typeof allProducts {
-      const LAPTOP_KEYWORDS = ['laptop', 'legion', 'zephyrus', 'omen', 'victus', 'nitro', 'predator', 'thinkpad', 'ideapad', 'pavilion', 'elitebook', 'probook', 'spectre', 'xps', 'inspiron', 'latitude', 'alienware', 'blade', 'razer', 'dynabook', 'omnibook', 'galaxy book', 'surface', 'folio', 'convertible', 'chromebook', 'notebook', 'ultrabook'];
-      const isLaptop = (name: string) => LAPTOP_KEYWORDS.some(k => name.includes(k));
+      const LAPTOP_KEYWORDS = ['laptop', 'legion', 'zephyrus', 'omen', 'victus', 'nitro', 'predator', 'thinkpad', 'thinkbook', 'ideapad', 'pavilion', 'elitebook', 'probook', 'spectre', 'envy', 'dragonfly', 'folio', 'xps', 'inspiron', 'latitude', 'alienware', 'blade', 'razer', 'dynabook', 'omnibook', 'galaxy book', 'surface', 'convertible', 'chromebook', 'notebook', 'ultrabook', 'vivobook', 'zenbook', 'proart', 'expertbook', 'travelmate', 'aspire', 'swift', 'spin', 'flex', 'yoga', 'stream', 'revolve', 'zbook', 'mobile workstation', 'workstation mobile', 'station de travail mobile'];
+      const isLaptop = (name: string) => {
+        const n = name.toLowerCase();
+        // Direct keyword match
+        if (LAPTOP_KEYWORDS.some(k => n.includes(k))) return true;
+        // Screen size pattern (e.g., "14 Pouce", "15.6\"", "16 Pouce")
+        if (/\d{2}(\.\d)?\s*pouce/.test(n)) {
+          // If it has screen size AND is NOT a monitor or TV
+          if (!n.includes('monitor') && !n.includes('moniteur') && !n.includes('ecran') && !n.includes('écran') && !n.includes('display') && !n.includes('tv')) return true;
+        }
+        // 2-in-1 or convertible indicators
+        if (n.includes('2 in 1') || n.includes('x360') || n.includes('tactile')) return true;
+        return false;
+      };
       return products.filter((p) => {
         const name = p.product_name.toLowerCase();
         switch (catSlug) {
