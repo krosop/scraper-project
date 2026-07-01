@@ -22,20 +22,20 @@ interface CategoryConfig {
 }
 
 const CATEGORY_CONFIG: Record<string, CategoryConfig> = {
-  laptop: { label: 'Laptops', labelFr: 'PC Portables', icon: Laptop, color: '#00d4aa', bgColor: '#00d4aa30' },
-  'graphics-cards': { label: 'Graphics Cards', labelFr: 'Cartes Graphiques', icon: CircuitBoard, color: '#3b82f6', bgColor: '#3b82f630' },
-  processors: { label: 'Processors', labelFr: 'Processeurs', icon: Cpu, color: '#6366f1', bgColor: '#6366f130' },
-  memory: { label: 'Memory', labelFr: 'Mémoire', icon: MemoryStick, color: '#8b5cf6', bgColor: '#8b5cf630' },
-  storage: { label: 'Storage', labelFr: 'Stockage', icon: HardDrive, color: '#06b6d4', bgColor: '#06b6d430' },
-  monitors: { label: 'Monitors', labelFr: 'Moniteurs', icon: Monitor, color: '#f59e0b', bgColor: '#f59e0b30' },
-  'power-supplies': { label: 'Power Supplies', labelFr: 'Alimentations', icon: Plug, color: '#ef4444', bgColor: '#ef444430' },
-  cooling: { label: 'Cooling', labelFr: 'Refroidissement', icon: Fan, color: '#0ea5e9', bgColor: '#0ea5e930' },
-  keyboard: { label: 'Keyboards', labelFr: 'Claviers', icon: Keyboard, color: '#10b981', bgColor: '#10b98130' },
-  mouse: { label: 'Mice', labelFr: 'Souris', icon: Mouse, color: '#ec4899', bgColor: '#ec489930' },
-  headset: { label: 'Headsets', labelFr: 'Casques', icon: Headphones, color: '#f97316', bgColor: '#f9731630' },
-  cases: { label: 'Cases', labelFr: 'Boîtiers', icon: Box, color: '#64748b', bgColor: '#64748b30' },
-  desktop: { label: 'Desktops', labelFr: 'PC Fixes', icon: Computer, color: '#14b8a6', bgColor: '#14b8a630' },
-  'pc-parts': { label: 'PC Parts', labelFr: 'Pièces PC', icon: Wrench, color: '#6b7280', bgColor: '#6b728030' },
+  laptop: { label: 'Laptops', labelFr: 'PC Portables', icon: Laptop, color: '#00d4aa', bgColor: '#00d4aa50' },
+  'graphics-cards': { label: 'Graphics Cards', labelFr: 'Cartes Graphiques', icon: CircuitBoard, color: '#3b82f6', bgColor: '#3b82f650' },
+  processors: { label: 'Processors', labelFr: 'Processeurs', icon: Cpu, color: '#6366f1', bgColor: '#6366f150' },
+  memory: { label: 'Memory', labelFr: 'Mémoire', icon: MemoryStick, color: '#8b5cf6', bgColor: '#8b5cf650' },
+  storage: { label: 'Storage', labelFr: 'Stockage', icon: HardDrive, color: '#06b6d4', bgColor: '#06b6d450' },
+  monitors: { label: 'Monitors', labelFr: 'Moniteurs', icon: Monitor, color: '#f59e0b', bgColor: '#f59e0b50' },
+  'power-supplies': { label: 'Power Supplies', labelFr: 'Alimentations', icon: Plug, color: '#ef4444', bgColor: '#ef444450' },
+  cooling: { label: 'Cooling', labelFr: 'Refroidissement', icon: Fan, color: '#0ea5e9', bgColor: '#0ea5e950' },
+  keyboard: { label: 'Keyboards', labelFr: 'Claviers', icon: Keyboard, color: '#10b981', bgColor: '#10b98150' },
+  mouse: { label: 'Mice', labelFr: 'Souris', icon: Mouse, color: '#ec4899', bgColor: '#ec489950' },
+  headset: { label: 'Headsets', labelFr: 'Casques', icon: Headphones, color: '#f97316', bgColor: '#f9731650' },
+  cases: { label: 'Cases', labelFr: 'Boîtiers', icon: Box, color: '#64748b', bgColor: '#64748b50' },
+  desktop: { label: 'Desktops', labelFr: 'PC Fixes', icon: Computer, color: '#14b8a6', bgColor: '#14b8a650' },
+  'pc-parts': { label: 'PC Parts', labelFr: 'Pièces PC', icon: Wrench, color: '#6b7280', bgColor: '#6b728050' },
 };
 
 export default function BrowsePage() {
@@ -77,14 +77,20 @@ export default function BrowsePage() {
       }
       pool = [];
       for (const [, products] of categoryMap) {
-        // Sort by listing count (most popular) and take top 3
-        const top = products
-          .sort((a, b) => b.product_review_count - a.product_review_count)
-          .slice(0, 3);
+        // Sort by rating + review count, fallback to random shuffle
+        const sorted = [...products].sort((a, b) => {
+          const aScore = (a.product_rating || 0) * 10 + (a.product_review_count || 0);
+          const bScore = (b.product_rating || 0) * 10 + (b.product_review_count || 0);
+          return bScore - aScore;
+        });
+        const top = sorted.slice(0, 3);
         pool.push(...top);
       }
-      // Shuffle the mixed pool
-      pool = pool.sort(() => Math.random() - 0.5);
+      // Proper Fisher-Yates shuffle
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
     }
 
     if (searchQuery.trim()) {
@@ -212,11 +218,11 @@ export default function BrowsePage() {
                 <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                   !activeCategory
                     ? 'bg-[#00d4aa]/25 border-2 border-[#00d4aa] shadow-lg shadow-[#00d4aa]/25 scale-105'
-                    : 'bg-[#161e2e] border-2 border-[#2a3544] hover:border-[#00d4aa]/40 hover:bg-[#1e293b]'
+                    : 'bg-[#1e293b] border-2 border-[#334155] hover:border-[#00d4aa]/50 hover:bg-[#27354f]'
                 }`}>
-                  <LayoutGrid className={`w-8 h-8 sm:w-10 sm:h-10 transition-colors ${!activeCategory ? 'text-[#00d4aa]' : 'text-[#9ca3af] group-hover:text-[#00d4aa]'}`} />
+                  <LayoutGrid className={`w-8 h-8 sm:w-10 sm:h-10 transition-colors ${!activeCategory ? 'text-[#00d4aa]' : 'text-white group-hover:text-[#00d4aa]'}`} />
                 </div>
-                <span className={`text-[13px] font-semibold transition-colors ${!activeCategory ? 'text-[#00d4aa]' : 'text-[#9ca3af] group-hover:text-white'}`}>
+                <span className={`text-[13px] font-semibold transition-colors ${!activeCategory ? 'text-[#00d4aa]' : 'text-white group-hover:text-white'}`}>
                   All
                 </span>
                 <span className="text-[11px] text-[#6b7a8f]">{allProducts.length.toLocaleString()}</span>
@@ -235,13 +241,13 @@ export default function BrowsePage() {
                     <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center transition-all duration-300 ${
                       isActive
                         ? 'border-2 shadow-lg scale-105'
-                        : 'bg-[#161e2e] border-2 border-[#2a3544] hover:border-[#00d4aa]/40 hover:bg-[#1e293b]'
+                        : 'bg-[#1e293b] border-2 border-[#334155] hover:border-[#00d4aa]/50 hover:bg-[#27354f]'
                     }`}
-                    style={isActive ? { borderColor: config.color, backgroundColor: config.bgColor, boxShadow: `0 0 24px ${config.color}30` } : {}}
+                    style={isActive ? { borderColor: config.color, backgroundColor: config.bgColor, boxShadow: `0 0 24px ${config.color}40` } : {}}
                     >
-                      <Icon className="w-8 h-8 sm:w-10 sm:h-10 transition-colors" style={{ color: isActive ? config.color : '#9ca3af' }} />
+                      <Icon className="w-8 h-8 sm:w-10 sm:h-10 transition-colors" style={{ color: isActive ? config.color : '#ffffff' }} />
                     </div>
-                    <span className={`text-[13px] font-semibold transition-colors ${isActive ? 'text-white' : 'text-[#9ca3af] group-hover:text-white'}`}>
+                    <span className={`text-[13px] font-semibold transition-colors ${isActive ? 'text-white' : 'text-white group-hover:text-white'}`}>
                       {config.labelFr}
                     </span>
                     <span className="text-[11px] text-[#6b7a8f]">{cat.count.toLocaleString()}</span>
