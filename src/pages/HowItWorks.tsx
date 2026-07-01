@@ -89,6 +89,36 @@ export default function HowItWorksPage() {
           </div>
         </section>
 
+        {/* Video Demo */}
+        <section className="page-padding py-8 sm:py-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-[#111821] border border-[#1a2332] rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-video">
+                <video
+                  src="/videos/how-it-works.mp4"
+                  controls
+                  preload="metadata"
+                  className="w-full h-full object-cover"
+                  poster="/videos/how-it-works-poster.jpg"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div className="px-6 py-4 border-t border-[#1a2332]">
+                <p className="text-[13px] text-[#5a6a7e]">
+                  Watch how DZ TechHunt helps you find the best PC component prices across Algeria.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Steps */}
         <section className="page-padding py-12 sm:py-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
