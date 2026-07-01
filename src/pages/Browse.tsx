@@ -60,8 +60,9 @@ export default function BrowsePage() {
     return Array.from(map.values()).sort((a, b) => b.count - a.count);
   }, [allProducts]);
 
-  // Filter products — when "All" selected, show a MIXED selection from each category
-  const filteredProducts = useMemo(() => {
+  // Build the base pool (filtered by category, deduplicated, top 3 per category for "All")
+  // This is memoized separately so sort changes don't rebuild the pool
+  const baseProducts = useMemo(() => {
     let pool: typeof allProducts;
 
     // Helper: filter incorrectly categorized products by category
@@ -182,23 +183,11 @@ export default function BrowsePage() {
         const top = sorted.slice(0, 3);
         pool.push(...top);
       }
-      // Proper Fisher-Yates shuffle
-      for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [pool[i], pool[j]] = [pool[j], pool[i]];
-      }
     }
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       pool = pool.filter(p => p.product_name.toLowerCase().includes(q));
-    }
-
-    switch (sortBy) {
-      case 'price-asc': pool = [...pool].sort((a, b) => a.current_price - b.current_price); break;
-      case 'price-desc': pool = [...pool].sort((a, b) => b.current_price - a.current_price); break;
-      case 'savings': pool = [...pool].sort((a, b) => b.savings - a.savings); break;
-      default: break;
     }
 
     // Deduplicate
@@ -211,7 +200,19 @@ export default function BrowsePage() {
       }
     }
     return deduped;
-  }, [allProducts, activeCategory, searchQuery, sortBy]);
+  }, [allProducts, activeCategory, searchQuery]);
+
+  // Apply sort on top of base pool — changing sort only reorders, doesn't rebuild
+  const filteredProducts = useMemo(() => {
+    const pool = [...baseProducts];
+    switch (sortBy) {
+      case 'price-asc': pool.sort((a, b) => (a.current_price || 0) - (b.current_price || 0)); break;
+      case 'price-desc': pool.sort((a, b) => (b.current_price || 0) - (a.current_price || 0)); break;
+      case 'savings': pool.sort((a, b) => (b.savings || 0) - (a.savings || 0)); break;
+      default: break;
+    }
+    return pool;
+  }, [baseProducts, sortBy]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
