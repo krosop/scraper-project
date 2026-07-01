@@ -77,8 +77,17 @@ export default function BrowsePage() {
       }
       pool = [];
       for (const [, products] of categoryMap) {
-        // Sort by rating + review count, fallback to random shuffle
-        const sorted = [...products].sort((a, b) => {
+        // Deduplicate by product_id within this category first
+        const seenInCat = new Set<string>();
+        const unique: typeof products = [];
+        for (const p of products) {
+          if (!seenInCat.has(p.product_id)) {
+            seenInCat.add(p.product_id);
+            unique.push(p);
+          }
+        }
+        // Sort by rating + review count, take top 3 unique products
+        const sorted = unique.sort((a, b) => {
           const aScore = (a.product_rating || 0) * 10 + (a.product_review_count || 0);
           const bScore = (b.product_rating || 0) * 10 + (b.product_review_count || 0);
           return bScore - aScore;
