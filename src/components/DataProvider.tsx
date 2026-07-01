@@ -55,7 +55,8 @@ export default function DataProvider({ children }: { children: React.ReactNode }
 
   const loadFromJson = useCallback(async () => {
     try {
-      const res = await fetch('/data/products.json', {
+      const res = await fetch(`/data/products.json?t=${Date.now()}`, {
+        cache: 'no-cache',
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
         },
@@ -115,22 +116,31 @@ export default function DataProvider({ children }: { children: React.ReactNode }
       function seededRandom(seed: string) {
         let h = 0;
         for (let i = 0; i < seed.length; i++) h = (h << 5) - h + seed.charCodeAt(i);
-        const s = (h & 0x7fffffff) / 0x7fffffff;
         return () => {
           h = (h * 16807 + 0) & 0x7fffffff;
-          return (h / 0x7fffffff + s) % 1;
+          return (h & 0x7fffffff) / 0x7fffffff;
         };
+      }
+
+      // Fisher-Yates shuffle with seeded random
+      function shuffle<T>(arr: T[], rng: () => number): T[] {
+        const result = [...arr];
+        for (let i = result.length - 1; i > 0; i--) {
+          const j = Math.floor(rng() * (i + 1));
+          [result[i], result[j]] = [result[j], result[i]];
+        }
+        return result;
       }
 
       // Products with actual savings (real deals) — pick top 20, then shuffle with 5-minute seed
       const allDealsWithSavings = [...allProducts].filter(p => p.savings > 0).sort((a, b) => b.savings - a.savings);
       const dealRng = seededRandom(timeSeed + '-deals');
-      const shuffledDeals = [...allDealsWithSavings].sort(() => dealRng() - 0.5);
+      const shuffledDeals = shuffle(allDealsWithSavings, dealRng);
       const randomLiveDeals = shuffledDeals.slice(0, 10);
 
       // Most Compared (trending) — shuffle all products with 5-minute seed
       const trendRng = seededRandom(timeSeed + '-trending');
-      const shuffledAll = [...allProducts].sort(() => trendRng() - 0.5);
+      const shuffledAll = shuffle(allProducts, trendRng);
       const randomTrending = shuffledAll.slice(0, 15);
 
       setCategories(cats);

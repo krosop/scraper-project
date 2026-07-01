@@ -7,7 +7,7 @@ let _data: { storeColors: Record<string, string>; categories: DZCategory[]; prod
 let _loading: Promise<void> | null = null;
 
 const CACHE_KEY = 'pricezap_dz_data';
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 
 function getCache() {
   try {
