@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Quick adapter to merge fresh Ouedkniss with existing non-Ouedkniss data."""
 import json
+import re
 import sys
+import unicodedata
 from datetime import datetime
 from pathlib import Path
 
@@ -21,6 +23,20 @@ OUEDKNISS_NAMES = {
 
 def is_ouedkniss(source):
     return source.strip().lower() in OUEDKNISS_NAMES
+
+def slugify(text):
+    if not text:
+        return ''
+    text = text.lower()
+    text = ''.join(c for c in unicodedata.normalize('NFD', text) if unicodedata.category(c) != 'Mn')
+    text = text.replace('/', '-')
+    text = re.sub(r'[^a-z0-9\s-]', '', text)
+    text = text.strip()
+    text = re.sub(r'\s+', '-', text)
+    text = re.sub(r'-+', '-', text)
+    text = text.strip('-')
+    return text[:80]
+
 
 def main():
     clean_products_path = project_root / 'public' / 'clean-products.json'
@@ -111,9 +127,9 @@ def main():
         if not listings or not prices:
             continue
         oued_frontend.append({
-            'id': f"prd-{group_key.replace('::', '-').replace('/', '-')[:40]}-{datetime.now().strftime('%H%M')}",
+            'id': f"prd-{slugify(group_key)[:40]}-{datetime.now().strftime('%H%M')}",
             'name': first['name'].strip(),
-            'canonicalName': first['name'].strip(),
+            'canonicalName': slugify(first['name'].strip()),
             'brand': first.get('brand') if first.get('brand') != 'Unknown' else None,
             'category': first.get('category', 'pc_part') if first.get('category', 'unknown') != 'unknown' else 'pc_part',
             'specs': first.get('specs', {}),
@@ -129,7 +145,15 @@ def main():
     oued_frontend.sort(key=lambda x: x['listingCount'], reverse=True)
     print(f"  [+] Fresh Ouedkniss frontend: {len(oued_frontend)} products")
 
-    # 4. Merge with existing non-Ouedkniss
+    # 4. Fix slugs for existing non-Ouedkniss products too
+    print("\n[3.5/3] Fixing slugs for existing products...")
+    for p in non_oued:
+        raw_slug = p.get('canonicalName', '') or p.get('name', '')
+        if raw_slug and '/' in raw_slug:
+            p['canonicalName'] = slugify(raw_slug)
+    print(f"  [+] Fixed slugs for existing products")
+
+    # 5. Merge with existing non-Ouedkniss
     print("\n[4/3] Merging with existing non-Ouedkniss...")
     existing = set(p.get('name', '').strip().lower() for p in non_oued)
     merged = list(non_oued)
@@ -143,7 +167,7 @@ def main():
     print(f"  [+] Merged: {added} new Ouedkniss products")
     print(f"  [+] Total merged: {len(merged)} products")
 
-    # 5. Save
+    # 6. Save
     print("\n[5/3] Saving...")
     oued_count = sum(1 for p in merged if any(is_ouedkniss(l.get('source', '')) for l in p.get('listings', [])))
     output = {

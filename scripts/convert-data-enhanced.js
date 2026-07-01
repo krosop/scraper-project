@@ -126,6 +126,20 @@ const CATEGORY_MAP = {
   'unknown': 'pc-parts',
 };
 
+function slugify(text) {
+  if (!text) return '';
+  return text
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\/+/g, '-')           // Replace / with -
+    .replace(/[^a-z0-9\s-]/g, '')  // Remove special chars (keep alphanumeric, space, -)
+    .trim()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/-+/g, '-')            // Collapse multiple -
+    .replace(/^-+|-+$/g, '')        // Trim leading/trailing -
+    .slice(0, 80);                  // Limit to 80 chars
+}
+
 function convertProduct(product, taxonomy, storeColors) {
   // Use taxonomy engine first
   const taxonomyMatch = findTaxonomyMatch(product.name, taxonomy);
@@ -188,7 +202,7 @@ function convertProduct(product, taxonomy, storeColors) {
   
   return {
     id: product.id,
-    slug: product.canonicalName || product.name || '',
+    slug: slugify(product.canonicalName || product.name || ''),
     name: product.name,
     brand: brand,
     category: category,
