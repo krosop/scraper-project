@@ -64,36 +64,81 @@ export default function BrowsePage() {
   const filteredProducts = useMemo(() => {
     let pool: typeof allProducts;
 
-    // Helper: exclude incorrectly categorized products
-    function isCorrectCategory(p: typeof allProducts[0]): boolean {
-      if (!activeCategory) return true;
-      const name = p.product_name.toLowerCase();
-      switch (activeCategory) {
-        case 'graphics-cards':
-          // Exclude laptops with GPUs, cases, monitors, etc.
-          if (name.includes('laptop') || name.includes('legion') || name.includes('zephyrus') || name.includes('omen') || name.includes('victus') || name.includes('nitro') || name.includes('rog') || name.includes('tuf') || name.includes('predator') || name.includes('g5') || name.includes('g3') || name.includes('g7') || name.includes('gf63') || name.includes('g15') || name.includes('gf75') || name.includes('g17') || name.includes('pavilion') || name.includes('ideapad') || name.includes('thinkpad') || name.includes('elitebook') || name.includes('probook') || name.includes('xps') || name.includes('inspiron') || name.includes('alienware') || name.includes('blade') || name.includes('razer') || name.includes('gt302') || name.includes('forge') || name.includes('boitier') || name.includes('case') || name.includes('boîtier')) return false;
-          // Must have a GPU chip name
-          if (!name.match(/rtx\s*\d{3,4}|gtx\s*\d{3,4}|rx\s*\d{3,4}|rtx\s*\d{3,4}|gt\s*\d{3,4}|quadro|radeon|arc\s*\w+/)) return false;
-          return true;
-        case 'cooling':
-          // Exclude laptops with "cooling" in description
-          if (name.includes('laptop') || name.includes('legion') || name.includes('ideapad') || name.includes('pavilion')) return false;
-          return true;
-        case 'mouse':
-          // Exclude keyboards with mouse in description
-          if (name.includes('keyboard') || name.includes('clavier') || name.includes('clavier')) return false;
-          return true;
-        case 'keyboard':
-          // Exclude mouse with keyboard in description
-          if (name.includes('souris') || name.includes('mouse') || name.includes('gaming mouse')) return false;
-          return true;
-        default:
-          return true;
-      }
+    // Helper: filter incorrectly categorized products by category
+    function filterByCategory(products: typeof allProducts, catSlug: string): typeof allProducts {
+      const LAPTOP_KEYWORDS = ['laptop', 'legion', 'zephyrus', 'omen', 'victus', 'nitro', 'predator', 'thinkpad', 'ideapad', 'pavilion', 'elitebook', 'probook', 'spectre', 'xps', 'inspiron', 'latitude', 'alienware', 'blade', 'razer', 'dynabook', 'omnibook', 'galaxy book', 'surface', 'folio', 'convertible', 'chromebook', 'notebook', 'ultrabook'];
+      const isLaptop = (name: string) => LAPTOP_KEYWORDS.some(k => name.includes(k));
+      return products.filter((p) => {
+        const name = p.product_name.toLowerCase();
+        switch (catSlug) {
+          case 'graphics-cards':
+            if (isLaptop(name)) return false;
+            if (name.includes('gt302') || name.includes('forge') || name.includes('boitier') || name.includes('case') || name.includes('boîtier')) return false;
+            if (!name.match(/rtx\s*\d{3,4}|gtx\s*\d{3,4}|rx\s*\d{3,4}|gt\s*\d{3,4}|quadro|radeon|arc\s*\w+/)) return false;
+            return true;
+          case 'processors':
+            if (isLaptop(name)) return false;
+            if (!name.match(/core\s*i\d|ryzen\s*\d|athlon|pentium|celeron|fx-?\d+|xeon|threadripper/)) return false;
+            return true;
+          case 'memory':
+            if (isLaptop(name)) return false;
+            if (!name.match(/ddr[345]\s*\d{3,4}|ram\s*\d+gb|so-dimm|udimm|rdimm|memory stick|barrette|mémoire/)) return false;
+            return true;
+          case 'storage':
+            if (isLaptop(name)) return false;
+            if (name.includes('carte mère') || name.includes('motherboard') || name.includes('alimentation') || name.includes('power supply')) return false;
+            if (!name.match(/ssd|hdd|nvme|m\.2|sata|disque dur|hard drive|storage|to|gb\s*ssd|gb\s*hdd/)) return false;
+            return true;
+          case 'cooling':
+            if (isLaptop(name)) return false;
+            if (name.includes('boitier') || name.includes('boîtier') || name.includes('case') || name.includes('gt302') || name.includes('forge')) return false;
+            if (!name.match(/cooler|ventirad|aio|watercooling|liquid cooler|fan|ventilateur|thermal paste|refroidisseur/)) return false;
+            return true;
+          case 'monitors':
+            if (isLaptop(name)) return false;
+            if (name.includes('tv') || name.includes('télé')) return false;
+            if (!name.match(/écran|ecran|monitor|display|\d{2,3}\s*['"″]|hz|ips|va|oled|qhd|full hd|4k/)) return false;
+            return true;
+          case 'power-supplies':
+            if (isLaptop(name)) return false;
+            if (name.includes('cable') || name.includes('câble') || name.includes('extension')) return false;
+            if (!name.match(/alimentation|power supply|psu|\d{2,4}w|watt|80\s*plus|modulaire|atx/)) return false;
+            return true;
+          case 'keyboard':
+            if (name.includes('souris') || name.includes('mouse') || name.includes('mousepad') || name.includes('tapis') || name.includes('bungee') || name.includes('pad') || name.includes('stand') || name.includes('support') || name.includes('bureau')) return false;
+            if (!name.match(/clavier|keyboard|mécanique|mecanique|mechanical|azerty|qwerty|rgb keyboard|gaming keyboard|wireless keyboard|compact|tenkeyless/)) return false;
+            return true;
+          case 'mouse':
+            if (name.includes('keyboard') || name.includes('clavier') || name.includes('tapis') || name.includes('pad') || name.includes('mat') || name.includes('bureau') || name.includes('desk') || name.includes('bungee') || name.includes('stand') || name.includes('support') || name.includes('bungee')) return false;
+            if (!name.match(/souris|mouse|gaming mouse|wireless mouse|optical|laser mouse/)) return false;
+            return true;
+          case 'headset':
+            if (name.includes('stand') || name.includes('support') || name.includes('bureau') || name.includes('desk') || name.includes('hanger') || name.includes('display') || name.includes('hub') || name.includes('chargeur') || name.includes('dock')) return false;
+            if (!name.match(/casque|headset|headphone|écouteur|earphone|gaming headset|audio|micro|microphone/)) return false;
+            return true;
+          case 'cases':
+            if (isLaptop(name)) return false;
+            if (!name.match(/boitier|boîtier|case|chassis|cabinet|pc case|tour|tower|mid tower|full tower/)) return false;
+            return true;
+          case 'desktop':
+            if (isLaptop(name)) return false;
+            if (name.includes('carte mère') || name.includes('motherboard') || name.includes('boitier') || name.includes('boîtier') || name.includes('case') || name.includes('alimentation') || name.includes('power supply')) return false;
+            if (!name.match(/pc fixe|desktop|ordinateur fixe|gaming pc|workstation|station de travail|tour pc|fixe|pc gamer|unité centrale|uc/)) return false;
+            return true;
+          case 'pc-parts':
+            if (isLaptop(name)) return false;
+            if (name.includes('boitier') || name.includes('boîtier') || name.includes('case') || name.includes('alimentation') || name.includes('power supply') || name.includes('cooler') || name.includes('ventirad') || name.includes('aio') || name.includes('clavier') || name.includes('keyboard') || name.includes('souris') || name.includes('mouse') || name.includes('casque') || name.includes('headset') || name.includes('monitor') || name.includes('écran') || name.includes('ecran')) return false;
+            if (!name.match(/carte mère|motherboard|carte graphique|gpu|processeur|ram|ddr|ssd|nvme|hdd|disque dur|fan|ventilateur|câble|cable|bracket|adapter|hub|splitter|riser|capture card|sound card|network card|wifi|bluetooth|nvidia|amd|intel|gigabyte|msi|asus|asrock|biostar/)) return false;
+            return true;
+          default:
+            return true;
+        }
+      });
     }
 
     if (activeCategory) {
-      pool = allProducts.filter(p => p.category_slug === activeCategory && isCorrectCategory(p));
+      pool = allProducts.filter(p => p.category_slug === activeCategory);
+      pool = filterByCategory(pool, activeCategory);
     } else {
       // "All" — pick top 3 products from each category for a mixed view
       const categoryMap = new Map<string, typeof allProducts>();
@@ -114,27 +159,8 @@ export default function BrowsePage() {
             unique.push(p);
           }
         }
-        // Also filter out incorrectly categorized products per category
-        const cleaned = unique.filter((p) => {
-          const name = p.product_name.toLowerCase();
-          switch (catSlug) {
-            case 'graphics-cards':
-              if (name.includes('laptop') || name.includes('legion') || name.includes('zephyrus') || name.includes('omen') || name.includes('victus') || name.includes('nitro') || name.includes('predator') || name.includes('g5') || name.includes('g3') || name.includes('g7') || name.includes('gf63') || name.includes('g15') || name.includes('gf75') || name.includes('g17') || name.includes('pavilion') || name.includes('ideapad') || name.includes('thinkpad') || name.includes('elitebook') || name.includes('probook') || name.includes('xps') || name.includes('inspiron') || name.includes('alienware') || name.includes('blade') || name.includes('razer') || name.includes('gt302') || name.includes('forge') || name.includes('boitier') || name.includes('case') || name.includes('boîtier')) return false;
-              if (!name.match(/rtx\s*\d{3,4}|gtx\s*\d{3,4}|rx\s*\d{3,4}|gt\s*\d{3,4}|quadro|radeon|arc\s*\w+/)) return false;
-              return true;
-            case 'cooling':
-              if (name.includes('laptop') || name.includes('legion') || name.includes('ideapad') || name.includes('pavilion')) return false;
-              return true;
-            case 'mouse':
-              if (name.includes('keyboard') || name.includes('clavier')) return false;
-              return true;
-            case 'keyboard':
-              if (name.includes('souris') || name.includes('mouse')) return false;
-              return true;
-            default:
-              return true;
-          }
-        });
+        // Filter out incorrectly categorized products
+        const cleaned = filterByCategory(unique, catSlug);
         // Sort by rating + review count, take top 3 unique products
         const sorted = cleaned.sort((a, b) => {
           const aScore = (a.product_rating || 0) * 10 + (a.product_review_count || 0);
