@@ -229,10 +229,10 @@ def main():
     
     # Sitemap-based scrapers need more time
     TIMEOUTS = {
-        'gigastore': 300,
-        'digitec': 400,
-        'tiza': 400,
-        'default': 120,
+        'gigastore': 25,
+        'digitec': 25,
+        'tiza': 25,
+        'default': 25,
     }
     
     for site in sites:
