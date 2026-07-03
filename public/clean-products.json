@@ -1,14 +1,14 @@
 {
-  "timestamp": "2026-07-02T07:02:59.368291",
-  "total": 2790,
+  "timestamp": "2026-07-03T06:52:26.068553",
+  "total": 2814,
   "stats": {
-    "originalCount": 2411,
-    "cleanCount": 2249,
-    "uniqueCount": 1855,
-    "mergedTotal": 2790,
+    "originalCount": 2440,
+    "cleanCount": 2278,
+    "uniqueCount": 1882,
+    "mergedTotal": 2814,
     "ouedknissCount": 0,
-    "nonOuedCount": 2790,
-    "reductionRate": "23.1%"
+    "nonOuedCount": 2814,
+    "reductionRate": "22.9%"
   },
   "products": [
     {
@@ -76797,6 +76797,647 @@
           "location": "Algeria",
           "url": "https://matos-gaming.com/product/rainbow-refurbished-repare-ou-remis-a-neuf-sous-garantie/",
           "imageUrl": "https://matos-gaming.com/wp-content/uploads/2024/10/Rainbow_Story-2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-headset-casquegaming-0652",
+      "name": "Razer Blackshark V2 X – Casque Gaming Esports Multiplateforme",
+      "canonicalName": "Razer Blackshark V2 X – Casque Gaming Esports Multiplateforme",
+      "brand": "Razer",
+      "category": "headset",
+      "specs": {},
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/07/61kchbxWJ5L._AC_SL1500_-600x600.jpg",
+      "bestPrice": 22000.0,
+      "worstPrice": 24000.0,
+      "averagePrice": 23000,
+      "listingCount": 2,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "Digitec DZ",
+          "price": 22000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/razer-blackshark-v2-x-casque-gaming-esports-multiplateforme/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/07/61kchbxWJ5L._AC_SL1500_-600x600.jpg"
+        },
+        {
+          "source": "Digitec DZ",
+          "price": 24000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/hyperx-cloud-iii-casque-gaming/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2026/01/hyperx_cloud_iii_red_66x0049_angle_4-600x600.webp"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-coolermastermasterliquid240lcore-0652",
+      "name": "Cooler Master Masterliquid 240l Core ARGB Black",
+      "canonicalName": "Cooler Master Masterliquid 240l Core ARGB Black",
+      "brand": "Core",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2024/12/LD0006046231-600x600.jpg",
+      "bestPrice": 17500.0,
+      "worstPrice": 19000.0,
+      "averagePrice": 18250,
+      "listingCount": 2,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "Digitec DZ",
+          "price": 17500.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/cooler-master-masterliquid-240l-core-argb-black-edition/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2024/12/LD0006046231-600x600.jpg"
+        },
+        {
+          "source": "Digitec DZ",
+          "price": 19000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/cooler-master-masterliquid-240l-core-argb-white-edition/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2024/12/LD0006046266-600x600.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-laptop-pro400105004gb256gb-0652",
+      "name": "HP Pro 400 I5-10500/4gb/256gb Ssd/20″ Hdmi+vga/wifi",
+      "canonicalName": "HP Pro 400 I5-10500/4gb/256gb Ssd/20″ Hdmi+vga/wifi",
+      "brand": "Hp",
+      "category": "laptop",
+      "specs": {},
+      "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/06/HP-PRO.png",
+      "bestPrice": 115000.0,
+      "worstPrice": 120000.0,
+      "averagePrice": 117500,
+      "listingCount": 2,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "Digitec DZ",
+          "price": 115000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/hp-pro-400-i5-10500-4gb-256gb-ssd-20-hdmivga/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/06/ordinateur-bureautique-desktop-hp-290-g4-intel-core-i3-ecran-185-led-1tb-4gb-ram-sodiexp01d-0734-600x450.png"
+        },
+        {
+          "source": "Digitec DZ",
+          "price": 120000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.digitecdz.com/product/hp-pro-400-i5-10500-4gb-256gb-ssd-20-hdmivga-wifi/",
+          "imageUrl": "https://www.digitecdz.com/wp-content/uploads/2025/06/HP-PRO.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-motherboard-summerofferscartemèreasuspri-0652",
+      "name": "Summer Offerscarte Mère ASUS Prime A620m-k",
+      "canonicalName": "Summer Offerscarte Mère ASUS Prime A620m-k",
+      "brand": "Asus",
+      "category": "motherboard",
+      "specs": {
+        "chipset": "A620M"
+      },
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/292ElfyxPX1KokSvzATRjGv3L8CBzv20XLFCCHzR.jpg",
+      "bestPrice": 21900.0,
+      "worstPrice": 21900.0,
+      "averagePrice": 21900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 21900.0,
+          "old_price": 25900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/carte-mere-asus-prime-a620m-k-1590",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/292ElfyxPX1KokSvzATRjGv3L8CBzv20XLFCCHzR.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-monitor-summeroffersecranmaxipowermp22hv-0652",
+      "name": "Summer Offersecran PC Maxipower MP22HV 22\"-hd, 75Hz",
+      "canonicalName": "Summer Offersecran PC Maxipower MP22HV 22\"-hd, 75Hz",
+      "brand": "Maxipower",
+      "category": "monitor",
+      "specs": {
+        "size": "22\"",
+        "refresh_rate": "75 Hz",
+        "resolution": "HD"
+      },
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/u9nYnpCniNSPXXCdTeBtyrxKH2N9jM1Q6fiNbpuf.jpg",
+      "bestPrice": 11900.0,
+      "worstPrice": 11900.0,
+      "averagePrice": 11900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 11900.0,
+          "old_price": 13500.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/ecran-pc-maxipower-mp22hv-22-hd-75hz-3041",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/u9nYnpCniNSPXXCdTeBtyrxKH2N9jM1Q6fiNbpuf.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-monitor-summeroffersecranaoc27g4hrefull-0652",
+      "name": "Summer Offersecran PC AOC 27g4hre 27\"-full Hd, 200Hz",
+      "canonicalName": "Summer Offersecran PC AOC 27g4hre 27\"-full Hd, 200Hz",
+      "brand": "Aoc",
+      "category": "monitor",
+      "specs": {
+        "size": "27\"",
+        "refresh_rate": "200 Hz",
+        "resolution": "Full HD"
+      },
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/g7awgwtmC4BFshlsYEA8bPKzCY2iU9z0EVldMNR0.png",
+      "bestPrice": 39900.0,
+      "worstPrice": 39900.0,
+      "averagePrice": 39900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 39900.0,
+          "old_price": 54990.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/ecran-pc-aoc-27g4hre-27-full-hd-200hz-2817",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/g7awgwtmC4BFshlsYEA8bPKzCY2iU9z0EVldMNR0.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-monitor-summeroffersecranacerkg241qsbiip-0652",
+      "name": "Summer Offersecran PC Acer Kg241qsbiip 23.8\"-full HD 1080p, Overclock To 165Hz",
+      "canonicalName": "Summer Offersecran PC Acer Kg241qsbiip 23.8\"-full HD 1080p, Overclock To 165Hz",
+      "brand": "Acer",
+      "category": "monitor",
+      "specs": {
+        "size": "23.8\"",
+        "refresh_rate": "165 Hz",
+        "resolution": "Full HD"
+      },
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/LKh0vFvPtOu1XLA7YQxiQfuIkcPb4XgDMrERN3BM.jpg",
+      "bestPrice": 23990.0,
+      "worstPrice": 23990.0,
+      "averagePrice": 23990,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 23990.0,
+          "old_price": 25990.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/ecran-pc-acer-kg241qsbiip-238-full-hd-1080p-overclock-to-165hz-2946",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/LKh0vFvPtOu1XLA7YQxiQfuIkcPb4XgDMrERN3BM.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-case-summeroffersboitiernzxtflowrgb-0652",
+      "name": "Summer Offersboitier PC NZXT H5 Flow RGB (2024) Black/white",
+      "canonicalName": "Summer Offersboitier PC NZXT H5 Flow RGB (2024) Black/white",
+      "brand": "Nzxt",
+      "category": "case",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/4UvG0NNZl96rQqjCN9gIhcNCEN7a5HfWj3XbKezp.jpg",
+      "bestPrice": 29900.0,
+      "worstPrice": 29900.0,
+      "averagePrice": 29900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 29900.0,
+          "old_price": 34900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/boitier-pc-nzxt-h5-flow-rgb-2024-black-white-3184",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/4UvG0NNZl96rQqjCN9gIhcNCEN7a5HfWj3XbKezp.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-case-summeroffersboitierantecnx400rgb-0652",
+      "name": "Summer Offersboitier PC Antec NX400 RGB",
+      "canonicalName": "Summer Offersboitier PC Antec NX400 RGB",
+      "brand": "Antec",
+      "category": "case",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/YCChi4dWs6LhuYS0nSIlD9rk2VFIrGXMonb5poNU.jpg",
+      "bestPrice": 10200.0,
+      "worstPrice": 10200.0,
+      "averagePrice": 10200,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 10200.0,
+          "old_price": 11900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/boitier-pc-antec-nx400-rgb-1000",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/YCChi4dWs6LhuYS0nSIlD9rk2VFIrGXMonb5poNU.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-case-microatx-0652",
+      "name": "Summer Offersgamemax Vista Mb Micro-atx Tower PC Gaming Case (black/white)",
+      "canonicalName": "Summer Offersgamemax Vista Mb Micro-atx Tower PC Gaming Case (black/white)",
+      "brand": null,
+      "category": "case",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/pU5vjih0Rx9b7T3aGsgAvMAqjVQxyGBAc0ZDVzOn.png",
+      "bestPrice": 9500.0,
+      "worstPrice": 9500.0,
+      "averagePrice": 9500,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 9500.0,
+          "old_price": 10900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/gamemax-vista-mb-micro-atx-tower-pc-gaming-case-black-white-1816",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/pU5vjih0Rx9b7T3aGsgAvMAqjVQxyGBAc0ZDVzOn.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-case-stockboitierhavitcf925blackwhite-0652",
+      "name": "In Stockboitier PC Havit CF925 Black/white",
+      "canonicalName": "In Stockboitier PC Havit CF925 Black/white",
+      "brand": null,
+      "category": "case",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/yc52c6sX1cY8XdhbNJazFZ9K91o4ZIRaStmx2Jbq.jpg",
+      "bestPrice": 11000.0,
+      "worstPrice": 11000.0,
+      "averagePrice": 11000,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 11000.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/boitier-pc-havit-cf925-black-white-2625",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/yc52c6sX1cY8XdhbNJazFZ9K91o4ZIRaStmx2Jbq.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-case-summerofferscasedeepcoolmatrexxadd-0652",
+      "name": "Summer Offerscase DeepCool Matrexx 55 Add-rgb 3f V3",
+      "canonicalName": "Summer Offerscase DeepCool Matrexx 55 Add-rgb 3f V3",
+      "brand": "Deepcool",
+      "category": "case",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/hL0oZ5rslDfDW9MGZ8SO2aD8YEx8sdj9yXGiNS8A.jpg",
+      "bestPrice": 15900.0,
+      "worstPrice": 15900.0,
+      "averagePrice": 15900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 15900.0,
+          "old_price": 17500.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/case-deepcool-matrexx-55-add-rgb-3f-v3-2130",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/hL0oZ5rslDfDW9MGZ8SO2aD8YEx8sdj9yXGiNS8A.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingraidmaxl-0652",
+      "name": "Summer Offerswatercooling Raidmax LM240 Lcd ARGB",
+      "canonicalName": "Summer Offerswatercooling Raidmax LM240 Lcd ARGB",
+      "brand": null,
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/x0ofN0c7z4MNXf8uApOqAbRf6zflCVxfhL90lrxX.png",
+      "bestPrice": 15400.0,
+      "worstPrice": 15400.0,
+      "averagePrice": 15400,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 15400.0,
+          "old_price": 18900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-raidmax-lm240-lcd-argb-2273",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/x0ofN0c7z4MNXf8uApOqAbRf6zflCVxfhL90lrxX.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolinghavitf20-0652",
+      "name": "Summer Offerswatercooling Havit F2001 ARGB Black/white",
+      "canonicalName": "Summer Offerswatercooling Havit F2001 ARGB Black/white",
+      "brand": null,
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/UhdDVfccJLRrIR03vOjrspU6wTmnRil3JdrHgXpf.jpg",
+      "bestPrice": 11400.0,
+      "worstPrice": 11400.0,
+      "averagePrice": 11400,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 11400.0,
+          "old_price": 12000.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-havit-f2001-argb-black-white-2392",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/UhdDVfccJLRrIR03vOjrspU6wTmnRil3JdrHgXpf.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingdeepcool-0652",
+      "name": "Summer Offerswatercooling DeepCool LQ240 Lcd Screen ARGB Black/white",
+      "canonicalName": "Summer Offerswatercooling DeepCool LQ240 Lcd Screen ARGB Black/white",
+      "brand": "Deepcool",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/akpoURD8mnGSZqa1fx3c5z6VvJS2cvSgtR0iU46y.png",
+      "bestPrice": 22900.0,
+      "worstPrice": 22900.0,
+      "averagePrice": 22900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 22900.0,
+          "old_price": 24900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-deepcool-lq240-lcd-screen-argb-black-white-2902",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/akpoURD8mnGSZqa1fx3c5z6VvJS2cvSgtR0iU46y.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingdeepcool-0652",
+      "name": "Summer Offerswatercooling DeepCool LD240 ARGB Black/white",
+      "canonicalName": "Summer Offerswatercooling DeepCool LD240 ARGB Black/white",
+      "brand": "Deepcool",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/zBjSnlaFvV1rQpZfA0F7A5daQbJcuyG6ALVo7GHr.jpg",
+      "bestPrice": 19900.0,
+      "worstPrice": 19900.0,
+      "averagePrice": 19900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 19900.0,
+          "old_price": 21900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-deepcool-ld240-argb-black-white-2147",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/zBjSnlaFvV1rQpZfA0F7A5daQbJcuyG6ALVo7GHr.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingmagmawl3-0652",
+      "name": "Summer Offerswatercooling Magma WL360FT ARGB",
+      "canonicalName": "Summer Offerswatercooling Magma WL360FT ARGB",
+      "brand": "Magma",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/voXzBCGWWtv3Ct4lr6FlCmFzZxfMXBKm9B68mfAr.jpg",
+      "bestPrice": 14900.0,
+      "worstPrice": 14900.0,
+      "averagePrice": 14900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 14900.0,
+          "old_price": 16500.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-magma-wl360ft-argb-2088",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/voXzBCGWWtv3Ct4lr6FlCmFzZxfMXBKm9B68mfAr.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingcoolerma-0652",
+      "name": "Summer Offerswatercooling Cooler Master Masterliquid 240l Core ARGB Black/white",
+      "canonicalName": "Summer Offerswatercooling Cooler Master Masterliquid 240l Core ARGB Black/white",
+      "brand": "Core",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/fx4xax58y9oXaL3By4Ca6ok2t51fyJBHYBPjZ7UZ.png",
+      "bestPrice": 15000.0,
+      "worstPrice": 15000.0,
+      "averagePrice": 15000,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 15000.0,
+          "old_price": 17000.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-cooler-master-masterliquid-240l-core-argb-black-white-1781",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/fx4xax58y9oXaL3By4Ca6ok2t51fyJBHYBPjZ7UZ.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summeroffersaircoolingcoolermast-0652",
+      "name": "Summer Offersair Cooling Cooler Master Hyper 622 Halo Black/white",
+      "canonicalName": "Summer Offersair Cooling Cooler Master Hyper 622 Halo Black/white",
+      "brand": "Cooler Master",
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/pOLUhlZcIgkqDlUzdOicDF1rBS4UYrx1d9Ox0Xna.png",
+      "bestPrice": 14900.0,
+      "worstPrice": 14900.0,
+      "averagePrice": 14900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 14900.0,
+          "old_price": 15900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/air-cooling-cooler-master-hyper-622-halo-black-white-2035",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/pOLUhlZcIgkqDlUzdOicDF1rBS4UYrx1d9Ox0Xna.png"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingthermall-0652",
+      "name": "Summer Offerswatercooling Thermalltake Toughliquid 240 Argbsync",
+      "canonicalName": "Summer Offerswatercooling Thermalltake Toughliquid 240 Argbsync",
+      "brand": null,
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/LN8UXBLL3NBihUsbvxml1LMoa9ZDdj8YhrYq4D6J.jpg",
+      "bestPrice": 19900.0,
+      "worstPrice": 19900.0,
+      "averagePrice": 19900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 19900.0,
+          "old_price": 25900.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-thermalltake-toughliquid-240-argbsync-2358",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/LN8UXBLL3NBihUsbvxml1LMoa9ZDdj8YhrYq4D6J.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-cooling-summerofferswatercoolingthermall-0652",
+      "name": "Summer Offerswatercooling Thermalltake TH240 ARGB Sync Snow",
+      "canonicalName": "Summer Offerswatercooling Thermalltake TH240 ARGB Sync Snow",
+      "brand": null,
+      "category": "cooling",
+      "specs": {},
+      "imageUrl": "https://www.licbplus.com.dz/storage/images/products/Vy85Z0IaMsmkS2dp4All8PY4HK0bb2WvMtHSVpqC.jpg",
+      "bestPrice": 17900.0,
+      "worstPrice": 17900.0,
+      "averagePrice": 17900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "LICB Plus",
+          "price": 17900.0,
+          "old_price": 21500.0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.licbplus.com.dz/product/watercooling-thermalltake-th240-argb-sync-snow-edition-1786",
+          "imageUrl": "https://www.licbplus.com.dz/storage/images/products/Vy85Z0IaMsmkS2dp4All8PY4HK0bb2WvMtHSVpqC.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-mouse-razerdeathadderessentialwhite-0652",
+      "name": "Razer Deathadder Essential White",
+      "canonicalName": "Razer Deathadder Essential White",
+      "brand": "Razer",
+      "category": "mouse",
+      "specs": {},
+      "imageUrl": "https://www.geekzonedz.com/7369-home_default/-razer-deathadder-essential-white.jpg",
+      "bestPrice": 8500.0,
+      "worstPrice": 8500.0,
+      "averagePrice": 8500,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "GeekZone DZ",
+          "price": 8500.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.geekzonedz.com/souris/3500--razer-deathadder-essential-white.html",
+          "imageUrl": "https://www.geekzonedz.com/7369-home_default/-razer-deathadder-essential-white.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-mouse-razerdeathadderessential-0652",
+      "name": "Razer Deathadder Essential",
+      "canonicalName": "Razer Deathadder Essential",
+      "brand": "Razer",
+      "category": "mouse",
+      "specs": {},
+      "imageUrl": "https://www.geekzonedz.com/7367-home_default/razer-deathadder-essential.jpg",
+      "bestPrice": 8500.0,
+      "worstPrice": 8500.0,
+      "averagePrice": 8500,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "GeekZone DZ",
+          "price": 8500.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.geekzonedz.com/souris/3499-razer-deathadder-essential.html",
+          "imageUrl": "https://www.geekzonedz.com/7367-home_default/razer-deathadder-essential.jpg"
+        }
+      ]
+    },
+    {
+      "id": "prd-mouse-steelseriesqckheavyxxl-0652",
+      "name": "SteelSeries Qck Heavy Xxl",
+      "canonicalName": "SteelSeries Qck Heavy Xxl",
+      "brand": "Steelseries",
+      "category": "mouse",
+      "specs": {},
+      "imageUrl": "https://www.geekzonedz.com/3329-home_default/steelseries-qck-heavy-xxl.jpg",
+      "bestPrice": 12900.0,
+      "worstPrice": 12900.0,
+      "averagePrice": 12900,
+      "listingCount": 1,
+      "storeCount": 1,
+      "listings": [
+        {
+          "source": "GeekZone DZ",
+          "price": 12900.0,
+          "old_price": 0,
+          "condition": "New",
+          "location": "Algeria",
+          "url": "https://www.geekzonedz.com/tapis-de-souris/1918-steelseries-qck-heavy-xxl.html",
+          "imageUrl": "https://www.geekzonedz.com/3329-home_default/steelseries-qck-heavy-xxl.jpg"
         }
       ]
     }
