@@ -22,6 +22,9 @@ sys.path.insert(0, str(SCRAPER_DIR))
 
 from categorizer import clean_all
 
+# Set to False to skip remote store scraping (fast, Ouedkniss-only)
+SCRAPE_REMOTE = False
+
 
 # ── Ouedkniss store names (for detecting Ouedkniss data) ──
 OUEDKNISS_NAMES = {
@@ -219,31 +222,34 @@ def main():
             print(f"  [!] Could not load existing: {e}")
     
     # ── 2. Scrape working remote stores ──
-    print("\n[2/4] Scraping working remote stores...")
-    from run import scrape_site
-    
     raw_products = []
-    # Working remote scrapers (requests + BeautifulSoup)
-    # Removed: wifidjelfa, gamingdz (browser-based, hang without real browser)
-    sites = ['licbplus', 'geekzone', 'gigastore', 'lahlou', 'digitec', 'tiza', 'hardsoft', 'matos']
-    
-    # Sitemap-based scrapers need more time
-    TIMEOUTS = {
-        'gigastore': 25,
-        'digitec': 25,
-        'tiza': 25,
-        'default': 25,
-    }
-    
-    for site in sites:
-        try:
-            print(f"  Scraping {site}...")
-            timeout = TIMEOUTS.get(site, TIMEOUTS['default'])
-            products = scrape_site(site, timeout=timeout)
-            raw_products.extend(products)
-            print(f"  [+] {site}: {len(products)} products")
-        except Exception as e:
-            print(f"  [!] {site} failed: {e}")
+    if SCRAPE_REMOTE:
+        print("\n[2/4] Scraping working remote stores...")
+        from run import scrape_site
+        
+        # Working remote scrapers (requests + BeautifulSoup)
+        # Removed: wifidjelfa, gamingdz (browser-based, hang without real browser)
+        sites = ['licbplus', 'geekzone', 'gigastore', 'lahlou', 'digitec', 'tiza', 'hardsoft', 'matos']
+        
+        # Sitemap-based scrapers need more time
+        TIMEOUTS = {
+            'gigastore': 25,
+            'digitec': 25,
+            'tiza': 25,
+            'default': 25,
+        }
+        
+        for site in sites:
+            try:
+                print(f"  Scraping {site}...")
+                timeout = TIMEOUTS.get(site, TIMEOUTS['default'])
+                products = scrape_site(site, timeout=timeout)
+                raw_products.extend(products)
+                print(f"  [+] {site}: {len(products)} products")
+            except Exception as e:
+                print(f"  [!] {site} failed: {e}")
+    else:
+        print("\n[2/4] Skipping remote store scraping (SCRAPE_REMOTE=False)")
     
     # Add fresh Ouedkniss raw data
     if ouedkniss_raw:
